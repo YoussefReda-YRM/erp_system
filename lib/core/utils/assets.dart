@@ -5,4 +5,8 @@ class AssetsData {
   static const backArrow = 'assets/images/back_arrow.png';
   static const splashImage = 'assets/images/splashImage.png';
   static const successMark = 'assets/images/successmark.png';
+  static const accounting = 'assets/images/accounting.png';
+  static const hr = 'assets/images/hr.png';
+  static const inventory = 'assets/images/inventory.png';
+  static const scm = 'assets/images/scm.png';
 }
