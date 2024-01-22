@@ -13,6 +13,10 @@ class SignupBlocListener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<SignupCubit, SignupState>(
+      listenWhen: (previous, current) =>
+          current is SignupLoading ||
+          current is SignupSuccess ||
+          current is SignupFailure,
       listener: (context, state) {
         if (state is SignupLoading) {
           showDialog(

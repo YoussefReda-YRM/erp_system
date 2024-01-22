@@ -21,11 +21,7 @@ abstract class ApiService {
 
   @POST(ApiConstants.signup)
   Future<SignupResponse> signup(
-    @Body() SignupRequestBody loginRequestBody,
+    @Body() SignupRequestBody signupRequestBody,
   );
 
-  @POST(ApiConstants.forgotPassword)
-  Future<ForgotPasswordResponse> forgotPassword(
-    @Body() ForgotPasswordRequestBody forgotPasswordRequestBody,
-  );
 }
