@@ -4,8 +4,8 @@ import 'package:erp_system/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomAppBarHomeScreen extends StatelessWidget {
-  const CustomAppBarHomeScreen({
+class CustomAppBarModulesScreen extends StatelessWidget {
+  const CustomAppBarModulesScreen({
     super.key,
   });
 

@@ -1,6 +1,6 @@
 import 'package:erp_system/core/utils/assets.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
-import 'package:erp_system/features/home/ui/widgets/item_module.dart';
+import 'package:erp_system/features/modules/ui/widgets/item_module.dart';
 import 'package:flutter/material.dart';
 
 class ItemsModules extends StatelessWidget {

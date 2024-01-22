@@ -1,9 +1,9 @@
-import 'package:erp_system/features/home/ui/widgets/custom_app_bar.dart';
-import 'package:erp_system/features/home/ui/widgets/items_modules.dart';
+import 'package:erp_system/features/modules/ui/widgets/custom_app_bar.dart';
+import 'package:erp_system/features/modules/ui/widgets/items_modules.dart';
 import 'package:flutter/material.dart';
 
-class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({super.key});
+class ModulesViewBody extends StatelessWidget {
+  const ModulesViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class HomeViewBody extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.zero,
         children:const [
-          CustomAppBarHomeScreen(),
+          CustomAppBarModulesScreen(),
           ItemsModules()
         ],
       ),
