@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,7 @@ itemModule(String title, String moduleImage) => InkWell(
               boxShadow: [
                 BoxShadow(
                   offset: const Offset(0, 5),
-                  color: ColorsApp.primaryColor.withOpacity(0.2),
+                  color: ColorsApp.moreLightGrey.withOpacity(0.2),
                   spreadRadius: 2,
                   blurRadius: 5,
                 )
@@ -24,10 +26,10 @@ itemModule(String title, String moduleImage) => InkWell(
             children: [
               Image.asset(
                 moduleImage,
-                width: 50,
+                width:0.8.w,
               ),
               SizedBox(
-                height: 8.h,
+                height: 20.h,
               ),
               Text(
                 title,
