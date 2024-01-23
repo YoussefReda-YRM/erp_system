@@ -5,7 +5,7 @@ import 'package:erp_system/features/auth/create_new_password/ui/create_new_passw
 import 'package:erp_system/features/auth/forgot_password/ui/forgot_password_view.dart';
 import 'package:erp_system/features/auth/sign_up/logic/sign_up_cubit.dart';
 import 'package:erp_system/features/auth/sign_up/ui/register_view.dart';
-import 'package:erp_system/features/inventory/home/ui/home_view.dart';
+import 'package:erp_system/features/inventory/inventory_home/ui/home_view.dart';
 import 'package:erp_system/features/modules/ui/modules_view.dart';
 import 'package:erp_system/features/splash/ui/get_started_view.dart';
 import 'package:erp_system/features/auth/login/ui/login_view.dart';
@@ -18,14 +18,14 @@ import 'package:go_router/go_router.dart';
 abstract class AppRouter {
   static const kSplashView = '/';
   static const kModulesView = '/modulesView';
-  static const kgetStartedView = '/getStartedView';
+  // static const kgetStartedView = '/getStartedView';
   static const kLoginView = '/loginView';
+  static const kHomeView = '/homeView';
   static const kSignupView = '/signupView';
   static const kForgotPasswordView = '/forgotPasswordView';
   static const kOtpView = '/otpView';
   static const kCreateNewPasswordView = '/createNewPasswordView';
   static const kPasswordChangedView = '/passwordChangedView';
-  static const kHomeView = '/HomeView';
 
   static final router = GoRouter(
     routes: [
@@ -37,16 +37,20 @@ abstract class AppRouter {
         path: kModulesView,
         builder: (context, state) => const ModulesView(),
       ),
+      // GoRoute(
+      //   path: kgetStartedView,
+      //   builder: (context, state) => const GetStartedView(),
+      // ),
       GoRoute(
-        path: kgetStartedView,
-        builder: (context, state) => const GetStartedView(),
+        path: kLoginView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<LoginCubit>(),
+          child: const LoginView(),
+        ),
       ),
       GoRoute(
         path: kHomeView,
-        builder: (context, state) => BlocProvider(
-          create: (context) => getIt<LoginCubit>(),
-          child: HomeView(),
-        ),
+        builder: (context, state) => const HomeView(),
       ),
       GoRoute(
         path: kSignupView,

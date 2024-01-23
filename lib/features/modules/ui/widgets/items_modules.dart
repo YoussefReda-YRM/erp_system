@@ -9,7 +9,7 @@ class ItemsModules extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-            color: ColorsApp.moreLightGrey,
+            color: ColorsApp.primaryColor,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               decoration: const BoxDecoration(
@@ -19,7 +19,7 @@ class ItemsModules extends StatelessWidget {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(top: 50),
+                padding: const EdgeInsets.only(top: 100),
                 child: GridView.count(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
