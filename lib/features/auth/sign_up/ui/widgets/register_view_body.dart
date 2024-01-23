@@ -77,7 +77,7 @@ class SignupViewBody extends StatelessWidget {
 
   void validateThenDoSignup(BuildContext context) {
     if (context.read<SignupCubit>().formKey.currentState!.validate()) {
-      context.read<SignupCubit>().emitSignupState();
+      context.read<SignupCubit>().signup();
     }
   }
 }

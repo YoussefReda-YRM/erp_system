@@ -53,12 +53,12 @@ abstract class AppRouter {
             create: (context) => getIt<SignupCubit>(),
             child: const SignupView()),
       ),
-      GoRoute(
-        path: kForgotPasswordView,
-        builder: (context, state) => BlocProvider(
-            create: (context) => getIt<ForgotPasswordCubit>(),
-            child: const ForgotPasswordView()),
-      ),
+      // GoRoute(
+      //   path: kForgotPasswordView,
+      //   builder: (context, state) => BlocProvider(
+      //       create: (context) => getIt<ForgotPasswordCubit>(),
+      //       child: const ForgotPasswordView()),
+      // ),
       GoRoute(
         path: kOtpView,
         builder: (context, state) => const OtpView(),

@@ -12,7 +12,9 @@ class _ApiService implements ApiService {
   _ApiService(
     this._dio, {
     this.baseUrl,
-  });
+  }) {
+    baseUrl ??= 'http://yahya2002-001-site1.anytempurl.com/api';
+  }
 
   final Dio _dio;
 
@@ -33,7 +35,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '',
+              '/Auth/Login',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -47,12 +49,12 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<SignupResponse> signup(SignupRequestBody loginRequestBody) async {
+  Future<SignupResponse> signup(SignupRequestBody signupRequestBody) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(loginRequestBody.toJson());
+    _data.addAll(signupRequestBody.toJson());
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<SignupResponse>(Options(
       method: 'POST',
@@ -61,7 +63,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '',
+              '/Auth/register',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -71,35 +73,6 @@ class _ApiService implements ApiService {
               baseUrl,
             ))));
     final value = SignupResponse.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<ForgotPasswordResponse> forgotPassword(
-      ForgotPasswordRequestBody forgotPasswordRequestBody) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(forgotPasswordRequestBody.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ForgotPasswordResponse>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ForgotPasswordResponse.fromJson(_result.data!);
     return value;
   }
 

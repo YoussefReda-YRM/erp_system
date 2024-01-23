@@ -13,6 +13,8 @@ class LoginBlocListener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
+      listenWhen: (previous, current) =>
+          current is LoginLoading || current is LoginSuccess || current is LoginFailure,
       listener: (context, state) {
         if (state is LoginLoading) {
           showDialog(
@@ -25,8 +27,8 @@ class LoginBlocListener extends StatelessWidget {
           );
         } else if (state is LoginSuccess) {
           GoRouter.of(context).pop();
-          GoRouter.of(context).push(AppRouter.kHomeView);
-        } else if (state is LoginFailure){
+          GoRouter.of(context).push(AppRouter.kSignupView);
+        } else if (state is LoginFailure) {
           setupErrorState(context, state.error.toString());
         }
       },

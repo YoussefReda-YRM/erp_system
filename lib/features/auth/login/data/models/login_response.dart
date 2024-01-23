@@ -1,32 +1,38 @@
 class LoginResponse {
-  String? message;
+  String? token;
+  String? expiresOn;
   UserData? userData;
-  bool? status;
-  int? code;
+  String? message;
+  bool? isAuthenticated;
 
   LoginResponse({
-    this.message,
+    this.token,
+    this.expiresOn,
     this.userData,
-    this.status,
-    this.code,
+    this.message,
+    this.isAuthenticated,
   });
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) => LoginResponse(
-      message: json['message'] as String?,
-      userData: json['data'] == null
+      token: json['token'] as String?,
+      expiresOn: json['expiresOn'],
+      userData: json['user'] == null
           ? null
-          : UserData.fromJson(json['data'] as Map<String, dynamic>),
-      status: json['status'] as bool?,
-      code: json['code'] as int?);
+          : UserData.fromJson(json['user'] as Map<String, dynamic>),
+      message: json['message'] as String?,
+      isAuthenticated: json['isAuthenticated'] as bool?);
 }
 
 class UserData {
-  String? token;
+  String? userID;
+  String? email;
   String? userName;
-  UserData({this.token, this.userName});
+  List? roles;
+  UserData({this.userID, this.email, this.userName, this.roles});
 
   factory UserData.fromJson(Map<String, dynamic> json) => UserData(
-        token: json['token'] as String?,
-        userName: json['username'] as String?,
-      );
+      userID: json['userID'] as String?,
+      email: json['email'] as String?,
+      userName: json['username'] as String?,
+      roles: json['roles'] as List?);
 }

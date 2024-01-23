@@ -1,4 +1,5 @@
 import 'package:erp_system/core/helpers/app_regex.dart';
+import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_form_field.dart';
 import 'package:erp_system/features/auth/login/ui/widgets/password_validation.dart';
 import 'package:erp_system/features/auth/sign_up/logic/sign_up_cubit.dart';
@@ -59,18 +60,6 @@ class _SignupFormState extends State<SignupForm> {
               }
             },
             controller: context.read<SignupCubit>().nameController,
-          ),
-          SizedBox(height: 18.h),
-          AppTextFormField(
-            hintText: 'Phone number',
-            validator: (value) {
-              if (value == null ||
-                  value.isEmpty ||
-                  !AppRegex.isPhoneNumberValid(value)) {
-                return 'Please enter a valid phone number';
-              }
-            },
-            controller: context.read<SignupCubit>().phoneController,
           ),
           SizedBox(height: 18.h),
           AppTextFormField(
@@ -146,6 +135,26 @@ class _SignupFormState extends State<SignupForm> {
             hasNumber: hasNumber,
             hasMinLength: hasMinLength,
           ),
+          SizedBox(height: 18.h),
+          AppTextFormField(
+            hintText: 'Employee job',
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter an employee job';
+              }
+            },
+            controller: context.read<SignupCubit>().employeeJobController,
+          ),
+          SizedBox(height: 18.h),
+          AppTextFormField(
+            hintText: 'Enter role',
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter an employee role';
+              }
+            },
+            controller: context.read<SignupCubit>().roleController,
+          )
         ],
       ),
     );

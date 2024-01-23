@@ -25,6 +25,6 @@ Future<void> setupServiceLocator() async {
   getIt.registerFactory<SignupCubit>(() => SignupCubit(getIt()));
 
   //forgotPassword
-  getIt.registerLazySingleton<ForgotPasswordRepo>(() => ForgotPasswordRepo(getIt()));
-  getIt.registerFactory<ForgotPasswordCubit>(() => ForgotPasswordCubit(getIt()));
+  // getIt.registerLazySingleton<ForgotPasswordRepo>(() => ForgotPasswordRepo(getIt()));
+  // getIt.registerFactory<ForgotPasswordCubit>(() => ForgotPasswordCubit(getIt()));
 }
