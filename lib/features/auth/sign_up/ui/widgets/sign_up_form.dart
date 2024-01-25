@@ -62,18 +62,6 @@ class _SignupFormState extends State<SignupForm> {
           ),
           SizedBox(height: 18.h),
           AppTextFormField(
-            hintText: 'Phone number',
-            validator: (value) {
-              if (value == null ||
-                  value.isEmpty ||
-                  !AppRegex.isPhoneNumberValid(value)) {
-                return 'Please enter a valid phone number';
-              }
-            },
-            controller: context.read<SignupCubit>().phoneController,
-          ),
-          SizedBox(height: 18.h),
-          AppTextFormField(
             hintText: 'Email',
             validator: (value) {
               if (value == null ||
@@ -146,6 +134,26 @@ class _SignupFormState extends State<SignupForm> {
             hasNumber: hasNumber,
             hasMinLength: hasMinLength,
           ),
+          SizedBox(height: 18.h),
+          AppTextFormField(
+            hintText: 'Employee job',
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter an employee job';
+              }
+            },
+            controller: context.read<SignupCubit>().employeeJobController,
+          ),
+          SizedBox(height: 18.h),
+          AppTextFormField(
+            hintText: 'Enter role',
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter an employee role';
+              }
+            },
+            controller: context.read<SignupCubit>().roleController,
+          )
         ],
       ),
     );

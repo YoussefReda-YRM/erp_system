@@ -20,12 +20,12 @@ class LoginCubit extends Cubit<LoginState> {
         password: passwordController.text,
       ),
     );
-    response.fold(
-      (failure) {
-        emit(LoginFailure(error: failure.errorMessage.toString()));
+    response.when(
+      success: (loginResponse) {
+        emit(LoginSuccess(loginResponse));
       },
-      (response) {
-        emit(LoginSuccess(response));
+      failure: (error) {
+        emit(LoginFailure(error: error.apiErrorModel.message ?? ''));
       },
     );
   }

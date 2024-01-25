@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-itemModule(BuildContext context, String title, String moduleImage) => InkWell(
+customCardInventory(BuildContext context, String title, String moduleImage) => InkWell(
       onTap: () {
         GoRouter.of(context).push(AppRouter.kLoginView);
       },
@@ -21,21 +21,26 @@ itemModule(BuildContext context, String title, String moduleImage) => InkWell(
                 blurRadius: 5,
               )
             ]),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              moduleImage,
-              width: 50,
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
-            Text(
-              title,
-              style: Styles.font15DarkBlueMedium,
-            )
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20 , vertical: 40),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                moduleImage,
+                width: 80,
+              ),
+              SizedBox(
+                height: 12.h,
+              ),
+              Center(
+                child: Text(
+                  title,
+                  style: Styles.font10BlueSemiBold,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

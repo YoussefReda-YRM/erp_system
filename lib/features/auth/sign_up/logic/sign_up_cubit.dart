@@ -4,36 +4,40 @@ import 'package:erp_system/features/auth/sign_up/logic/sign_up_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class SignupCubit extends Cubit<SignupState> {
   final SignupRepo _signupRepo;
   SignupCubit(this._signupRepo) : super(SignupInitial());
 
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
   TextEditingController passwordConfirmationController =
       TextEditingController();
+  TextEditingController employeeJobController = TextEditingController();
+
+  TextEditingController roleController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
 
-  void emitSignupState() async {
+  void signup() async {
     emit(SignupLoading());
     final response = await _signupRepo.signup(SignupRequestBody(
-      name: nameController.text,
+      userName: nameController.text,
       email: emailController.text,
-      phone: phoneController.text,
       password: passwordController.text,
-      passwordConfirmation: passwordConfirmationController.text,
-      gender: 0,
+      confirmPassword: passwordConfirmationController.text,
+      employeeJop: employeeJobController.text,
+      addedById: '047b4ddb-4289-49d0-9ce4-da3aeb3f363d',
+      employeeDepartmentId: '2',
+      role: roleController.text,
     ));
-    response.fold(
-      (failure) {
-        emit(SignupFailure(error: failure.errorMessage.toString()));
+    response.when(
+      success: (loginResponse) {
+        emit(SignupSuccess(loginResponse));
       },
-      (response) {
-        emit(SignupSuccess(response));
+      failure: (error) {
+        emit(SignupFailure(error: error.apiErrorModel.message ?? ''));
       },
     );
   }

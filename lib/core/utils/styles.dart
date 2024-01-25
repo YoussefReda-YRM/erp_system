@@ -16,6 +16,12 @@ class Styles {
     color: ColorsApp.primaryColor,
   );
 
+  static TextStyle font10BlueSemiBold = TextStyle(
+    fontSize: 10.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: ColorsApp.primaryColor,
+  );
+
   static TextStyle font13LightGreyRegular = TextStyle(
     fontSize: 13.sp,
     fontWeight: FontWeightHelper.regular,
@@ -78,6 +84,12 @@ class Styles {
 
   static TextStyle font24LightGreyBold = TextStyle(
     fontSize: 24.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: ColorsApp.lightGrey,
+  );
+
+  static TextStyle font18LightGreyBold = TextStyle(
+    fontSize: 18.sp,
     fontWeight: FontWeightHelper.bold,
     color: ColorsApp.lightGrey,
   );

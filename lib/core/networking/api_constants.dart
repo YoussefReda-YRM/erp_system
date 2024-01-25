@@ -1,8 +1,7 @@
 class ApiConstants {
-  static const String apiBaseUrl = "";
-  static const String login = "";
-  static const String signup = "";
-  static const String forgotPassword = "";
+  static const String apiBaseUrl = "http://yahya2002-001-site1.anytempurl.com/api";
+  static const String login = "/Auth/Login";
+  static const String signup = "/Auth/register";
 }
 
 class ApiErrors {
