@@ -1,7 +1,4 @@
-import 'package:erp_system/core/utils/assets.dart';
-import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/features/inventory/inventory_home/ui/widgets/custom_app_bar_inventory.dart';
-import 'package:erp_system/features/inventory/inventory_home/ui/widgets/custom_card_inventory.dart';
 import 'package:erp_system/features/inventory/inventory_home/ui/widgets/list_of_card.dart';
 import 'package:flutter/material.dart';
 
