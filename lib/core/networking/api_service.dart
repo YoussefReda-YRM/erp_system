@@ -4,6 +4,7 @@ import 'package:erp_system/features/auth/login/data/models/login_request_body.da
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/sign_up/data/models/sign_up_request_body.dart';
 import 'package:erp_system/features/auth/sign_up/data/models/sign_up_response.dart';
+import 'package:erp_system/features/inventory/category/data/CategoryDM.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'api_service.g.dart';
@@ -21,5 +22,11 @@ abstract class ApiService {
   Future<SignupResponse> signup(
     @Body() SignupRequestBody signupRequestBody,
   );
+  @GET(ApiConstants.getcategory)
+  Future<List<CategoryDm>> getAllCategories();
+
+  @DELETE(ApiConstants.deleteSubcategory)
+  Future<void> deleteSubcategory(@Path('subCategoryId') int subCategoryId);
+
 
 }

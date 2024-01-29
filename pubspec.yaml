@@ -28,10 +28,12 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+
   flutter:
     sdk: flutter
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+
   # A build system for Dart code generation and modular compilation.
   build_runner: ^2.4.7
   # A flutter plugin for adapting screen and font size.Guaranteed to look good on different models

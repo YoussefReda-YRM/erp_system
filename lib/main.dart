@@ -10,5 +10,6 @@ void main() async {
     statusBarColor: Colors.transparent
   ));
   await ScreenUtil.ensureScreenSize();
+
   runApp(const ErpApp());
 }

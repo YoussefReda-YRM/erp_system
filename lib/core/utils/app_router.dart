@@ -3,6 +3,7 @@ import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/auth/create_new_password/ui/create_new_password_view.dart';
 import 'package:erp_system/features/auth/sign_up/logic/sign_up_cubit.dart';
 import 'package:erp_system/features/auth/sign_up/ui/register_view.dart';
+import 'package:erp_system/features/inventory/category/ui/category_view.dart';
 import 'package:erp_system/features/inventory/inventory_home/ui/inventory_home_view.dart';
 import 'package:erp_system/features/modules/ui/modules_view.dart';
 import 'package:erp_system/features/auth/login/ui/login_view.dart';
@@ -28,7 +29,7 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: kSplashView,
-        builder: (context, state) => const SplashView(),
+        builder: (context, state) =>  CategoryView(),
       ),
       GoRoute(
         path: kModulesView,

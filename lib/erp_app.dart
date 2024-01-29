@@ -17,7 +17,7 @@ class ErpApp extends StatelessWidget {
         title: 'ERP System',
         theme: ThemeData(
           primaryColor: ColorsApp.moreLightGrey,
-          scaffoldBackgroundColor: ColorsApp.primaryColor,
+          scaffoldBackgroundColor: ColorsApp.moreLightGrey,
         ),
       ),
     );
