@@ -63,6 +63,9 @@ dependencies:
 
   flutter_svg: ^2.0.9
 
+  # to generate QR code
+  barcode_widget: ^2.0.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

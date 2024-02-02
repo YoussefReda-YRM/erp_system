@@ -12,6 +12,7 @@ class AppTextButton extends StatelessWidget {
   final String buttonText;
   final TextStyle textStyle;
   final VoidCallback onPressed;
+  final double? width;
 
   const AppTextButton({
     super.key,
@@ -24,36 +25,41 @@ class AppTextButton extends StatelessWidget {
     required this.buttonText,
     required this.textStyle,
     required this.onPressed,
+    this.width,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      style: ButtonStyle(
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              borderRadius ?? 16,
+    return SizedBox(
+      width: width ?? double.infinity,
+      child: TextButton(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                borderRadius ?? 16,
+              ),
             ),
           ),
-        ),
-        backgroundColor: MaterialStatePropertyAll(
-          backgroundColor ?? ColorsApp.moreLightGrey,
-        ),
-        padding: MaterialStateProperty.all<EdgeInsets>(
-          EdgeInsets.symmetric(
-            horizontal: horizontalPadding?.w ?? 12.w,
-            vertical: verticalPadding?.h ?? 14.h,
+          backgroundColor: MaterialStatePropertyAll(
+            backgroundColor ?? ColorsApp.moreLightGrey,
           ),
+          padding: MaterialStateProperty.all<EdgeInsets>(
+            EdgeInsets.symmetric(
+              horizontal: horizontalPadding?.w ?? 12.w,
+              vertical: verticalPadding?.h ?? 14.h,
+            ),
+          ),
+          fixedSize: MaterialStateProperty.all(
+            Size(buttonWidth?.w ?? double.maxFinite, buttonHight ?? 65.h),
+          ),
+          // minimumSize: MaterialStateProperty.all(const Size(200.0, 48.0)),
         ),
-        fixedSize: MaterialStateProperty.all(
-          Size(buttonWidth?.w ?? double.maxFinite, buttonHight ?? 65.h),
+        onPressed: onPressed,
+        child: Text(
+          buttonText,
+          style: textStyle,
         ),
-      ),
-      onPressed: onPressed,
-      child: Text(
-        buttonText,
-        style: textStyle,
       ),
     );
   }
