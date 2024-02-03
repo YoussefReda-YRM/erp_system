@@ -23,10 +23,7 @@ class CustomItemDrawer extends StatelessWidget {
         maxLines: 1,
         style: Styles.font18LightGreyBold,
       ),
-      onTap: () {
-        // Handle item 2 tap
-        Navigator.pop(context); // Close the Drawer
-      },
+      onTap: onTap
     );
   }
 }

@@ -1,12 +1,14 @@
+import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/assets.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_divider.dart';
-import 'package:erp_system/features/inventory/inventory_home/ui/widgets/custom_item_drawer.dart';
+import 'package:erp_system/core/widgets/custom_item_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-class DrawerContent extends StatelessWidget {
-  const DrawerContent({super.key});
+class DrawerWidget extends StatelessWidget {
+  const DrawerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +51,7 @@ class DrawerContent extends StatelessWidget {
               ),
               title: 'Products',
               onTap: () {
-                Navigator.pop(context);
+                GoRouter.of(context).pushReplacement(AppRouter.kProductView);
               },
             ),
             CustomItemDrawer(

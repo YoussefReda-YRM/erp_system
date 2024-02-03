@@ -1,15 +1,21 @@
-import 'package:erp_system/core/utils/assets.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomAppBarProduct extends StatelessWidget {
-  final GlobalKey<ScaffoldState> scaffoldKey;
+  final GlobalKey<ScaffoldState>? scaffoldKey;
+
+  final String title;
+  final Widget? iconLeading;
+  final IconButton? iconTrailing;
 
   const CustomAppBarProduct({
     super.key,
-    required this.scaffoldKey,
+    this.scaffoldKey,
+    required this.title,
+    this.iconLeading,
+    this.iconTrailing,
   });
 
   @override
@@ -30,31 +36,13 @@ class CustomAppBarProduct extends StatelessWidget {
             ),
             ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-              leading: IconButton(
-                icon: const Icon(
-                  Icons.menu,
-                  size: 34,
-                  color: ColorsApp.lightGrey,
-                ),
-                onPressed: () {
-                  scaffoldKey.currentState!.openDrawer();
-                },
-              ),
+              leading: iconLeading,
               title: Text(
-                'Youssef Reda Mohamed',
+                title,
                 maxLines: 1,
                 style: Styles.font18LightGreyBold,
               ),
-              subtitle: Text(
-                'inventory employee',
-                style: Styles.font14LightGreyRegular,
-              ),
-              trailing: const CircleAvatar(
-                radius: 24,
-                backgroundImage: AssetImage(
-                  AssetsData.profile,
-                ),
-              ),
+              trailing: iconTrailing,
             ),
             SizedBox(
               height: 30.h,
