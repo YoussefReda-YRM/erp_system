@@ -7,9 +7,7 @@ class GetAllProductRepo {
   final ApiService _apiService;
   GetAllProductRepo(this._apiService);
 
-  Future<ApiResult<GetAllProductResponse>> getAllProduct(
-    String bearerToken,
-  ) async {
+  Future<ApiResult<GetAllProductResponse>> getAllProduct(String bearerToken) async {
     try {
       var response = await _apiService.getAllProducts('Bearer $bearerToken');
       return ApiResult.success(response);

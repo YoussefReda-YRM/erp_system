@@ -3,28 +3,27 @@ import 'package:erp_system/core/networking/api_result.dart';
 import 'package:erp_system/core/networking/api_service.dart';
 
 import 'package:erp_system/features/inventory/category/data/CategoryDM.dart';
-
 class CategoryRepo {
   final ApiService _apiService;
 
   CategoryRepo(this._apiService);
 
-  Future<ApiResult<List<CategoryDm>>> getAllCategories() async {
+  Future<ApiResult<List<CategoryDm>>> getAllCategory(String bearerToken) async {
     try {
-      final response = await _apiService.getAllCategories();
+      var response = await _apiService.getAllCategories('Bearer $bearerToken');
       return ApiResult.success(response);
     } catch (error) {
+      print("ommmm kda ${error}");
       return ApiResult.failure(ErrorHandler.handle(error));
     }
   }
 
-  Future<ApiResult<void>> deleteSubcategory(int subCategoryId) async {
-    try {
-      await _apiService.deleteSubcategory(subCategoryId);
-      return ApiResult.success(null); // Since there's no specific response body for deletion
-    } catch (error) {
-      return ApiResult.failure(ErrorHandler.handle(error));
-    }
-  }
+
 
 }
+
+
+
+
+
+

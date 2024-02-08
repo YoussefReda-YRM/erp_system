@@ -3,13 +3,14 @@ import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/features/inventory/category/data/CategoryDM.dart';
 import 'package:erp_system/features/inventory/category/data/repos/category_repo.dart';
 import 'package:erp_system/features/inventory/category/logic/categorystate.dart';
+import 'package:erp_system/features/inventory/category/logic/delete_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/ui/category_list_view.dart';
 import 'package:erp_system/features/inventory/category/ui/widget/circular_elevated_button.dart';
 import 'package:erp_system/features/inventory/category/ui/widget/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../logic/category_view_model.dart';
+import '../logic/get_all_category_cubit.dart';
 class CategoryView extends StatefulWidget {
   CategoryView({super.key});
 
@@ -18,14 +19,17 @@ class CategoryView extends StatefulWidget {
   State<CategoryView> createState() => _CategoryViewState();
 }
 int currentTab=0;
+String bearerToken="eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJ0ZXN0MjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ0ZXN0MjFAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSFIiLCJleHAiOjE3MDg3Njk3MjgsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwNjkiLCJhdWQiOiJNeVNlY3VyZWRBUElVc2VycyJ9.osVgUgjh04hkH9lhD-28V5BvaK4fFr9bWoffN7GubFk";
 
 class _CategoryViewState extends State<CategoryView> {
   CategoryCubit viewmodel=getIt();
+ // DeleteCategoryCubit viewmodel=getIt();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    viewmodel.getAllCategories();
+   viewmodel.getAllCategories(bearerToken);
     // }
   }
 
@@ -59,24 +63,26 @@ class _CategoryViewState extends State<CategoryView> {
             listener: (context, state){
 
             },
-    builder: (context, state) {
-    if (state is CategoryLoading) {
-    return CircularProgressIndicator();
-    } else if (state is CategoryFailure) {
-    return Text("Error");
-    } else if (state is CategorySuccess) {
-    return Expanded(child: buildTabs(state.categories));
-    } else {
-    // Handle other states or return a default widget
-    print("mony");
-    return Container();
-    }
-    },
+            builder: (context, state) {
+              if (state is CategoryLoading) {
+                return CircularProgressIndicator();
+              } else if (state is CategorySuccess) {
+                return Expanded(child: buildTabs(state.categories ));
+              } else if (state is CategorySuccess) {
+                return Expanded(child: buildTabs(state.categories ));
+              } else {
+                // Handle other states or return a default widget
+                print("mony");
+                return Container();
+              }
+            },
 
 
 
-        //  Expanded(child: CircularElevatedButton()),
-          )]
+
+          ),
+          Expanded(child: CircularElevatedButton()),
+        ]
         ),
 
       ),
@@ -132,7 +138,7 @@ class _CategoryViewState extends State<CategoryView> {
     );
   }
 
-  Widget buildTabView(CategoryDm category, List<SubCategories> allSubCategories, bool isSelected) {
+ /* Widget buildTabView(CategoryDm category, List<SubCategories> allSubCategories, bool isSelected) {
     List<SubCategories> subcategoriesForCurrentTab = allSubCategories
         .where((subCategory) => subCategory.subCategoryName == category.parentCategoryId)
         .toList();
@@ -148,8 +154,8 @@ class _CategoryViewState extends State<CategoryView> {
         style: TextStyle(
             fontSize: 18, color: isSelected ? Colors.white : Colors.blue),
       ),
-    );
-  }
+    );*/
+ // }
 
 
 }

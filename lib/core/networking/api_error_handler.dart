@@ -149,7 +149,8 @@ ApiErrorModel _handleError(DioException error) {
     case DioExceptionType.badResponse:
       if (error.response != null &&
           error.response?.statusCode != null &&
-          error.response?.statusMessage != null) {
+          error.response?.statusMessage != null &&
+          error.response?.data != null) {
         return ApiErrorModel.fromJson(error.response!.data);
       } else {
         return DataSource.DEFAULT.getFailure();
@@ -157,7 +158,8 @@ ApiErrorModel _handleError(DioException error) {
     case DioExceptionType.unknown:
       if (error.response != null &&
           error.response?.statusCode != null &&
-          error.response?.statusMessage != null) {
+          error.response?.statusMessage != null &&
+          error.response?.data != null) {
         return ApiErrorModel.fromJson(error.response!.data);
       } else {
         return DataSource.DEFAULT.getFailure();
@@ -172,6 +174,7 @@ ApiErrorModel _handleError(DioException error) {
       return DataSource.DEFAULT.getFailure();
   }
 }
+
 
 class ApiInternalStatus {
   static const int SUCCESS = 0;

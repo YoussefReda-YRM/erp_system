@@ -4,6 +4,9 @@ import 'package:erp_system/features/auth/login/data/models/login_request_body.da
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/sign_up/data/models/sign_up_request_body.dart';
 import 'package:erp_system/features/auth/sign_up/data/models/sign_up_response.dart';
+import 'package:erp_system/features/inventory/category/data/CategoryDM.dart';
+import 'package:erp_system/features/inventory/category/data/models/RequestParentCategory.dart';
+import 'package:erp_system/features/inventory/category/data/models/ResponseParentCategory.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/data/models/product_response.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -25,5 +28,22 @@ abstract class ApiService {
 
   @GET(ApiConstants.getAllProducts)
   Future<GetAllProductResponse> getAllProducts(@Header("Authorization") String token);
+
+  @GET(ApiConstants.getAllCategories)
+  Future<List<CategoryDm>> getAllCategories(@Header("Authorization") String token);
+
+
+  @DELETE(ApiConstants.deleteSubcategory)
+  Future<void> deleteSubcategory(
+      @Header("Authorization") String token,
+      @Path("subCategoryId") int subCategoryId,
+      );
+
+  @POST(ApiConstants.createParent)
+  Future<ResponseParentCategory> createparent(
+      @Body() RequestParentCategory requestParentCategory,@Header("Authorization") String token
+      );
+
+
 
 }

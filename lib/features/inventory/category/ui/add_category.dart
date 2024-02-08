@@ -2,8 +2,9 @@ import 'package:erp_system/features/inventory/category/ui/widget/custom_appbar.d
 import 'package:flutter/material.dart';
 
 class AddCategory extends StatelessWidget {
-  const AddCategory({super.key});
+  final bool isParent;
 
+  const AddCategory({Key? key, required this.isParent}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
