@@ -1,12 +1,13 @@
+import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/core/utils/assets.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
+import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomAppBarInventory extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
-
   const CustomAppBarInventory({
     super.key,
     required this.scaffoldKey,
@@ -41,14 +42,19 @@ class CustomAppBarInventory extends StatelessWidget {
                 },
               ),
               title: Text(
-                'Youssef Reda Mohamed',
+                getIt.get<LoginResponse>().userData!.userName!,
                 maxLines: 1,
                 style: Styles.font18LightGreyBold,
               ),
-              subtitle: Text(
-                'inventory employee',
-                style: Styles.font14LightGreyRegular,
-              ),
+              subtitle: getIt.get<LoginResponse>().userData!.roles!.isEmpty
+                  ? Text(
+                      "There is no role",
+                      style: Styles.font14LightGreyRegular,
+                    )
+                  : Text(
+                      getIt.get<LoginResponse>().userData!.roles?[0],
+                      style: Styles.font14LightGreyRegular,
+                    ),
               trailing: const CircleAvatar(
                 radius: 24,
                 backgroundImage: AssetImage(

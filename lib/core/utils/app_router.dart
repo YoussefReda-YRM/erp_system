@@ -1,4 +1,5 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/auth/create_new_password/ui/create_new_password_view.dart';
 import 'package:erp_system/features/auth/sign_up/logic/sign_up_cubit.dart';
@@ -16,6 +17,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
+
   static const kSplashView = '/';
   static const kModulesView = '/modulesView';
   static const kLoginView = '/loginView';
@@ -47,13 +49,15 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kInventoryHomeView,
-        builder: (context, state) => InventoryHomeView(),
+        builder: (context, state) =>
+            InventoryHomeView(),
       ),
       GoRoute(
         path: kProductView,
         builder: (context, state) => BlocProvider(
-            create: (context) => getIt.get<GetAllProductCubit>(),
-            child: GetAllProductView()),
+          create: (context) => getIt.get<GetAllProductCubit>()..getAllProduct(getIt.get<LoginResponse>().token),
+          child: GetAllProductView(),
+        ),
       ),
       GoRoute(
         path: kDetailsProductView,

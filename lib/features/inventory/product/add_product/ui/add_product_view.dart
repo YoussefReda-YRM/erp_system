@@ -4,7 +4,8 @@ import 'package:erp_system/features/inventory/product/add_product/ui/widgets/bod
 import 'package:flutter/material.dart';
 
 class AddProductView extends StatelessWidget {
-  const AddProductView({super.key});
+  const AddProductView({super.key, required this.ctxt});
+  final BuildContext ctxt;
 
   @override
   Widget build(BuildContext context) {
@@ -12,14 +13,14 @@ class AddProductView extends StatelessWidget {
       backgroundColor: ColorsApp.primaryColor,
       onPressed: () {
         showModalBottomSheet(
-          isScrollControlled: true,
+          isScrollControlled: false,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
             ),
           ),
-          context: context,
+          context: ctxt,
           builder: (context) {
             return const BodyShowModalBottomSheet();
           },

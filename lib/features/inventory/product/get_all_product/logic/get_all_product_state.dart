@@ -15,5 +15,7 @@ class GetAllProductFailure extends GetAllProductState {
 class GetAllProductSuccess extends GetAllProductState {
   final GetAllProductResponse response;
 
-  GetAllProductSuccess(this.response);
+  GetAllProductSuccess({
+    required this.response,
+  });
 }

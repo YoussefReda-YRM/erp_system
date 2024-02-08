@@ -19,10 +19,14 @@ class LoginBlocListener extends StatelessWidget {
           current is LoginFailure,
       listener: (context, state) {
         if (state is LoginLoading) {
-          customErrorIndicator(context);
+          customLoadingIndicator(context);
         } else if (state is LoginSuccess) {
           GoRouter.of(context).pop();
-          GoRouter.of(context).push(AppRouter.kInventoryHomeView);
+          // here i send login response
+          GoRouter.of(context).push(
+            AppRouter.kInventoryHomeView,
+            extra: state.response,
+          );
         } else if (state is LoginFailure) {
           setupErrorState(context, state.error.toString());
         }

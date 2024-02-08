@@ -3,7 +3,7 @@ import 'package:erp_system/features/inventory/inventory_home/ui/widgets/list_of_
 import 'package:flutter/material.dart';
 
 class InventoryHomeViewBody extends StatelessWidget {
-    final GlobalKey<ScaffoldState> scaffoldKey ;
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   const InventoryHomeViewBody({super.key, required this.scaffoldKey});
 

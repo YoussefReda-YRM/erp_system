@@ -4,6 +4,8 @@ import 'package:erp_system/features/auth/login/data/models/login_request_body.da
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/sign_up/data/models/sign_up_request_body.dart';
 import 'package:erp_system/features/auth/sign_up/data/models/sign_up_response.dart';
+import 'package:erp_system/features/inventory/product/add_product/data/models/add_product_request_body.dart';
+import 'package:erp_system/features/inventory/product/add_product/data/models/add_product_response.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/data/models/product_response.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -24,6 +26,11 @@ abstract class ApiService {
   );
 
   @GET(ApiConstants.getAllProducts)
-  Future<GetAllProductResponse> getAllProducts(@Header("Authorization") String token);
+  Future<GetAllProductResponse> getAllProducts(
+      @Header("Authorization") String token);
 
+  @POST(ApiConstants.addProduct)
+  Future<AddProductResponse> addProduct(
+      @Body() AddProductRequestBody addProductRequestBody,
+      @Header("Authorization") String token);
 }

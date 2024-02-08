@@ -12,7 +12,9 @@ class InventoryHomeView extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.white,
-      body: InventoryHomeViewBody(scaffoldKey: scaffoldKey,),
+      body: InventoryHomeViewBody(
+        scaffoldKey: scaffoldKey,
+      ),
       drawer: const DrawerWidget(),
     );
   }

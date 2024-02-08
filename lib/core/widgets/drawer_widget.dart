@@ -1,9 +1,11 @@
+import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/assets.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_divider.dart';
 import 'package:erp_system/core/widgets/custom_item_drawer.dart';
+import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -31,7 +33,7 @@ class DrawerWidget extends StatelessWidget {
                     ),
                   ),
                   title: Text(
-                    'Youssef Reda Mohamed',
+                    getIt.get<LoginResponse>().userData!.userName!,
                     maxLines: 1,
                     style: Styles.font18LightGreyBold,
                   ),

@@ -1,6 +1,6 @@
 import 'package:erp_system/core/utils/colors_app.dart';
-import 'package:erp_system/features/inventory/product/custom_app_bar_product.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/ui/widgets/product_list_view.dart';
+import 'package:erp_system/features/inventory/product/widgets/custom_app_bar_product.dart';
 import 'package:flutter/material.dart';
 
 class GetAllProductViewBody extends StatelessWidget {
