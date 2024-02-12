@@ -8,11 +8,9 @@ class CustomCircularProgressIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Expanded(
-      child: Center(
-        child: CircularProgressIndicator(
-          color: ColorsApp.primaryColor,
-        ),
+    return const Center(
+      child: CircularProgressIndicator(
+        color: ColorsApp.primaryColor,
       ),
     );
   }

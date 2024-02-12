@@ -84,15 +84,15 @@ class AppTextFormField extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(16.0),
           ),
-          hintStyle: hintStyle ?? Styles.font14BlueSemiBold,
+          hintStyle: hintStyle ?? Styles.font14BlueSemiBold(context),
           hintText: hintText,
           prefix: prefixIcon,
-          suffix: suffixIcon,
+          suffixIcon: suffixIcon,
           filled: true,
           fillColor: backgroundColor ?? ColorsApp.moreLightGrey,
         ),
         obscureText: isObscureText ?? false,
-        style: Styles.font14BlueSemiBold,
+        style: Styles.font14BlueSemiBold(context),
         validator: (value) {
           return validator(value);
         },

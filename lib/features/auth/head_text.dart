@@ -13,7 +13,7 @@ class HeadText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20),
-      child: Text(text, style: Styles.font24LightGreyBold),
+      child: Text(text, style: Styles.font24LightGreyBold(context)),
     );
   }
 }

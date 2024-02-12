@@ -36,7 +36,7 @@ customCardInventory(BuildContext context, String title, String moduleImage) => I
               Center(
                 child: Text(
                   title,
-                  style: Styles.font10BlueSemiBold,
+                  style: Styles.font10BlueSemiBold(context),
                 ),
               )
             ],

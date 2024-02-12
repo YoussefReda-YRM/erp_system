@@ -101,7 +101,7 @@ class _CreateNewPasswordViewBodyState extends State<CreateNewPasswordViewBody> {
         ),
         AppTextButton(
           buttonText: "Reset Password",
-          textStyle: Styles.font16LightGreyMedium,
+          textStyle: Styles.font16LightGreyMedium(context),
           onPressed: () {
             GoRouter.of(context)
                 .pushReplacement(AppRouter.kPasswordChangedView);

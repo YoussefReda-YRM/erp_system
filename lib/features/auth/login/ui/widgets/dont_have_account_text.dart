@@ -15,11 +15,11 @@ class DontHaveAccountText extends StatelessWidget {
       text: TextSpan(children: [
         TextSpan(
           text: 'don\'t have an account?',
-          style: Styles.font13LightGreyRegular,
+          style: Styles.font13LightGreyRegular(context),
         ),
         TextSpan(
           text: " Sign Up",
-          style: Styles.font14BlueSemiBold
+          style: Styles.font14BlueSemiBold(context)
               .copyWith(color: ColorsApp.moreLightGrey),
           recognizer: TapGestureRecognizer()
             ..onTap = () {

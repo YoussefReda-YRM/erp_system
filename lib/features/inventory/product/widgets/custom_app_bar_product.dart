@@ -37,10 +37,12 @@ class CustomAppBarProduct extends StatelessWidget {
             ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 30),
               leading: iconLeading,
-              title: Text(
-                title,
-                maxLines: 1,
-                style: Styles.font18LightGreyBold,
+              title: Center(
+                child: Text(
+                  title,
+                  maxLines: 1,
+                  style: Styles.font18LightGreyBold(context),
+                ),
               ),
               trailing: iconTrailing,
             ),

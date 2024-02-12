@@ -13,7 +13,7 @@ class ForgotPasswordButton extends StatelessWidget {
     return Align(
       alignment: AlignmentDirectional.centerEnd,
       child: TextButton(
-        child: Text("Forgot Password?", style: Styles.font16LightGreyMedium),
+        child: Text("Forgot Password?", style: Styles.font16LightGreyMedium(context)),
         onPressed: () {
           GoRouter.of(context).pushReplacement(AppRouter.kForgotPasswordView);
         },

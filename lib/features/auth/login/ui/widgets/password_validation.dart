@@ -9,6 +9,7 @@ class PasswordValidations extends StatelessWidget {
   final bool hasSpecialCharacter;
   final bool hasNumber;
   final bool hasMinLength;
+  final BuildContext context;
 
   const PasswordValidations({
     super.key,
@@ -16,7 +17,7 @@ class PasswordValidations extends StatelessWidget {
     required this.hasUpperCase,
     required this.hasSpecialCharacter,
     required this.hasNumber,
-    required this.hasMinLength,
+    required this.hasMinLength, required this.context,
   });
 
   @override
@@ -54,11 +55,13 @@ class PasswordValidations extends StatelessWidget {
         SizedBox(width: 6.w),
         Text(
           text,
-          style: Styles.font13LightGreyRegular.copyWith(
+          style: Styles.font13LightGreyRegular(context).copyWith(
             decoration: hasValidated ? TextDecoration.lineThrough : null,
             decorationColor: Colors.green,
             decorationThickness: 2,
-            color: hasValidated ? ColorsApp.moreLightGrey : ColorsApp.moreLightGrey,
+            color: hasValidated
+                ? ColorsApp.moreLightGrey
+                : ColorsApp.moreLightGrey,
           ),
         ),
       ],

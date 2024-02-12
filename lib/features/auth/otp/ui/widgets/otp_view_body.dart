@@ -32,7 +32,7 @@ class OtpViewBody extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: AppTextButton(
             buttonText: "Submit",
-            textStyle: Styles.font24DarkBlueBold,
+            textStyle: Styles.font18DarkBlueBold(context),
             onPressed: () {
               GoRouter.of(context)
                   .pushReplacement(AppRouter.kCreateNewPasswordView);

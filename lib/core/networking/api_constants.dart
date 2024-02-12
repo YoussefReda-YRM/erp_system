@@ -5,6 +5,7 @@ class ApiConstants {
   static const String signup = "/Auth/register";
   static const String getAllProducts = "/Product/AllProducts";
   static const String addProduct = "/Product/CreateProduct";
+  static const String getProductById = "/Product";
 }
 
 class ApiErrors {

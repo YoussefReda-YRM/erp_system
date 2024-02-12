@@ -9,11 +9,11 @@ deleteShowDialog(BuildContext context) {
       return AlertDialog(
         title: Text(
           "Confirm Deletion",
-          style: Styles.font24DarkBlueBold,
+          style: Styles.font18DarkBlueBold(context),
         ),
         content: Text(
           'Are you sure you want to delete this product?',
-          style: Styles.font13BlueSemiBold,
+          style: Styles.font13BlueSemiBold(context),
         ),
         actions: [
           TextButton(

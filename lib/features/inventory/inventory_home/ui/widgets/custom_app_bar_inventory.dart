@@ -44,16 +44,16 @@ class CustomAppBarInventory extends StatelessWidget {
               title: Text(
                 getIt.get<LoginResponse>().userData!.userName!,
                 maxLines: 1,
-                style: Styles.font18LightGreyBold,
+                style: Styles.font18LightGreyBold(context),
               ),
               subtitle: getIt.get<LoginResponse>().userData!.roles!.isEmpty
                   ? Text(
                       "There is no role",
-                      style: Styles.font14LightGreyRegular,
+                      style: Styles.font14LightGreyRegular(context),
                     )
                   : Text(
                       getIt.get<LoginResponse>().userData!.roles?[0],
-                      style: Styles.font14LightGreyRegular,
+                      style: Styles.font14LightGreyRegular(context),
                     ),
               trailing: const CircleAvatar(
                 radius: 24,

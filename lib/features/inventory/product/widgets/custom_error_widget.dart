@@ -19,7 +19,7 @@ class CustomErrorWidget extends StatelessWidget {
       ),
       content: Text(
         error,
-        style: Styles.font15DarkBlueMedium,
+        style: Styles.font15DarkBlueMedium(context),
       ),
       actions: [
         TextButton(
@@ -28,7 +28,7 @@ class CustomErrorWidget extends StatelessWidget {
           },
           child: Text(
             "Got it",
-            style: Styles.font14BlueSemiBold,
+            style: Styles.font14BlueSemiBold(context),
           ),
         ),
       ],

@@ -21,11 +21,11 @@ class RememberPasswordOrResendText extends StatelessWidget {
       text: TextSpan(children: [
         TextSpan(
           text: text,
-          style: Styles.font13LightGreyRegular,
+          style: Styles.font13LightGreyRegular(context),
         ),
         TextSpan(
             text: buttonText,
-            style: Styles.font14BlueSemiBold
+            style: Styles.font14BlueSemiBold(context)
                 .copyWith(color: ColorsApp.moreLightGrey),
             recognizer: TapGestureRecognizer()..onTap = onPressed),
       ]),

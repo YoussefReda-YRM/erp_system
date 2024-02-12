@@ -8,6 +8,8 @@ import 'package:erp_system/features/auth/sign_up/data/repos/sign_up_repo.dart';
 import 'package:erp_system/features/auth/sign_up/logic/sign_up_cubit.dart';
 import 'package:erp_system/features/inventory/product/add_product/data/repos/add_product_repo.dart';
 import 'package:erp_system/features/inventory/product/add_product/logic/add_product_cubit.dart';
+import 'package:erp_system/features/inventory/product/details_product/data/repo/details_product_repo.dart';
+import 'package:erp_system/features/inventory/product/details_product/logic/details_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/data/repos/get_all_product_repo.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/logic/get_all_product_cubit.dart';
 import 'package:get_it/get_it.dart';
@@ -24,7 +26,6 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
 
-  
   getIt.registerFactory<LoginResponse>(() => loginResponseInGetIt!);
 
   //signup
@@ -39,4 +40,10 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<GetAllProductRepo>(
       () => GetAllProductRepo(getIt()));
   getIt.registerFactory<GetAllProductCubit>(() => GetAllProductCubit(getIt()));
+
+  //get product by id
+  getIt.registerLazySingleton<DetailsProductRepo>(
+      () => DetailsProductRepo(getIt()));
+  getIt
+      .registerFactory<DetailsProductCubit>(() => DetailsProductCubit(getIt()));
 }

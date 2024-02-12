@@ -32,6 +32,7 @@ class ProductListView extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,

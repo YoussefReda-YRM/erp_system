@@ -12,12 +12,12 @@ void showSuccessDialog(BuildContext context, String title, String content) {
         title: Center(
           child: Text(
             title,
-            style: Styles.font15DarkBlueMedium.copyWith(color: Colors.pink),
+            style: Styles.font15DarkBlueMedium(context).copyWith(color: Colors.pink),
           ),
         ),
         content: Text(
-          'Your product has been successfully created.',
-          style: Styles.font13BlueSemiBold,
+          content,
+          style: Styles.font13BlueSemiBold(context),
         ),
         actions: <Widget>[
           TextButton(
@@ -26,7 +26,7 @@ void showSuccessDialog(BuildContext context, String title, String content) {
             },
             child: Text(
               "OK",
-              style: Styles.font14BlueSemiBold,
+              style: Styles.font14BlueSemiBold(context),
             ),
           ),
         ],

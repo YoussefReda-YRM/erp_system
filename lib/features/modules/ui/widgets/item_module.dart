@@ -33,7 +33,7 @@ itemModule(BuildContext context, String title, String moduleImage) => InkWell(
             ),
             Text(
               title,
-              style: Styles.font15DarkBlueMedium,
+              style: Styles.font15DarkBlueMedium(context),
             )
           ],
         ),

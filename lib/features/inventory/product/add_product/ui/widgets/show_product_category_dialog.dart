@@ -1,17 +1,19 @@
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
+import 'package:erp_system/features/inventory/product/add_product/logic/add_product_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-showProductCategoriesDialog(BuildContext context, Size size) {
+showProductCategoriesDialog(BuildContext ctxt, Size size) {
   showDialog(
-    context: context,
+    context: ctxt,
     builder: (ctx) {
       return AlertDialog(
         title: Text(
           'Select Product Category',
-          style: Styles.font14BlueSemiBold.copyWith(color: Colors.pink),
+          style: Styles.font14BlueSemiBold(ctxt).copyWith(color: Colors.pink),
         ),
         content: SizedBox(
           width: size.width * 0.9,
@@ -22,8 +24,10 @@ showProductCategoriesDialog(BuildContext context, Size size) {
               return InkWell(
                 onTap: () {
                   print(productCategories[index]);
+                  BlocProvider.of<AddProductCubit>(ctxt)
+                      .subCategoryIdController
+                      .text = productCategories[index];
                   GoRouter.of(context).pop();
-                  // productCategoryController.text = productCategories[index];
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -37,7 +41,7 @@ showProductCategoriesDialog(BuildContext context, Size size) {
                     ),
                     Text(
                       productCategories[index],
-                      style: Styles.font13BlueSemiBold
+                      style: Styles.font13BlueSemiBold(context)
                           .copyWith(fontStyle: FontStyle.italic),
                     ),
                   ]),
@@ -49,7 +53,7 @@ showProductCategoriesDialog(BuildContext context, Size size) {
         actions: [
           TextButton(
             onPressed: () {
-              GoRouter.of(context).pop();
+              GoRouter.of(ctxt).pop();
             },
             child: const Text(
               "Cancel",
@@ -82,5 +86,3 @@ List<String> productCategories = [
   'category 17',
   'category 18',
 ];
-
-

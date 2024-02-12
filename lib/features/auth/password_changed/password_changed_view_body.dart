@@ -27,7 +27,7 @@ class PasswordChangedViewBody extends StatelessWidget {
         ),
         AppTextButton(
           buttonText: "Back to Login",
-          textStyle: Styles.font16LightGreyMedium,
+          textStyle: Styles.font16LightGreyMedium(context),
           onPressed: () {
             GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
           },

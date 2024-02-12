@@ -5,6 +5,9 @@ import 'package:erp_system/features/auth/create_new_password/ui/create_new_passw
 import 'package:erp_system/features/auth/sign_up/logic/sign_up_cubit.dart';
 import 'package:erp_system/features/auth/sign_up/ui/register_view.dart';
 import 'package:erp_system/features/inventory/inventory_home/ui/inventory_home_view.dart';
+import 'package:erp_system/features/inventory/product/add_product/logic/add_product_cubit.dart';
+import 'package:erp_system/features/inventory/product/add_product/ui/add_product_view.dart';
+import 'package:erp_system/features/inventory/product/details_product/logic/details_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/details_product/ui/details_product_view.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/logic/get_all_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/ui/get_all_product_view.dart';
@@ -17,12 +20,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
-
   static const kSplashView = '/';
   static const kModulesView = '/modulesView';
   static const kLoginView = '/loginView';
   static const kInventoryHomeView = '/inventoryHomeView';
   static const kProductView = '/productView';
+  static const kAddProductView = '/addProductView';
+
   static const kDetailsProductView = '/detailsProductView';
   static const kSignupView = '/signupView';
   static const kForgotPasswordView = '/forgotPasswordView';
@@ -49,19 +53,35 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kInventoryHomeView,
-        builder: (context, state) =>
-            InventoryHomeView(),
+        builder: (context, state) => InventoryHomeView(),
       ),
       GoRoute(
         path: kProductView,
         builder: (context, state) => BlocProvider(
-          create: (context) => getIt.get<GetAllProductCubit>()..getAllProduct(getIt.get<LoginResponse>().token),
-          child: GetAllProductView(),
+          create: (context) => getIt.get<GetAllProductCubit>()
+            ..getAllProduct(getIt.get<LoginResponse>().token),
+          child: const GetAllProductView(),
+        ),
+      ),
+      GoRoute(
+        path: kAddProductView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<AddProductCubit>(),
+          child: const AddProductView(),
         ),
       ),
       GoRoute(
         path: kDetailsProductView,
-        builder: (context, state) => const DetailsProductView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<DetailsProductCubit>()
+            ..getProductById(
+              getIt.get<LoginResponse>().token,
+              state.extra as int,
+            ),
+          child: DetailsProductView(
+            productId: state.extra as int,
+          ),
+        ),
       ),
       GoRoute(
         path: kSignupView,

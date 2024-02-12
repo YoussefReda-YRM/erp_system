@@ -93,6 +93,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
             hasNumber: hasNumber,
             hasSpecialCharacter: hasSpecialCharacter,
             hasUpperCase: hasUpperCase,
+            context: context,
           ),
         ],
       ),

@@ -15,7 +15,7 @@ class CustomNoProductWidget extends StatelessWidget {
           Text(
             "There is no product, Create a New product now.",
             textAlign: TextAlign.center,
-            style: Styles.font18LightGreyBold,
+            style: Styles.font18LightGreyBold(context),
           ),
         ],
       ),

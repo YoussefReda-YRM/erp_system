@@ -133,6 +133,7 @@ class _SignupFormState extends State<SignupForm> {
             hasSpecialCharacter: hasSpecialCharacters,
             hasNumber: hasNumber,
             hasMinLength: hasMinLength,
+            context: context,
           ),
           SizedBox(height: 18.h),
           AppTextFormField(

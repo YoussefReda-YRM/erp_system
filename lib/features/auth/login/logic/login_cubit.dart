@@ -25,8 +25,6 @@ class LoginCubit extends Cubit<LoginState> {
       success: (loginResponse) {
         loginResponseInGetIt = loginResponse;
         emit(LoginSuccess(loginResponse));
-        // after successful login fetch all products
-        // getIt.get<GetAllProductCubit>().getAllProduct(loginResponse.token);
       },
       failure: (error) {
         emit(LoginFailure(error: error.apiErrorModel.message ?? ''));

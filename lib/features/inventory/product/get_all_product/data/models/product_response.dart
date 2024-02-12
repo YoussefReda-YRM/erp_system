@@ -24,17 +24,20 @@ class GetAllProductResponse {
 }
 
 class ProductData {
+  final int? productId;
   final String? productName;
   final int? productOnHand;
   final String? category;
 
   ProductData({
+    this.productId,
     this.productName,
     this.productOnHand,
     this.category,
   });
 
   factory ProductData.fromJson(Map<String, dynamic> json) => ProductData(
+        productId: json['id'],
         productName: json['productName'],
         productOnHand: json['productOnHand'],
         category: json['category'],
