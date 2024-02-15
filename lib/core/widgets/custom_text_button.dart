@@ -1,6 +1,5 @@
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextButton extends StatelessWidget {
   final double? borderRadius;
@@ -12,6 +11,7 @@ class AppTextButton extends StatelessWidget {
   final String buttonText;
   final TextStyle textStyle;
   final VoidCallback onPressed;
+  final double? width;
 
   const AppTextButton({
     super.key,
@@ -24,36 +24,41 @@ class AppTextButton extends StatelessWidget {
     required this.buttonText,
     required this.textStyle,
     required this.onPressed,
+    this.width,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      style: ButtonStyle(
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              borderRadius ?? 16,
+    return SizedBox(
+      width: width ?? double.infinity,
+      child: TextButton(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                borderRadius ?? 16,
+              ),
             ),
           ),
-        ),
-        backgroundColor: MaterialStatePropertyAll(
-          backgroundColor ?? ColorsApp.moreLightGrey,
-        ),
-        padding: MaterialStateProperty.all<EdgeInsets>(
-          EdgeInsets.symmetric(
-            horizontal: horizontalPadding?.w ?? 12.w,
-            vertical: verticalPadding?.h ?? 14.h,
+          backgroundColor: MaterialStatePropertyAll(
+            backgroundColor ?? ColorsApp.moreLightGrey,
           ),
+          padding: MaterialStateProperty.all<EdgeInsets>(
+            EdgeInsets.symmetric(
+              horizontal: horizontalPadding ?? 12,
+              vertical: verticalPadding?? 14,
+            ),
+          ),
+          fixedSize: MaterialStateProperty.all(
+            Size(buttonWidth ?? double.maxFinite, buttonHight ?? 45),
+          ),
+          // minimumSize: MaterialStateProperty.all(const Size(200.0, 48.0)),
         ),
-        fixedSize: MaterialStateProperty.all(
-          Size(buttonWidth?.w ?? double.maxFinite, buttonHight ?? 50.h),
+        onPressed: onPressed,
+        child: Text(
+          buttonText,
+          style: textStyle,
         ),
-      ),
-      onPressed: onPressed,
-      child: Text(
-        buttonText,
-        style: textStyle,
       ),
     );
   }

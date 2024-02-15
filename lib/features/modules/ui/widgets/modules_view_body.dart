@@ -7,16 +7,12 @@ class ModulesViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: ListView(
-        padding: EdgeInsets.zero,
-        children:const [
-          CustomAppBarModulesScreen(),
-          ItemsModules()
-        ],
-      ),
+    return ListView(
+      padding: EdgeInsets.zero,
+      children: const [
+        CustomAppBarModulesScreen(),
+        ItemsModules(),
+      ],
     );
   }
 }
-

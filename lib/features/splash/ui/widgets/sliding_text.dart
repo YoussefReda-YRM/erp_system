@@ -18,7 +18,7 @@ class SlidinText extends StatelessWidget {
           position: slidingAnimation,
           child: Text(
             "ERP SYSTEM",
-            style: Styles.font16LightGreyMedium ,
+            style: Styles.font16LightGreyMedium(context),
             textAlign: TextAlign.center,
           ),
         );

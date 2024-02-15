@@ -16,11 +16,11 @@ class AlreadyHaveAccountText extends StatelessWidget {
         children: [
           TextSpan(
             text: 'Already have an account?',
-            style: Styles.font13LightGreyRegular,
+            style: Styles.font13LightGreyRegular(context),
           ),
           TextSpan(
             text: " Login",
-            style: Styles.font14BlueSemiBold.copyWith(color: ColorsApp.moreLightGrey),
+            style: Styles.font14BlueSemiBold(context).copyWith(color: ColorsApp.moreLightGrey),
             recognizer: TapGestureRecognizer()
             ..onTap = () {
               GoRouter.of(context).pushReplacement(AppRouter.kLoginView);

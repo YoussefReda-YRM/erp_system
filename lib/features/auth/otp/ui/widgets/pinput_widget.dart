@@ -14,7 +14,7 @@ class PinputWidget extends StatelessWidget {
     final defaultPinTheme = PinTheme(
       width: 60.w,
       height: 65.h,
-      textStyle: Styles.font24DarkBlueBold,
+      textStyle: Styles.font18DarkBlueBold(context),
       decoration: BoxDecoration(
         color: ColorsApp.moreLightGrey,
         borderRadius: BorderRadius.circular(8),

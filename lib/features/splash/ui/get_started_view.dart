@@ -26,7 +26,7 @@ class GetStartedView extends StatelessWidget {
           Text(
             'Let\'s Get\nStarted',
             textAlign: TextAlign.center,
-            style: Styles.font32LightGreyBold,
+            style: Styles.font32LightGreyBold(context),
           ),
           const SizedBox(
             height: 72,
@@ -35,7 +35,7 @@ class GetStartedView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: AppTextButton(
               buttonText: "Login",
-              textStyle: Styles.font24DarkBlueBold,
+              textStyle: Styles.font18DarkBlueBold(context),
               onPressed: () {
                 GoRouter.of(context).push(AppRouter.kLoginView);
               },
@@ -48,7 +48,7 @@ class GetStartedView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: AppTextButton(
               buttonText: "Register",
-              textStyle: Styles.font24DarkBlueBold,
+              textStyle: Styles.font18DarkBlueBold(context),
               onPressed: () {
                 GoRouter.of(context).push(AppRouter.kSignupView);
               },
@@ -65,7 +65,7 @@ class GetStartedView extends StatelessWidget {
               child: Text(
                 'Continue as a guest',
                 textAlign: TextAlign.center,
-                style: Styles.font14LightGreyRegular,
+                style: Styles.font14LightGreyRegular(context),
               ),
             ),
           ),

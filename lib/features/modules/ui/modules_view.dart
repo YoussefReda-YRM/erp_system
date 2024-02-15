@@ -6,6 +6,9 @@ class ModulesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ModulesViewBody();
+    return const Scaffold(
+      backgroundColor: Colors.white,
+      body: ModulesViewBody(),
+    );
   }
 }

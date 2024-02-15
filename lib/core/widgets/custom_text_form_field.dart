@@ -16,6 +16,8 @@ class AppTextFormField extends StatelessWidget {
   final Color? backgroundColor;
   final TextEditingController? controller;
   final Function(String?) validator;
+  final bool? isEnabled;
+  final Function? function;
 
   const AppTextFormField({
     super.key,
@@ -31,61 +33,70 @@ class AppTextFormField extends StatelessWidget {
     this.backgroundColor,
     this.controller,
     required this.validator,
+    this.isEnabled,
+    this.function,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      decoration: InputDecoration(
-        isDense: true,
-        contentPadding: contentPadding ??
-            EdgeInsets.symmetric(
-              vertical: 18.h,
-              horizontal: 20.w,
-            ),
-        focusedBorder: focuseBorder ??
-            OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: ColorsApp.primaryColor,
-                width: 1.3,
-              ),
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-        enabledBorder: enabledBorder ??
-            OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: ColorsApp.moreLightGrey,
-                width: 1.3,
-              ),
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-        errorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: Colors.red,
-            width: 1.3,
-          ),
-          borderRadius: BorderRadius.circular(16.0),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: Colors.red,
-            width: 1.3,
-          ),
-          borderRadius: BorderRadius.circular(16.0),
-        ),
-        hintStyle: hintStyle ?? Styles.font14BlueSemiBold,
-        hintText: hintText,
-        prefix: prefixIcon,
-        suffix: suffixIcon,
-        filled: true,
-        fillColor: backgroundColor ?? ColorsApp.moreLightGrey,
-      ),
-      obscureText: isObscureText ?? false,
-      style: Styles.font14BlueSemiBold,
-      validator: (value) {
-        return validator(value);
+    return InkWell(
+      onTap: () {
+        function!();
       },
+      child: TextFormField(
+        enabled: isEnabled ?? true,
+        autocorrect: false,
+        controller: controller,
+        decoration: InputDecoration(
+          isDense: true,
+          contentPadding: contentPadding ??
+              EdgeInsets.symmetric(
+                vertical: 18.h,
+                horizontal: 20.w,
+              ),
+          focusedBorder: focuseBorder ??
+              OutlineInputBorder(
+                borderSide: const BorderSide(
+                  color: ColorsApp.primaryColor,
+                  width: 1.3,
+                ),
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+          enabledBorder: enabledBorder ??
+              OutlineInputBorder(
+                borderSide: const BorderSide(
+                  color: Color.fromARGB(255, 253, 253, 253),
+                  width: 1.3,
+                ),
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+          errorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.red,
+              width: 1.3,
+            ),
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.red,
+              width: 1.3,
+            ),
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          hintStyle: hintStyle ?? Styles.font14BlueSemiBold(context),
+          hintText: hintText,
+          prefix: prefixIcon,
+          suffixIcon: suffixIcon,
+          filled: true,
+          fillColor: backgroundColor ?? ColorsApp.moreLightGrey,
+        ),
+        obscureText: isObscureText ?? false,
+        style: Styles.font14BlueSemiBold(context),
+        validator: (value) {
+          return validator(value);
+        },
+      ),
     );
   }
 }

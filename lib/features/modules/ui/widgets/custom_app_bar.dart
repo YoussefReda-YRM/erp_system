@@ -27,11 +27,11 @@ class CustomAppBarModulesScreen extends StatelessWidget {
             contentPadding: const EdgeInsets.symmetric(horizontal: 30),
             title: Text(
               'Hi!',
-              style: Styles.font24LightGreyBold,
+              style: Styles.font24LightGreyBold(context),
             ),
             subtitle: Text(
               'Good Morning',
-              style: Styles.font16LightGreyMedium,
+              style: Styles.font16LightGreyMedium(context),
             ),
             trailing: const CircleAvatar(
               radius: 30,

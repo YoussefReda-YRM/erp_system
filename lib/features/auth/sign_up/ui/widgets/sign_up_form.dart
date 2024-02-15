@@ -1,5 +1,4 @@
 import 'package:erp_system/core/helpers/app_regex.dart';
-import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_form_field.dart';
 import 'package:erp_system/features/auth/login/ui/widgets/password_validation.dart';
 import 'package:erp_system/features/auth/sign_up/logic/sign_up_cubit.dart';
@@ -134,6 +133,7 @@ class _SignupFormState extends State<SignupForm> {
             hasSpecialCharacter: hasSpecialCharacters,
             hasNumber: hasNumber,
             hasMinLength: hasMinLength,
+            context: context,
           ),
           SizedBox(height: 18.h),
           AppTextFormField(

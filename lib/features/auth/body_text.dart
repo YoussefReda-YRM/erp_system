@@ -14,7 +14,7 @@ class BodyText extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Text(
         text,
-        style: Styles.font13LightGreyRegular,
+        style: Styles.font13LightGreyRegular(context),
       ),
     );
   }

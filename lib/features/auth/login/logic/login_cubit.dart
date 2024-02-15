@@ -1,3 +1,4 @@
+import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/features/auth/login/data/models/login_request_body.dart';
 import 'package:erp_system/features/auth/login/data/repos/login_repo.dart';
 import 'package:erp_system/features/auth/login/logic/login_state.dart';
@@ -22,6 +23,7 @@ class LoginCubit extends Cubit<LoginState> {
     );
     response.when(
       success: (loginResponse) {
+        loginResponseInGetIt = loginResponse;
         emit(LoginSuccess(loginResponse));
       },
       failure: (error) {

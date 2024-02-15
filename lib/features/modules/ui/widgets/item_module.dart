@@ -2,7 +2,6 @@ import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 itemModule(BuildContext context, String title, String moduleImage) => InkWell(
@@ -28,12 +27,12 @@ itemModule(BuildContext context, String title, String moduleImage) => InkWell(
               moduleImage,
               width: 50,
             ),
-            SizedBox(
-              height: 8.h,
+            const SizedBox(
+              height: 8,
             ),
             Text(
               title,
-              style: Styles.font15DarkBlueMedium,
+              style: Styles.font15DarkBlueMedium(context),
             )
           ],
         ),

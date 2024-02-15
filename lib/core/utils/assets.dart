@@ -9,4 +9,7 @@ class AssetsData {
   static const hr = 'assets/images/hr.png';
   static const inventory = 'assets/images/inventory.png';
   static const scm = 'assets/images/scm.png';
+  static const product = 'assets/images/products.png';
+  static const replensh= 'assets/images/replensh.png';
+  static const profile= 'assets/images/profile_image.jpeg';
 }

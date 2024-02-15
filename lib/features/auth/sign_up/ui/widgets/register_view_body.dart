@@ -45,7 +45,7 @@ class SignupViewBody extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 20.h),
                     child: AppTextButton(
                       buttonText: "Create Account",
-                      textStyle: Styles.font24DarkBlueBold,
+                      textStyle: Styles.font18DarkBlueBold(context),
                       onPressed: () {
                         validateThenDoSignup(context);
                       },
