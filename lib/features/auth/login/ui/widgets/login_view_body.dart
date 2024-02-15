@@ -9,7 +9,6 @@ import 'package:erp_system/features/auth/login/ui/widgets/login_bloc_listener.da
 import 'package:erp_system/features/auth/terms_and_conditions_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -29,8 +28,8 @@ class LoginViewBody extends StatelessWidget {
               text:
                   'We\'re exited to have you back, can\'t wait to see what you\'ve been up to since you last logged in.',
             ),
-            SizedBox(
-              height: 12.h,
+            const SizedBox(
+              height: 12,
             ),
             Column(
               children: [
@@ -38,8 +37,8 @@ class LoginViewBody extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: EmailAndPassword(),
                 ),
-                SizedBox(
-                  height: 24.h,
+                const SizedBox(
+                  height: 50,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -51,8 +50,8 @@ class LoginViewBody extends StatelessWidget {
                     },
                   ),
                 ),
-                SizedBox(
-                  height: 16.h,
+                const SizedBox(
+                  height: 16,
                 ),
                 const Padding(
                   padding: EdgeInsets.symmetric(
@@ -60,8 +59,8 @@ class LoginViewBody extends StatelessWidget {
                   ),
                   child: TermsAndConditionsText(),
                 ),
-                SizedBox(
-                  height: 40.h,
+                const SizedBox(
+                  height: 40,
                 ),
                 const LoginBlocListener(),
               ],

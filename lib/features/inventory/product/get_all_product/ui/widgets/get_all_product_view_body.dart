@@ -34,7 +34,7 @@ class GetAllProductViewBody extends StatelessWidget {
           ),
           
         ),
-        const ProductListView(),
+        const Expanded(child: ProductListView()),
       ],
     );
   }

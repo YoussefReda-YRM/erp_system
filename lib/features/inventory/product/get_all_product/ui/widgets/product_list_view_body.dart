@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 Widget buildDataTable(GetAllProductResponse products, BuildContext context) {
-  final columns = ['Name', 'Category', 'On Hand'];
+  final columns = ['Name', 'Category', 'On Hand', 'Details Product'];
   return DataTable(
     columns: getColumns(columns, context),
     rows: getRows(products.data!, context),
@@ -16,9 +16,13 @@ List<DataColumn> getColumns(List<String> columnsName, BuildContext context) =>
     columnsName
         .map(
           (String columnName) => DataColumn(
-            label: Text(
-              columnName,
-              style: Styles.font15DarkBlueMedium(context),
+            label: Expanded(
+              child: Center(
+                child: Text(
+                  columnName,
+                  style: Styles.font15DarkBlueMedium(context),
+                ),
+              ),
             ),
           ),
         )
@@ -31,12 +35,6 @@ List<DataRow> getRows(List<ProductData> products, BuildContext context) =>
           (ProductData product) => DataRow(
             cells: [
               DataCell(
-                onTap: () {
-                  GoRouter.of(context).push(
-                    AppRouter.kDetailsProductView,
-                    extra: product.productId,
-                  );
-                },
                 Padding(
                   padding: const EdgeInsets.only(left: 0),
                   child: Center(
@@ -48,9 +46,6 @@ List<DataRow> getRows(List<ProductData> products, BuildContext context) =>
                 ),
               ),
               DataCell(
-                onTap: () {
-                  GoRouter.of(context).push(AppRouter.kDetailsProductView);
-                },
                 Center(
                   child: Text(
                     '${product.category}',
@@ -59,14 +54,35 @@ List<DataRow> getRows(List<ProductData> products, BuildContext context) =>
                 ),
               ),
               DataCell(
-                onTap: () {
-                  GoRouter.of(context).push(AppRouter.kDetailsProductView);
-                },
                 Center(
                   child: Text(
                     '${product.productOnHand}',
                     style: Styles.font10BlueSemiBold(context),
                   ),
+                ),
+              ),
+              DataCell(
+                onTap: () {
+                  GoRouter.of(context).push(
+                    AppRouter.kDetailsProductView,
+                    extra: product.productId,
+                  );
+                },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'View',
+                      style: Styles.font13BlueSemiBold(context)
+                          .copyWith(color: Colors.pink),
+                    ),
+                    const SizedBox(width: 5,),
+                    const Icon(
+                      Icons.arrow_forward_ios_outlined,
+                      color: Colors.pink,
+                      size: 13,
+                    ),
+                  ],
                 ),
               ),
             ],

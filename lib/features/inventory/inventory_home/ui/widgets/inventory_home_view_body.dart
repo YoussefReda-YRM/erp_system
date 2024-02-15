@@ -9,8 +9,7 @@ class InventoryHomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.zero,
+    return Column(
       children: [
         CustomAppBarInventory(scaffoldKey: scaffoldKey),
         const ListOfCards(),

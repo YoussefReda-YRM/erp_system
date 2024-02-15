@@ -3,6 +3,7 @@ class ApiConstants {
       "http://yahya2002-001-site1.anytempurl.com/api";
   static const String login = "/Auth/Login";
   static const String signup = "/Auth/register";
+  static const String getNumberOfProductsAndReplenishment = '/Product/ProductsAndReplenishmentNumbers';
   static const String getAllProducts = "/Product/AllProducts";
   static const String addProduct = "/Product/CreateProduct";
   static const String getProductById = "/Product";

@@ -6,6 +6,8 @@ import 'package:erp_system/features/auth/login/data/repos/login_repo.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/auth/sign_up/data/repos/sign_up_repo.dart';
 import 'package:erp_system/features/auth/sign_up/logic/sign_up_cubit.dart';
+import 'package:erp_system/features/inventory/inventory_home/data/repo/inventory_home_repo.dart';
+import 'package:erp_system/features/inventory/inventory_home/logic/inventory_home_cubit.dart';
 import 'package:erp_system/features/inventory/product/add_product/data/repos/add_product_repo.dart';
 import 'package:erp_system/features/inventory/product/add_product/logic/add_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/details_product/data/repo/details_product_repo.dart';
@@ -16,6 +18,7 @@ import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
 LoginResponse? loginResponseInGetIt;
+int activeIndex = 0;
 
 Future<void> setupServiceLocator() async {
   // Dio & ApiService
@@ -35,6 +38,11 @@ Future<void> setupServiceLocator() async {
   //add product
   getIt.registerLazySingleton<AddProductRepo>(() => AddProductRepo(getIt()));
   getIt.registerFactory<AddProductCubit>(() => AddProductCubit(getIt()));
+
+  // get numbers of product and replenishment
+  getIt.registerLazySingleton<InventoryHomeRepo>(
+      () => InventoryHomeRepo(getIt()));
+  getIt.registerFactory<InventoryHomeCubit>(() => InventoryHomeCubit(getIt()));
 
   //get all product
   getIt.registerLazySingleton<GetAllProductRepo>(

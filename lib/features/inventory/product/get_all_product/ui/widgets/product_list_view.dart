@@ -13,46 +13,43 @@ class ProductListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Container(
+      color: ColorsApp.primaryColor,
       child: Container(
-        color: ColorsApp.primaryColor,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(100),
-            ),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(100),
           ),
-          child: BlocBuilder<GetAllProductCubit, GetAllProductState>(
-            builder: (context, state) {
-              if (state is GetAllProductLoading) {
-                return const CustomCircularProgressIndicator();
-              } else if (state is GetAllProductSuccess) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 20),
+        ),
+        child: BlocBuilder<GetAllProductCubit, GetAllProductState>(
+          builder: (context, state) {
+            if (state is GetAllProductLoading) {
+              return const CustomCircularProgressIndicator();
+            } else if (state is GetAllProductSuccess) {
+              return Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  scrollDirection: Axis.vertical,
                   child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: buildDataTable(
-                          state.response,
-                          context,
-                        ),
+                    scrollDirection: Axis.horizontal,
+                    child: SizedBox(
+                      child: buildDataTable(
+                        state.response,
+                        context,
                       ),
                     ),
                   ),
-                );
-              } else if (state is GetAllProductFailure) {
-                return CustomErrorWidget(error: state.error);
-              } else {
-                return const CustomNoProductWidget();
-              }
-            },
-          ),
+                ),
+              );
+            } else if (state is GetAllProductFailure) {
+              return CustomErrorWidget(error: state.error);
+            } else {
+              return const CustomNoProductWidget();
+            }
+          },
         ),
       ),
     );
