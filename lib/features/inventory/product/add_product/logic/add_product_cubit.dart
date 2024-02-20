@@ -36,7 +36,7 @@ class AddProductCubit extends Cubit<AddProductState> {
         productCostPrice: int.parse(productCostPriceController.text),
         activeOrder: 0, //int.parse(activeOrderController.text),
         addedBy: getIt.get<LoginResponse>().userData!.userID.toString(),
-        subCategoryId: 3, // int.parse(subCategoryIdController.text),
+        subCategoryId: 81, // int.parse(subCategoryIdController.text),
       ),
     );
 

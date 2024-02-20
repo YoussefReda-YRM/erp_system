@@ -2,18 +2,27 @@ import 'package:erp_system/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-deleteShowDialog(BuildContext context) {
+deleteShowDialog(
+    BuildContext context, String content, int categoryId, Function()? onPressed) {
   return showDialog(
     context: context,
-    builder: (context) {
+    builder: (BuildContext dialogContext) {
       return AlertDialog(
         title: Text(
           "Confirm Deletion",
           style: Styles.font18DarkBlueBold(context),
         ),
-        content: Text(
-          'Are you sure you want to delete this product?',
-          style: Styles.font13BlueSemiBold(context),
+        content: SizedBox(
+          height: 60,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                content,
+                style: Styles.font13BlueSemiBold(context),
+              ),
+            ],
+          ),
         ),
         actions: [
           TextButton(
@@ -23,12 +32,7 @@ deleteShowDialog(BuildContext context) {
             child: const Text('Cancel'),
           ),
           TextButton(
-            onPressed: () {
-              // Perform the deletion logic here
-              // ...
-
-              Navigator.of(context).pop(); // Close the dialog
-            },
+            onPressed: onPressed,
             child: const Text(
               'Delete',
               style: TextStyle(color: Colors.red),

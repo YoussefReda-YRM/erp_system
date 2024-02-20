@@ -6,6 +6,19 @@ import 'package:erp_system/features/auth/login/data/repos/login_repo.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/auth/sign_up/data/repos/sign_up_repo.dart';
 import 'package:erp_system/features/auth/sign_up/logic/sign_up_cubit.dart';
+import 'package:erp_system/features/inventory/category/add_category/data/repos/add_parent_category_repo.dart';
+import 'package:erp_system/features/inventory/category/add_category/data/repos/add_sub_category_repo.dart';
+import 'package:erp_system/features/inventory/category/add_category/logic/add_parent_category_cubit.dart';
+import 'package:erp_system/features/inventory/category/delete_category/data/repos/delete_parent_category_repo.dart';
+import 'package:erp_system/features/inventory/category/delete_category/data/repos/delete_sub_category_repo.dart';
+import 'package:erp_system/features/inventory/category/get_all_category/data/models/get_all_category_model.dart';
+import 'package:erp_system/features/inventory/category/get_all_category/data/repos/get_category_repo.dart';
+import 'package:erp_system/features/inventory/category/add_category/logic/add_sub_category_cubit.dart';
+import 'package:erp_system/features/inventory/category/get_all_category/logic/get_category_cubit.dart';
+import 'package:erp_system/features/inventory/category/update_category/data/repos/update_parent_category_repo.dart';
+import 'package:erp_system/features/inventory/category/update_category/data/repos/update_sub_category_repo.dart';
+import 'package:erp_system/features/inventory/category/update_category/logic/update_parent_category_cubit.dart';
+import 'package:erp_system/features/inventory/category/update_category/logic/update_sub_category_cubit.dart';
 import 'package:erp_system/features/inventory/inventory_home/data/repo/inventory_home_repo.dart';
 import 'package:erp_system/features/inventory/inventory_home/logic/inventory_home_cubit.dart';
 import 'package:erp_system/features/inventory/product/add_product/data/repos/add_product_repo.dart';
@@ -18,7 +31,17 @@ import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
 LoginResponse? loginResponseInGetIt;
+
+List<CategoryAllCategoryModel>? categoriesInGetIt;
+
 int activeIndex = 0;
+
+int indexOfListViewInGetAllCategory = 0;
+
+bool listOfCategoryIsEmpty = false;
+
+String parentCategoryNameControllerInGetIt = '';
+String subCategoryNameControllerInGetIt = '';
 
 Future<void> setupServiceLocator() async {
   // Dio & ApiService
@@ -49,9 +72,47 @@ Future<void> setupServiceLocator() async {
       () => GetAllProductRepo(getIt()));
   getIt.registerFactory<GetAllProductCubit>(() => GetAllProductCubit(getIt()));
 
+  getIt.registerFactory<List<CategoryAllCategoryModel>>(
+      () => categoriesInGetIt!);
+
   //get product by id
   getIt.registerLazySingleton<DetailsProductRepo>(
       () => DetailsProductRepo(getIt()));
   getIt
       .registerFactory<DetailsProductCubit>(() => DetailsProductCubit(getIt()));
+
+  //categories
+
+  getIt.registerLazySingleton<CategoryRepo>(() => CategoryRepo(getIt()));
+  getIt.registerFactory<CategoryCubit>(() => CategoryCubit(getIt()));
+
+  getIt.registerLazySingleton<DeleteSubCategoryRepo>(
+      () => DeleteSubCategoryRepo(getIt()));
+  // getIt.registerFactory<DeleteSubCategoryCubit>(
+  //     () => DeleteSubCategoryCubit(getIt()));
+
+  getIt.registerLazySingleton<AddParentCategoryRepo>(
+      () => AddParentCategoryRepo(getIt()));
+  getIt.registerFactory<AddParentCategoryCubit>(
+      () => AddParentCategoryCubit(getIt()));
+
+  getIt.registerLazySingleton<UpdateSubCategoryRepo>(
+      () => UpdateSubCategoryRepo(getIt()));
+  getIt.registerFactory<UpdateSubCategoryCubit>(
+      () => UpdateSubCategoryCubit(getIt()));
+
+  getIt.registerLazySingleton<UpdateParentCategoryRepo>(
+      () => UpdateParentCategoryRepo(getIt()));
+  getIt.registerFactory<UpdateParentCategoryCubit>(
+      () => UpdateParentCategoryCubit(getIt()));
+
+  getIt.registerLazySingleton<DeleteParentCategoryRepo>(
+      () => DeleteParentCategoryRepo(getIt()));
+  // getIt.registerFactory<DeleteParentCategoryCubit>(
+  //     () => DeleteParentCategoryCubit(getIt()));
+
+  getIt.registerLazySingleton<AddSubCategoryRepo>(
+      () => AddSubCategoryRepo(getIt()));
+  getIt
+      .registerFactory<AddSubCategoryCubit>(() => AddSubCategoryCubit(getIt()));
 }
