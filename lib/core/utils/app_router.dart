@@ -22,6 +22,8 @@ import 'package:erp_system/features/inventory/product/details_product/logic/deta
 import 'package:erp_system/features/inventory/product/details_product/ui/details_product_view.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/logic/get_all_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/ui/get_all_product_view.dart';
+import 'package:erp_system/features/inventory/replenishment/ui/reorder_view.dart';
+import 'package:erp_system/features/inventory/replenishment/ui/replenishment_view.dart';
 import 'package:erp_system/features/modules/ui/modules_view.dart';
 import 'package:erp_system/features/auth/login/ui/login_view.dart';
 import 'package:erp_system/features/auth/otp/ui/otp_view.dart';
@@ -52,6 +54,10 @@ abstract class AppRouter {
   static const kUpdateParentCategory = '/updateParentCategory';
   static const kAddParentCategory = '/addParentCategory';
   static const kAddSubCategory = '/addSubCategory';
+
+  //replenishment
+  static const kReplenishmentView = '/replenishmentView';
+  static const kReorderView = '/reorderView';
 
   static final router = GoRouter(
     routes: [
@@ -173,6 +179,17 @@ abstract class AppRouter {
       GoRoute(
         path: kPasswordChangedView,
         builder: (context, state) => const PasswordChangedView(),
+      ),
+
+      //replenishment
+      GoRoute(
+        path: kReplenishmentView,
+        builder: (context, state) => ReplenishmentView(),
+      ),
+
+      GoRoute(
+        path: kReorderView,
+        builder: (context, state) => const ReorderView(),
       ),
     ],
   );
