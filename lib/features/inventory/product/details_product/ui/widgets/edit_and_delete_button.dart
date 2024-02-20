@@ -2,7 +2,6 @@ import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
 import 'package:erp_system/core/widgets/custom_text_form_field.dart';
-import 'package:erp_system/features/inventory/product/widgets/delete_show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -35,7 +34,7 @@ class EditAndDeleteButton extends StatelessWidget {
           backgroundColor: Colors.red,
           textStyle: Styles.font13BlueSemiBold(context),
           onPressed: () {
-            deleteShowDialog(context);
+            // deleteShowDialog(context, 'Are you sure you want to delete this product?');
           },
         ),
       ],

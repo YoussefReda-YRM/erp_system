@@ -71,12 +71,14 @@ class _DrawerItemListViewState extends State<DrawerItemListView> {
                       GoRouter.of(context).push(AppRouter.kInventoryHomeView);
                     } else if (activeIndex == 1) {
                       GoRouter.of(context).push(AppRouter.kProductView);
+                    } else if (activeIndex == 2) {
+                      GoRouter.of(context).push(AppRouter.kCategoryView);
                     }
                   });
                 }
               },
             ),
-            index == 2 || index == 5 ? const CustomDivider(): const SizedBox(),
+            index == 2 || index == 5 ? const CustomDivider() : const SizedBox(),
           ],
         );
       },

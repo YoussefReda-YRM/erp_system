@@ -9,7 +9,7 @@ class CustomDivider extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: const Divider(
-        thickness: 0.4,
+        thickness: 0.5,
         color: ColorsApp.lightGrey,
       ),
     );
