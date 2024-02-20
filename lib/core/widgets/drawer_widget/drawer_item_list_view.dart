@@ -73,6 +73,8 @@ class _DrawerItemListViewState extends State<DrawerItemListView> {
                       GoRouter.of(context).push(AppRouter.kProductView);
                     } else if (activeIndex == 2) {
                       GoRouter.of(context).push(AppRouter.kCategoryView);
+                    } else if (activeIndex == 3) {
+                      GoRouter.of(context).push(AppRouter.kReplenishmentView);
                     }
                   });
                 }
