@@ -18,6 +18,11 @@ class ApiConstants {
   static const String createsub = "/Category/SubCategory";
   static const String updateSubcategory = "/Category/SubCategory/{subCategoryId}";
   static const String updateParentcategory = "/Category/ParentCategory/{parentCategoryId}";
+
+  //supplier
+  static const String getAllSuppliers = "/Supplier";
+
+
 }
 
 class ApiErrors {

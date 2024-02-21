@@ -28,6 +28,8 @@ import 'package:erp_system/features/modules/ui/modules_view.dart';
 import 'package:erp_system/features/auth/login/ui/login_view.dart';
 import 'package:erp_system/features/auth/otp/ui/otp_view.dart';
 import 'package:erp_system/features/auth/password_changed/password_changed_view.dart';
+import 'package:erp_system/features/scm/supplier/get_all_suplier/logic/get_supplier_cubit.dart';
+import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/get_all_supplier_view.dart';
 import 'package:erp_system/features/splash/ui/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -59,11 +61,25 @@ abstract class AppRouter {
   static const kReplenishmentView = '/replenishmentView';
   static const kReorderView = '/reorderView';
 
+  //supplier
+  static const kSupplierView = '/supplierView';
+
+
+
   static final router = GoRouter(
     routes: [
+
       GoRoute(
         path: kSplashView,
         builder: (context, state) => const SplashView(),
+      ),
+      GoRoute(
+        path: kSupplierView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<GetAllSupplierCubit>()
+            ..getAllSupplier(getIt.get<LoginResponse>().token!,),
+          child: const GetAllSupplierView(),
+        ),
       ),
       GoRoute(
         path: kModulesView,
@@ -128,6 +144,7 @@ abstract class AppRouter {
           child: const CategoryView(),
         ),
       ),
+
       GoRoute(
         path: kAddParentCategory,
         builder: (context, state) => BlocProvider(
