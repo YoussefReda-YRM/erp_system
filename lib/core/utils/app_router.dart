@@ -60,10 +60,9 @@ abstract class AppRouter {
   //replenishment
   static const kReplenishmentView = '/replenishmentView';
   static const kReorderView = '/reorderView';
-
+  
   //supplier
   static const kSupplierView = '/supplierView';
-
 
 
   static final router = GoRouter(
@@ -144,7 +143,6 @@ abstract class AppRouter {
           child: const CategoryView(),
         ),
       ),
-
       GoRoute(
         path: kAddParentCategory,
         builder: (context, state) => BlocProvider(

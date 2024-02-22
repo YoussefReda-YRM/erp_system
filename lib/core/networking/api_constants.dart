@@ -21,8 +21,6 @@ class ApiConstants {
 
   //supplier
   static const String getAllSuppliers = "/Supplier";
-
-
 }
 
 class ApiErrors {

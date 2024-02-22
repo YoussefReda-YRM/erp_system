@@ -119,4 +119,9 @@ Future<void> setupServiceLocator() async {
 
   getIt.registerLazySingleton<GetAllSupplierRepo>(() => GetAllSupplierRepo(getIt()));
   getIt.registerFactory<GetAllSupplierCubit>(() => GetAllSupplierCubit(getIt()));
+  
+  getIt.registerLazySingleton<AddSubCategoryRepo>(
+      () => AddSubCategoryRepo(getIt()));
+  getIt
+      .registerFactory<AddSubCategoryCubit>(() => AddSubCategoryCubit(getIt()));
 }
