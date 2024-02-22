@@ -27,6 +27,8 @@ import 'package:erp_system/features/inventory/product/details_product/data/repo/
 import 'package:erp_system/features/inventory/product/details_product/logic/details_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/data/repos/get_all_product_repo.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/logic/get_all_product_cubit.dart';
+import 'package:erp_system/features/scm/supplier/get_all_suplier/data/repos/get_all_supplier_repo.dart';
+import 'package:erp_system/features/scm/supplier/get_all_suplier/logic/get_supplier_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -111,6 +113,13 @@ Future<void> setupServiceLocator() async {
   // getIt.registerFactory<DeleteParentCategoryCubit>(
   //     () => DeleteParentCategoryCubit(getIt()));
 
+  getIt.registerLazySingleton<AddSubCategoryRepo>(() => AddSubCategoryRepo(getIt()));
+  getIt.registerFactory<AddSubCategoryCubit>(() => AddSubCategoryCubit(getIt()));
+
+
+  getIt.registerLazySingleton<GetAllSupplierRepo>(() => GetAllSupplierRepo(getIt()));
+  getIt.registerFactory<GetAllSupplierCubit>(() => GetAllSupplierCubit(getIt()));
+  
   getIt.registerLazySingleton<AddSubCategoryRepo>(
       () => AddSubCategoryRepo(getIt()));
   getIt
