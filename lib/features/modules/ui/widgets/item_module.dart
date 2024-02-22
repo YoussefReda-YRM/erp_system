@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 
 itemModule(BuildContext context, String title, String moduleImage) => InkWell(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kLoginView);
+        GoRouter.of(context).push(AppRouter.kLoginView, extra: title);
       },
       child: Container(
         decoration: BoxDecoration(

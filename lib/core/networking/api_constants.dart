@@ -19,8 +19,12 @@ class ApiConstants {
   static const String updateSubcategory = "/Category/SubCategory/{subCategoryId}";
   static const String updateParentcategory = "/Category/ParentCategory/{parentCategoryId}";
 
-  //supplier
+  //Supplier
   static const String getAllSuppliers = "/Supplier";
+
+  //Orders
+  static const String getNumberofInventoryAndScmOrder = '/Order/OrdersNumber';
+
 }
 
 class ApiErrors {

@@ -28,6 +28,8 @@ import 'package:erp_system/features/modules/ui/modules_view.dart';
 import 'package:erp_system/features/auth/login/ui/login_view.dart';
 import 'package:erp_system/features/auth/otp/ui/otp_view.dart';
 import 'package:erp_system/features/auth/password_changed/password_changed_view.dart';
+import 'package:erp_system/features/scm/scm_home/logic/scm_home_cubit.dart';
+import 'package:erp_system/features/scm/scm_home/ui/scm_home_view.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/logic/get_supplier_cubit.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/get_all_supplier_view.dart';
 import 'package:erp_system/features/splash/ui/splash_view.dart';
@@ -60,14 +62,14 @@ abstract class AppRouter {
   //replenishment
   static const kReplenishmentView = '/replenishmentView';
   static const kReorderView = '/reorderView';
-  
+
   //supplier
   static const kSupplierView = '/supplierView';
 
+  static const kScmHomeView = '/scmHomeView';
 
   static final router = GoRouter(
     routes: [
-
       GoRoute(
         path: kSplashView,
         builder: (context, state) => const SplashView(),
@@ -76,7 +78,9 @@ abstract class AppRouter {
         path: kSupplierView,
         builder: (context, state) => BlocProvider(
           create: (context) => getIt.get<GetAllSupplierCubit>()
-            ..getAllSupplier(getIt.get<LoginResponse>().token!,),
+            ..getAllSupplier(
+              getIt.get<LoginResponse>().token!,
+            ),
           child: const GetAllSupplierView(),
         ),
       ),
@@ -88,16 +92,14 @@ abstract class AppRouter {
         path: kLoginView,
         builder: (context, state) => BlocProvider(
           create: (context) => getIt.get<LoginCubit>(),
-          child: const LoginView(),
+          child: LoginView(role: state.extra as String),
         ),
       ),
       GoRoute(
         path: kInventoryHomeView,
         builder: (context, state) => BlocProvider(
           create: (context) => getIt.get<InventoryHomeCubit>()
-            ..getNumberOfProductsAndReplenishment(
-              getIt.get<LoginResponse>().token,
-            ),
+            ..getNumberOfProductsAndReplenishment(),
           child: InventoryHomeView(),
         ),
       ),
@@ -205,6 +207,15 @@ abstract class AppRouter {
       GoRoute(
         path: kReorderView,
         builder: (context, state) => const ReorderView(),
+      ),
+
+      GoRoute(
+        path: kScmHomeView,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              getIt.get<ScmHomeCubit>()..getNumberOfInventoryAndScmOrders(),
+          child: ScmHomeView(),
+        ),
       ),
     ],
   );

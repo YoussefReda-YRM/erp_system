@@ -234,7 +234,6 @@ class _ApiService implements ApiService {
     String token,
   ) async {
     final _extra = <String, dynamic>{};
-   
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
@@ -268,7 +267,6 @@ class _ApiService implements ApiService {
     UpdateRequestSubCategory requestSubCategory,
   ) async {
     final _extra = <String, dynamic>{};
-
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
@@ -302,7 +300,6 @@ class _ApiService implements ApiService {
     UpdateRequestParentCategory requestParentCategory,
   ) async {
     final _extra = <String, dynamic>{};
-
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
@@ -339,7 +336,6 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
-
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<ResponseDeleteCategory>(Options(
       method: 'DELETE',
@@ -371,7 +367,6 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
-
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<ResponseDeleteCategory>(Options(
       method: 'DELETE',
@@ -400,7 +395,6 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
-
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<CategoryAllCategoryModel>>(Options(
       method: 'GET',
@@ -450,6 +444,35 @@ class _ApiService implements ApiService {
               baseUrl,
             ))));
     final value = GetAllSupplierResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ScmHomeModel> getNumberOfInventoryAndScmOrdersCount(
+      String token) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ScmHomeModel>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/Order/OrdersNumber',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ScmHomeModel.fromJson(_result.data!);
     return value;
   }
 
