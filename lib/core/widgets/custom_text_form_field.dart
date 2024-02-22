@@ -1,7 +1,6 @@
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextFormField extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
@@ -50,9 +49,9 @@ class AppTextFormField extends StatelessWidget {
         decoration: InputDecoration(
           isDense: true,
           contentPadding: contentPadding ??
-              EdgeInsets.symmetric(
-                vertical: 18.h,
-                horizontal: 20.w,
+              const EdgeInsets.symmetric(
+                vertical: 14,
+                horizontal: 20,
               ),
           focusedBorder: focuseBorder ??
               OutlineInputBorder(

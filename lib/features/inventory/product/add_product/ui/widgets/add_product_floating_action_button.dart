@@ -12,7 +12,7 @@ class AddProductFloatingActionButton extends StatelessWidget {
     return FloatingActionButton(
       backgroundColor: ColorsApp.primaryColor,
       onPressed: () {
-        GoRouter.of(context).push(AppRouter.kAddProductView, extra: ctxt);
+        GoRouter.of(context).push(AppRouter.kAddProductView);
       },
       child: Text(
         "New",
