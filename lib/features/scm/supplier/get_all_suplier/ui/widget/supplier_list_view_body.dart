@@ -23,8 +23,6 @@ class SupplierListViewBody extends StatelessWidget {
             children: [
               Text(response.data![index].supplierName ?? "none",style: Styles.font24BlackBold(context)),
               Text(response.data![index].supplierEmail ?? "none",style: Styles.font18LightGreyBold(context)),
-
-
             ]
         ) ,
 
