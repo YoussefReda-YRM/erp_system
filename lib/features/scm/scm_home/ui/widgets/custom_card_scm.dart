@@ -2,8 +2,14 @@ import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
-customCardInventory(BuildContext context, String title, String moduleImage) =>
-    Container(
+class CustomCardScm extends StatelessWidget {
+  const CustomCardScm({super.key, required this.title, required this.image});
+  final String title;
+  final String image;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -17,13 +23,13 @@ customCardInventory(BuildContext context, String title, String moduleImage) =>
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              moduleImage,
-              width: 80,
+              image,
+              width: 60,
             ),
             const SizedBox(
               height: 12,
@@ -38,3 +44,6 @@ customCardInventory(BuildContext context, String title, String moduleImage) =>
         ),
       ),
     );
+  }
+}
+
