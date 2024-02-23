@@ -28,6 +28,7 @@ import 'package:erp_system/features/modules/ui/modules_view.dart';
 import 'package:erp_system/features/auth/login/ui/login_view.dart';
 import 'package:erp_system/features/auth/otp/ui/otp_view.dart';
 import 'package:erp_system/features/auth/password_changed/password_changed_view.dart';
+import 'package:erp_system/features/scm/order_details/ui/order_details_view.dart';
 import 'package:erp_system/features/scm/orders/ui/orders_scm_view.dart';
 import 'package:erp_system/features/scm/scm_home/logic/scm_home_cubit.dart';
 import 'package:erp_system/features/scm/scm_home/ui/scm_home_view.dart';
@@ -69,6 +70,7 @@ abstract class AppRouter {
 
   static const kScmHomeView = '/scmHomeView';
   static const kInventoryOrders = '/inventoryOrders';
+  static const kOrdersDetailsView = '/ordersDetailsView';
 
   static final router = GoRouter(
     routes: [
@@ -223,6 +225,11 @@ abstract class AppRouter {
       GoRoute(
         path: kInventoryOrders,
         builder: (context, state) => OrdersScmView(),
+      ),
+
+      GoRoute(
+        path: kOrdersDetailsView,
+        builder: (context, state) => const OrderDetailsView(),
       ),
     ],
   );
