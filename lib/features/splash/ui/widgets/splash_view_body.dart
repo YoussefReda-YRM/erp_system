@@ -64,11 +64,11 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   void navigateToGetStarted() {
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => OrdersScmView()),
-      );
-      // GoRouter.of(context).push(AppRouter.kModulesView);
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => OrdersScmView()),
+      // );
+      GoRouter.of(context).push(AppRouter.kModulesView);
     });
   }
 }
