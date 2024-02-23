@@ -1,4 +1,5 @@
 import 'package:erp_system/core/widgets/drawer_widget/drawer_widget.dart';
+import 'package:erp_system/core/widgets/drawer_widget/scm_drawer_item_list_view.dart';
 import 'package:erp_system/features/scm/orders/ui/widgets/orders_scm_body.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,9 @@ class OrdersScmView extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.white,
-      drawer: const DrawerWidget(),
+      drawer: const DrawerWidget(
+        drawerItemListView: ScmDrawerItemListView(),
+      ),
       body: OrdersScmViewBody(
         scaffoldKey: scaffoldKey,
       ),
