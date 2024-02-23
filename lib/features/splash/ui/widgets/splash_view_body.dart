@@ -1,6 +1,6 @@
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/assets.dart';
-import 'package:erp_system/features/scm/orders/ui/orders_scm_view.dart';
+import 'package:erp_system/features/scm/inventory_order/ui/get_all_inventory_orders_view.dart';
 import 'package:erp_system/features/splash/ui/widgets/sliding_text.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

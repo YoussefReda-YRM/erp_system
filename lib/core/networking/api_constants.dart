@@ -5,26 +5,31 @@ class ApiConstants {
   static const String signup = "/Auth/register";
 
   // product
-  static const String getNumberOfProductsAndReplenishment = '/Product/ProductsAndReplenishmentNumbers';
+  static const String getNumberOfProductsAndReplenishment =
+      '/Product/ProductsAndReplenishmentNumbers';
   static const String getAllProducts = "/Product/AllProducts";
   static const String addProduct = "/Product/CreateProduct";
   static const String getProductById = "/Product";
 
   //category
   static const String getAllCategories = "/Category";
-  static const String deleteSubcategory = "/Category/SubCategory/{subCategoryId}";
-  static const String deleteParentcategory = "/Category/ParentCategory/{parentCategoryId}";
+  static const String deleteSubcategory =
+      "/Category/SubCategory/{subCategoryId}";
+  static const String deleteParentcategory =
+      "/Category/ParentCategory/{parentCategoryId}";
   static const String createParent = "/Category/ParentCategory";
   static const String createsub = "/Category/SubCategory";
-  static const String updateSubcategory = "/Category/SubCategory/{subCategoryId}";
-  static const String updateParentcategory = "/Category/ParentCategory/{parentCategoryId}";
+  static const String updateSubcategory =
+      "/Category/SubCategory/{subCategoryId}";
+  static const String updateParentcategory =
+      "/Category/ParentCategory/{parentCategoryId}";
 
   //Supplier
   static const String getAllSuppliers = "/Supplier";
 
   //Orders
   static const String getNumberofInventoryAndScmOrder = '/Order/OrdersNumber';
-
+  static const String getAllInventoryOrder = '/Order/AllInventoryOrders';
 }
 
 class ApiErrors {

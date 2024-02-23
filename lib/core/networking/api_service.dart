@@ -17,6 +17,7 @@ import 'package:erp_system/features/inventory/product/add_product/data/models/ad
 import 'package:erp_system/features/inventory/product/add_product/data/models/add_product_response.dart';
 import 'package:erp_system/features/inventory/product/details_product/data/models/details_product_model.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/data/models/product_response.dart';
+import 'package:erp_system/features/scm/inventory_order/data/models/get_all_inventory_orders_model.dart';
 import 'package:erp_system/features/scm/scm_home/data/models/scm_home_model.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/data/models/GetAllSupplierResponse.dart';
 import 'package:retrofit/retrofit.dart';
@@ -110,6 +111,11 @@ abstract class ApiService {
 //Orders
   @GET(ApiConstants.getNumberofInventoryAndScmOrder)
   Future<ScmHomeModel> getNumberOfInventoryAndScmOrdersCount(
+    @Header("Authorization") String token,
+  );
+
+  @GET(ApiConstants.getAllInventoryOrder)
+  Future<GetAllInventoryOrderModel> getAllInventoryOrders(
     @Header("Authorization") String token,
   );
 }
