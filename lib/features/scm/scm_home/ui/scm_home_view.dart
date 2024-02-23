@@ -1,4 +1,5 @@
 import 'package:erp_system/core/widgets/drawer_widget/drawer_widget.dart';
+import 'package:erp_system/core/widgets/drawer_widget/scm_drawer_item_list_view.dart';
 import 'package:erp_system/features/scm/scm_home/ui/widgets/scm_home_view_body.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,9 @@ class ScmHomeView extends StatelessWidget {
       body: ScmHomeViewBody(
         scaffoldKey: scaffoldKey,
       ),
-      drawer: const DrawerWidget(),
+      drawer: const DrawerWidget(
+        drawerItemListView: ScmDrawerItemListView(),
+      ),
     );
   }
 }

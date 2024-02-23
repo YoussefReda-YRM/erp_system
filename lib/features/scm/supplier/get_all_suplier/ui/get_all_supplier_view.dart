@@ -1,6 +1,6 @@
 import 'package:erp_system/core/widgets/drawer_widget/drawer_widget.dart';
+import 'package:erp_system/core/widgets/drawer_widget/scm_drawer_item_list_view.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/widget/supplier_view_body.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GetAllSupplierView extends StatelessWidget {
@@ -12,10 +12,12 @@ class GetAllSupplierView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         key: scaffoldKey,
-        drawer: const DrawerWidget(),
+        drawer: const DrawerWidget(
+          drawerItemListView: ScmDrawerItemListView(),
+        ),
         backgroundColor: Colors.white,
         body: SupllierViewBody(scaffoldKey: scaffoldKey),
-      //  floatingActionButton: const AddSubCategoryFloatingActionButton(),
+        //  floatingActionButton: const AddSubCategoryFloatingActionButton(),
       ),
     );
   }

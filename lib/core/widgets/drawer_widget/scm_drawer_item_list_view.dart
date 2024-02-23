@@ -6,48 +6,40 @@ import 'package:erp_system/core/widgets/drawer_widget/drawer_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class DrawerItemListView extends StatefulWidget {
-  const DrawerItemListView({
+class ScmDrawerItemListView extends StatefulWidget {
+  const ScmDrawerItemListView({
     super.key,
   });
 
   @override
-  State<DrawerItemListView> createState() => _DrawerItemListViewState();
+  State<ScmDrawerItemListView> createState() => _DrawerItemListViewState();
 }
 
-class _DrawerItemListViewState extends State<DrawerItemListView> {
+class _DrawerItemListViewState extends State<ScmDrawerItemListView> {
   final List<DrawerItemModel> items = [
     DrawerItemModel(
       title: 'Home',
       icon: Icons.home_outlined,
     ),
     DrawerItemModel(
-      title: 'Products',
-      icon: Icons.production_quantity_limits_outlined,
+      title: 'Inventory Orders',
+      icon: Icons.shopping_cart_outlined,
     ),
     DrawerItemModel(
-      title: 'Categories',
-      icon: Icons.category_outlined,
+      title: 'Finished Orders',
+      icon: Icons.check_circle_outlined,
     ),
     DrawerItemModel(
-      title: 'Replenishments',
-      icon: Icons.autorenew_outlined,
+      title: 'All Orders',
+      icon: Icons.list_alt_outlined,
     ),
     DrawerItemModel(
-      title: 'Inventory Adjustment',
-      icon: Icons.trending_up_outlined,
+      title: 'Create Orders',
+      icon: Icons.add_outlined,
     ),
     DrawerItemModel(
-      title: 'Transfers',
-      icon: Icons.transfer_within_a_station_outlined,
-    ),
-    DrawerItemModel(
-      title: 'Reporting',
-      icon: Icons.report_outlined,
-    ),
-    DrawerItemModel(
-      title: 'Moves History',
-      icon: Icons.history_outlined,
+      title: 'Suppliers',
+      icon: Icons.store_outlined,
     ),
   ];
 
@@ -68,19 +60,15 @@ class _DrawerItemListViewState extends State<DrawerItemListView> {
                   setState(() {
                     activeIndex = index;
                     if (activeIndex == 0) {
-                      GoRouter.of(context).push(AppRouter.kInventoryHomeView);
+                      GoRouter.of(context).push(AppRouter.kScmHomeView);
                     } else if (activeIndex == 1) {
-                      GoRouter.of(context).push(AppRouter.kProductView);
-                    } else if (activeIndex == 2) {
-                      GoRouter.of(context).push(AppRouter.kCategoryView);
-                    } else if (activeIndex == 3) {
-                      GoRouter.of(context).push(AppRouter.kReplenishmentView);
+                      GoRouter.of(context).push(AppRouter.kInventoryOrders);
                     }
                   });
                 }
               },
             ),
-            index == 2 || index == 5 ? const CustomDivider() : const SizedBox(),
+            index == 4 ? const CustomDivider() : const SizedBox(),
           ],
         );
       },
