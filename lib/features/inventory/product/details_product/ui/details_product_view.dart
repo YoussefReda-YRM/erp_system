@@ -6,9 +6,10 @@ import 'package:erp_system/features/inventory/product/widgets/custom_app_bar_pro
 import 'package:flutter/material.dart';
 
 class DetailsProductView extends StatelessWidget {
-  const DetailsProductView({super.key, required this.productId});
+  const DetailsProductView({
+    super.key,
+  });
 
-  final int productId;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

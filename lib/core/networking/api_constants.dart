@@ -30,6 +30,7 @@ class ApiConstants {
   //Orders
   static const String getNumberofInventoryAndScmOrder = '/Order/OrdersNumber';
   static const String getAllInventoryOrder = '/Order/AllInventoryOrders';
+  static const String getSpecificInventoryOrder = "/Order/InventoryOrder";
 }
 
 class ApiErrors {
