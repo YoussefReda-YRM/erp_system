@@ -1,5 +1,7 @@
+import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class OrderScmItem extends StatelessWidget {
   const OrderScmItem({
@@ -10,7 +12,9 @@ class OrderScmItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          GoRouter.of(context).push(AppRouter.kOrdersDetailsView);
+        },
         child: Row(
           children: [
             Expanded(
