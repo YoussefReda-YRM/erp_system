@@ -27,6 +27,10 @@ import 'package:erp_system/features/inventory/product/details_product/data/repo/
 import 'package:erp_system/features/inventory/product/details_product/logic/details_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/data/repos/get_all_product_repo.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/logic/get_all_product_cubit.dart';
+import 'package:erp_system/features/scm/inventory_order/data/repos/get_all_inventory_orders_repo.dart';
+import 'package:erp_system/features/scm/inventory_order/logic/get_all_inventory_orders_cubit.dart';
+import 'package:erp_system/features/scm/order_details/data/repos/order_details_repo.dart';
+import 'package:erp_system/features/scm/order_details/logic/order_details_cubit.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/data/repos/get_all_supplier_repo.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/logic/get_supplier_cubit.dart';
 import 'package:erp_system/features/scm/scm_home/data/repo/scm_home_repo.dart';
@@ -129,4 +133,13 @@ Future<void> setupServiceLocator() async {
   // get numbers of inventory and Scm Orders
   getIt.registerLazySingleton<ScmHomeRepo>(() => ScmHomeRepo(getIt()));
   getIt.registerFactory<ScmHomeCubit>(() => ScmHomeCubit(getIt()));
+
+  getIt.registerLazySingleton<GetAllInventoryOrdersRepo>(
+      () => GetAllInventoryOrdersRepo(getIt()));
+  getIt.registerFactory<GetAllInventoryOrdersCubit>(
+      () => GetAllInventoryOrdersCubit(getIt()));
+
+  getIt
+      .registerLazySingleton<OrderDetailsRepo>(() => OrderDetailsRepo(getIt()));
+  getIt.registerFactory<OrderDetailsCubit>(() => OrderDetailsCubit(getIt()));
 }

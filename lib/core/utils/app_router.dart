@@ -28,8 +28,10 @@ import 'package:erp_system/features/modules/ui/modules_view.dart';
 import 'package:erp_system/features/auth/login/ui/login_view.dart';
 import 'package:erp_system/features/auth/otp/ui/otp_view.dart';
 import 'package:erp_system/features/auth/password_changed/password_changed_view.dart';
+import 'package:erp_system/features/scm/inventory_order/logic/get_all_inventory_orders_cubit.dart';
+import 'package:erp_system/features/scm/order_details/logic/order_details_cubit.dart';
 import 'package:erp_system/features/scm/order_details/ui/order_details_view.dart';
-import 'package:erp_system/features/scm/orders/ui/orders_scm_view.dart';
+import 'package:erp_system/features/scm/inventory_order/ui/get_all_inventory_orders_view.dart';
 import 'package:erp_system/features/scm/scm_home/logic/scm_home_cubit.dart';
 import 'package:erp_system/features/scm/scm_home/ui/scm_home_view.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/logic/get_supplier_cubit.dart';
@@ -178,9 +180,7 @@ abstract class AppRouter {
               getIt.get<LoginResponse>().token,
               state.extra as int,
             ),
-          child: DetailsProductView(
-            productId: state.extra as int,
-          ),
+          child: const DetailsProductView(),
         ),
       ),
       GoRoute(
@@ -224,12 +224,22 @@ abstract class AppRouter {
 
       GoRoute(
         path: kInventoryOrders,
-        builder: (context, state) => OrdersScmView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              getIt.get<GetAllInventoryOrdersCubit>()..getAllInventoryOrders(),
+          child: GetAllInventoryOrdersView(),
+        ),
       ),
 
       GoRoute(
         path: kOrdersDetailsView,
-        builder: (context, state) => const OrderDetailsView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<OrderDetailsCubit>()
+            ..getSpecificInventoryOrder(
+              state.extra as int,
+            ),
+          child: const OrderDetailsView(),
+        ),
       ),
     ],
   );

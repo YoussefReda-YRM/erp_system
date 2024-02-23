@@ -1,8 +1,10 @@
 import 'package:erp_system/core/utils/styles.dart';
+import 'package:erp_system/features/scm/order_details/data/models/order_details_model.dart';
 import 'package:flutter/material.dart';
 
 class OrderDetailsViewBodyItems extends StatelessWidget {
-  const OrderDetailsViewBodyItems({super.key});
+  const OrderDetailsViewBodyItems({super.key, required this.orderDetailsModel});
+  final OrderDetailsModel orderDetailsModel;
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +14,12 @@ class OrderDetailsViewBodyItems extends StatelessWidget {
         Row(
           children: [
             Text(
-              "Product Name: ",
+              "Order ID: ",
               style: Styles.font13BlueSemiBold(context),
             ),
             const Spacer(),
             Text(
-              "T-shirt",
+              orderDetailsModel.data!.id!.toString(),
               style: Styles.font13BlueSemiBold(context)
                   .copyWith(color: Colors.pink),
             ),
@@ -29,12 +31,29 @@ class OrderDetailsViewBodyItems extends StatelessWidget {
         Row(
           children: [
             Text(
-              "Date Of Order: ",
+              "Product Name: ",
               style: Styles.font13BlueSemiBold(context),
             ),
             const Spacer(),
             Text(
-              "23/2/2024",
+              orderDetailsModel.data!.product!,
+              style: Styles.font13BlueSemiBold(context)
+                  .copyWith(color: Colors.pink),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        Row(
+          children: [
+            Text(
+              "Quantity Of Order: ",
+              style: Styles.font13BlueSemiBold(context),
+            ),
+            const Spacer(),
+            Text(
+              orderDetailsModel.data!.quantity!.toString(),
               style: Styles.font13BlueSemiBold(context)
                   .copyWith(color: Colors.pink),
             ),
@@ -51,9 +70,46 @@ class OrderDetailsViewBodyItems extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              "Finished",
+              orderDetailsModel.data!.status! == 0 ? "Pending" : "Finished",
+              style: Styles.font13BlueSemiBold(context).copyWith(
+                color: orderDetailsModel.data!.status == 0
+                    ? Colors.red
+                    : Colors.green,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        Row(
+          children: [
+            Text(
+              "Inventory Employee: ",
+              style: Styles.font13BlueSemiBold(context),
+            ),
+            const Spacer(),
+            Text(
+              orderDetailsModel.data!.inventoryEmployee!,
               style: Styles.font13BlueSemiBold(context)
-                  .copyWith(color: Colors.green),
+                  .copyWith(color: Colors.pink),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        Row(
+          children: [
+            Text(
+              "Accounting Employee: ",
+              style: Styles.font13BlueSemiBold(context),
+            ),
+            const Spacer(),
+            Text(
+              orderDetailsModel.data!.accEmployee!,
+              style: Styles.font13BlueSemiBold(context)
+                  .copyWith(color: Colors.pink),
             ),
           ],
         ),
@@ -68,7 +124,26 @@ class OrderDetailsViewBodyItems extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              "Giza",
+              orderDetailsModel.data!.reference!,
+              style: Styles.font13BlueSemiBold(context)
+                  .copyWith(color: Colors.pink),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        Row(
+          children: [
+            Text(
+              "Date Of Order: ",
+              style: Styles.font13BlueSemiBold(context),
+            ),
+            const Spacer(),
+            Text(
+              paresDate(
+                orderDetailsModel.data!.date!,
+              ),
               style: Styles.font13BlueSemiBold(context)
                   .copyWith(color: Colors.pink),
             ),
@@ -80,4 +155,15 @@ class OrderDetailsViewBodyItems extends StatelessWidget {
       ],
     );
   }
+}
+
+String paresDate(String dateString) {
+  // Parse the string into a DateTime object
+  DateTime dateTime = DateTime.parse(dateString);
+
+  // Convert to local timezone
+  dateTime = dateTime.toLocal();
+
+  // Extract only the date
+  return "${dateTime.year}-${dateTime.month}-${dateTime.day}";
 }
