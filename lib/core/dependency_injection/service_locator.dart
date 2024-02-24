@@ -31,6 +31,8 @@ import 'package:erp_system/features/scm/inventory_order/data/repos/get_all_inven
 import 'package:erp_system/features/scm/inventory_order/logic/get_all_inventory_orders_cubit.dart';
 import 'package:erp_system/features/scm/order_details/data/repos/order_details_repo.dart';
 import 'package:erp_system/features/scm/order_details/logic/order_details_cubit.dart';
+import 'package:erp_system/features/scm/supplier/add_supplier/data/repos/add_supplier_repo.dart';
+import 'package:erp_system/features/scm/supplier/add_supplier/logic/add_supplier_cubit.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/data/repos/get_all_supplier_repo.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/logic/get_supplier_cubit.dart';
 import 'package:erp_system/features/scm/scm_home/data/repo/scm_home_repo.dart';
@@ -50,6 +52,11 @@ bool listOfCategoryIsEmpty = false;
 
 String parentCategoryNameControllerInGetIt = '';
 String subCategoryNameControllerInGetIt = '';
+
+
+String supplierNameControllerInGetIt = '';
+String supplierEmailControllerInGetIt = '';
+String supplierPhoneControllerInGetIt = '';
 
 Future<void> setupServiceLocator() async {
   // Dio & ApiService
@@ -129,6 +136,10 @@ Future<void> setupServiceLocator() async {
       () => GetAllSupplierRepo(getIt()));
   getIt
       .registerFactory<GetAllSupplierCubit>(() => GetAllSupplierCubit(getIt()));
+
+
+  getIt.registerLazySingleton<AddSupplierRepo>(() => AddSupplierRepo(getIt()));
+  getIt.registerFactory<AddSupplierCubit>(() => AddSupplierCubit(getIt()));
 
   // get numbers of inventory and Scm Orders
   getIt.registerLazySingleton<ScmHomeRepo>(() => ScmHomeRepo(getIt()));

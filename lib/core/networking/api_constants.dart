@@ -26,6 +26,9 @@ class ApiConstants {
 
   //Supplier
   static const String getAllSuppliers = "/Supplier";
+  static const String addSuppliers = "/Supplier";
+  static const String updateSuppliers = "/Supplier/{id}";
+
 
   //Orders
   static const String getNumberofInventoryAndScmOrder = '/Order/OrdersNumber';
