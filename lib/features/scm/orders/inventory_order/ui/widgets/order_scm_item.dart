@@ -1,7 +1,7 @@
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
-import 'package:erp_system/features/scm/inventory_order/data/models/get_all_inventory_orders_model.dart';
+import 'package:erp_system/features/scm/orders/inventory_order/data/models/get_all_inventory_orders_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,8 +18,7 @@ class OrderScmItem extends StatelessWidget {
     return Card(
       child: InkWell(
         onTap: () {
-          GoRouter.of(context)
-              .push(AppRouter.kOrdersDetailsView, extra: data.id);
+          GoRouter.of(context).push(AppRouter.kOrdersDetailsView, extra: data.id);
         },
         child: Row(
           children: [

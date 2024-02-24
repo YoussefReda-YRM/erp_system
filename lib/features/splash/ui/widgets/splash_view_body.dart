@@ -1,6 +1,5 @@
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/assets.dart';
-import 'package:erp_system/features/scm/inventory_order/ui/get_all_inventory_orders_view.dart';
 import 'package:erp_system/features/splash/ui/widgets/sliding_text.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -64,10 +63,6 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   void navigateToGetStarted() {
     Future.delayed(const Duration(seconds: 2), () {
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => OrdersScmView()),
-      // );
       GoRouter.of(context).push(AppRouter.kModulesView);
     });
   }
