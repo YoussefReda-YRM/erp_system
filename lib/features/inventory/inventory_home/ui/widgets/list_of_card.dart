@@ -1,13 +1,14 @@
 import 'package:erp_system/core/utils/assets.dart';
 import 'package:erp_system/core/widgets/custom_app_body.dart';
+import 'package:erp_system/core/widgets/custom_card_home_view.dart';
 import 'package:erp_system/features/inventory/inventory_home/logic/inventory_home_cubit.dart';
 import 'package:erp_system/features/inventory/inventory_home/logic/inventory_home_state.dart';
-import 'package:erp_system/features/inventory/inventory_home/ui/widgets/custom_card_inventory.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/ui/widgets/custom_no_product_widget.dart';
 import 'package:erp_system/features/inventory/product/widgets/custom_circular_progress_indicator.dart';
 import 'package:erp_system/features/inventory/product/widgets/custom_error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 class ListOfCards extends StatelessWidget {
   const ListOfCards({super.key});
@@ -22,24 +23,27 @@ class ListOfCards extends StatelessWidget {
               return const CustomCircularProgressIndicator();
             } else if (state is InventoryHomeSuccess) {
               return Padding(
-                padding: const EdgeInsets.only(top: 50),
-                child: GridView.count(
-                  padding: const EdgeInsets.only(bottom: 30),
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  crossAxisCount: 1,
-                  crossAxisSpacing: 40,
-                  mainAxisSpacing: 30,
-                  children: [
-                    customCardInventory(
-                        context,
-                        'All Products: ${state.response.productsCount}',
-                        AssetsData.product),
-                    customCardInventory(
-                        context,
-                        'Replienshment: ${state.response.replenishmentCount}',
-                        AssetsData.replensh),
-                  ],
+                padding: const EdgeInsets.all(20),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: CustomCardHomeView(
+                          title:
+                              'All Products: ${state.response.productsCount}',
+                          image: AssetsData.product,
+                        ),
+                      ),
+                      const SizedBox(height: 20,),
+                      Expanded(
+                        child: CustomCardHomeView(
+                          title: 'Replienshment: ${state.response.replenishmentCount}',
+                          image: AssetsData.replensh,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             } else if (state is InventoryHomeFailure) {

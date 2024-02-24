@@ -2,8 +2,8 @@ import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
-class CustomCardScm extends StatelessWidget {
-  const CustomCardScm({super.key, required this.title, required this.image});
+class CustomCardHomeView extends StatelessWidget {
+  const CustomCardHomeView({super.key, required this.title, required this.image});
   final String title;
   final String image;
 

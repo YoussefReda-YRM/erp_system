@@ -5,7 +5,7 @@ import 'package:erp_system/features/inventory/product/widgets/custom_circular_pr
 import 'package:erp_system/features/inventory/product/widgets/custom_error_widget.dart';
 import 'package:erp_system/features/scm/scm_home/logic/scm_home_cubit.dart';
 import 'package:erp_system/features/scm/scm_home/logic/scm_home_state.dart';
-import 'package:erp_system/features/scm/scm_home/ui/widgets/custom_card_scm.dart';
+import 'package:erp_system/core/widgets/custom_card_home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,7 +28,7 @@ class ListOfCardScm extends StatelessWidget {
                   child: Column(
                     children: [
                       Expanded(
-                        child: CustomCardScm(
+                        child: CustomCardHomeView(
                           title:
                               'Inventory Orders: ${state.response.inventoryOrderCount}',
                           image: AssetsData.scm,
@@ -36,7 +36,7 @@ class ListOfCardScm extends StatelessWidget {
                       ),
                       const SizedBox(height: 20,),
                       Expanded(
-                        child: CustomCardScm(
+                        child: CustomCardHomeView(
                           title: 'SCM Orders: ${state.response.scmOrderCount}',
                           image: AssetsData.replensh,
                         ),
