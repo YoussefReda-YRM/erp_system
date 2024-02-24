@@ -1,5 +1,5 @@
 import 'package:erp_system/core/utils/styles.dart';
-import 'package:erp_system/features/scm/order_details/data/models/order_details_model.dart';
+import 'package:erp_system/features/scm/orders/order_details/data/models/order_details_model.dart';
 import 'package:flutter/material.dart';
 
 class OrderDetailsViewBodyItems extends StatelessWidget {
@@ -153,6 +153,7 @@ class OrderDetailsViewBodyItems extends StatelessWidget {
           height: 16,
         ),
       ],
+      
     );
   }
 }

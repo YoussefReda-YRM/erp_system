@@ -1,7 +1,7 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
-import 'package:erp_system/features/scm/order_details/data/repos/order_details_repo.dart';
-import 'package:erp_system/features/scm/order_details/logic/order_details_state.dart';
+import 'package:erp_system/features/scm/orders/order_details/data/repos/order_details_repo.dart';
+import 'package:erp_system/features/scm/orders/order_details/logic/order_details_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OrderDetailsCubit extends Cubit<OrderDetailsState> {

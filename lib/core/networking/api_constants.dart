@@ -29,11 +29,11 @@ class ApiConstants {
   static const String addSuppliers = "/Supplier";
   static const String updateSuppliers = "/Supplier/{id}";
 
-
   //Orders
   static const String getNumberofInventoryAndScmOrder = '/Order/OrdersNumber';
   static const String getAllInventoryOrder = '/Order/AllInventoryOrders';
   static const String getSpecificInventoryOrder = "/Order/InventoryOrder";
+  static const String updateOrder = "/order/{orderId}";
 }
 
 class ApiErrors {

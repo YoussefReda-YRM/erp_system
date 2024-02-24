@@ -1,7 +1,7 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
-import 'package:erp_system/features/scm/inventory_order/data/repos/get_all_inventory_orders_repo.dart';
-import 'package:erp_system/features/scm/inventory_order/logic/get_all_inventory_orders_state.dart';
+import 'package:erp_system/features/scm/orders/inventory_order/data/repos/get_all_inventory_orders_repo.dart';
+import 'package:erp_system/features/scm/orders/inventory_order/logic/get_all_inventory_orders_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GetAllInventoryOrdersCubit extends Cubit<GetAllInventoryOrdersState> {

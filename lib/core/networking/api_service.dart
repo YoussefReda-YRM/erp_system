@@ -17,8 +17,10 @@ import 'package:erp_system/features/inventory/product/add_product/data/models/ad
 import 'package:erp_system/features/inventory/product/add_product/data/models/add_product_response.dart';
 import 'package:erp_system/features/inventory/product/details_product/data/models/details_product_model.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/data/models/product_response.dart';
-import 'package:erp_system/features/scm/inventory_order/data/models/get_all_inventory_orders_model.dart';
-import 'package:erp_system/features/scm/order_details/data/models/order_details_model.dart';
+import 'package:erp_system/features/scm/orders/inventory_order/data/models/get_all_inventory_orders_model.dart';
+import 'package:erp_system/features/scm/orders/order_details/data/models/order_details_model.dart';
+import 'package:erp_system/features/scm/orders/update_order/data/models/update_order_request.dart';
+import 'package:erp_system/features/scm/orders/update_order/data/models/update_order_response.dart';
 import 'package:erp_system/features/scm/scm_home/data/models/scm_home_model.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/data/models/AddSupplierRequest.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/data/models/AddSupplierResponse.dart';
@@ -146,5 +148,12 @@ abstract class ApiService {
   Future<OrderDetailsModel> getSpecificInventoryOrder(
     @Header("Authorization") String token,
     @Path("id") int id,
+  );
+
+  @PUT(ApiConstants.updateOrder)
+  Future<UpdateOrderResponse> updateOrder(
+    @Header("Authorization") String token,
+    @Path("orderId") int orderId,
+    @Body() UpdateOrderRequest requestParentCategory,
   );
 }

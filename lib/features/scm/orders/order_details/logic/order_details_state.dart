@@ -1,4 +1,4 @@
-import 'package:erp_system/features/scm/order_details/data/models/order_details_model.dart';
+import 'package:erp_system/features/scm/orders/order_details/data/models/order_details_model.dart';
 
 abstract class OrderDetailsState {}
 
