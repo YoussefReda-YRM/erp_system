@@ -448,6 +448,71 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<AddSupplierResponse> addsupplier(
+    AddSupplierRequest addSupplierRequest,
+    String token,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(addSupplierRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<AddSupplierResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/Supplier',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = AddSupplierResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<UpdateSupplierResponse> updateSupplier(
+    String token,
+    int supplierId,
+    UpdateSupplierRequest updateSupplierRequest,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(updateSupplierRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<UpdateSupplierResponse>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/Supplier/${supplierId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = UpdateSupplierResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<ScmHomeModel> getNumberOfInventoryAndScmOrdersCount(
       String token) async {
     final _extra = <String, dynamic>{};

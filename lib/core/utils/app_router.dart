@@ -34,8 +34,11 @@ import 'package:erp_system/features/scm/order_details/ui/order_details_view.dart
 import 'package:erp_system/features/scm/inventory_order/ui/get_all_inventory_orders_view.dart';
 import 'package:erp_system/features/scm/scm_home/logic/scm_home_cubit.dart';
 import 'package:erp_system/features/scm/scm_home/ui/scm_home_view.dart';
+import 'package:erp_system/features/scm/supplier/add_supplier/logic/add_supplier_cubit.dart';
+import 'package:erp_system/features/scm/supplier/add_supplier/ui/add_supplier_view.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/logic/get_supplier_cubit.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/get_all_supplier_view.dart';
+import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/widget/supllier_details.dart';
 import 'package:erp_system/features/splash/ui/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -69,6 +72,9 @@ abstract class AppRouter {
 
   //supplier
   static const kSupplierView = '/supplierView';
+  static const kSupplierDetails= '/supplierDetails';
+  static const kAddSupplier= '/addsupplier';
+
 
   static const kScmHomeView = '/scmHomeView';
   static const kInventoryOrders = '/inventoryOrders';
@@ -85,9 +91,31 @@ abstract class AppRouter {
         builder: (context, state) => BlocProvider(
           create: (context) => getIt.get<GetAllSupplierCubit>()
             ..getAllSupplier(
-              getIt.get<LoginResponse>().token!,
+              "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJCYXNtYU1vaHNlbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImJhc21hbW9oc2VuNTNAZ21haWwuY29tIiwiZXhwIjoxNzA4NzI1MzI2LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDY5IiwiYXVkIjoiTXlTZWN1cmVkQVBJVXNlcnMifQ.YtfYcIexDCmQQUZl7RHAXr07vQMdMzZISeHt0zG6qFM",
             ),
           child: const GetAllSupplierView(),
+        ),
+      ),
+      GoRoute(
+        path: kSupplierDetails,
+        builder: (context, state) {
+          Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
+          return BlocProvider(
+            create: (context) => getIt.get<GetAllSupplierCubit>(),
+            child: SupplierDetails(
+              supplieraddedby: myData['addedBy'],
+              supplierphone: myData['supplierPhone'],
+              supplieremail: myData['supplierEmail'],
+              suppliername:myData['supplierName'] ,
+            ),
+          );
+        },
+      ),
+      GoRoute(
+        path: kAddSupplier,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<AddSupplierCubit>(),
+          child: const AddSupplierView(),
         ),
       ),
       GoRoute(

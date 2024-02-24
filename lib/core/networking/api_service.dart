@@ -20,7 +20,11 @@ import 'package:erp_system/features/inventory/product/get_all_product/data/model
 import 'package:erp_system/features/scm/inventory_order/data/models/get_all_inventory_orders_model.dart';
 import 'package:erp_system/features/scm/order_details/data/models/order_details_model.dart';
 import 'package:erp_system/features/scm/scm_home/data/models/scm_home_model.dart';
+import 'package:erp_system/features/scm/supplier/add_supplier/data/models/AddSupplierRequest.dart';
+import 'package:erp_system/features/scm/supplier/add_supplier/data/models/AddSupplierResponse.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/data/models/GetAllSupplierResponse.dart';
+import 'package:erp_system/features/scm/supplier/update_supplier/data/models/UpdateSupplierRequest.dart';
+import 'package:erp_system/features/scm/supplier/update_supplier/data/models/UpdateSupplierResponse.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'api_service.g.dart';
@@ -108,6 +112,23 @@ abstract class ApiService {
   Future<GetAllSupplierResponse> getAllSuppliers(
     @Header("Authorization") String token,
   );
+
+
+  @POST(ApiConstants.addSuppliers)
+  Future<AddSupplierResponse> addsupplier(
+      @Body() AddSupplierRequest addSupplierRequest,
+      @Header("Authorization") String token,
+      );
+
+
+  @PUT(ApiConstants.updateSuppliers)
+  Future<UpdateSupplierResponse> updateSupplier(
+      @Header("Authorization") String token,
+      @Path("id") int supplierId,
+      @Body() UpdateSupplierRequest updateSupplierRequest,
+      );
+
+
 
 //Orders
   @GET(ApiConstants.getNumberofInventoryAndScmOrder)
