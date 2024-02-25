@@ -28,10 +28,12 @@ import 'package:erp_system/features/modules/ui/modules_view.dart';
 import 'package:erp_system/features/auth/login/ui/login_view.dart';
 import 'package:erp_system/features/auth/otp/ui/otp_view.dart';
 import 'package:erp_system/features/auth/password_changed/password_changed_view.dart';
-import 'package:erp_system/features/scm/inventory_order/logic/get_all_inventory_orders_cubit.dart';
-import 'package:erp_system/features/scm/order_details/logic/order_details_cubit.dart';
-import 'package:erp_system/features/scm/order_details/ui/order_details_view.dart';
-import 'package:erp_system/features/scm/inventory_order/ui/get_all_inventory_orders_view.dart';
+import 'package:erp_system/features/scm/orders/inventory_order/logic/get_all_inventory_orders_cubit.dart';
+import 'package:erp_system/features/scm/orders/inventory_order/ui/get_all_inventory_orders_view.dart';
+import 'package:erp_system/features/scm/orders/order_details/logic/order_details_cubit.dart';
+import 'package:erp_system/features/scm/orders/order_details/ui/order_details_view.dart';
+import 'package:erp_system/features/scm/orders/update_order/logic/update_order_cubit.dart';
+import 'package:erp_system/features/scm/orders/update_order/ui/update_order_view.dart';
 import 'package:erp_system/features/scm/scm_home/logic/scm_home_cubit.dart';
 import 'package:erp_system/features/scm/scm_home/ui/scm_home_view.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/logic/add_supplier_cubit.dart';
@@ -72,13 +74,13 @@ abstract class AppRouter {
 
   //supplier
   static const kSupplierView = '/supplierView';
-  static const kSupplierDetails= '/supplierDetails';
-  static const kAddSupplier= '/addsupplier';
-
+  static const kSupplierDetails = '/supplierDetails';
+  static const kAddSupplier = '/addsupplier';
 
   static const kScmHomeView = '/scmHomeView';
   static const kInventoryOrders = '/inventoryOrders';
   static const kOrdersDetailsView = '/ordersDetailsView';
+  static const kUpdateOrderView = '/updateOrderView';
 
   static final router = GoRouter(
     routes: [
@@ -106,7 +108,7 @@ abstract class AppRouter {
               supplieraddedby: myData['addedBy'],
               supplierphone: myData['supplierPhone'],
               supplieremail: myData['supplierEmail'],
-              suppliername:myData['supplierName'] ,
+              suppliername: myData['supplierName'],
             ),
           );
         },
@@ -266,8 +268,20 @@ abstract class AppRouter {
             ..getSpecificInventoryOrder(
               state.extra as int,
             ),
-          child: const OrderDetailsView(),
+          child: OrderDetailsView(),
         ),
+      ),
+
+      GoRoute(
+        path: kUpdateOrderView,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => getIt.get<UpdateOrderCubit>(),
+            child: UpdateOrderView(
+              orderId: state.extra as int,
+            ),
+          );
+        },
       ),
     ],
   );

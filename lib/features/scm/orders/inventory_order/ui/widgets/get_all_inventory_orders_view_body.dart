@@ -4,9 +4,9 @@ import 'package:erp_system/features/inventory/product/get_all_product/ui/widgets
 import 'package:erp_system/features/inventory/product/widgets/custom_app_bar_product.dart';
 import 'package:erp_system/features/inventory/product/widgets/custom_circular_progress_indicator.dart';
 import 'package:erp_system/features/inventory/product/widgets/custom_error_widget.dart';
-import 'package:erp_system/features/scm/inventory_order/logic/get_all_inventory_orders_cubit.dart';
-import 'package:erp_system/features/scm/inventory_order/logic/get_all_inventory_orders_state.dart';
-import 'package:erp_system/features/scm/inventory_order/ui/widgets/order_scm_item.dart';
+import 'package:erp_system/features/scm/orders/inventory_order/logic/get_all_inventory_orders_cubit.dart';
+import 'package:erp_system/features/scm/orders/inventory_order/logic/get_all_inventory_orders_state.dart';
+import 'package:erp_system/features/scm/orders/inventory_order/ui/widgets/order_scm_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

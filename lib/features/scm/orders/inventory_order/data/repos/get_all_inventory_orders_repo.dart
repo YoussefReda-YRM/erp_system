@@ -1,21 +1,17 @@
 import 'package:erp_system/core/networking/api_error_handler.dart';
 import 'package:erp_system/core/networking/api_result.dart';
 import 'package:erp_system/core/networking/api_service.dart';
-import 'package:erp_system/features/scm/order_details/data/models/order_details_model.dart';
+import 'package:erp_system/features/scm/orders/inventory_order/data/models/get_all_inventory_orders_model.dart';
 
-class OrderDetailsRepo {
+class GetAllInventoryOrdersRepo {
   final ApiService _apiService;
-  OrderDetailsRepo(this._apiService);
+  GetAllInventoryOrdersRepo(this._apiService);
 
-  Future<ApiResult<OrderDetailsModel>> getSpecificInventoryOrder(
+  Future<ApiResult<GetAllInventoryOrderModel>> getAllInventoryOrders(
     String bearerToken,
-    int orderId,
   ) async {
     try {
-      var response = await _apiService.getSpecificInventoryOrder(
-        'Bearer $bearerToken',
-        orderId,
-      );
+      var response = await _apiService.getAllInventoryOrders('Bearer $bearerToken');
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ErrorHandler.handle(error));

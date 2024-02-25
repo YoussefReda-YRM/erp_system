@@ -1,4 +1,4 @@
-import 'package:erp_system/features/scm/inventory_order/data/models/get_all_inventory_orders_model.dart';
+import 'package:erp_system/features/scm/orders/inventory_order/data/models/get_all_inventory_orders_model.dart';
 
 abstract class GetAllInventoryOrdersState {}
 
