@@ -25,7 +25,7 @@ class SupplierListViewBody extends StatelessWidget {
                   "supplierEmail": response.data![index].supplierEmail,
                   "supplierPhone": response.data![index].supplierPhone,
                   "addedBy": response.data![index].addedBy,
-
+                  "id":response.data![index].id,
                 },
               );
             },
