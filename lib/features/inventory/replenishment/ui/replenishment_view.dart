@@ -1,4 +1,5 @@
 import 'package:erp_system/core/widgets/drawer_widget/drawer_widget.dart';
+import 'package:erp_system/core/widgets/drawer_widget/inventory_drawer_item_list_view.dart';
 import 'package:erp_system/features/inventory/replenishment/ui/widgets/replenishment_view_body.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,9 @@ class ReplenishmentView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       key: scaffoldKey,
-      drawer: const DrawerWidget(),
+      drawer: const DrawerWidget(
+        drawerItemListView: InventoryDrawerItemListView(),
+      ),
       body: ReplenishmentViewBody(
         scaffoldKey: scaffoldKey,
       ),

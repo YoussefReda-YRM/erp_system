@@ -6,9 +6,9 @@ import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomAppBarInventory extends StatelessWidget {
+class CustomAppBarHomeView extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
-  const CustomAppBarInventory({
+  const CustomAppBarHomeView({
     super.key,
     required this.scaffoldKey,
   });
@@ -46,13 +46,13 @@ class CustomAppBarInventory extends StatelessWidget {
                 maxLines: 1,
                 style: Styles.font18LightGreyBold(context),
               ),
-              subtitle: getIt.get<LoginResponse>().userData!.roles!.isEmpty
+              subtitle: getIt.get<LoginResponse>().userData!.roles == null
                   ? Text(
                       "There is no role",
                       style: Styles.font14LightGreyRegular(context),
                     )
                   : Text(
-                      getIt.get<LoginResponse>().userData!.roles?[0],
+                      getIt.get<LoginResponse>().userData!.roles.toString(),
                       style: Styles.font14LightGreyRegular(context),
                     ),
               trailing: const CircleAvatar(

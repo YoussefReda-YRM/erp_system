@@ -1,13 +1,13 @@
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/widgets/custom_divider.dart';
 import 'package:erp_system/core/widgets/drawer_widget/active_and_inactive_item.dart/in_active_drawer_item.dart';
-import 'package:erp_system/core/widgets/drawer_widget/drawer_item_list_view.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_item_model.dart';
 import 'package:erp_system/core/widgets/drawer_widget/user_info_list_tile.dart';
 import 'package:flutter/material.dart';
 
 class DrawerWidget extends StatefulWidget {
-  const DrawerWidget({super.key});
+  const DrawerWidget({super.key, required this.drawerItemListView});
+  final Widget drawerItemListView;
 
   @override
   State<DrawerWidget> createState() => _DrawerWidgetState();
@@ -26,7 +26,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           slivers: [
             SliverToBoxAdapter(
               child: Container(
-                height: 150,
+                height: 120,
                 color: ColorsApp.primaryColor,
                 child: const Center(
                   child: UserInfoListTile(),
@@ -36,7 +36,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             const SliverToBoxAdapter(
               child: CustomDivider(),
             ),
-            const DrawerItemListView(),
+            widget.drawerItemListView,
             SliverFillRemaining(
               hasScrollBody: false,
               child: Column(

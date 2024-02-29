@@ -11,7 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginViewBody extends StatelessWidget {
-  const LoginViewBody({super.key});
+  const LoginViewBody({super.key, required this.role});
+  final String role;
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +44,8 @@ class LoginViewBody extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: AppTextButton(
-                    buttonText: 'Login',
-                    textStyle: Styles.font18DarkBlueBold(context),
+                    buttonText: "Login",
+                    textStyle: Styles.font13BlueSemiBold(context),
                     onPressed: () {
                       validateThenDoLogin(context);
                     },
@@ -62,7 +63,7 @@ class LoginViewBody extends StatelessWidget {
                 const SizedBox(
                   height: 40,
                 ),
-                const LoginBlocListener(),
+                LoginBlocListener(role: role),
               ],
             ),
           ],

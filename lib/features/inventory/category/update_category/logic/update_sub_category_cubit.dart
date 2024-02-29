@@ -18,7 +18,6 @@ class UpdateSubCategoryCubit extends Cubit<UpdateSubCategoryState> {
 
   void updatesubcategory(int subid, int parentid) async {
     emit(UpdateSubCategoryLoading());
-    print(subCategoryNameController.text);
     final response = await _updateSubCategoryRepo.updatesubcategory(
       getIt.get<LoginResponse>().token!,
       subid,
