@@ -18,11 +18,10 @@ class OrderDetailsViewBodyItems extends StatelessWidget {
               style: Styles.font13BlueSemiBold(context),
             ),
             const Spacer(),
-            Text(
-              orderDetailsModel.data!.id!.toString(),
-              style: Styles.font13BlueSemiBold(context)
-                  .copyWith(color: Colors.pink),
-            ),
+            Text("#${orderDetailsModel.data!.id!}",
+                style: Styles.font13BlueSemiBold(context)
+                // .copyWith(color: Colors.pink),
+                ),
           ],
         ),
         const SizedBox(
@@ -35,11 +34,10 @@ class OrderDetailsViewBodyItems extends StatelessWidget {
               style: Styles.font13BlueSemiBold(context),
             ),
             const Spacer(),
-            Text(
-              orderDetailsModel.data!.product!,
-              style: Styles.font13BlueSemiBold(context)
-                  .copyWith(color: Colors.pink),
-            ),
+            Text(orderDetailsModel.data!.product!,
+                style: Styles.font13BlueSemiBold(context)
+                // .copyWith(color: Colors.pink),
+                ),
           ],
         ),
         const SizedBox(
@@ -52,11 +50,10 @@ class OrderDetailsViewBodyItems extends StatelessWidget {
               style: Styles.font13BlueSemiBold(context),
             ),
             const Spacer(),
-            Text(
-              orderDetailsModel.data!.quantity!.toString(),
-              style: Styles.font13BlueSemiBold(context)
-                  .copyWith(color: Colors.pink),
-            ),
+            Text(orderDetailsModel.data!.quantity!.toString(),
+                style: Styles.font13BlueSemiBold(context)
+                // .copyWith(color: Colors.pink),
+                ),
           ],
         ),
         const SizedBox(
@@ -73,7 +70,7 @@ class OrderDetailsViewBodyItems extends StatelessWidget {
               orderDetailsModel.data!.status! == 0 ? "Pending" : "Finished",
               style: Styles.font13BlueSemiBold(context).copyWith(
                 color: orderDetailsModel.data!.status == 0
-                    ? Colors.red
+                    ? Colors.orange
                     : Colors.green,
               ),
             ),
@@ -89,11 +86,10 @@ class OrderDetailsViewBodyItems extends StatelessWidget {
               style: Styles.font13BlueSemiBold(context),
             ),
             const Spacer(),
-            Text(
-              orderDetailsModel.data!.inventoryEmployee!,
-              style: Styles.font13BlueSemiBold(context)
-                  .copyWith(color: Colors.pink),
-            ),
+            Text(orderDetailsModel.data!.inventoryEmployee!,
+                style: Styles.font13BlueSemiBold(context)
+                // .copyWith(color: Colors.pink),
+                ),
           ],
         ),
         const SizedBox(
@@ -106,11 +102,10 @@ class OrderDetailsViewBodyItems extends StatelessWidget {
               style: Styles.font13BlueSemiBold(context),
             ),
             const Spacer(),
-            Text(
-              orderDetailsModel.data!.accEmployee!,
-              style: Styles.font13BlueSemiBold(context)
-                  .copyWith(color: Colors.pink),
-            ),
+            Text(orderDetailsModel.data!.accEmployee!,
+                style: Styles.font13BlueSemiBold(context)
+                // .copyWith(color: Colors.pink),
+                ),
           ],
         ),
         const SizedBox(
@@ -123,11 +118,10 @@ class OrderDetailsViewBodyItems extends StatelessWidget {
               style: Styles.font13BlueSemiBold(context),
             ),
             const Spacer(),
-            Text(
-              orderDetailsModel.data!.reference!,
-              style: Styles.font13BlueSemiBold(context)
-                  .copyWith(color: Colors.pink),
-            ),
+            Text(orderDetailsModel.data!.reference!,
+                style: Styles.font13BlueSemiBold(context)
+                // .copyWith(color: Colors.pink),
+                ),
           ],
         ),
         const SizedBox(
@@ -141,19 +135,18 @@ class OrderDetailsViewBodyItems extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              paresDate(
-                orderDetailsModel.data!.date!,
-              ),
-              style: Styles.font13BlueSemiBold(context)
-                  .copyWith(color: Colors.pink),
-            ),
+                paresDate(
+                  orderDetailsModel.data!.date!,
+                ),
+                style: Styles.font13BlueSemiBold(context)
+                // .copyWith(color: Colors.pink),
+                ),
           ],
         ),
         const SizedBox(
           height: 16,
         ),
       ],
-      
     );
   }
 }
@@ -166,5 +159,5 @@ String paresDate(String dateString) {
   dateTime = dateTime.toLocal();
 
   // Extract only the date
-  return "${dateTime.year}-${dateTime.month}-${dateTime.day}";
+  return "${dateTime.day}-${dateTime.month}-${dateTime.year}";
 }
