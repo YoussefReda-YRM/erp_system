@@ -1,5 +1,3 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
-import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_app_body.dart';
@@ -14,28 +12,38 @@ class SupplierDetails extends StatelessWidget {
   final String? supplierphone;
   final String? supplieremail;
   final String? suppliername;
-  final int? id;
  // final GlobalKey<ScaffoldState> scaffoldKey;
 
-  SupplierDetails({required this.suppliername,required this.supplieremail,required this.supplierphone,required this.supplieraddedby,required this.id});
+  SupplierDetails({required this.suppliername,required this.supplieremail,required this.supplierphone,required this.supplieraddedby});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
      body: Column(children: [
-       CustomAppBarProduct(
-         title: 'Supplier Details',
-         iconLeading: const CustomBackButton(),
-         iconTrailing: IconButton(
-           onPressed: () {},
-           icon: const Icon(
-             Icons.more_vert_outlined,
-             size: 34,
-             color: ColorsApp.lightGrey,
-           ),
-         ),
-       ),
+        CustomAppBarProduct(
+
+          title: "Supplier details",
+          iconLeading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              size: 34,
+              color: ColorsApp.grey,
+            ),
+            onPressed: () {
+             CustomBackButton();
+             // scaffoldKey.currentState!.openDrawer();
+            },
+          ),
+          iconTrailing: IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.more_vert_outlined,
+              size: 34,
+              color: ColorsApp.lightGrey,
+            ),
+          ),
+        ),
      CustomAppBody(child:
      Padding(
        padding: const EdgeInsets.only(top: 10),
@@ -151,13 +159,6 @@ class SupplierDetails extends StatelessWidget {
                backgroundColor: Colors.green,
                textStyle: Styles.font13BlueSemiBold(context),
                onPressed: () {
-                 supplierNameControllerInGetIt = suppliername?? "none";
-                 supplierEmailControllerInGetIt = supplieremail?? "none";
-                 supplierPhoneControllerInGetIt = supplierphone?? "none";
-
-                 GoRouter.of(context).push(AppRouter.kUpdateSupplier,extra: {
-                   "id" :id
-                 });
                  //showEditProductDialog(context, size);
                },
              ),
