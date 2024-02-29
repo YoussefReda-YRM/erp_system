@@ -29,12 +29,12 @@ class OrderScmItem extends StatelessWidget {
                   data.status == 0
                       ? Icons.pending_actions_outlined
                       : Icons.check_circle,
-                  color: data.status == 0 ? Colors.red : Colors.green,
+                  color: data.status == 0 ? Colors.orange : Colors.green,
                   size: 34,
                 ),
                 title: Center(
                   child: Text(
-                    data.id.toString(),
+                    "#${data.id}",
                     style: Styles.font14BlueSemiBold(context),
                   ),
                 ),
@@ -42,7 +42,7 @@ class OrderScmItem extends StatelessWidget {
                   child: Text(
                     data.status == 0 ? "Pending" : "Finished",
                     style: Styles.font14BlueSemiBold(context).copyWith(
-                        color: data.status == 0 ? Colors.red : Colors.green),
+                        color: data.status == 0 ? Colors.orange : Colors.green),
                   ),
                 ),
               ),

@@ -54,7 +54,7 @@ class AddProductView extends StatelessWidget {
                       AppTextButton(
                         backgroundColor: ColorsApp.primaryColor,
                         buttonText: "Create",
-                        textStyle: Styles.font18LightGreyBold(context),
+                        textStyle: Styles.font16LightGreyMedium(context).copyWith(fontSize: 13),
                         onPressed: () {
                           validateThenDoAddProduct(context);
                         },

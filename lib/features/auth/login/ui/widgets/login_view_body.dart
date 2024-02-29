@@ -44,8 +44,8 @@ class LoginViewBody extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: AppTextButton(
-                    buttonText: 'Login',
-                    textStyle: Styles.font18DarkBlueBold(context),
+                    buttonText: "Login",
+                    textStyle: Styles.font13BlueSemiBold(context),
                     onPressed: () {
                       validateThenDoLogin(context);
                     },
