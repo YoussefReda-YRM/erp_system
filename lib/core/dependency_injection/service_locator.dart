@@ -39,6 +39,8 @@ import 'package:erp_system/features/scm/supplier/get_all_suplier/data/repos/get_
 import 'package:erp_system/features/scm/supplier/get_all_suplier/logic/get_supplier_cubit.dart';
 import 'package:erp_system/features/scm/scm_home/data/repo/scm_home_repo.dart';
 import 'package:erp_system/features/scm/scm_home/logic/scm_home_cubit.dart';
+import 'package:erp_system/features/scm/supplier/update_supplier/data/repos/update_supplier_repo.dart';
+import 'package:erp_system/features/scm/supplier/update_supplier/logic/update_supplier_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -144,6 +146,11 @@ Future<void> setupServiceLocator() async {
 
   getIt.registerLazySingleton<AddSupplierRepo>(() => AddSupplierRepo(getIt()));
   getIt.registerFactory<AddSupplierCubit>(() => AddSupplierCubit(getIt()));
+
+  getIt.registerLazySingleton<UpdateSupplierRepo>(
+      () => UpdateSupplierRepo(getIt()));
+  getIt
+      .registerFactory<UpdateSupplierCubit>(() => UpdateSupplierCubit(getIt()));
 
   // get numbers of inventory and Scm Orders
   getIt.registerLazySingleton<ScmHomeRepo>(() => ScmHomeRepo(getIt()));
