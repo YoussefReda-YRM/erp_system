@@ -1,16 +1,20 @@
+import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
+import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/core/widgets/custom_back_button.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
-import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SupplierDetails extends StatelessWidget {
   final String? supplieraddedby;
   final String? supplierphone;
   final String? supplieremail;
   final String? suppliername;
+  final int? id;
   // final GlobalKey<ScaffoldState> scaffoldKey;
 
   const SupplierDetails(
@@ -18,7 +22,8 @@ class SupplierDetails extends StatelessWidget {
       required this.suppliername,
       required this.supplieremail,
       required this.supplierphone,
-      required this.supplieraddedby});
+      required this.supplieraddedby,
+      required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -27,18 +32,8 @@ class SupplierDetails extends StatelessWidget {
         body: Column(
           children: [
             CustomAppBarApp(
-              title: "Supplier details",
-              iconLeading: IconButton(
-                icon: const Icon(
-                  Icons.arrow_back,
-                  size: 34,
-                  color: ColorsApp.grey,
-                ),
-                onPressed: () {
-                  const CustomBackButton();
-                  // scaffoldKey.currentState!.openDrawer();
-                },
-              ),
+              title: 'Supplier Details',
+              iconLeading: const CustomBackButton(),
               iconTrailing: IconButton(
                 onPressed: () {},
                 icon: const Icon(
@@ -168,6 +163,14 @@ class SupplierDetails extends StatelessWidget {
                       backgroundColor: Colors.green,
                       textStyle: Styles.font13BlueSemiBold(context),
                       onPressed: () {
+                        supplierNameControllerInGetIt = suppliername ?? "none";
+                        supplierEmailControllerInGetIt =
+                            supplieremail ?? "none";
+                        supplierPhoneControllerInGetIt =
+                            supplierphone ?? "none";
+
+                        GoRouter.of(context)
+                            .push(AppRouter.kUpdateSupplier, extra: {"id": id});
                         //showEditProductDialog(context, size);
                       },
                     ),
