@@ -40,6 +40,9 @@ import 'package:erp_system/features/scm/supplier/add_supplier/logic/add_supplier
 import 'package:erp_system/features/scm/supplier/add_supplier/ui/add_supplier_view.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/logic/get_supplier_cubit.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/get_all_supplier_view.dart';
+import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/widget/supllier_details.dart';
+import 'package:erp_system/features/scm/supplier/update_supplier/logic/update_supplier_cubit.dart';
+import 'package:erp_system/features/scm/supplier/update_supplier/ui/update_supplier.dart';
 import 'package:erp_system/features/splash/ui/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -75,8 +78,11 @@ abstract class AppRouter {
   static const kSupplierView = '/supplierView';
   static const kSupplierDetails = '/supplierDetails';
   static const kAddSupplier = '/addsupplier';
+  static const kUpdateSupplier = '/updatesupplier';
 
   static const kScmHomeView = '/scmHomeView';
+
+  //order
   static const kInventoryOrders = '/inventoryOrders';
   static const kOrdersDetailsView = '/ordersDetailsView';
   static const kUpdateOrderView = '/updateOrderView';
@@ -97,21 +103,22 @@ abstract class AppRouter {
           child: const GetAllSupplierView(),
         ),
       ),
-      // GoRoute(
-      //   path: kSupplierDetails,
-      //   builder: (context, state) {
-      //     Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
-      //     return BlocProvider(
-      //       create: (context) => getIt.get<GetAllSupplierCubit>(),
-      //       child: SupplierDetails(
-      //         supplieraddedby: myData['addedBy'],
-      //         supplierphone: myData['supplierPhone'],
-      //         supplieremail: myData['supplierEmail'],
-      //         suppliername: myData['supplierName'],
-      //       ),
-      //     );
-      //   },
-      // ),
+      GoRoute(
+        path: kSupplierDetails,
+        builder: (context, state) {
+          Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
+          return BlocProvider(
+            create: (context) => getIt.get<GetAllSupplierCubit>(),
+            child: SupplierDetails(
+              id: myData['id'],
+              supplieraddedby: myData['addedBy'],
+              supplierphone: myData['supplierPhone'],
+              supplieremail: myData['supplierEmail'],
+              suppliername: myData['supplierName'],
+            ),
+          );
+        },
+      ),
       GoRoute(
         path: kAddSupplier,
         builder: (context, state) => BlocProvider(
@@ -119,6 +126,19 @@ abstract class AppRouter {
           child: const AddSupplierView(),
         ),
       ),
+      GoRoute(
+        path: kUpdateSupplier,
+        builder: (context, state) {
+          Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
+          return BlocProvider(
+            create: (context) => getIt.get<UpdateSupplierCubit>(),
+            child: UpdateSupplier(
+              supplierId: myData['id'],
+            ),
+          );
+        },
+      ),
+
       GoRoute(
         path: kModulesView,
         builder: (context, state) => const ModulesView(),
@@ -267,7 +287,7 @@ abstract class AppRouter {
             ..getSpecificInventoryOrder(
               state.extra as int,
             ),
-          child: OrderDetailsView(),
+          child: const OrderDetailsView(),
         ),
       ),
 

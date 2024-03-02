@@ -49,7 +49,7 @@ class UpdateOrderBody extends StatelessWidget {
                   padding: const EdgeInsets.all(20),
                   child: AppTextButton(
                     buttonText: 'Edit',
-                    textStyle: Styles.font16LightGreyMedium(context),
+                    textStyle: Styles.font16LightGreyMedium(context).copyWith(fontSize: 13),
                     backgroundColor: ColorsApp.primaryColor,
                     onPressed: () {
                       validateThenDoUpdateParentCategory(context, orderId);

@@ -46,13 +46,13 @@ class CustomAppBarHomeView extends StatelessWidget {
                 maxLines: 1,
                 style: Styles.font18LightGreyBold(context),
               ),
-              subtitle: getIt.get<LoginResponse>().userData!.roles!.isEmpty
+              subtitle: getIt.get<LoginResponse>().userData!.roles == null
                   ? Text(
                       "There is no role",
                       style: Styles.font14LightGreyRegular(context),
                     )
                   : Text(
-                      getIt.get<LoginResponse>().userData!.roles?[0],
+                      getIt.get<LoginResponse>().userData!.roles.toString(),
                       style: Styles.font14LightGreyRegular(context),
                     ),
               trailing: const CircleAvatar(
