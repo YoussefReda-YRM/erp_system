@@ -234,7 +234,6 @@ class _ApiService implements ApiService {
     String token,
   ) async {
     final _extra = <String, dynamic>{};
-   
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
@@ -268,7 +267,6 @@ class _ApiService implements ApiService {
     UpdateRequestSubCategory requestSubCategory,
   ) async {
     final _extra = <String, dynamic>{};
-
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
@@ -302,7 +300,6 @@ class _ApiService implements ApiService {
     UpdateRequestParentCategory requestParentCategory,
   ) async {
     final _extra = <String, dynamic>{};
-
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
@@ -339,7 +336,6 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
-
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<ResponseDeleteCategory>(Options(
       method: 'DELETE',
@@ -371,7 +367,6 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
-
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<ResponseDeleteCategory>(Options(
       method: 'DELETE',
@@ -400,7 +395,6 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
-
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<CategoryAllCategoryModel>>(Options(
       method: 'GET',
@@ -450,6 +444,192 @@ class _ApiService implements ApiService {
               baseUrl,
             ))));
     final value = GetAllSupplierResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<AddSupplierResponse> addsupplier(
+    AddSupplierRequest addSupplierRequest,
+    String token,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(addSupplierRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<AddSupplierResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/Supplier',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = AddSupplierResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<UpdateSupplierResponse> updateSupplier(
+    String token,
+    int supplierId,
+    UpdateSupplierRequest updateSupplierRequest,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(updateSupplierRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<UpdateSupplierResponse>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/Supplier/${supplierId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = UpdateSupplierResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ScmHomeModel> getNumberOfInventoryAndScmOrdersCount(
+      String token) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ScmHomeModel>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/Order/OrdersNumber',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ScmHomeModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<GetAllInventoryOrderModel> getAllInventoryOrders(String token) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<GetAllInventoryOrderModel>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/Order/AllInventoryOrders',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = GetAllInventoryOrderModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<OrderDetailsModel> getSpecificInventoryOrder(
+    String token,
+    int id,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<OrderDetailsModel>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/Order/InventoryOrder/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = OrderDetailsModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<UpdateOrderResponse> updateOrder(
+    String token,
+    int orderId,
+    UpdateOrderRequest requestParentCategory,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(requestParentCategory.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<UpdateOrderResponse>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/order/${orderId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = UpdateOrderResponse.fromJson(_result.data!);
     return value;
   }
 

@@ -6,9 +6,9 @@ import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomAppBarInventory extends StatelessWidget {
+class CustomAppBarHomeView extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
-  const CustomAppBarInventory({
+  const CustomAppBarHomeView({
     super.key,
     required this.scaffoldKey,
   });

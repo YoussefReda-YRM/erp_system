@@ -171,6 +171,7 @@ ApiErrorModel _handleError(DioException error) {
     case DioExceptionType.badResponse:
       return DataSource.DEFAULT.getFailure();
   }
+
 }
 
 class ApiInternalStatus {

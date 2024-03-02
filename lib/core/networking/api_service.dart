@@ -17,7 +17,16 @@ import 'package:erp_system/features/inventory/product/add_product/data/models/ad
 import 'package:erp_system/features/inventory/product/add_product/data/models/add_product_response.dart';
 import 'package:erp_system/features/inventory/product/details_product/data/models/details_product_model.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/data/models/product_response.dart';
+import 'package:erp_system/features/scm/orders/inventory_order/data/models/get_all_inventory_orders_model.dart';
+import 'package:erp_system/features/scm/orders/order_details/data/models/order_details_model.dart';
+import 'package:erp_system/features/scm/orders/update_order/data/models/update_order_request.dart';
+import 'package:erp_system/features/scm/orders/update_order/data/models/update_order_response.dart';
+import 'package:erp_system/features/scm/scm_home/data/models/scm_home_model.dart';
+import 'package:erp_system/features/scm/supplier/add_supplier/data/models/AddSupplierRequest.dart';
+import 'package:erp_system/features/scm/supplier/add_supplier/data/models/AddSupplierResponse.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/data/models/GetAllSupplierResponse.dart';
+import 'package:erp_system/features/scm/supplier/update_supplier/data/models/UpdateSupplierRequest.dart';
+import 'package:erp_system/features/scm/supplier/update_supplier/data/models/UpdateSupplierResponse.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'api_service.g.dart';
@@ -100,9 +109,51 @@ abstract class ApiService {
     @Header("Authorization") String token,
   );
 
-  //supplier
+  //Supplier
   @GET(ApiConstants.getAllSuppliers)
   Future<GetAllSupplierResponse> getAllSuppliers(
+    @Header("Authorization") String token,
+  );
+
+
+  @POST(ApiConstants.addSuppliers)
+  Future<AddSupplierResponse> addsupplier(
+      @Body() AddSupplierRequest addSupplierRequest,
       @Header("Authorization") String token,
       );
+
+
+  @PUT(ApiConstants.updateSuppliers)
+  Future<UpdateSupplierResponse> updateSupplier(
+      @Header("Authorization") String token,
+      @Path("id") int supplierId,
+      @Body() UpdateSupplierRequest updateSupplierRequest,
+      );
+
+
+
+//Orders
+  @GET(ApiConstants.getNumberofInventoryAndScmOrder)
+  Future<ScmHomeModel> getNumberOfInventoryAndScmOrdersCount(
+    @Header("Authorization") String token,
+  );
+
+  @GET(ApiConstants.getAllInventoryOrder)
+  Future<GetAllInventoryOrderModel> getAllInventoryOrders(
+    @Header("Authorization") String token,
+  );
+
+
+  @GET("${ApiConstants.getSpecificInventoryOrder}/{id}")
+  Future<OrderDetailsModel> getSpecificInventoryOrder(
+    @Header("Authorization") String token,
+    @Path("id") int id,
+  );
+
+  @PUT(ApiConstants.updateOrder)
+  Future<UpdateOrderResponse> updateOrder(
+    @Header("Authorization") String token,
+    @Path("orderId") int orderId,
+    @Body() UpdateOrderRequest requestParentCategory,
+  );
 }

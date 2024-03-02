@@ -1,4 +1,5 @@
 import 'package:erp_system/core/utils/colors_app.dart';
+import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/ui/widgets/custom_no_product_widget.dart';
 import 'package:erp_system/features/inventory/product/widgets/custom_circular_progress_indicator.dart';
 import 'package:erp_system/features/inventory/product/widgets/custom_error_widget.dart';
@@ -13,17 +14,8 @@ class SupplierListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: ColorsApp.primaryColor,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(100),
-          ),
-        ),
-        child: BlocBuilder<GetAllSupplierCubit, GetAllSupplierState>(
+    return CustomAppBody(child:
+    BlocBuilder<GetAllSupplierCubit, GetAllSupplierState>(
           builder: (context, state) {
             if (state is GetAllSupplierLoading) {
               return const CustomCircularProgressIndicator();
@@ -45,7 +37,7 @@ class SupplierListView extends StatelessWidget {
             }
           },
         ),
-      ),
+
     );
   }
 }
