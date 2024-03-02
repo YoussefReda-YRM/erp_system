@@ -17,6 +17,8 @@ class AppTextFormField extends StatelessWidget {
   final Function(String?) validator;
   final bool? isEnabled;
   final Function? function;
+  final TextInputType? keyboardType;
+  final bool? readOnly;
 
   const AppTextFormField({
     super.key,
@@ -34,6 +36,8 @@ class AppTextFormField extends StatelessWidget {
     required this.validator,
     this.isEnabled,
     this.function,
+    this.keyboardType,
+    this.readOnly,
   });
 
   @override
@@ -43,7 +47,9 @@ class AppTextFormField extends StatelessWidget {
         function!();
       },
       child: TextFormField(
+        keyboardType: keyboardType,
         enabled: isEnabled ?? true,
+        readOnly: readOnly ?? false,
         autocorrect: false,
         controller: controller,
         decoration: InputDecoration(

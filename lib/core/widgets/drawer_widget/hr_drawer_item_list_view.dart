@@ -1,6 +1,5 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/core/utils/app_router.dart';
-import 'package:erp_system/core/widgets/custom_divider.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_item.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_item_model.dart';
 import 'package:flutter/material.dart';
@@ -60,9 +59,6 @@ class _DrawerItemListViewState extends State<HrDrawerItemListView> {
                 }
               },
             ),
-            index == 0 || index == 1 || index == 2 || index == 3
-                ? const CustomDivider()
-                : const SizedBox(),
           ],
         );
       },

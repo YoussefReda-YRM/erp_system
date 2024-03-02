@@ -52,6 +52,9 @@ class GetAllEmployeeViewBody extends StatelessWidget {
                     },
                   ),
                 ),
+                const SizedBox(
+                  height: 55,
+                ),
               ],
             ),
           ),

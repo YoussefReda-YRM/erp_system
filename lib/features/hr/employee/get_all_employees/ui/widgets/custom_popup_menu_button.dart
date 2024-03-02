@@ -1,6 +1,8 @@
 import 'package:erp_system/core/utils/colors_app.dart';
+import 'package:erp_system/core/utils/functions/delete_show_dialog.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomPopupMenuButton extends StatelessWidget {
   const CustomPopupMenuButton({
@@ -10,13 +12,29 @@ class CustomPopupMenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      icon: const Icon(
+        Icons.more_vert_outlined,
+        color: Colors.pink, // Change the color here
+      ),
       onSelected: (value) {
         if (value == 'edit') {
           // Handle edit action
           print('Edit pressed');
         } else if (value == 'delete') {
-          // Handle delete action
-          print('Delete pressed');
+          deleteShowDialog(
+            context,
+            'Are you sure you want to delete this Employee?',
+            2,
+            () {
+              GoRouter.of(context).pop();
+              // Future.delayed(const Duration(milliseconds: 200), () {
+              //   GoRouter.of(context).pushReplacement(AppRouter.kCategoryView);
+              // });
+            },
+          );
         }
       },
       itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
