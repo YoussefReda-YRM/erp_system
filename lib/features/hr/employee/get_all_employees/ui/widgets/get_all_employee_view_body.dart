@@ -1,13 +1,11 @@
 import 'package:erp_system/core/utils/colors_app.dart';
-import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
-import 'package:erp_system/features/inventory/replenishment/ui/widgets/replenishment_item.dart';
+import 'package:erp_system/features/hr/employee/get_all_employees/ui/widgets/get_all_employee_list_view_item.dart';
 import 'package:flutter/material.dart';
 
-class ReplenishmentViewBody extends StatelessWidget {
-  const ReplenishmentViewBody({super.key, required this.scaffoldKey});
-
+class GetAllEmployeeViewBody extends StatelessWidget {
+  const GetAllEmployeeViewBody({super.key, required this.scaffoldKey});
   final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
@@ -16,7 +14,7 @@ class ReplenishmentViewBody extends StatelessWidget {
       children: [
         CustomAppBarApp(
           scaffoldKey: scaffoldKey,
-          title: "Replenishments",
+          title: "Employees",
           iconLeading: IconButton(
             icon: const Icon(
               Icons.menu,
@@ -39,25 +37,18 @@ class ReplenishmentViewBody extends StatelessWidget {
         Expanded(
           child: CustomAppBody(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
                   height: 30,
-                ),
-                Text(
-                  "4 items",
-                  style:
-                      Styles.font18DarkBlueBold(context).copyWith(fontSize: 20),
-                ),
-                const SizedBox(
-                  height: 10,
                 ),
                 Expanded(
                   child: ListView.builder(
                     physics: const BouncingScrollPhysics(),
                     itemCount: 10,
                     itemBuilder: (context, index) {
-                      return const ReplenishmentItem();
+                      return GetAllEmployeeListViewItem(
+                        index: index,
+                      );
                     },
                   ),
                 ),

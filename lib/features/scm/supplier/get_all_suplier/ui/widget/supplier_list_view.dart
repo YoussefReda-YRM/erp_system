@@ -1,4 +1,3 @@
-import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/ui/widgets/custom_no_product_widget.dart';
 import 'package:erp_system/features/inventory/product/widgets/custom_circular_progress_indicator.dart';
@@ -14,30 +13,28 @@ class SupplierListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomAppBody(child:
-    BlocBuilder<GetAllSupplierCubit, GetAllSupplierState>(
-          builder: (context, state) {
-            if (state is GetAllSupplierLoading) {
-              return const CustomCircularProgressIndicator();
-            } else if (state is GetAllSupplierSuccess) {
-              return Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: SizedBox(
-                  child: SupplierListViewBody(
-                    state.response,
+    return CustomAppBody(
+      child: BlocBuilder<GetAllSupplierCubit, GetAllSupplierState>(
+        builder: (context, state) {
+          if (state is GetAllSupplierLoading) {
+            return const CustomCircularProgressIndicator();
+          } else if (state is GetAllSupplierSuccess) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: SizedBox(
+                child: SupplierListViewBody(
+                  state.response,
                   //  context,
-                  ),
-
                 ),
-              );
-            } else if (state is GetAllSupplierFailure) {
-              return CustomErrorWidget(error: state.error);
-            } else {
-              return const CustomNoProductWidget();
-            }
-          },
-        ),
-
+              ),
+            );
+          } else if (state is GetAllSupplierFailure) {
+            return CustomErrorWidget(error: state.error);
+          } else {
+            return const CustomNoProductWidget();
+          }
+        },
+      ),
     );
   }
 }

@@ -4,6 +4,8 @@ import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/auth/create_new_password/ui/create_new_password_view.dart';
 import 'package:erp_system/features/auth/sign_up/logic/sign_up_cubit.dart';
 import 'package:erp_system/features/auth/sign_up/ui/register_view.dart';
+import 'package:erp_system/features/hr/department/get_all_department/ui/get_all_department_view.dart';
+import 'package:erp_system/features/hr/employee/get_all_employees/ui/get_all_employee_view.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_parent_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_sub_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/ui/add_parent_category_view.dart';
@@ -81,6 +83,10 @@ abstract class AppRouter {
   static const kInventoryOrders = '/inventoryOrders';
   static const kOrdersDetailsView = '/ordersDetailsView';
   static const kUpdateOrderView = '/updateOrderView';
+
+  //HR
+  static const kAllEmployeesView = '/allEmployeesView';
+  static const kAllDepartmentsView = '/allDepartmentsView';
 
   static final router = GoRouter(
     routes: [
@@ -257,7 +263,7 @@ abstract class AppRouter {
         builder: (context, state) => BlocProvider(
           create: (context) =>
               getIt.get<GetAllInventoryOrdersCubit>()..getAllInventoryOrders(),
-          child: GetAllInventoryOrdersView(),
+          child: const GetAllInventoryOrdersView(),
         ),
       ),
 
@@ -268,7 +274,7 @@ abstract class AppRouter {
             ..getSpecificInventoryOrder(
               state.extra as int,
             ),
-          child: OrderDetailsView(),
+          child: const OrderDetailsView(),
         ),
       ),
 
@@ -282,6 +288,16 @@ abstract class AppRouter {
             ),
           );
         },
+      ),
+
+      //HR
+      GoRoute(
+        path: kAllEmployeesView,
+        builder: (context, state) => const GetAllEmployeeView(),
+      ),
+      GoRoute(
+        path: kAllDepartmentsView,
+        builder: (context, state) => const GetAllDepartmentView(),
       ),
     ],
   );

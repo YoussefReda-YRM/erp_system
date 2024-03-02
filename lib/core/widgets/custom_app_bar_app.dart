@@ -3,14 +3,14 @@ import 'package:erp_system/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomAppBarProduct extends StatelessWidget {
+class CustomAppBarApp extends StatelessWidget {
   final GlobalKey<ScaffoldState>? scaffoldKey;
 
   final String title;
   final Widget? iconLeading;
   final IconButton? iconTrailing;
 
-  const CustomAppBarProduct({
+  const CustomAppBarApp({
     super.key,
     this.scaffoldKey,
     required this.title,

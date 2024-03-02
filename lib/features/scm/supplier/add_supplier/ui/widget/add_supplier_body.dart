@@ -2,8 +2,7 @@ import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_back_button.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
-import 'package:erp_system/features/inventory/category/add_category/ui/widgets/add_sub_category_bloc_listner.dart';
-import 'package:erp_system/features/inventory/product/widgets/custom_app_bar_product.dart';
+import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/logic/add_supplier_cubit.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/ui/widget/add_supplier_bloc_listener.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/ui/widget/add_supplier_form.dart';
@@ -15,9 +14,9 @@ class AddSupplierBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       children: [
-        CustomAppBarProduct(
+        CustomAppBarApp(
           title: 'Add Supplier',
           iconLeading: const CustomBackButton(),
           iconTrailing: IconButton(
@@ -50,7 +49,7 @@ class AddSupplierBody extends StatelessWidget {
                     padding: EdgeInsets.all(20),
                     child: AddSupplierForm(),
                   ),
-                //  const Spacer(),
+                  //  const Spacer(),
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: AppTextButton(
@@ -75,8 +74,9 @@ class AddSupplierBody extends StatelessWidget {
     );
   }
 }
+
 void validateThenDoAddSupplier(BuildContext context) {
   if (context.read<AddSupplierCubit>().formKey.currentState!.validate()) {
-    context.read<AddSupplierCubit>().addSupplier();//addsubcategory(parentId);
+    context.read<AddSupplierCubit>().addSupplier(); //addsubcategory(parentId);
   }
 }
