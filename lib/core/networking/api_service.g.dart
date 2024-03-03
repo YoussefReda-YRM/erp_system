@@ -666,6 +666,37 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<DetailsEmployeeModel> getSpecificEmployee(
+    String token,
+    String employeeId,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<DetailsEmployeeModel>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/Employee/${employeeId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = DetailsEmployeeModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<GetAllDepartmentResponse> getAllDepartment(String token) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

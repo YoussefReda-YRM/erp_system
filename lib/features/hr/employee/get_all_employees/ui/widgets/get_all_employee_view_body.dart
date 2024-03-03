@@ -58,8 +58,7 @@ class GetAllEmployeeViewBody extends StatelessWidget {
                           itemCount: state.response.data?.length,
                           itemBuilder: (context, index) {
                             return GetAllEmployeeListViewItem(
-                              index: index,
-                              employeeData : state.response.data![index],
+                              employeeData: state.response.data![index],
                             );
                           },
                         );

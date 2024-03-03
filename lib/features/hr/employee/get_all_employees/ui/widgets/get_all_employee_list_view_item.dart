@@ -10,18 +10,19 @@ import 'package:go_router/go_router.dart';
 class GetAllEmployeeListViewItem extends StatelessWidget {
   const GetAllEmployeeListViewItem({
     super.key,
-    required this.index,
     required this.employeeData,
   });
 
-  final int index;
   final EmployeeData employeeData;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kDetailsEmployeeView);
+        GoRouter.of(context).push(
+          AppRouter.kDetailsEmployeeView,
+          extra: employeeData.id,
+        );
       },
       child: Card(
         shape: RoundedRectangleBorder(

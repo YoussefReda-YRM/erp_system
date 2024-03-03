@@ -3,6 +3,7 @@ import 'package:erp_system/core/networking/api_constants.dart';
 import 'package:erp_system/features/auth/login/data/models/login_request_body.dart';
 import 'package:erp_system/features/hr/employee/add_employee/data/models/add_employee_body.dart';
 import 'package:erp_system/features/hr/employee/add_employee/data/models/add_employee_response.dart';
+import 'package:erp_system/features/hr/employee/details_employee/data/models/details_employee_model.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/data/models/employee_response.dart';
 import 'package:erp_system/features/hr/department/add_department/data/models/AddDepartmentRequest.dart';
 import 'package:erp_system/features/hr/department/add_department/data/models/AddDepartmentResponse.dart';
@@ -164,21 +165,26 @@ abstract class ApiService {
   Future<GetAllEmployeeResponse> getAllEmployees(
     @Header("Authorization") String token,
   );
+  @GET("${ApiConstants.getSpecificEmployee}/{employeeId}")
+  Future<DetailsEmployeeModel> getSpecificEmployee(
+    @Header("Authorization") String token,
+    @Path("employeeId") String employeeId,
+  );
   //Department
   @GET(ApiConstants.getAllDepartments)
   Future<GetAllDepartmentResponse> getAllDepartment(
-      @Header("Authorization") String token,
-      );
+    @Header("Authorization") String token,
+  );
 
   @POST(ApiConstants.addDepartment)
   Future<AddDepartmentResponse> addDepartment(
-      @Body() AddDepartmentRequest addDepartmentRequest,
-      @Header("Authorization") String token,
-      );
+    @Body() AddDepartmentRequest addDepartmentRequest,
+    @Header("Authorization") String token,
+  );
   @PUT(ApiConstants.updateDepartment)
   Future<UpdateDepartmentResponse> updateDepartment(
-      @Header("Authorization") String token,
-      @Path("id") int depId,
-      @Body() UpdateDepartmentRequest updateDepartmentRequest,
-      );
+    @Header("Authorization") String token,
+    @Path("id") int depId,
+    @Body() UpdateDepartmentRequest updateDepartmentRequest,
+  );
 }

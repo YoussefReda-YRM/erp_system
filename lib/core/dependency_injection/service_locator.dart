@@ -6,6 +6,8 @@ import 'package:erp_system/features/auth/login/data/repos/login_repo.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/hr/employee/add_employee/data/repos/Add_employee_repo.dart';
 import 'package:erp_system/features/hr/employee/add_employee/logic/add_employee_cubit.dart';
+import 'package:erp_system/features/hr/employee/details_employee/data/repo/details_employee_repo.dart';
+import 'package:erp_system/features/hr/employee/details_employee/logic/details_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/data/repos/get_all_employee_repo.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_employee_cubit.dart';
 import 'package:erp_system/features/hr/department/add_department/data/repos/add_department_repo.dart';
@@ -72,8 +74,8 @@ String supplierPhoneControllerInGetIt = '';
 String accEmployeeIdControllerInGetIt = '';
 String quantityControllerInGetIt = '';
 String referenceControllerInGetIt = '';
-String departmentNameControllerInGetIt='';
-String departmentDescriptionInGetIt='';
+String departmentNameControllerInGetIt = '';
+String departmentDescriptionInGetIt = '';
 
 Future<void> setupServiceLocator() async {
   // Dio & ApiService
@@ -183,13 +185,24 @@ Future<void> setupServiceLocator() async {
       () => GetAllEmployeeRepo(getIt()));
   getIt
       .registerFactory<GetAllEmployeeCubit>(() => GetAllEmployeeCubit(getIt()));
-  //department
-  getIt.registerLazySingleton<GetAllDepartmentRepo>(() => GetAllDepartmentRepo(getIt()));
-  getIt.registerFactory<GetAllDepartmentCubit>(() => GetAllDepartmentCubit(getIt()));
 
-  getIt.registerLazySingleton<AddDepartmentRepo>(() => AddDepartmentRepo(getIt()));
+  getIt.registerLazySingleton<DetailsEmployeeRepo>(
+      () => DetailsEmployeeRepo(getIt()));
+  getIt.registerFactory<DetailsEmployeeCubit>(
+      () => DetailsEmployeeCubit(getIt()));
+
+  //department
+  getIt.registerLazySingleton<GetAllDepartmentRepo>(
+      () => GetAllDepartmentRepo(getIt()));
+  getIt.registerFactory<GetAllDepartmentCubit>(
+      () => GetAllDepartmentCubit(getIt()));
+
+  getIt.registerLazySingleton<AddDepartmentRepo>(
+      () => AddDepartmentRepo(getIt()));
   getIt.registerFactory<AddDepartmentCubit>(() => AddDepartmentCubit(getIt()));
 
-  getIt.registerLazySingleton<UpdateDepartmentRepo>(() => UpdateDepartmentRepo(getIt()));
-  getIt.registerFactory<UpdateDepartmentCubit>(() => UpdateDepartmentCubit(getIt()));
+  getIt.registerLazySingleton<UpdateDepartmentRepo>(
+      () => UpdateDepartmentRepo(getIt()));
+  getIt.registerFactory<UpdateDepartmentCubit>(
+      () => UpdateDepartmentCubit(getIt()));
 }

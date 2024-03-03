@@ -10,6 +10,7 @@ import 'package:erp_system/features/hr/department/add_department/ui/ui/add_depar
 import 'package:erp_system/features/hr/department/update_department/logic/update_department_cubit.dart';
 import 'package:erp_system/features/hr/department/update_department/ui/update_department.dart';
 import 'package:erp_system/features/hr/employee/add_employee/ui/add_employee_view.dart';
+import 'package:erp_system/features/hr/employee/details_employee/logic/details_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/details_employee/ui/details_employee_view.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/ui/get_all_employee_view.dart';
@@ -336,8 +337,15 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kDetailsEmployeeView,
-        builder: (context, state) => const DetailsEmployeeView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<DetailsEmployeeCubit>()
+            ..getSpecificEmployee(
+              state.extra as String,
+            ),
+          child: const DetailsEmployeeView(),
+        ),
       ),
+
       GoRoute(
         path: kUpdateEmployeeView,
         builder: (context, state) => const UpdateEmployeeView(
