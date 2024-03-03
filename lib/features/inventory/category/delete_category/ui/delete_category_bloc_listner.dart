@@ -27,7 +27,6 @@ class DeleteCategoryBlocListener extends StatelessWidget {
           GoRouter.of(context).pushReplacement(
             AppRouter.kCategoryView,
           );
-          print("Successsssss");
         } else if (state is DeleteCategoryFailure) {
           setupErrorState(context, state.error.toString());
         }

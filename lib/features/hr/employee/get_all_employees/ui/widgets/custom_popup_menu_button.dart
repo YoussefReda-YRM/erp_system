@@ -1,14 +1,18 @@
+import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/functions/delete_show_dialog.dart';
 import 'package:erp_system/core/utils/styles.dart';
+import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_employee_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomPopupMenuButton extends StatelessWidget {
   const CustomPopupMenuButton({
     super.key,
+    required this.employeeId,
   });
+  final String employeeId;
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +31,15 @@ class CustomPopupMenuButton extends StatelessWidget {
           deleteShowDialog(
             context,
             'Are you sure you want to delete this Employee?',
-            2,
             () {
+              getIt.get<GetAllEmployeeCubit>().deleteEmployee(
+                    employeeId,
+                  );
               GoRouter.of(context).pop();
-              // Future.delayed(const Duration(milliseconds: 200), () {
-              //   GoRouter.of(context).pushReplacement(AppRouter.kCategoryView);
-              // });
+              Future.delayed(const Duration(milliseconds: 200), () {
+                GoRouter.of(context)
+                    .pushReplacement(AppRouter.kAllEmployeesView);
+              });
             },
           );
         }

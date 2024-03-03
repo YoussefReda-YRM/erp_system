@@ -170,6 +170,13 @@ abstract class ApiService {
     @Header("Authorization") String token,
     @Path("employeeId") String employeeId,
   );
+
+  @DELETE("${ApiConstants.deleteEmployee}/{employeeId}")
+  Future<void> deleteEmployee(
+    @Header("Authorization") String token,
+    @Path("employeeId") String employeeId,
+  );
+
   //Department
   @GET(ApiConstants.getAllDepartments)
   Future<GetAllDepartmentResponse> getAllDepartment(

@@ -19,3 +19,15 @@ class GetAllEmployeeSuccess extends GetAllEmployeeState {
     required this.response,
   });
 }
+
+class DeleteEmployeeInitial extends GetAllEmployeeState {}
+
+class DeleteEmployeeLoading extends GetAllEmployeeState {}
+
+class DeleteEmployeeSuccess extends GetAllEmployeeState {}
+
+class DeleteEmployeeFailure extends GetAllEmployeeState {
+  final String error;
+
+  DeleteEmployeeFailure({required this.error});
+}

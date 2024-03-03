@@ -65,7 +65,6 @@ class _CategoryListViewState extends State<CategoryListView> {
                           await deleteShowDialog(
                             context,
                             'Are you sure you want to delete this Sub Category?',
-                            subCategory.subCategoryId!,
                             () {
                               getIt.get<CategoryCubit>().deleteSubcategory(
                                     getIt.get<LoginResponse>().token!,

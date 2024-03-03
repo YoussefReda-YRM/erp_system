@@ -20,4 +20,19 @@ class GetAllEmployeeCubit extends Cubit<GetAllEmployeeState> {
       },
     );
   }
+
+  void deleteEmployee(String employeeId) async {
+    emit(DeleteEmployeeLoading());
+
+    final response = await _getAllEmployeeRepo.deleteEmployee(employeeId);
+
+    response.when(
+      success: (deleteResponse) {
+        emit(DeleteEmployeeSuccess());
+      },
+      failure: (error) {
+        emit(DeleteEmployeeFailure(error: error.apiErrorModel.message ?? ''));
+      },
+    );
+  }
 }

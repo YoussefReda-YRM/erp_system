@@ -54,7 +54,9 @@ class GetAllEmployeeListViewItem extends StatelessWidget {
                 style: Styles.font14BlueSemiBold(context),
               ),
             ),
-            trailing: const CustomPopupMenuButton(),
+            trailing: CustomPopupMenuButton(
+              employeeId: employeeData.id.toString(),
+            ),
           ),
         ),
       ),

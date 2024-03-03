@@ -697,6 +697,34 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<void> deleteEmployee(
+    String token,
+    String employeeId,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'DELETE',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/Employee/${employeeId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+  }
+
+  @override
   Future<GetAllDepartmentResponse> getAllDepartment(String token) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

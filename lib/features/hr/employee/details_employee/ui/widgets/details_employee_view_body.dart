@@ -2,7 +2,7 @@ import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/features/hr/employee/details_employee/logic/details_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/details_employee/logic/details_employee_state.dart';
 import 'package:erp_system/features/hr/employee/details_employee/ui/widgets/details_employee_view_body_items.dart';
-import 'package:erp_system/features/hr/employee/details_employee/ui/widgets/edit_and_delete_button.dart';
+import 'package:erp_system/features/hr/employee/details_employee/ui/widgets/edit_and_delete_button_details_employee.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/ui/widgets/custom_no_product_widget.dart';
 import 'package:erp_system/features/inventory/product/widgets/custom_circular_progress_indicator.dart';
 import 'package:erp_system/features/inventory/product/widgets/custom_error_widget.dart';
@@ -52,7 +52,10 @@ class DetailsEmployeeViewBody extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  EditAndDeleteButton(size: size),
+                  EditAndDeleteButton(
+                    size: size,
+                    employeeId: state.response.userID!,
+                  ),
                 ],
               ),
             ),

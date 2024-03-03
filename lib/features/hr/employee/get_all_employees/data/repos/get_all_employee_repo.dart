@@ -19,4 +19,17 @@ class GetAllEmployeeRepo {
       return ApiResult.failure(ErrorHandler.handle(error));
     }
   }
+
+  Future<ApiResult<void>> deleteEmployee(String? employeeId) async {
+    try {
+      final respone = await _apiService.deleteEmployee(
+        'Bearer ${getIt.get<LoginResponse>().token}',
+        employeeId!,
+      );
+
+      return ApiResult.success(respone);
+    } catch (error) {
+      return ApiResult.failure(ErrorHandler.handle(error));
+    }
+  }
 }

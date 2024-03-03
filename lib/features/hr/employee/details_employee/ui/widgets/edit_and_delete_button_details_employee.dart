@@ -1,7 +1,11 @@
+import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
+import 'package:erp_system/core/utils/functions/delete_show_dialog.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
 import 'package:erp_system/core/widgets/custom_text_form_field.dart';
+import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_employee_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -10,9 +14,11 @@ class EditAndDeleteButton extends StatelessWidget {
   const EditAndDeleteButton({
     super.key,
     required this.size,
+    required this.employeeId,
   });
 
   final Size size;
+  final String employeeId;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +30,7 @@ class EditAndDeleteButton extends StatelessWidget {
           backgroundColor: Colors.green,
           textStyle: Styles.font13BlueSemiBold(context),
           onPressed: () {
-            // showEditProductDialog(context, size);
+            GoRouter.of(context).push(AppRouter.kUpdateEmployeeView);
           },
         ),
         const Spacer(),
@@ -34,14 +40,26 @@ class EditAndDeleteButton extends StatelessWidget {
           backgroundColor: Colors.red,
           textStyle: Styles.font13BlueSemiBold(context),
           onPressed: () {
-            // deleteShowDialog(context, 'Are you sure you want to delete this product?');
+            deleteShowDialog(
+              context,
+              'Are you sure you want to delete this Employee?',
+              () {
+                getIt.get<GetAllEmployeeCubit>().deleteEmployee(
+                      employeeId,
+                    );
+                GoRouter.of(context).pop();
+                Future.delayed(const Duration(milliseconds: 200), () {
+                  GoRouter.of(context)
+                      .pushReplacement(AppRouter.kAllEmployeesView);
+                });
+              },
+            );
           },
         ),
       ],
     );
   }
 }
-
 
 showEditProductDialog(BuildContext context, Size size) {
   showDialog(
