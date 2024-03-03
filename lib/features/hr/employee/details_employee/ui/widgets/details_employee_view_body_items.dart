@@ -25,6 +25,27 @@ class DetailsEmployeeViewBodyItems extends StatelessWidget {
           height: 16,
         ),
         DetailsEmployeeViewBodyItem(
+          title: "phoneNumber: ",
+          titleData: "01014654026",
+        ),
+        SizedBox(
+          height: 16,
+        ),
+        DetailsEmployeeViewBodyItem(
+          title: "Gender: ",
+          titleData: "Female",
+        ),
+        SizedBox(
+          height: 16,
+        ),
+        DetailsEmployeeViewBodyItem(
+          title: "BirthDate: ",
+          titleData: "3/3/2024",
+        ),
+        SizedBox(
+          height: 16,
+        ),
+        DetailsEmployeeViewBodyItem(
           title: "Employee Role: ",
           titleData: "Super Admin",
         ),
@@ -42,13 +63,7 @@ class DetailsEmployeeViewBodyItems extends StatelessWidget {
           title: "Address: ",
           titleData: "Saqara",
         ),
-        SizedBox(
-          height: 16,
-        ),
-        DetailsEmployeeViewBodyItem(
-          title: "phoneNumber: ",
-          titleData: "01014654026",
-        ),
+        
         SizedBox(
           height: 16,
         ),
@@ -70,20 +85,7 @@ class DetailsEmployeeViewBodyItems extends StatelessWidget {
           title: "Bank Account: ",
           titleData: "30207160105214",
         ),
-        SizedBox(
-          height: 16,
-        ),
-        DetailsEmployeeViewBodyItem(
-          title: "Gender: ",
-          titleData: "Female",
-        ),
-        SizedBox(
-          height: 16,
-        ),
-        DetailsEmployeeViewBodyItem(
-          title: "BirthDate: ",
-          titleData: "3/3/2024",
-        ),
+        
         SizedBox(
           height: 16,
         ),

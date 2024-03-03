@@ -4,8 +4,10 @@ import 'package:erp_system/core/networking/dio_factory.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/login/data/repos/login_repo.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
-import 'package:erp_system/features/auth/sign_up/data/repos/sign_up_repo.dart';
-import 'package:erp_system/features/auth/sign_up/logic/sign_up_cubit.dart';
+import 'package:erp_system/features/hr/employee/add_employee/data/repos/Add_employee_repo.dart';
+import 'package:erp_system/features/hr/employee/add_employee/logic/add_employee_cubit.dart';
+import 'package:erp_system/features/hr/employee/get_all_employees/data/repos/get_all_employee_repo.dart';
+import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_employee_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/repos/add_parent_category_repo.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/repos/add_sub_category_repo.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_parent_category_cubit.dart';
@@ -75,10 +77,6 @@ Future<void> setupServiceLocator() async {
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
 
   getIt.registerFactory<LoginResponse>(() => loginResponseInGetIt!);
-
-  //signup
-  getIt.registerLazySingleton<SignupRepo>(() => SignupRepo(getIt()));
-  getIt.registerFactory<SignupCubit>(() => SignupCubit(getIt()));
 
   //add product
   getIt.registerLazySingleton<AddProductRepo>(() => AddProductRepo(getIt()));
@@ -167,4 +165,14 @@ Future<void> setupServiceLocator() async {
 
   getIt.registerLazySingleton<UpdateOrderRepo>(() => UpdateOrderRepo(getIt()));
   getIt.registerFactory<UpdateOrderCubit>(() => UpdateOrderCubit(getIt()));
+
+  // hr
+  //add employee
+  getIt.registerLazySingleton<AddEmployeeRepo>(() => AddEmployeeRepo(getIt()));
+  getIt.registerFactory<AddEmployeeCubit>(() => AddEmployeeCubit(getIt()));
+
+  getIt.registerLazySingleton<GetAllEmployeeRepo>(
+      () => GetAllEmployeeRepo(getIt()));
+  getIt
+      .registerFactory<GetAllEmployeeCubit>(() => GetAllEmployeeCubit(getIt()));
 }

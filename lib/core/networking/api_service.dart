@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:erp_system/core/networking/api_constants.dart';
 import 'package:erp_system/features/auth/login/data/models/login_request_body.dart';
+import 'package:erp_system/features/hr/employee/add_employee/data/models/add_employee_body.dart';
+import 'package:erp_system/features/hr/employee/add_employee/data/models/add_employee_response.dart';
+import 'package:erp_system/features/hr/employee/get_all_employees/data/models/employee_response.dart';
 import 'package:erp_system/features/inventory/category/delete_category/data/models/response_delete_category.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
-import 'package:erp_system/features/auth/sign_up/data/models/sign_up_request_body.dart';
-import 'package:erp_system/features/auth/sign_up/data/models/sign_up_response.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/models/add_request_parent_category.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/models/add_request_sub_category.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/data/models/get_all_category_model.dart';
@@ -38,11 +39,6 @@ abstract class ApiService {
   @POST(ApiConstants.login)
   Future<LoginResponse> login(
     @Body() LoginRequestBody loginRequestBody,
-  );
-
-  @POST(ApiConstants.signup)
-  Future<SignupResponse> signup(
-    @Body() SignupRequestBody signupRequestBody,
   );
 
   @GET(ApiConstants.getNumberOfProductsAndReplenishment)
@@ -115,22 +111,18 @@ abstract class ApiService {
     @Header("Authorization") String token,
   );
 
-
   @POST(ApiConstants.addSuppliers)
   Future<AddSupplierResponse> addsupplier(
-      @Body() AddSupplierRequest addSupplierRequest,
-      @Header("Authorization") String token,
-      );
-
+    @Body() AddSupplierRequest addSupplierRequest,
+    @Header("Authorization") String token,
+  );
 
   @PUT(ApiConstants.updateSuppliers)
   Future<UpdateSupplierResponse> updateSupplier(
-      @Header("Authorization") String token,
-      @Path("id") int supplierId,
-      @Body() UpdateSupplierRequest updateSupplierRequest,
-      );
-
-
+    @Header("Authorization") String token,
+    @Path("id") int supplierId,
+    @Body() UpdateSupplierRequest updateSupplierRequest,
+  );
 
 //Orders
   @GET(ApiConstants.getNumberofInventoryAndScmOrder)
@@ -143,7 +135,6 @@ abstract class ApiService {
     @Header("Authorization") String token,
   );
 
-
   @GET("${ApiConstants.getSpecificInventoryOrder}/{id}")
   Future<OrderDetailsModel> getSpecificInventoryOrder(
     @Header("Authorization") String token,
@@ -155,5 +146,17 @@ abstract class ApiService {
     @Header("Authorization") String token,
     @Path("orderId") int orderId,
     @Body() UpdateOrderRequest requestParentCategory,
+  );
+
+  //HR
+  @POST(ApiConstants.addEmployee)
+  Future<AddEmployeeResponse> addEmployee(
+    @Body() AddEmployeeRequestBody addEmployeeRequestBody,
+    @Header("Authorization") String token,
+  );
+
+  @GET(ApiConstants.getAllEmployees)
+  Future<GetAllEmployeeResponse> getAllEmployees(
+    @Header("Authorization") String token,
   );
 }

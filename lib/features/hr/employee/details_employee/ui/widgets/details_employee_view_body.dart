@@ -1,6 +1,6 @@
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/features/hr/employee/details_employee/ui/widgets/details_employee_view_body_items.dart';
-import 'package:erp_system/features/inventory/product/details_product/ui/widgets/edit_and_delete_button.dart';
+import 'package:erp_system/features/hr/employee/details_employee/ui/widgets/edit_and_delete_button.dart';
 import 'package:flutter/material.dart';
 
 class DetailsEmployeeViewBody extends StatelessWidget {

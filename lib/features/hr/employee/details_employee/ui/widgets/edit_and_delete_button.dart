@@ -24,7 +24,7 @@ class EditAndDeleteButton extends StatelessWidget {
           backgroundColor: Colors.green,
           textStyle: Styles.font13BlueSemiBold(context),
           onPressed: () {
-            showEditProductDialog(context, size);
+            // showEditProductDialog(context, size);
           },
         ),
         const Spacer(),
