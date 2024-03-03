@@ -6,6 +6,7 @@ import 'package:erp_system/features/auth/sign_up/logic/sign_up_cubit.dart';
 import 'package:erp_system/features/auth/sign_up/ui/register_view.dart';
 import 'package:erp_system/features/hr/department/get_all_department/ui/get_all_department_view.dart';
 import 'package:erp_system/features/hr/employee/add_employee/ui/add_employee_view.dart';
+import 'package:erp_system/features/hr/employee/details_employee/ui/details_employee_view.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/ui/get_all_employee_view.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_parent_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_sub_category_cubit.dart';
@@ -93,7 +94,7 @@ abstract class AppRouter {
   //HR
   static const kAllEmployeesView = '/allEmployeesView';
   static const kAddEmployeeView = '/addEmployeeView';
-
+  static const kDetailsEmployeeView = '/detailsEmployeeView';
   static const kAllDepartmentsView = '/allDepartmentsView';
 
   static final router = GoRouter(
@@ -324,6 +325,10 @@ abstract class AppRouter {
       GoRoute(
         path: kAddEmployeeView,
         builder: (context, state) => const AddEmployeeView(),
+      ),
+      GoRoute(
+        path: kDetailsEmployeeView,
+        builder: (context, state) => const DetailsEmployeeView(),
       ),
     ],
   );
