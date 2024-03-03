@@ -4,6 +4,11 @@ import 'package:erp_system/features/auth/login/data/models/login_request_body.da
 import 'package:erp_system/features/hr/employee/add_employee/data/models/add_employee_body.dart';
 import 'package:erp_system/features/hr/employee/add_employee/data/models/add_employee_response.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/data/models/employee_response.dart';
+import 'package:erp_system/features/hr/department/add_department/data/models/AddDepartmentRequest.dart';
+import 'package:erp_system/features/hr/department/add_department/data/models/AddDepartmentResponse.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/GetAllDepartment.dart';
+import 'package:erp_system/features/hr/department/update_department/data/models/UpdateDepartmentRequest.dart';
+import 'package:erp_system/features/hr/department/update_department/data/models/UpdateDepartmentResponse.dart';
 import 'package:erp_system/features/inventory/category/delete_category/data/models/response_delete_category.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/models/add_request_parent_category.dart';
@@ -159,4 +164,21 @@ abstract class ApiService {
   Future<GetAllEmployeeResponse> getAllEmployees(
     @Header("Authorization") String token,
   );
+  //Department
+  @GET(ApiConstants.getAllDepartments)
+  Future<GetAllDepartmentResponse> getAllDepartment(
+      @Header("Authorization") String token,
+      );
+
+  @POST(ApiConstants.addDepartment)
+  Future<AddDepartmentResponse> addDepartment(
+      @Body() AddDepartmentRequest addDepartmentRequest,
+      @Header("Authorization") String token,
+      );
+  @PUT(ApiConstants.updateDepartment)
+  Future<UpdateDepartmentResponse> updateDepartment(
+      @Header("Authorization") String token,
+      @Path("id") int depId,
+      @Body() UpdateDepartmentRequest updateDepartmentRequest,
+      );
 }

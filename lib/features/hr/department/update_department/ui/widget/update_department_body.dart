@@ -3,15 +3,15 @@ import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:erp_system/core/widgets/custom_back_button.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
-import 'package:erp_system/features/scm/supplier/update_supplier/logic/update_supplier_cubit.dart';
-import 'package:erp_system/features/scm/supplier/update_supplier/ui/widget/update_supplier_bloc_listener.dart';
-import 'package:erp_system/features/scm/supplier/update_supplier/ui/widget/update_supplier_form.dart';
+import 'package:erp_system/features/hr/department/update_department/logic/update_department_cubit.dart';
+import 'package:erp_system/features/hr/department/update_department/ui/widget/update_department_bloc_listener.dart';
+import 'package:erp_system/features/hr/department/update_department/ui/widget/update_department_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class UpdateSupplierBody extends StatelessWidget {
+class UpdateDepartmentBody extends StatelessWidget {
   final int id;
-  const UpdateSupplierBody({super.key, required this.id});
+  const UpdateDepartmentBody({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class UpdateSupplierBody extends StatelessWidget {
       child: Column(
         children: [
           CustomAppBarApp(
-            title: 'Edit supplier name',
+            title: 'Edit Department',
             iconLeading: const CustomBackButton(),
             iconTrailing: IconButton(
               onPressed: () {},
@@ -50,7 +50,7 @@ class UpdateSupplierBody extends StatelessWidget {
                     ),
                     const Padding(
                       padding: EdgeInsets.all(20),
-                      child: UpdateSupplierForm(),
+                      child: UpdateDepartmentForm(),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(20),
@@ -59,14 +59,14 @@ class UpdateSupplierBody extends StatelessWidget {
                         textStyle: Styles.font16LightGreyMedium(context),
                         backgroundColor: ColorsApp.primaryColor,
                         onPressed: () {
-                          validateThenDoUpdateSupplier(context, id);
+                          validateThenDoUpdateDepartment(context, id);
                           // context
                           //     .read<UpdateParentCategoryCubit>()
                           //     .updateparentcategory(parentId);
                         },
                       ),
                     ),
-                    const UpdateSupplierBlocListener(),
+                    const UpdateDepartmentBlocListener(),
                   ],
                 ),
               ),
@@ -78,8 +78,8 @@ class UpdateSupplierBody extends StatelessWidget {
   }
 }
 
-void validateThenDoUpdateSupplier(BuildContext context, int id) {
-  if (context.read<UpdateSupplierCubit>().formKey.currentState!.validate()) {
-    context.read<UpdateSupplierCubit>().updateSupplier(id);
+void validateThenDoUpdateDepartment(BuildContext context, int id) {
+  if (context.read<UpdateDepartmentCubit>().formKey.currentState!.validate()) {
+    context.read<UpdateDepartmentCubit>().updateDepartment(id);
   }
 }

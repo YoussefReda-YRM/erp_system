@@ -2,8 +2,13 @@ import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/auth/create_new_password/ui/create_new_password_view.dart';
+import 'package:erp_system/features/hr/department/get_all_department/logic/get_all_department_cubit.dart';
 import 'package:erp_system/features/hr/department/get_all_department/ui/get_all_department_view.dart';
 import 'package:erp_system/features/hr/employee/add_employee/logic/add_employee_cubit.dart';
+import 'package:erp_system/features/hr/department/add_department/logic/add_department_cubit.dart';
+import 'package:erp_system/features/hr/department/add_department/ui/ui/add_department_view.dart';
+import 'package:erp_system/features/hr/department/update_department/logic/update_department_cubit.dart';
+import 'package:erp_system/features/hr/department/update_department/ui/update_department.dart';
 import 'package:erp_system/features/hr/employee/add_employee/ui/add_employee_view.dart';
 import 'package:erp_system/features/hr/employee/details_employee/ui/details_employee_view.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_employee_cubit.dart';
@@ -96,8 +101,11 @@ abstract class AppRouter {
   static const kAllEmployeesView = '/allEmployeesView';
   static const kAddEmployeeView = '/addEmployeeView';
   static const kDetailsEmployeeView = '/detailsEmployeeView';
+  //department
   static const kAllDepartmentsView = '/allDepartmentsView';
   static const kUpdateEmployeeView = '/updateEmployeeView';
+  static const kAddDepartment = '/addDepartment';
+  static const kUpdateDepartment = '/updateDepartment';
 
   static final router = GoRouter(
     routes: [
@@ -321,10 +329,6 @@ abstract class AppRouter {
       ),
 
       GoRoute(
-        path: kAllDepartmentsView,
-        builder: (context, state) => const GetAllDepartmentView(),
-      ),
-      GoRoute(
         path: kAddEmployeeView,
         builder: (context, state) => BlocProvider(
             create: (context) => getIt.get<AddEmployeeCubit>(),
@@ -339,6 +343,33 @@ abstract class AppRouter {
         builder: (context, state) => const UpdateEmployeeView(
           employeeId: 12,
         ),
+      ),
+      GoRoute(
+        path: kAllDepartmentsView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<GetAllDepartmentCubit>()
+            ..getAllDepartment(getIt.get<LoginResponse>().token),
+          child: const GetAllDepartmentView(),
+        ),
+      ),
+      GoRoute(
+        path: kAddDepartment,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<AddDepartmentCubit>(),
+          child: const AddDepartmentView(),
+        ),
+      ),
+      GoRoute(
+        path: kUpdateDepartment,
+        builder: (context, state) {
+          Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
+          return BlocProvider(
+            create: (context) => getIt.get<UpdateDepartmentCubit>(),
+            child: UpdateDepartment(
+              depId: myData['id'],
+            ),
+          );
+        },
       ),
     ],
   );

@@ -37,6 +37,13 @@ class ApiConstants {
   //HR
   static const String addEmployee = "/Auth/register";
   static const String getAllEmployees = "/Employee";
+  //Departments
+  static const String getAllDepartments = "/Department/GetAllDepartment";
+  static const String addDepartment = "/Department";
+  static const String updateDepartment = "/Department/{id}";
+
+
+
 }
 
 class ApiErrors {
