@@ -1,6 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:erp_system/core/networking/api_constants.dart';
 import 'package:erp_system/features/auth/login/data/models/login_request_body.dart';
+import 'package:erp_system/features/hr/department/add_department/data/models/AddDepartmentRequest.dart';
+import 'package:erp_system/features/hr/department/add_department/data/models/AddDepartmentResponse.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/GetAllDepartment.dart';
+import 'package:erp_system/features/hr/department/update_department/data/models/UpdateDepartmentRequest.dart';
+import 'package:erp_system/features/hr/department/update_department/data/models/UpdateDepartmentResponse.dart';
 import 'package:erp_system/features/inventory/category/delete_category/data/models/response_delete_category.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/sign_up/data/models/sign_up_request_body.dart';
@@ -156,4 +161,22 @@ abstract class ApiService {
     @Path("orderId") int orderId,
     @Body() UpdateOrderRequest requestParentCategory,
   );
+
+  //Department
+  @GET(ApiConstants.getAllDepartments)
+  Future<GetAllDepartmentResponse> getAllDepartment(
+      @Header("Authorization") String token,
+      );
+
+  @POST(ApiConstants.addDepartment)
+  Future<AddDepartmentResponse> addDepartment(
+      @Body() AddDepartmentRequest addDepartmentRequest,
+      @Header("Authorization") String token,
+      );
+  @PUT(ApiConstants.updateDepartment)
+  Future<UpdateDepartmentResponse> updateDepartment(
+      @Header("Authorization") String token,
+      @Path("id") int depId,
+      @Body() UpdateDepartmentRequest updateDepartmentRequest,
+      );
 }

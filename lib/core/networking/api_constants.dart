@@ -34,6 +34,14 @@ class ApiConstants {
   static const String getAllInventoryOrder = '/Order/AllInventoryOrders';
   static const String getSpecificInventoryOrder = "/Order/InventoryOrder";
   static const String updateOrder = "/order/{orderId}";
+
+  //Departments
+  static const String getAllDepartments = "/Department/GetAllDepartment";
+  static const String addDepartment = "/Department";
+  static const String updateDepartment = "/Department/{id}";
+
+
+
 }
 
 class ApiErrors {
