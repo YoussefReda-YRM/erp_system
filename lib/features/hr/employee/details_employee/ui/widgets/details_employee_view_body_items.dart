@@ -1,97 +1,100 @@
+import 'package:erp_system/features/hr/employee/details_employee/data/models/details_employee_model.dart';
 import 'package:erp_system/features/hr/employee/details_employee/ui/widgets/details_employee_view_body_item.dart';
 import 'package:flutter/material.dart';
 
 class DetailsEmployeeViewBodyItems extends StatelessWidget {
   const DetailsEmployeeViewBodyItems({
     super.key,
+    required this.detailsEmployeeModel,
   });
 
+  final DetailsEmployeeModel detailsEmployeeModel;
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
         DetailsEmployeeViewBodyItem(
           title: "Employee Name: ",
-          titleData: "Basma mohsen",
+          titleData: detailsEmployeeModel.name.toString(),
         ),
-        SizedBox(
+        const SizedBox(
           height: 16,
         ),
         DetailsEmployeeViewBodyItem(
           title: "Email: ",
-          titleData: "basmamohsen53@gmail.com",
+          titleData: detailsEmployeeModel.email.toString(),
         ),
-        SizedBox(
-          height: 16,
-        ),
-        DetailsEmployeeViewBodyItem(
-          title: "Employee Role: ",
-          titleData: "Super Admin",
-        ),
-        SizedBox(
-          height: 16,
-        ),
-        DetailsEmployeeViewBodyItem(
-          title: "Employee Department: ",
-          titleData: "INVENTORY",
-        ),
-        SizedBox(
-          height: 16,
-        ),
-        DetailsEmployeeViewBodyItem(
-          title: "Address: ",
-          titleData: "Saqara",
-        ),
-        SizedBox(
+        const SizedBox(
           height: 16,
         ),
         DetailsEmployeeViewBodyItem(
           title: "phoneNumber: ",
-          titleData: "01014654026",
+          titleData: detailsEmployeeModel.phoneNumber.toString(),
         ),
-        SizedBox(
-          height: 16,
-        ),
-        DetailsEmployeeViewBodyItem(
-          title: "Nationality: ",
-          titleData: "Egyptian",
-        ),
-        SizedBox(
-          height: 16,
-        ),
-        DetailsEmployeeViewBodyItem(
-          title: "identificationNo: ",
-          titleData: "30207160105214",
-        ),
-        SizedBox(
-          height: 16,
-        ),
-        DetailsEmployeeViewBodyItem(
-          title: "Bank Account: ",
-          titleData: "30207160105214",
-        ),
-        SizedBox(
+        const SizedBox(
           height: 16,
         ),
         DetailsEmployeeViewBodyItem(
           title: "Gender: ",
-          titleData: "Female",
+          titleData: detailsEmployeeModel.gender.toString(),
         ),
-        SizedBox(
+        const SizedBox(
           height: 16,
         ),
         DetailsEmployeeViewBodyItem(
           title: "BirthDate: ",
-          titleData: "3/3/2024",
+          titleData: detailsEmployeeModel.birthDate.toString(),
         ),
-        SizedBox(
+        const SizedBox(
+          height: 16,
+        ),
+        DetailsEmployeeViewBodyItem(
+          title: "Employee Role: ",
+          titleData: detailsEmployeeModel.role.toString(),
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        DetailsEmployeeViewBodyItem(
+          title: "Employee Department: ",
+          titleData: detailsEmployeeModel.employeeDepartment.toString(),
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        DetailsEmployeeViewBodyItem(
+          title: "Address: ",
+          titleData: detailsEmployeeModel.address.toString(),
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        DetailsEmployeeViewBodyItem(
+          title: "Nationality: ",
+          titleData: detailsEmployeeModel.nationality.toString(),
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        DetailsEmployeeViewBodyItem(
+          title: "identificationNo: ",
+          titleData: detailsEmployeeModel.identificationNo.toString(),
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        DetailsEmployeeViewBodyItem(
+          title: "Bank Account: ",
+          titleData: detailsEmployeeModel.bankAccount.toString(),
+        ),
+        const SizedBox(
           height: 16,
         ),
         DetailsEmployeeViewBodyItem(
           title: "Salary: ",
-          titleData: r"8500$",
+          titleData: detailsEmployeeModel.salary.toString(),
         ),
-        SizedBox(
+        const SizedBox(
           height: 16,
         ),
       ],

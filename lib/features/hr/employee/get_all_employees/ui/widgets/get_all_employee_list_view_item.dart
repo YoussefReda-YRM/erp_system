@@ -2,6 +2,7 @@ import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/assets.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
+import 'package:erp_system/features/hr/employee/get_all_employees/data/models/employee_response.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/ui/widgets/custom_popup_menu_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -9,16 +10,19 @@ import 'package:go_router/go_router.dart';
 class GetAllEmployeeListViewItem extends StatelessWidget {
   const GetAllEmployeeListViewItem({
     super.key,
-    required this.index,
+    required this.employeeData,
   });
 
-  final int index;
+  final EmployeeData employeeData;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kDetailsEmployeeView);
+        GoRouter.of(context).push(
+          AppRouter.kDetailsEmployeeView,
+          extra: employeeData.id,
+        );
       },
       child: Card(
         shape: RoundedRectangleBorder(
@@ -38,7 +42,7 @@ class GetAllEmployeeListViewItem extends StatelessWidget {
               fit: BoxFit.scaleDown,
               alignment: AlignmentDirectional.centerStart,
               child: Text(
-                "Employee $index",
+                employeeData.name.toString(),
                 style: Styles.font18DarkBlueBold(context),
               ),
             ),
@@ -46,11 +50,13 @@ class GetAllEmployeeListViewItem extends StatelessWidget {
               fit: BoxFit.scaleDown,
               alignment: AlignmentDirectional.centerStart,
               child: Text(
-                "Inventory",
+                employeeData.email.toString(),
                 style: Styles.font14BlueSemiBold(context),
               ),
             ),
-            trailing: const CustomPopupMenuButton(),
+            trailing: CustomPopupMenuButton(
+              employeeId: employeeData.id.toString(),
+            ),
           ),
         ),
       ),

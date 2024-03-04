@@ -1,4 +1,5 @@
 import 'package:erp_system/core/utils/colors_app.dart';
+import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/logic/get_all_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/logic/get_all_product_state.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/ui/widgets/custom_no_product_widget.dart';
@@ -15,14 +16,7 @@ class ProductListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: ColorsApp.primaryColor,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(100),
-          ),
-        ),
+      child: CustomAppBody(
         child: BlocBuilder<GetAllProductCubit, GetAllProductState>(
           builder: (context, state) {
             if (state is GetAllProductLoading) {

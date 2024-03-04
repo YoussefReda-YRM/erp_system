@@ -4,8 +4,11 @@ import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/core/widgets/custom_back_button.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
 import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
+import 'package:erp_system/features/hr/employee/add_employee/logic/add_employee_cubit.dart';
+import 'package:erp_system/features/hr/employee/add_employee/ui/widgets/add_employee_bloc_listnere.dart';
 import 'package:erp_system/features/hr/employee/add_employee/ui/widgets/add_employee_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AddEmployeeView extends StatelessWidget {
@@ -46,10 +49,10 @@ class AddEmployeeView extends StatelessWidget {
                         textStyle: Styles.font16LightGreyMedium(context)
                             .copyWith(fontSize: 13),
                         onPressed: () {
-                          // validateThenDoAddEmployee(context);
+                          validateThenDoAddEmployee(context);
                         },
                       ),
-                      // const AddEmployeeBlocListener(),
+                      const AddEmployeeBlocListener(),
                     ],
                   ),
                 ),
@@ -62,11 +65,11 @@ class AddEmployeeView extends StatelessWidget {
   }
 }
 
-// void validateThenDoAddEmployee(BuildContext context) {
-//   if (BlocProvider.of<AddEmployeeCubit>(context)
-//       .formKey
-//       .currentState!
-//       .validate()) {
-//     BlocProvider.of<AddEmployeeCubit>(context).addEmployee();
-//   }
-// }
+void validateThenDoAddEmployee(BuildContext context) {
+  if (BlocProvider.of<AddEmployeeCubit>(context)
+      .formKey
+      .currentState!
+      .validate()) {
+    BlocProvider.of<AddEmployeeCubit>(context).addEmployee();
+  }
+}

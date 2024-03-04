@@ -4,13 +4,16 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 
 class CustomIntlPhoneField extends StatelessWidget {
   const CustomIntlPhoneField({
-    super.key,
+    super.key, required this.phoneController,
   });
+  final TextEditingController phoneController;
 
   @override
   Widget build(BuildContext context) {
     return IntlPhoneField(
+      controller: phoneController,
       initialCountryCode: 'EG',
+
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
         isDense: true,

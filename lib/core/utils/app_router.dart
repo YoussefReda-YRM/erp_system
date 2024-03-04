@@ -2,17 +2,19 @@ import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/auth/create_new_password/ui/create_new_password_view.dart';
-import 'package:erp_system/features/auth/sign_up/logic/sign_up_cubit.dart';
-import 'package:erp_system/features/auth/sign_up/ui/register_view.dart';
-import 'package:erp_system/features/hr/department/add_department/logic/add_department_cubit.dart';
-import 'package:erp_system/features/hr/department/add_department/ui/ui/add_department_view.dart';
 import 'package:erp_system/features/hr/department/get_all_department/logic/get_all_department_cubit.dart';
 import 'package:erp_system/features/hr/department/get_all_department/ui/get_all_department_view.dart';
+import 'package:erp_system/features/hr/employee/add_employee/logic/add_employee_cubit.dart';
+import 'package:erp_system/features/hr/department/add_department/logic/add_department_cubit.dart';
+import 'package:erp_system/features/hr/department/add_department/ui/ui/add_department_view.dart';
 import 'package:erp_system/features/hr/department/update_department/logic/update_department_cubit.dart';
 import 'package:erp_system/features/hr/department/update_department/ui/update_department.dart';
 import 'package:erp_system/features/hr/employee/add_employee/ui/add_employee_view.dart';
+import 'package:erp_system/features/hr/employee/details_employee/logic/details_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/details_employee/ui/details_employee_view.dart';
+import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/ui/get_all_employee_view.dart';
+import 'package:erp_system/features/hr/employee/update_employee/ui/update_employee.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_parent_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_sub_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/ui/add_parent_category_view.dart';
@@ -102,6 +104,7 @@ abstract class AppRouter {
   static const kDetailsEmployeeView = '/detailsEmployeeView';
   //department
   static const kAllDepartmentsView = '/allDepartmentsView';
+  static const kUpdateEmployeeView = '/updateEmployeeView';
   static const kAddDepartment = '/addDepartment';
   static const kUpdateDepartment = '/updateDepartment';
 
@@ -251,12 +254,6 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
-        path: kSignupView,
-        builder: (context, state) => BlocProvider(
-            create: (context) => getIt.get<SignupCubit>(),
-            child: const SignupView()),
-      ),
-      GoRoute(
         path: kOtpView,
         builder: (context, state) => const OtpView(),
       ),
@@ -322,25 +319,44 @@ abstract class AppRouter {
       ),
 
       //HR
+
       GoRoute(
         path: kAllEmployeesView,
-        builder: (context, state) => const GetAllEmployeeView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              getIt.get<GetAllEmployeeCubit>()..getAllEmployees(),
+          child: const GetAllEmployeeView(),
+        ),
       ),
+
       GoRoute(
         path: kAddEmployeeView,
-        builder: (context, state) => const AddEmployeeView(),
+        builder: (context, state) => BlocProvider(
+            create: (context) => getIt.get<AddEmployeeCubit>(),
+            child: const AddEmployeeView()),
       ),
       GoRoute(
         path: kDetailsEmployeeView,
-        builder: (context, state) => const DetailsEmployeeView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<DetailsEmployeeCubit>()
+            ..getSpecificEmployee(
+              state.extra as String,
+            ),
+          child: const DetailsEmployeeView(),
+        ),
+      ),
+
+      GoRoute(
+        path: kUpdateEmployeeView,
+        builder: (context, state) => const UpdateEmployeeView(
+          employeeId: 12,
+        ),
       ),
       GoRoute(
         path: kAllDepartmentsView,
         builder: (context, state) => BlocProvider(
-          create: (context) => getIt.get<GetAllDepartmentCubit>()..getAllDepartment
-            (
-              getIt.get<LoginResponse>().token
-          ),
+          create: (context) => getIt.get<GetAllDepartmentCubit>()
+            ..getAllDepartment(getIt.get<LoginResponse>().token),
           child: const GetAllDepartmentView(),
         ),
       ),
