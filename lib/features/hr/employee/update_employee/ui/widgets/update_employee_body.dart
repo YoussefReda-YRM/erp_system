@@ -4,11 +4,14 @@ import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/core/widgets/custom_back_button.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
 import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
+import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
+import 'package:erp_system/features/hr/employee/update_employee/ui/widgets/update_employee_bloc_listner.dart';
 import 'package:erp_system/features/hr/employee/update_employee/ui/widgets/update_employee_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UpdateEmployeeBody extends StatelessWidget {
-  final int employeeId;
+  final String employeeId;
   const UpdateEmployeeBody({
     super.key,
     required this.employeeId,
@@ -50,10 +53,10 @@ class UpdateEmployeeBody extends StatelessWidget {
                       textStyle: Styles.font16LightGreyMedium(context),
                       backgroundColor: ColorsApp.primaryColor,
                       onPressed: () {
-                        // validateThenDoUpdateEmployee(context, employeeId);
+                        validateThenDoUpdateEmployee(context, employeeId);
                       },
                     ),
-                    // const AddEmployeeBlocListener(),
+                    const UpdateEmployeeBlocListener(),
                   ],
                 ),
               ),
@@ -65,12 +68,9 @@ class UpdateEmployeeBody extends StatelessWidget {
   }
 }
 
-// void validateThenDoUpdateEmployee(BuildContext context, int employeeId) {
-//   if (context
-//       .read<UpdateParentCategoryCubit>()
-//       .formKey
-//       .currentState!
-//       .validate()) {
-//     context.read<UpdateParentCategoryCubit>().updateparentcategory(employeeId);
-//   }
-// }
+void validateThenDoUpdateEmployee(BuildContext context, String employeeId) {
+  context.read<UpdateEmployeeCubit>().updateEmployee(employeeId);
+  // if (context.read<UpdateEmployeeCubit>().formKey.currentState!.validate()) {
+    
+  // }
+}

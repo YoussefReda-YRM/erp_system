@@ -3,7 +3,9 @@ import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_form_field.dart';
 import 'package:erp_system/core/widgets/custom_intl_phone_field.dart';
+import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 class UpdateEmployeeForm extends StatefulWidget {
@@ -24,8 +26,6 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
   bool hasMinLength = false;
 
   late TextEditingController passwordController;
-  final TextEditingController dateContoller = TextEditingController();
-  String gender = 'male';
 
   @override
   // void initState() {
@@ -69,7 +69,7 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
                 return 'Please enter a valid user name';
               }
             },
-            // controller: context.read<SignupCubit>().nameController,
+            controller: context.read<UpdateEmployeeCubit>().userNameController,
           ),
           const SizedBox(height: 18),
           AppTextFormField(
@@ -86,7 +86,7 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
                 return 'Please enter a valid name';
               }
             },
-            // controller: context.read<SignupCubit>().employeeJobController,
+            controller: context.read<UpdateEmployeeCubit>().nameController,
           ),
           const SizedBox(height: 18),
           AppTextFormField(
@@ -106,11 +106,11 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
                 return 'Please enter a valid email';
               }
             },
-            // controller: context.read<SignupCubit>().emailController,
+            controller: context.read<UpdateEmployeeCubit>().emailController,
           ),
           const SizedBox(height: 18),
           AppTextFormField(
-            // controller: context.read<SignupCubit>().passwordController,
+            controller: context.read<UpdateEmployeeCubit>().passwordController,
             hintText: 'Password',
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(
@@ -141,8 +141,9 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
           ),
           const SizedBox(height: 18),
           AppTextFormField(
-            // controller:
-            //     context.read<SignupCubit>().passwordConfirmationController,
+            controller: context
+                .read<UpdateEmployeeCubit>()
+                .passwordConfirmationController,
             hintText: 'Password Confirmation',
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(
@@ -178,26 +179,27 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
           ),
           const SizedBox(height: 18),
           CustomIntlPhoneField(
-            //TODO i will change this
-            phoneController: TextEditingController(),
+            phoneController:
+                context.read<UpdateEmployeeCubit>().phoneNumberController,
           ),
           const SizedBox(height: 18),
           AppTextFormField(
-            controller: dateContoller,
+            controller: context.read<UpdateEmployeeCubit>().birthDateController,
             hintText: 'Select DOB',
             suffixIcon: IconButton(
               onPressed: () async {
                 final DateTime? date = await showDatePicker(
                   context: context,
                   initialDate: DateTime.now(),
-                  firstDate: DateTime(2023),
-                  lastDate: DateTime(2050).add(
+                  firstDate: DateTime(2000),
+                  lastDate: DateTime(2024).add(
                     const Duration(days: 365),
                   ),
                 );
-                final formattedDate = DateFormat("dd-MM-yyy").format(date!);
+                final formattedDate = DateFormat("yyy-MM-dd").format(date!);
                 setState(() {
-                  dateContoller.text = formattedDate.toString();
+                  context.read<UpdateEmployeeCubit>().birthDateController.text =
+                      formattedDate.toString();
                 });
               },
               icon: const Icon(
@@ -218,7 +220,6 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
                 return 'Please enter an employee job';
               }
             },
-            // controller: context.read<SignupCubit>().employeeJobController,
           ),
           const SizedBox(height: 18),
           Text(
@@ -233,11 +234,16 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
                   children: [
                     Radio(
                       activeColor: ColorsApp.primaryColor,
-                      value: 'Male',
-                      groupValue: gender,
+                      value: 'M',
+                      groupValue: context
+                          .read<UpdateEmployeeCubit>()
+                          .genderNotifier
+                          .value,
                       onChanged: (value) {
                         setState(() {
-                          gender = value.toString();
+                          context
+                              .read<UpdateEmployeeCubit>()
+                              .updateGender(value.toString());
                         });
                       },
                     ),
@@ -254,16 +260,21 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
                   children: [
                     Radio(
                       activeColor: ColorsApp.primaryColor,
-                      value: 'Female',
-                      groupValue: gender,
+                      value: 'F',
+                      groupValue: context
+                          .read<UpdateEmployeeCubit>()
+                          .genderNotifier
+                          .value,
                       onChanged: (value) {
                         setState(() {
-                          gender = value.toString();
+                          context
+                              .read<UpdateEmployeeCubit>()
+                              .updateGender(value.toString());
                         });
                       },
                     ),
                     Text(
-                      "FeMale",
+                      "Female",
                       style: Styles.font14BlueSemiBold(context),
                     ),
                   ],
@@ -286,7 +297,8 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
                 return 'Please enter an employee job';
               }
             },
-            // controller: context.read<SignupCubit>().employeeJobController,
+            controller:
+                context.read<UpdateEmployeeCubit>().employeeJobController,
           ),
           const SizedBox(height: 18),
           AppTextFormField(
@@ -303,7 +315,7 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
                 return 'Please enter an employee role';
               }
             },
-            // controller: context.read<SignupCubit>().roleController,
+            controller: context.read<UpdateEmployeeCubit>().roleController,
           ),
           const SizedBox(height: 18),
           AppTextFormField(
@@ -320,7 +332,9 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
                 return 'Please enter an employee department';
               }
             },
-            // controller: context.read<SignupCubit>().employeeJobController,
+            controller: context
+                .read<UpdateEmployeeCubit>()
+                .employeeDepartmentIdController,
           ),
           const SizedBox(height: 18),
           AppTextFormField(
@@ -337,7 +351,7 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
                 return 'Please enter an address';
               }
             },
-            // controller: context.read<SignupCubit>().employeeJobController,
+            controller: context.read<UpdateEmployeeCubit>().addressController,
           ),
           const SizedBox(height: 18),
           AppTextFormField(
@@ -354,7 +368,8 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
                 return 'Please enter a valid Nationality';
               }
             },
-            // controller: context.read<SignupCubit>().employeeJobController,
+            controller:
+                context.read<UpdateEmployeeCubit>().nationalityController,
           ),
           const SizedBox(height: 18),
           AppTextFormField(
@@ -371,7 +386,8 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
                 return 'Please enter a valide Identification Number';
               }
             },
-            // controller: context.read<SignupCubit>().employeeJobController,
+            controller:
+                context.read<UpdateEmployeeCubit>().identificationNoController,
           ),
           const SizedBox(height: 18),
           AppTextFormField(
@@ -388,7 +404,8 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
                 return 'Please enter a valide bank account';
               }
             },
-            // controller: context.read<SignupCubit>().employeeJobController,
+            controller:
+                context.read<UpdateEmployeeCubit>().bankAccountController,
           ),
           const SizedBox(height: 18),
           AppTextFormField(
@@ -406,7 +423,7 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
                 return 'Please enter a valide Salary';
               }
             },
-            // controller: context.read<SignupCubit>().employeeJobController,
+            controller: context.read<UpdateEmployeeCubit>().salaryController,
           ),
           const SizedBox(height: 18),
         ],

@@ -2,7 +2,7 @@ import 'package:erp_system/features/hr/employee/update_employee/ui/widgets/updat
 import 'package:flutter/material.dart';
 
 class UpdateEmployeeView extends StatelessWidget {
-  final int employeeId;
+  final String employeeId;
   const UpdateEmployeeView({
     super.key,
     required this.employeeId,

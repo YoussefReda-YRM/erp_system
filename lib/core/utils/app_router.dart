@@ -14,6 +14,7 @@ import 'package:erp_system/features/hr/employee/details_employee/logic/details_e
 import 'package:erp_system/features/hr/employee/details_employee/ui/details_employee_view.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/ui/get_all_employee_view.dart';
+import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/update_employee/ui/update_employee.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_parent_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_sub_category_cubit.dart';
@@ -348,8 +349,11 @@ abstract class AppRouter {
 
       GoRoute(
         path: kUpdateEmployeeView,
-        builder: (context, state) => const UpdateEmployeeView(
-          employeeId: 12,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<UpdateEmployeeCubit>(),
+          child: UpdateEmployeeView(
+            employeeId: state.extra as String,
+          ),
         ),
       ),
       GoRoute(

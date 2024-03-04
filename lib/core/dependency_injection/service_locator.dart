@@ -16,6 +16,8 @@ import 'package:erp_system/features/hr/department/get_all_department/data/repos/
 import 'package:erp_system/features/hr/department/get_all_department/logic/get_all_department_cubit.dart';
 import 'package:erp_system/features/hr/department/update_department/data/repos/update_department_repo.dart';
 import 'package:erp_system/features/hr/department/update_department/logic/update_department_cubit.dart';
+import 'package:erp_system/features/hr/employee/update_employee/data/repos/update_employee_repo.dart';
+import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/repos/add_parent_category_repo.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/repos/add_sub_category_repo.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_parent_category_cubit.dart';
@@ -190,6 +192,11 @@ Future<void> setupServiceLocator() async {
       () => DetailsEmployeeRepo(getIt()));
   getIt.registerFactory<DetailsEmployeeCubit>(
       () => DetailsEmployeeCubit(getIt()));
+
+  getIt.registerLazySingleton<UpdateEmployeeRepo>(
+      () => UpdateEmployeeRepo(getIt()));
+  getIt
+      .registerFactory<UpdateEmployeeCubit>(() => UpdateEmployeeCubit(getIt()));
 
   //department
   getIt.registerLazySingleton<GetAllDepartmentRepo>(

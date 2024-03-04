@@ -26,7 +26,10 @@ class CustomPopupMenuButton extends StatelessWidget {
       ),
       onSelected: (value) {
         if (value == 'edit') {
-          GoRouter.of(context).push(AppRouter.kUpdateEmployeeView);
+          GoRouter.of(context).push(
+            AppRouter.kUpdateEmployeeView,
+            extra: employeeId,
+          );
         } else if (value == 'delete') {
           deleteShowDialog(
             context,

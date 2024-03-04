@@ -1,8 +1,8 @@
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/functions/custom_loading_indecator.dart';
 import 'package:erp_system/core/utils/functions/setup_error_state.dart';
-import 'package:erp_system/features/inventory/category/update_category/logic/update_parent_category_cubit.dart';
-import 'package:erp_system/features/inventory/category/update_category/logic/update_parent_category_state.dart';
+import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
+import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -12,20 +12,20 @@ class UpdateEmployeeBlocListener extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<UpdateParentCategoryCubit, UpdateParentCategoryState>(
+    return BlocListener<UpdateEmployeeCubit, UpdateEmployeeState>(
       listenWhen: (previous, current) =>
-          current is UpdateParentCategoryLoading ||
-          current is UpdateParentCategorySuccess ||
-          current is UpdateParentCategoryFailure,
+          current is UpdateEmployeeLoading ||
+          current is UpdateEmployeeSuccess ||
+          current is UpdateEmployeeFailure,
       listener: (context, state) {
-        if (state is UpdateParentCategoryLoading) {
+        if (state is UpdateEmployeeLoading) {
           customLoadingIndicator(context);
-        } else if (state is UpdateParentCategorySuccess) {
+        } else if (state is UpdateEmployeeSuccess) {
           GoRouter.of(context).pop();
           GoRouter.of(context).pushReplacement(
-            AppRouter.kCategoryView,
+            AppRouter.kAllEmployeesView,
           );
-        } else if (state is UpdateParentCategoryFailure) {
+        } else if (state is UpdateEmployeeFailure) {
           setupErrorState(context, state.error.toString());
         }
       },

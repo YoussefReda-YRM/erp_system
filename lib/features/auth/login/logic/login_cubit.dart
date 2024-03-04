@@ -15,6 +15,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   void login() async {
     emit(LoginLoading());
+
     final response = await _loginRepo.login(
       LoginRequestBody(
         email: emailController.text,

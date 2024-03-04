@@ -39,6 +39,7 @@ class ApiConstants {
   static const String getAllEmployees = "/Employee";
   static const String getSpecificEmployee = "/Employee";
   static const String deleteEmployee = "/Employee";
+  static const String updateEmployee = "/Auth";
 
   //Departments
   static const String getAllDepartments = "/Department/GetAllDepartment";

@@ -725,6 +725,36 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<void> updateEmployee(
+    String token,
+    String employeeId,
+    UpdateEmployeeRequest updateEmployeeRequest,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(updateEmployeeRequest.toJson());
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/Auth/${employeeId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+  }
+
+  @override
   Future<GetAllDepartmentResponse> getAllDepartment(String token) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

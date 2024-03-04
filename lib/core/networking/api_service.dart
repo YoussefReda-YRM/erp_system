@@ -10,6 +10,7 @@ import 'package:erp_system/features/hr/department/add_department/data/models/Add
 import 'package:erp_system/features/hr/department/get_all_department/data/models/GetAllDepartment.dart';
 import 'package:erp_system/features/hr/department/update_department/data/models/UpdateDepartmentRequest.dart';
 import 'package:erp_system/features/hr/department/update_department/data/models/UpdateDepartmentResponse.dart';
+import 'package:erp_system/features/hr/employee/update_employee/data/models/update_employee_request.dart';
 import 'package:erp_system/features/inventory/category/delete_category/data/models/response_delete_category.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/models/add_request_parent_category.dart';
@@ -175,6 +176,13 @@ abstract class ApiService {
   Future<void> deleteEmployee(
     @Header("Authorization") String token,
     @Path("employeeId") String employeeId,
+  );
+
+  @PUT("${ApiConstants.updateEmployee}/{employeeId}")
+  Future<void> updateEmployee(
+    @Header("Authorization") String token,
+    @Path("employeeId") String employeeId,
+    @Body() UpdateEmployeeRequest updateEmployeeRequest,
   );
 
   //Department
