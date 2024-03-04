@@ -1,6 +1,6 @@
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
-import 'package:erp_system/features/hr/department/get_all_department/data/models/GetAllDepartment.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/ui/widgets/custom_popup_menu_button.dart';
 import 'package:flutter/material.dart';
 
@@ -37,13 +37,17 @@ class DepartmentListViewBody extends StatelessWidget {
               child: ListTile(
                 leading: CircleAvatar(
                   radius: 24,
-                  child: Text(response.data![index].id.toString() ?? "0"),
+                  child: Text(
+                      //response.data![index].id.toString() ?? "0"
+                    "0"
+                  ),
                 ),
                 title: FittedBox(
                   fit: BoxFit.scaleDown,
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(
-                    response.data![index].departmentName??"non",
+                    "omnia",
+                   // response.data![index].departmentName??"non",
                     //response.childDepartment![index].departmentName.toString(),
                     style: Styles.font18DarkBlueBold(context),
                   ),

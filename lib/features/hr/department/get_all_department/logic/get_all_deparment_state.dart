@@ -1,4 +1,4 @@
-import 'package:erp_system/features/hr/department/get_all_department/data/models/GetAllDepartment.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
 
 abstract class GetAllDepartmentState {}
 

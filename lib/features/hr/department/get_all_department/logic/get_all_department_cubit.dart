@@ -14,11 +14,14 @@ class GetAllDepartmentCubit extends Cubit<GetAllDepartmentState> {
     );
     response.when(
       success: (getAllDepartment) {
+        print("mony");
         emit(GetAllDepartmentSuccess(
           response: getAllDepartment,
         ));
       },
       failure: (error) {
+        print("mmmmmm");
+
         emit(GetAllDepartmentFailure(
             error: error.apiErrorModel.message ?? ''));
       },

@@ -2,6 +2,7 @@ class ApiConstants {
   static const String apiBaseUrl =
       "http://yahya2002-001-site1.anytempurl.com/api";
   static const String login = "/Auth/Login";
+  static const String signup = "/Auth/register";
 
   // product
   static const String getNumberOfProductsAndReplenishment =
@@ -45,6 +46,7 @@ class ApiConstants {
   static const String getAllDepartments = "/Department/GetAllDepartment";
   static const String addDepartment = "/Department";
   static const String updateDepartment = "/Department/{id}";
+  static const String deleteDepartment = "/Department/{id}";
 }
 
 class ApiErrors {
