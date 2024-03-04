@@ -37,13 +37,17 @@ class DepartmentListViewBody extends StatelessWidget {
               child: ListTile(
                 leading: CircleAvatar(
                   radius: 24,
-                  child: Text(response.data![index].id.toString() ?? "0"),
+                  child: Text(
+                      //response.data![index].id.toString() ?? "0"
+                    "0"
+                  ),
                 ),
                 title: FittedBox(
                   fit: BoxFit.scaleDown,
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(
-                    response.data![index].departmentName??"non",
+                    "omnia",
+                   // response.data![index].departmentName??"non",
                     //response.childDepartment![index].departmentName.toString(),
                     style: Styles.font18DarkBlueBold(context),
                   ),

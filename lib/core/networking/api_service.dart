@@ -179,4 +179,9 @@ abstract class ApiService {
       @Path("id") int depId,
       @Body() UpdateDepartmentRequest updateDepartmentRequest,
       );
+  @DELETE(ApiConstants.deleteParentcategory)
+  Future<ResponseDeleteCategory> deleteDepartment(
+      @Header("Authorization") String token,
+      @Path("id") int depId,
+      );
 }
