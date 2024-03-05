@@ -23,7 +23,6 @@ showProductCategoriesDialog(BuildContext ctxt, Size size) {
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
-                  print(productCategories[index]);
                   BlocProvider.of<AddProductCubit>(ctxt)
                       .subCategoryIdController
                       .text = productCategories[index];

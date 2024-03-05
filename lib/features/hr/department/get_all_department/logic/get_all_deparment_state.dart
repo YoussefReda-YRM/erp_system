@@ -8,12 +8,11 @@ class GetAllDepartmentLoading extends GetAllDepartmentState {}
 
 class GetAllDepartmentFailure extends GetAllDepartmentState {
   final String error;
-
   GetAllDepartmentFailure({required this.error});
 }
 
 class GetAllDepartmentSuccess extends GetAllDepartmentState {
-  final GetAllDepartmentResponse response;
+  final List<GetAllDepartmentResponse> response;
 
   GetAllDepartmentSuccess({
     required this.response,

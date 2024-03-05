@@ -9,10 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GetAllDepartmentBloc extends StatelessWidget {
-
-   GetAllDepartmentBloc({super.key});
+  GetAllDepartmentBloc({super.key});
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +24,7 @@ class GetAllDepartmentBloc extends StatelessWidget {
               padding: const EdgeInsets.only(top: 20),
               child: SizedBox(
                 child: DepartmentListViewBody(
-
-                  state.response,
+                  response: state.response,
                   //  context,
                 ),
               ),

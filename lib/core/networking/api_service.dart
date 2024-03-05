@@ -187,7 +187,7 @@ abstract class ApiService {
 
   //Department
   @GET(ApiConstants.getAllDepartments)
-  Future<GetAllDepartmentResponse> getAllDepartment(
+  Future<List<GetAllDepartmentResponse>> getAllDepartment(
     @Header("Authorization") String token,
   );
 

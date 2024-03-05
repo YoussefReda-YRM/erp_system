@@ -755,14 +755,14 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<GetAllDepartmentResponse> getAllDepartment(String token) async {
+  Future<List<GetAllDepartmentResponse>> getAllDepartment(String token) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<GetAllDepartmentResponse>(Options(
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<GetAllDepartmentResponse>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -778,7 +778,10 @@ class _ApiService implements ApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = GetAllDepartmentResponse.fromJson(_result.data!);
+    var value = _result.data!
+        .map((dynamic i) =>
+            GetAllDepartmentResponse.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 
@@ -865,7 +868,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/Category/ParentCategory/{parentCategoryId}',
+              '/Department/${depId}',
               queryParameters: queryParameters,
               data: _data,
             )

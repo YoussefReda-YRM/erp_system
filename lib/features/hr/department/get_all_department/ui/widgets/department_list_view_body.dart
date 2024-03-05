@@ -5,14 +5,13 @@ import 'package:erp_system/features/hr/employee/get_all_employees/ui/widgets/cus
 import 'package:flutter/material.dart';
 
 class DepartmentListViewBody extends StatelessWidget {
-  GetAllDepartmentResponse response=GetAllDepartmentResponse();
-
-  DepartmentListViewBody(this.response,{Key? key }) : super(key: key);
+  const DepartmentListViewBody({super.key, required this.response});
+  final List<GetAllDepartmentResponse> response;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 10,
+      itemCount: response.length,
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
@@ -38,16 +37,17 @@ class DepartmentListViewBody extends StatelessWidget {
                 leading: CircleAvatar(
                   radius: 24,
                   child: Text(
-                      //response.data![index].id.toString() ?? "0"
-                    "0"
+                    //response.data![index].id.toString() ?? "0"
+                    response[index].id.toString(),
                   ),
                 ),
                 title: FittedBox(
                   fit: BoxFit.scaleDown,
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(
-                    "omnia",
-                   // response.data![index].departmentName??"non",
+                    response[index].departmentName.toString(),
+
+                    // response.data![index].departmentName??"non",
                     //response.childDepartment![index].departmentName.toString(),
                     style: Styles.font18DarkBlueBold(context),
                   ),

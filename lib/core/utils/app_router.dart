@@ -359,8 +359,8 @@ abstract class AppRouter {
       GoRoute(
         path: kAllDepartmentsView,
         builder: (context, state) => BlocProvider(
-          create: (context) => getIt.get<GetAllDepartmentCubit>()
-            ..getAllDepartment(getIt.get<LoginResponse>().token),
+          create: (context) =>
+              getIt.get<GetAllDepartmentCubit>()..getAllDepartment(),
           child: const GetAllDepartmentView(),
         ),
       ),

@@ -4,7 +4,7 @@ import 'package:erp_system/features/hr/department/get_all_department/ui/widgets/
 import 'package:flutter/material.dart';
 
 class GetAllDepartmentViewBody extends StatelessWidget {
-   GetAllDepartmentViewBody({super.key, required this.scaffoldKey});
+  const GetAllDepartmentViewBody({super.key, required this.scaffoldKey});
   final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
@@ -13,7 +13,7 @@ class GetAllDepartmentViewBody extends StatelessWidget {
       children: [
         CustomAppBarApp(
           scaffoldKey: scaffoldKey,
-          title: "Supplier",
+          title: "All Department",
           iconLeading: IconButton(
             icon: const Icon(
               Icons.menu,
@@ -33,7 +33,7 @@ class GetAllDepartmentViewBody extends StatelessWidget {
             ),
           ),
         ),
-         Expanded(child: GetAllDepartmentBloc()),
+        Expanded(child: GetAllDepartmentBloc()),
       ],
     );
   }
