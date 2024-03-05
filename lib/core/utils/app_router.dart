@@ -2,6 +2,7 @@ import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/auth/create_new_password/ui/create_new_password_view.dart';
+import 'package:erp_system/features/hr/attendance/ui/attendance_view.dart';
 import 'package:erp_system/features/hr/department/get_all_department/logic/get_all_department_cubit.dart';
 import 'package:erp_system/features/hr/department/get_all_department/ui/get_all_department_view.dart';
 import 'package:erp_system/features/hr/employee/add_employee/logic/add_employee_cubit.dart';
@@ -108,6 +109,8 @@ abstract class AppRouter {
   static const kUpdateEmployeeView = '/updateEmployeeView';
   static const kAddDepartment = '/addDepartment';
   static const kUpdateDepartment = '/updateDepartment';
+  //attendance
+  static const kAttendanceView = '/attendanceView';
 
   static final router = GoRouter(
     routes: [
@@ -381,6 +384,14 @@ abstract class AppRouter {
               depId: myData['id'],
             ),
           );
+        },
+      ),
+
+      //attendance
+      GoRoute(
+        path: kAttendanceView,
+        builder: (context, state) {
+          return const AttendanceView();
         },
       ),
     ],

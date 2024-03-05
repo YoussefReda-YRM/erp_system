@@ -54,7 +54,9 @@ class _DrawerItemListViewState extends State<HrDrawerItemListView> {
                       GoRouter.of(context).push(AppRouter.kAllEmployeesView);
                     } else if (activeIndex == 1) {
                       GoRouter.of(context).push(AppRouter.kAllDepartmentsView);
-                    } else if (activeIndex == 2) {}
+                    } else if (activeIndex == 2) {
+                      GoRouter.of(context).push(AppRouter.kAttendanceView);
+                    }
                   });
                 }
               },
