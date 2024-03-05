@@ -23,9 +23,11 @@ class AddEmployeeCubit extends Cubit<AddEmployeeState> {
   TextEditingController identificationNoController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController bankAccountController = TextEditingController();
-  TextEditingController genderController = TextEditingController();
   TextEditingController birthDateController = TextEditingController();
   TextEditingController salaryController = TextEditingController();
+
+  ValueNotifier<String> genderNotifier =
+      ValueNotifier<String>(''); // Updated for gender
 
   final formKey = GlobalKey<FormState>();
 
@@ -33,22 +35,22 @@ class AddEmployeeCubit extends Cubit<AddEmployeeState> {
     emit(AddEmployeeLoading());
     final response = await _addEmployeeRepo.addEmployee(
       AddEmployeeRequestBody(
-        userName: "YRM15555", //nameController.text,
-        email: "yrm@gmail.com", //emailController.text,
-        password: r"P@$$w0rd", //passwordController.text,
-        confirmPassword: r"P@$$w0rd", //passwordConfirmationController.text,
-        employeeJob: "test", //employeeJobController.text,
-        employeeDepartmentId: 1,
+        address: addressController.text,
+        bankAccount: bankAccountController.text,
+        birthDate: birthDateController.text,
+        confirmPassword: passwordConfirmationController.text,
+        email: emailController.text,
+        employeeDepartmentId: 2, //employeeDepartmentIdController.text,
+        employeeJob: employeeJobController.text,
+        gender: genderNotifier.value.toString(),
+        identificationNo: identificationNoController.text,
+        name: nameController.text,
+        nationality: nationalityController.text,
+        password: passwordController.text,
+        phoneNumber: "+20${phoneNumberController.text}",
         role: "HRAdmin", //roleController.text,
-        address: "String", //addressController.text,
-        birthDate: "2024-02-25", //birthDateController.text,
-        gender: "male",
-        identificationNo: "222222222222222", // identificationNoController.text,
-        name: "string", // nameController.text,
-        nationality: "string", // nationalityController.text,
-        phoneNumber: "string",
-        bankAccount: "string", //bankAccountController.text,
-        salary: 12000.5,
+        salary: double.parse(salaryController.text),
+        userName: userNameController.text,
       ),
     );
     response.when(
@@ -59,5 +61,9 @@ class AddEmployeeCubit extends Cubit<AddEmployeeState> {
         emit(AddEmployeeFailure(error: error.apiErrorModel.message ?? ''));
       },
     );
+  }
+
+  void updateGender(String gender) {
+    genderNotifier.value = gender;
   }
 }

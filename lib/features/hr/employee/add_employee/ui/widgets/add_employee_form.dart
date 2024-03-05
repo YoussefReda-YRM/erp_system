@@ -1,5 +1,6 @@
 import 'package:erp_system/core/helpers/app_regex.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
+import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_form_field.dart';
 import 'package:erp_system/core/widgets/custom_intl_phone_field.dart';
 import 'package:erp_system/features/hr/employee/add_employee/logic/add_employee_cubit.dart';
@@ -196,7 +197,7 @@ class _AddEmployeeFormState extends State<AddEmployeeForm> {
                     const Duration(days: 365),
                   ),
                 );
-                final formattedDate = DateFormat("dd-MM-yyy").format(date!);
+                final formattedDate = DateFormat("yyy-MM-dd").format(date!);
                 setState(() {
                   context.read<AddEmployeeCubit>().birthDateController.text =
                       formattedDate.toString();
@@ -222,66 +223,63 @@ class _AddEmployeeFormState extends State<AddEmployeeForm> {
             },
           ),
           const SizedBox(height: 18),
-          // Text(
-          //   "Select Gender",
-          //   style: Styles.font14BlueSemiBold(context),
-          // ),
-          // //TODO المفروض يكون فيه كونترولر
-          // Row(
-          //   children: [
-          //     Expanded(
-          //       child: Row(
-          //         mainAxisAlignment: MainAxisAlignment.center,
-          //         children: [
-          //           Radio(
-          //             activeColor: ColorsApp.primaryColor,
-          //             value: 'Male',
-          //             groupValue: gender,
-          //             onChanged: (value) {
-          //               setState(() {
-          //                 gender = value.toString();
-          //                 context
-          //                     .read<AddEmployeeCubit>()
-          //                     .genderController
-          //                     .text = gender;
-          //               });
-          //             },
-          //           ),
-          //           Text(
-          //             "Male",
-          //             style: Styles.font14BlueSemiBold(context),
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //     Expanded(
-          //       child: Row(
-          //         mainAxisAlignment: MainAxisAlignment.center,
-          //         children: [
-          //           Radio(
-          //             activeColor: ColorsApp.primaryColor,
-          //             value: 'Female',
-          //             groupValue: gender,
-          //             onChanged: (value) {
-          //               setState(() {
-          //                 gender = value.toString();
-          //                 context
-          //                     .read<AddEmployeeCubit>()
-          //                     .genderController
-          //                     .text = gender;
-          //               });
-          //             },
-          //           ),
-          //           Text(
-          //             "Female",
-          //             style: Styles.font14BlueSemiBold(context),
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //   ],
-          // ),
-          // const SizedBox(height: 18),
+          Text(
+            "Select Gender",
+            style: Styles.font14BlueSemiBold(context),
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Radio(
+                      activeColor: ColorsApp.primaryColor,
+                      value: 'M',
+                      groupValue:
+                          context.read<AddEmployeeCubit>().genderNotifier.value,
+                      onChanged: (value) {
+                        setState(() {
+                          context
+                              .read<AddEmployeeCubit>()
+                              .updateGender(value.toString());
+                        });
+                      },
+                    ),
+                    Text(
+                      "Male",
+                      style: Styles.font14BlueSemiBold(context),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Radio(
+                      activeColor: ColorsApp.primaryColor,
+                      value: 'F',
+                      groupValue:
+                          context.read<AddEmployeeCubit>().genderNotifier.value,
+                      onChanged: (value) {
+                        setState(() {
+                          context
+                              .read<AddEmployeeCubit>()
+                              .updateGender(value.toString());
+                        });
+                      },
+                    ),
+                    Text(
+                      "Female",
+                      style: Styles.font14BlueSemiBold(context),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 18),
           AppTextFormField(
             hintText: 'Employee job',
             enabledBorder: OutlineInputBorder(
