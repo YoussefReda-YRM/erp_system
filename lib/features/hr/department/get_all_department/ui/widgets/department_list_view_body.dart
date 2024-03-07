@@ -1,8 +1,10 @@
+import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/ui/widgets/custom_popup_menu_button.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class DepartmentListViewBody extends StatelessWidget {
   const DepartmentListViewBody({super.key, required this.response});
@@ -15,16 +17,16 @@ class DepartmentListViewBody extends StatelessWidget {
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
-            /*GoRouter.of(context).push(
-              AppRouter.kSupplierDetails,
+            GoRouter.of(context).push(
+              AppRouter.kDepartmentDetails,
               extra: {
-                "supplierName": response.childDepartment![index].supplierName,
-                "supplierEmail": response.childDepartment![index].supplierEmail,
-                "supplierPhone": response.childDepartment![index].supplierPhone,
-                "addedBy": response.childDepartment![index].addedBy,
-                "id": response.childDepartment![index].id,
+                "departmentName": response[index].departmentName,
+                "departmentDescription": response[index].description,
+                "id":response[index].id
+              //  "employee": response[index].employees,
+
               },
-            );*/
+            );
           },
           child: Card(
             shape: RoundedRectangleBorder(

@@ -7,11 +7,11 @@ class DeleteDepartmentCubit extends Cubit<CategoryState> {
 
   DeleteDepartmentCubit(this._deleteDepartmentRepo) : super(CategoryInitial());
 
-  void deleteDepartment(String token, int depId) async {
+  void deleteDepartment( int depId) async {
     emit(DeleteCategoryLoading());
 
     final response = await _deleteDepartmentRepo.deleteDepartment(
-        token, depId
+        depId
     );
 
     response.when(
