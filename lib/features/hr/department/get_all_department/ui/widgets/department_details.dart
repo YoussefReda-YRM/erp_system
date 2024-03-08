@@ -7,9 +7,7 @@ import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/core/widgets/custom_back_button.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/hr/department/delete_department/logic/delete_department_cubit.dart';
-import 'package:erp_system/features/hr/department/get_all_department/data/models/GetAllDepartment.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

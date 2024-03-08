@@ -47,6 +47,9 @@ class ApiConstants {
   static const String addDepartment = "/Department";
   static const String updateDepartment = "/Department/{id}";
   static const String deleteDepartment = "/Department/{id}";
+
+  //vacations
+  
 }
 
 class ApiErrors {

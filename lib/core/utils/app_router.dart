@@ -19,6 +19,7 @@ import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_
 import 'package:erp_system/features/hr/employee/get_all_employees/ui/get_all_employee_view.dart';
 import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/update_employee/ui/update_employee.dart';
+import 'package:erp_system/features/hr/vacations/get_all_vacations/ui/get_all_vacations_view.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_parent_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_sub_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/ui/add_parent_category_view.dart';
@@ -111,10 +112,13 @@ abstract class AppRouter {
   static const kUpdateEmployeeView = '/updateEmployeeView';
   static const kAddDepartment = '/addDepartment';
   static const kUpdateDepartment = '/updateDepartment';
-  //attendance
-  static const kAttendanceView = '/attendanceView';
   static const kDepartmentDetails = '/departmentDetails';
 
+  //attendance
+  static const kAttendanceView = '/attendanceView';
+
+  //vacations
+  static const kGetAllVacationsView = '/getAllVacationsView';
 
   static final router = GoRouter(
     routes: [
@@ -405,16 +409,22 @@ abstract class AppRouter {
           return BlocProvider(
             create: (context) => getIt.get<GetAllDepartmentCubit>(),
             child: DepartmentDetails(
-              departmentName: myData['departmentName'] ,
-            departmentDescription: myData['departmentDescription'],
-            // employees: myData['employees']as List<Employee>,
+              departmentName: myData['departmentName'],
+              departmentDescription: myData['departmentDescription'],
+              // employees: myData['employees']as List<Employee>,
               id: myData['id'],
-
             ),
           );
         },
       ),
 
+      // vacations
+      GoRoute(
+        path: kGetAllVacationsView,
+        builder: (context, state) {
+          return const GetAllVacationsView();
+        },
+      ),
     ],
   );
 }

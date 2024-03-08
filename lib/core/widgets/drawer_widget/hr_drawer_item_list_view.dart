@@ -29,7 +29,7 @@ class _DrawerItemListViewState extends State<HrDrawerItemListView> {
       icon: Icons.access_time_outlined,
     ),
     DrawerItemModel(
-      title: 'Reports',
+      title: 'Vacations',
       icon: Icons.description_outlined,
     ),
   ];
@@ -56,6 +56,8 @@ class _DrawerItemListViewState extends State<HrDrawerItemListView> {
                       GoRouter.of(context).push(AppRouter.kAllDepartmentsView);
                     } else if (activeIndex == 2) {
                       GoRouter.of(context).push(AppRouter.kAttendanceView);
+                    } else if (activeIndex == 3) {
+                      GoRouter.of(context).push(AppRouter.kGetAllVacationsView);
                     }
                   });
                 }
