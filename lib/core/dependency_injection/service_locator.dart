@@ -4,6 +4,8 @@ import 'package:erp_system/core/networking/dio_factory.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/login/data/repos/login_repo.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
+import 'package:erp_system/features/hr/department/delete_department/data/repos/delete_department_repo.dart';
+import 'package:erp_system/features/hr/department/delete_department/logic/delete_department_cubit.dart';
 import 'package:erp_system/features/hr/employee/add_employee/data/repos/Add_employee_repo.dart';
 import 'package:erp_system/features/hr/employee/add_employee/logic/add_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/details_employee/data/repo/details_employee_repo.dart';
@@ -212,4 +214,9 @@ Future<void> setupServiceLocator() async {
       () => UpdateDepartmentRepo(getIt()));
   getIt.registerFactory<UpdateDepartmentCubit>(
       () => UpdateDepartmentCubit(getIt()));
+
+  getIt.registerLazySingleton<DeleteDepartmentRepo>(
+      () => DeleteDepartmentRepo(getIt()));
+  getIt.registerFactory<DeleteDepartmentCubit>(
+      () => DeleteDepartmentCubit(getIt()));
 }
