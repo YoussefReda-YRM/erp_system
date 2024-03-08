@@ -3,8 +3,10 @@ import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/auth/create_new_password/ui/create_new_password_view.dart';
 import 'package:erp_system/features/hr/attendance/ui/attendance_view.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/GetAllDepartment.dart';
 import 'package:erp_system/features/hr/department/get_all_department/logic/get_all_department_cubit.dart';
 import 'package:erp_system/features/hr/department/get_all_department/ui/get_all_department_view.dart';
+import 'package:erp_system/features/hr/department/get_all_department/ui/widgets/department_details.dart';
 import 'package:erp_system/features/hr/employee/add_employee/logic/add_employee_cubit.dart';
 import 'package:erp_system/features/hr/department/add_department/logic/add_department_cubit.dart';
 import 'package:erp_system/features/hr/department/add_department/ui/ui/add_department_view.dart';
@@ -111,6 +113,8 @@ abstract class AppRouter {
   static const kUpdateDepartment = '/updateDepartment';
   //attendance
   static const kAttendanceView = '/attendanceView';
+  static const kDepartmentDetails = '/departmentDetails';
+
 
   static final router = GoRouter(
     routes: [
@@ -394,6 +398,23 @@ abstract class AppRouter {
           return const AttendanceView();
         },
       ),
+      GoRoute(
+        path: kDepartmentDetails,
+        builder: (context, state) {
+          Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
+          return BlocProvider(
+            create: (context) => getIt.get<GetAllDepartmentCubit>(),
+            child: DepartmentDetails(
+              departmentName: myData['departmentName'] ,
+            departmentDescription: myData['departmentDescription'],
+            // employees: myData['employees']as List<Employee>,
+              id: myData['id'],
+
+            ),
+          );
+        },
+      ),
+
     ],
   );
 }

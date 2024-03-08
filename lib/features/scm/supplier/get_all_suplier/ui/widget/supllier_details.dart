@@ -178,23 +178,7 @@ class SupplierDetails extends StatelessWidget {
                 ),
               ),
             )
-                /* Container(
-       padding: const EdgeInsets.all(20),
-       margin: const EdgeInsets.all(10),
 
-       decoration: BoxDecoration(color: ColorsApp.border,borderRadius: BorderRadius.circular(10)),
-       child: Column(
-         // mainAxisAlignment: MainAxisAlignment.start,
-         crossAxisAlignment: CrossAxisAlignment.start,
-         children: [
-           Text('Supplier Name: ${suppliername ?? "N/A"}', style: Styles.font24BlackBold(context)),
-           Text('Supplier Email: ${supplieremail ?? "N/A"}', style: Styles.font24BlackBold(context)),
-           Text('Supplier Phone: ${supplierphone ?? "N/A"}', style: Styles.font24BlackBold(context)),
-           Text('Supplier Added By: ${supplieraddedby ?? "N/A"}', style: Styles.font24BlackBold(context)),
-         ],
-       ) ,
-
-     ),*/
                 )
           ],
         ));
