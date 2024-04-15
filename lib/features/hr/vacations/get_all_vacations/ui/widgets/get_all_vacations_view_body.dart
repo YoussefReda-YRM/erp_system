@@ -1,7 +1,7 @@
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:erp_system/core/widgets/custom_app_body.dart';
-import 'package:erp_system/features/hr/vacations/get_all_vacations/ui/widgets/get_all_vacations_list_view_item.dart';
+import 'package:erp_system/features/hr/vacations/get_all_vacations/ui/widgets/get_all_vacations_list_view.dart';
 import 'package:flutter/material.dart';
 
 class GetAllVacationsViewBody extends StatelessWidget {
@@ -33,20 +33,15 @@ class GetAllVacationsViewBody extends StatelessWidget {
             onPressed: () {},
           ),
         ),
-        Expanded(
+        const Expanded(
           child: CustomAppBody(
             child: Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return const GetAllVacationsListViewItem();
-                },
-              ),
-            ),
+                padding: EdgeInsets.only(top: 30),
+                child: GetAllVacationsListView()),
           ),
         ),
       ],
     );
   }
 }
+

@@ -1,11 +1,14 @@
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
+import 'package:erp_system/features/hr/attendance/data/models/attendance_response.dart';
 import 'package:flutter/material.dart';
 
 class AttendanceListViewItem extends StatelessWidget {
   const AttendanceListViewItem({
     super.key,
+    required this.data,
   });
+  final AttendanceData data;
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +31,7 @@ class AttendanceListViewItem extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 color: ColorsApp.primaryColor.withOpacity(0.02),
-                border: Border.all(
-                  color: ColorsApp.primaryColor,
-                  width: 1
-                ),
+                border: Border.all(color: ColorsApp.primaryColor, width: 1),
                 borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(14),
                   bottomRight: Radius.circular(14),
@@ -46,7 +46,7 @@ class AttendanceListViewItem extends StatelessWidget {
                       fit: BoxFit.scaleDown,
                       alignment: AlignmentDirectional.centerStart,
                       child: Text(
-                        "youssef red",
+                        data.employee!,
                         style: Styles.font18DarkBlueBold(context),
                       ),
                     ),
@@ -58,13 +58,15 @@ class AttendanceListViewItem extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Icon(Icons.login_outlined, color: Colors.green[400]),
+                            Icon(Icons.login_outlined,
+                                color: Colors.green[400]),
                             const SizedBox(
                               width: 8,
                             ),
                             Text(
-                              "09:00 am",
-                              style: Styles.font14BlueSemiBold(context).copyWith(
+                              data.checkIn!,
+                              style:
+                                  Styles.font14BlueSemiBold(context).copyWith(
                                 color: Colors.green[400],
                               ),
                             )
@@ -84,7 +86,8 @@ class AttendanceListViewItem extends StatelessWidget {
                             ),
                             Text(
                               "05:00 pm",
-                              style: Styles.font14BlueSemiBold(context).copyWith(
+                              style:
+                                  Styles.font14BlueSemiBold(context).copyWith(
                                 color: Colors.red[400],
                               ),
                             ),

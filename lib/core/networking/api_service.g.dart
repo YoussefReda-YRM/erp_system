@@ -13,7 +13,7 @@ class _ApiService implements ApiService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://yahya2002-001-site1.anytempurl.com/api';
+    baseUrl ??= 'http://erp-gp.runasp.net/api';
   }
 
   final Dio _dio;
@@ -878,6 +878,65 @@ class _ApiService implements ApiService {
               baseUrl,
             ))));
     final value = ResponseDeleteCategory.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<AttendanceResponse> getAllAttendance(String token) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<AttendanceResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/Employee/GetAllAttends',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = AttendanceResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<List<GetAllVacationModel>> getAllVacations(String token) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<List<dynamic>>(_setStreamType<List<GetAllVacationModel>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/Vacation',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    var value = _result.data!
+        .map((dynamic i) =>
+            GetAllVacationModel.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 

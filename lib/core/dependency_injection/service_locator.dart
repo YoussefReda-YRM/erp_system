@@ -4,8 +4,11 @@ import 'package:erp_system/core/networking/dio_factory.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/login/data/repos/login_repo.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
+import 'package:erp_system/features/hr/attendance/data/repos/attendance_repo.dart';
+import 'package:erp_system/features/hr/attendance/logic/get_all_attendance_cubit.dart';
 import 'package:erp_system/features/hr/department/delete_department/data/repos/delete_department_repo.dart';
 import 'package:erp_system/features/hr/department/delete_department/logic/delete_department_cubit.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
 import 'package:erp_system/features/hr/employee/add_employee/data/repos/Add_employee_repo.dart';
 import 'package:erp_system/features/hr/employee/add_employee/logic/add_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/details_employee/data/repo/details_employee_repo.dart';
@@ -20,6 +23,8 @@ import 'package:erp_system/features/hr/department/update_department/data/repos/u
 import 'package:erp_system/features/hr/department/update_department/logic/update_department_cubit.dart';
 import 'package:erp_system/features/hr/employee/update_employee/data/repos/update_employee_repo.dart';
 import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
+import 'package:erp_system/features/hr/vacations/get_all_vacations/data/repos/get_all_vacation_repo.dart';
+import 'package:erp_system/features/hr/vacations/get_all_vacations/logic/get_all_vacations_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/repos/add_parent_category_repo.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/repos/add_sub_category_repo.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_parent_category_cubit.dart';
@@ -80,6 +85,8 @@ String quantityControllerInGetIt = '';
 String referenceControllerInGetIt = '';
 String departmentNameControllerInGetIt = '';
 String departmentDescriptionInGetIt = '';
+
+List<GetAllDepartmentResponse> getAllDepartmentGetIt = [];
 
 Future<void> setupServiceLocator() async {
   // Dio & ApiService
@@ -219,4 +226,15 @@ Future<void> setupServiceLocator() async {
       () => DeleteDepartmentRepo(getIt()));
   getIt.registerFactory<DeleteDepartmentCubit>(
       () => DeleteDepartmentCubit(getIt()));
+
+  //attendance
+  getIt.registerLazySingleton<AttendanceRepo>(() => AttendanceRepo(getIt()));
+  getIt.registerFactory<GetAllAttendanceCubit>(
+      () => GetAllAttendanceCubit(getIt()));
+
+  //vacations
+  getIt.registerLazySingleton<GetAllVacationRepo>(
+      () => GetAllVacationRepo(getIt()));
+  getIt.registerFactory<GetAllVacationsCubit>(
+      () => GetAllVacationsCubit(getIt()));
 }

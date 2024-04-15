@@ -1,16 +1,27 @@
 import 'package:erp_system/core/utils/assets.dart';
+import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
+import 'package:erp_system/features/hr/vacations/get_all_vacations/data/models/get_all_vacation_model.dart';
 import 'package:flutter/material.dart';
 
 class GetAllVacationsListViewItem extends StatelessWidget {
   const GetAllVacationsListViewItem({
     super.key,
+    required this.data,
   });
+
+  final GetAllVacationModel data;
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: const RoundedRectangleBorder(
+          side: BorderSide(
+            color: ColorsApp.primaryColor,
+            width: 1,
+          ),
+          borderRadius: BorderRadius.all(Radius.circular(14))),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -23,13 +34,13 @@ class GetAllVacationsListViewItem extends StatelessWidget {
                 ),
               ),
               title: Text(
-                "Youssef Reda",
+                data.employee!,
                 style: Styles.font14BlueSemiBold(context),
               ),
               subtitle: FittedBox(
                 fit: BoxFit.scaleDown,
                 alignment: AlignmentDirectional.centerStart,
-                child: Text("Apr 15, 2023 - Apr 18, 2023",
+                child: Text("${data.start} - ${data.end}",
                     style: Styles.font16DarkBlueBold(context)),
               ),
             ),

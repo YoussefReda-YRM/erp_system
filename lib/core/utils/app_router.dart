@@ -2,8 +2,8 @@ import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/auth/create_new_password/ui/create_new_password_view.dart';
+import 'package:erp_system/features/hr/attendance/logic/get_all_attendance_cubit.dart';
 import 'package:erp_system/features/hr/attendance/ui/attendance_view.dart';
-import 'package:erp_system/features/hr/department/get_all_department/data/models/GetAllDepartment.dart';
 import 'package:erp_system/features/hr/department/get_all_department/logic/get_all_department_cubit.dart';
 import 'package:erp_system/features/hr/department/get_all_department/ui/get_all_department_view.dart';
 import 'package:erp_system/features/hr/department/get_all_department/ui/widgets/department_details.dart';
@@ -19,6 +19,7 @@ import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_
 import 'package:erp_system/features/hr/employee/get_all_employees/ui/get_all_employee_view.dart';
 import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/update_employee/ui/update_employee.dart';
+import 'package:erp_system/features/hr/vacations/get_all_vacations/logic/get_all_vacations_cubit.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/ui/get_all_vacations_view.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_parent_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_sub_category_cubit.dart';
@@ -395,13 +396,6 @@ abstract class AppRouter {
         },
       ),
 
-      //attendance
-      GoRoute(
-        path: kAttendanceView,
-        builder: (context, state) {
-          return const AttendanceView();
-        },
-      ),
       GoRoute(
         path: kDepartmentDetails,
         builder: (context, state) {
@@ -418,11 +412,27 @@ abstract class AppRouter {
         },
       ),
 
-      // vacations
+      //attendance
+      GoRoute(
+        path: kAttendanceView,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) =>
+                getIt.get<GetAllAttendanceCubit>()..getAllAttendance(),
+            child: const AttendanceView(),
+          );
+        },
+      ),
+
+      //vacations
       GoRoute(
         path: kGetAllVacationsView,
         builder: (context, state) {
-          return const GetAllVacationsView();
+          return BlocProvider(
+            create: (context) =>
+                getIt.get<GetAllVacationsCubit>()..getAllVacations(),
+            child: const GetAllVacationsView(),
+          );
         },
       ),
     ],

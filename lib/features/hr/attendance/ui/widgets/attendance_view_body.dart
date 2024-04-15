@@ -4,6 +4,7 @@ import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/features/hr/attendance/ui/widgets/attendance_list_view.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class AttendanceViewBody extends StatelessWidget {
   const AttendanceViewBody({super.key, required this.scaffoldKey});
@@ -57,7 +58,7 @@ class AttendanceViewBody extends StatelessWidget {
                               width: 12,
                             ),
                             Text(
-                              "(5/3/2024)",
+                              "(${getFormattedDate()})",
                               style: Styles.font18DarkBlueBold(context),
                             ),
                           ],
@@ -83,3 +84,9 @@ class AttendanceViewBody extends StatelessWidget {
     );
   }
 }
+
+String getFormattedDate() {
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('dd-MM-yyyy').format(now);
+    return formattedDate;
+  }

@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddEmployeeCubit extends Cubit<AddEmployeeState> {
   final AddEmployeeRepo _addEmployeeRepo;
+
   AddEmployeeCubit(this._addEmployeeRepo) : super(AddEmployeeInitial());
 
   TextEditingController userNameController = TextEditingController();
@@ -14,9 +15,8 @@ class AddEmployeeCubit extends Cubit<AddEmployeeState> {
   TextEditingController passwordConfirmationController =
       TextEditingController();
   TextEditingController employeeJobController = TextEditingController();
-  TextEditingController employeeDepartmentIdController =
-      TextEditingController();
-  TextEditingController roleController = TextEditingController();
+  int employeeDepartmentId = 0;
+  String roleController = '';
   TextEditingController addressController = TextEditingController();
   TextEditingController nationalityController = TextEditingController();
   TextEditingController nameController = TextEditingController();
@@ -40,7 +40,7 @@ class AddEmployeeCubit extends Cubit<AddEmployeeState> {
         birthDate: birthDateController.text,
         confirmPassword: passwordConfirmationController.text,
         email: emailController.text,
-        employeeDepartmentId: 2, //employeeDepartmentIdController.text,
+        employeeDepartmentId: employeeDepartmentId,
         employeeJob: employeeJobController.text,
         gender: genderNotifier.value.toString(),
         identificationNo: identificationNoController.text,

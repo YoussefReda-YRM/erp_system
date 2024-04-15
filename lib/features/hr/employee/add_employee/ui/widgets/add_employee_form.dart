@@ -1,8 +1,11 @@
+import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/core/helpers/app_regex.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_form_field.dart';
 import 'package:erp_system/core/widgets/custom_intl_phone_field.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
+import 'package:erp_system/features/hr/department/get_all_department/logic/get_all_department_cubit.dart';
 import 'package:erp_system/features/hr/employee/add_employee/logic/add_employee_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,11 +31,15 @@ class _AddEmployeeFormState extends State<AddEmployeeForm> {
   late TextEditingController passwordController;
   String gender = 'male';
 
+  late GetAllDepartmentResponse _selectedDepartment;
+  List<GetAllDepartmentResponse> departments = getAllDepartmentGetIt;
+
   @override
   void initState() {
     super.initState();
     passwordController = context.read<AddEmployeeCubit>().passwordController;
     setupPasswordControllerListener();
+    _selectedDepartment = departments[0];
   }
 
   void setupPasswordControllerListener() {
@@ -311,26 +318,52 @@ class _AddEmployeeFormState extends State<AddEmployeeForm> {
                 return 'Please enter an employee role';
               }
             },
-            controller: context.read<AddEmployeeCubit>().roleController,
+            // controller: context.read<AddEmployeeCubit>().roleController,
           ),
+
           const SizedBox(height: 18),
-          AppTextFormField(
-            hintText: 'Employee Department',
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: ColorsApp.primaryColor,
-                width: 1.3,
-              ),
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter an employee department';
-              }
+          // AppTextFormField(
+          //   hintText: 'Employee Department',
+          //   enabledBorder: OutlineInputBorder(
+          //     borderSide: const BorderSide(
+          //       color: ColorsApp.primaryColor,
+          //       width: 1.3,
+          //     ),
+          //     borderRadius: BorderRadius.circular(16.0),
+          //   ),
+          //   validator: (value) {
+          //     if (value == null || value.isEmpty) {
+          //       return 'Please enter an employee department';
+          //     }
+          //   },
+          //   controller:
+          //       context.read<AddEmployeeCubit>().employeeDepartmentIdController,
+          // ),
+
+          DropdownButtonFormField<GetAllDepartmentResponse>(
+            value: _selectedDepartment,
+            items: departments.map((department) {
+              return DropdownMenuItem<GetAllDepartmentResponse>(
+                value: department,
+                child: Text(department.departmentName),
+              );
+            }).toList(),
+            onChanged: (value) {
+              setState(() {
+                _selectedDepartment = value!;
+                context.read<AddEmployeeCubit>().employeeDepartmentId =
+                    _selectedDepartment.id;
+              });
             },
-            controller:
-                context.read<AddEmployeeCubit>().employeeDepartmentIdController,
+            decoration: const InputDecoration(labelText: 'Department'),
+            validator: (value) {
+              if (value == null) {
+                return 'Please select a department';
+              }
+              return null;
+            },
           ),
+
           const SizedBox(height: 18),
           AppTextFormField(
             hintText: 'Address',

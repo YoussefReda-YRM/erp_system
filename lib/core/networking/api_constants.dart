@@ -1,6 +1,6 @@
 class ApiConstants {
   static const String apiBaseUrl =
-      "http://yahya2002-001-site1.anytempurl.com/api";
+      "http://erp-gp.runasp.net/api";
   static const String login = "/Auth/Login";
   static const String signup = "/Auth/register";
 
@@ -48,8 +48,11 @@ class ApiConstants {
   static const String updateDepartment = "/Department/{id}";
   static const String deleteDepartment = "/Department/{id}";
 
+  //attendance
+  static const String getAllAttendance = "/Employee/GetAllAttends";
+
   //vacations
-  
+  static const String getAllVacations = "/Vacation";
 }
 
 class ApiErrors {
