@@ -54,7 +54,7 @@ class DetailsEmployeeViewBody extends StatelessWidget {
                   ),
                   EditAndDeleteButton(
                     size: size,
-                    employeeId: state.response.userID!,
+                    employeeData: state.response,
                   ),
                 ],
               ),

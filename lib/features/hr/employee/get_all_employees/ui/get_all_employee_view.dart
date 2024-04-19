@@ -3,20 +3,29 @@ import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_widget.dart';
 import 'package:erp_system/core/widgets/drawer_widget/hr_drawer_item_list_view.dart';
+import 'package:erp_system/features/hr/department/get_all_department/logic/get_all_department_cubit.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/ui/widgets/get_all_employee_view_body.dart';
 import 'package:erp_system/core/widgets/custom_floating_action_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class GetAllEmployeeView extends StatefulWidget {
   const GetAllEmployeeView({super.key});
 
   @override
-  State<GetAllEmployeeView> createState() => _GetAllDepartmentViewState();
+  State<GetAllEmployeeView> createState() => _GetAllEmployeeViewState();
 }
 
-class _GetAllDepartmentViewState extends State<GetAllEmployeeView> {
+class _GetAllEmployeeViewState extends State<GetAllEmployeeView> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<GetAllDepartmentCubit>().getAllDepartment();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,22 +1,30 @@
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/widgets/custom_text_form_field.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
 import 'package:erp_system/features/hr/department/update_department/logic/update_department_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UpdateDepartmentForm extends StatelessWidget {
-  const UpdateDepartmentForm({super.key});
+  const UpdateDepartmentForm({super.key, required this.departmentData});
+
+  final GetAllDepartmentResponse departmentData;
 
   @override
   Widget build(BuildContext context) {
+    context.read<UpdateDepartmentCubit>().departmentNameController.text =
+        departmentData.departmentName.toString();
+
+    context.read<UpdateDepartmentCubit>().departmentDescriptionController.text =
+        departmentData.description.toString();
+        
     return Form(
       key: context.read<UpdateDepartmentCubit>().formKey,
       child: Column(
         children: [
           AppTextFormField(
-            controller: context
-                .read<UpdateDepartmentCubit>()
-                .departmentNameController,
+            controller:
+                context.read<UpdateDepartmentCubit>().departmentNameController,
             hintText: "Department Name",
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(
@@ -31,7 +39,9 @@ class UpdateDepartmentForm extends StatelessWidget {
               }
             },
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           AppTextFormField(
             controller: context
                 .read<UpdateDepartmentCubit>()

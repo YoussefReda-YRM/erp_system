@@ -4,8 +4,8 @@ import 'package:erp_system/core/widgets/custom_back_button.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
 import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:erp_system/features/hr/department/add_department/logic/add_department_cubit.dart';
-import 'package:erp_system/features/hr/department/add_department/ui/ui/widget/add_deparment_bloc_listener.dart';
-import 'package:erp_system/features/hr/department/add_department/ui/ui/widget/add_department_form.dart';
+import 'package:erp_system/features/hr/department/add_department/ui/widget/add_deparment_bloc_listener.dart';
+import 'package:erp_system/features/hr/department/add_department/ui/widget/add_department_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

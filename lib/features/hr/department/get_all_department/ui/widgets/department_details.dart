@@ -8,18 +8,16 @@ import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/core/widgets/custom_back_button.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
 import 'package:erp_system/features/hr/department/delete_department/logic/delete_department_cubit.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class DepartmentDetails extends StatelessWidget {
-  final String? departmentName;
-  final String? departmentDescription;
-  final int id;
-
-// final  List<Employee>? employees;
-
-
- const DepartmentDetails({super.key,required this.departmentName,required this.departmentDescription,required this.id/*required this.employees*/});
+  final GetAllDepartmentResponse departmentData;
+  const DepartmentDetails({
+    super.key,
+    required this.departmentData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,69 +39,93 @@ class DepartmentDetails extends StatelessWidget {
             ),
             CustomAppBody(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 50,
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            side: const BorderSide(color: ColorsApp.primaryColor),
-                          ),
-                          color: Colors.white,
-                          child: SizedBox(
-                            child: SingleChildScrollView(
-                              child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 40, vertical: 20),
-                                  child: Column(
+              padding: const EdgeInsets.only(top: 10),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        side: const BorderSide(color: ColorsApp.primaryColor),
+                      ),
+                      color: Colors.white,
+                      child: SizedBox(
+                        child: SingleChildScrollView(
+                          child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 40, vertical: 20),
+                              child: Column(
+                                children: [
+                                  Row(
                                     children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "Department Name: ",
-                                            style:
-                                            Styles.font13BlueSemiBold(context),
-                                          ),
-                                          const Spacer(),
-                                          Expanded(
-                                            child: Text(
-                                              departmentName.toString() ?? "none",
-                                              style:
-                                              Styles.font13BlueSemiBold(context)
-                                                  .copyWith(color: Colors.pink),
-                                            ),
-                                          ),
-                                        ],
+                                      FittedBox(
+                                        fit: BoxFit.scaleDown,
+                                        alignment:
+                                            AlignmentDirectional.centerStart,
+                                        child: Text(
+                                          "Department Name: ",
+                                          style: Styles.font13BlueSemiBold(
+                                              context),
+                                        ),
                                       ),
-                                      const SizedBox(
-                                        height: 16,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "Department Description: ",
-                                            style:
-                                            Styles.font13BlueSemiBold(context),
+                                      const Spacer(),
+                                      Expanded(
+                                        child: FittedBox(
+                                          fit: BoxFit.scaleDown,
+                                          alignment:
+                                              AlignmentDirectional.centerStart,
+                                          child: Text(
+                                            departmentData.departmentName
+                                                    .toString() ??
+                                                "none",
+                                            style: Styles.font13BlueSemiBold(
+                                                    context)
+                                                .copyWith(color: Colors.pink),
                                           ),
-                                          const Spacer(),
-                                          Expanded(
-                                            child: Text(
-                                              departmentDescription.toString() ?? "none",
-                                              style:
-                                              Styles.font13BlueSemiBold(context)
-                                                  .copyWith(color: Colors.pink),
-                                            ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                  Row(
+                                    children: [
+                                      FittedBox(
+                                        fit: BoxFit.scaleDown,
+                                        alignment:
+                                            AlignmentDirectional.centerStart,
+                                        child: Text(
+                                          "Department Description: ",
+                                          style: Styles.font13BlueSemiBold(
+                                              context),
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      Expanded(
+                                        child: FittedBox(
+                                          fit: BoxFit.scaleDown,
+                                          alignment:
+                                              AlignmentDirectional.centerStart,
+                                          child: Text(
+                                            departmentData.description
+                                                    .toString() ??
+                                                "none",
+                                            style: Styles.font13BlueSemiBold(
+                                                    context)
+                                                .copyWith(color: Colors.pink),
                                           ),
-                                        ],
+                                        ),
                                       ),
-                                      const SizedBox(
-                                        height: 16,
-                                      ),
-                                    /*  Row(
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                  /*  Row(
                                         children: [
                                           Text(
                                             "Supplier Phone: ",
@@ -121,70 +143,65 @@ class DepartmentDetails extends StatelessWidget {
                                           ),
                                         ],
                                       ),*/
-                               /* ListView.builder(
+                                  /* ListView.builder(
                                   itemCount: employees?.length ?? 0,
                                        itemBuilder: (context, index) {
                                          return ListTile(
                                            title: Text(employees![index].userName.toString()),
                                          );
                                          })*/
-                                    ],
-                                  )),
-                            ),
-                          ),
+                                ],
+                              )),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            AppTextButton(
-                              buttonText: "Edit",
-                              width: MediaQuery.of(context).size.width / 2.5,
-                              backgroundColor: Colors.green,
-                              textStyle: Styles.font13BlueSemiBold(context),
-                              onPressed: () {
-                                departmentNameControllerInGetIt = departmentName ?? "none";
-                                departmentDescriptionInGetIt =
-                                    departmentDescription ?? "none";
-
-
-                                GoRouter.of(context)
-                                    .push(AppRouter.kUpdateDepartment, extra: {"id": id});
-                                //showEditProductDialog(context, size);
-                              },
-                            ),
-                            const Spacer(),
-                            AppTextButton(
-                              buttonText: "Delete",
-                              width: MediaQuery.of(context).size.width / 2.5,
-                              backgroundColor: Colors.red,
-                              textStyle: Styles.font13BlueSemiBold(context),
-                              onPressed: () {
-                                deleteShowDialog(
-                                  context,
-                                  'Are you sure you want to delete this Department?',
-                                      () {
-                                    getIt.get<DeleteDepartmentCubit>().deleteDepartment( id
-                                    );
-                                    GoRouter.of(context).pop();
-                                    Future.delayed(const Duration(milliseconds: 200), () {
-                                      GoRouter.of(context)
-                                          .pushReplacement(AppRouter.kAllDepartmentsView);
-                                    });
-                                  },
-                                );
-                              },
-                            ),
-                          ],
-                        )
-
-                      ],
+                      ),
                     ),
-                  ),
-                )
-
-            )
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      children: [
+                        AppTextButton(
+                          buttonText: "Edit",
+                          width: MediaQuery.of(context).size.width / 2.5,
+                          backgroundColor: Colors.green,
+                          textStyle: Styles.font13BlueSemiBold(context),
+                          onPressed: () {
+                            GoRouter.of(context).push(
+                              AppRouter.kUpdateDepartment,
+                              extra: departmentData,
+                            );
+                          },
+                        ),
+                        const Spacer(),
+                        AppTextButton(
+                          buttonText: "Delete",
+                          width: MediaQuery.of(context).size.width / 2.5,
+                          backgroundColor: Colors.red,
+                          textStyle: Styles.font13BlueSemiBold(context),
+                          onPressed: () {
+                            deleteShowDialog(
+                              context,
+                              'Are you sure you want to delete this Department?',
+                              () {
+                                getIt
+                                    .get<DeleteDepartmentCubit>()
+                                    .deleteDepartment(departmentData.id);
+                                GoRouter.of(context).pop();
+                                Future.delayed(
+                                    const Duration(milliseconds: 200), () {
+                                  GoRouter.of(context).pushReplacement(
+                                      AppRouter.kAllDepartmentsView);
+                                });
+                              },
+                            );
+                          },
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ))
           ],
         ));
   }

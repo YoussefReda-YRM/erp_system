@@ -4,17 +4,19 @@ import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/auth/create_new_password/ui/create_new_password_view.dart';
 import 'package:erp_system/features/hr/attendance/logic/get_all_attendance_cubit.dart';
 import 'package:erp_system/features/hr/attendance/ui/attendance_view.dart';
+import 'package:erp_system/features/hr/department/add_department/ui/add_department_view.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
 import 'package:erp_system/features/hr/department/get_all_department/logic/get_all_department_cubit.dart';
 import 'package:erp_system/features/hr/department/get_all_department/ui/get_all_department_view.dart';
 import 'package:erp_system/features/hr/department/get_all_department/ui/widgets/department_details.dart';
 import 'package:erp_system/features/hr/employee/add_employee/logic/add_employee_cubit.dart';
 import 'package:erp_system/features/hr/department/add_department/logic/add_department_cubit.dart';
-import 'package:erp_system/features/hr/department/add_department/ui/ui/add_department_view.dart';
 import 'package:erp_system/features/hr/department/update_department/logic/update_department_cubit.dart';
 import 'package:erp_system/features/hr/department/update_department/ui/update_department.dart';
 import 'package:erp_system/features/hr/employee/add_employee/ui/add_employee_view.dart';
 import 'package:erp_system/features/hr/employee/details_employee/logic/details_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/details_employee/ui/details_employee_view.dart';
+import 'package:erp_system/features/hr/employee/get_all_employees/data/models/employee_response.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/ui/get_all_employee_view.dart';
 import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
@@ -335,11 +337,24 @@ abstract class AppRouter {
 
       GoRoute(
         path: kAllEmployeesView,
-        builder: (context, state) => BlocProvider(
-          create: (context) =>
-              getIt.get<GetAllEmployeeCubit>()..getAllEmployees(),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider<GetAllEmployeeCubit>(
+              create: (context) =>
+                  getIt.get<GetAllEmployeeCubit>()..getAllEmployees(),
+            ),
+            BlocProvider<GetAllDepartmentCubit>(
+              create: (context) => getIt.get<GetAllDepartmentCubit>(),
+            )
+          ],
           child: const GetAllEmployeeView(),
         ),
+
+        // BlocProvider(
+        // create: (context) =>
+        //     getIt.get<GetAllEmployeeCubit>()..getAllEmployees(),
+        //   child: const GetAllEmployeeView(),
+        // ),
       ),
 
       GoRoute(
@@ -364,7 +379,7 @@ abstract class AppRouter {
         builder: (context, state) => BlocProvider(
           create: (context) => getIt.get<UpdateEmployeeCubit>(),
           child: UpdateEmployeeView(
-            employeeId: state.extra as String,
+            employeeData: state.extra as EmployeeData,
           ),
         ),
       ),
@@ -386,11 +401,10 @@ abstract class AppRouter {
       GoRoute(
         path: kUpdateDepartment,
         builder: (context, state) {
-          Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
           return BlocProvider(
             create: (context) => getIt.get<UpdateDepartmentCubit>(),
             child: UpdateDepartment(
-              depId: myData['id'],
+              departmentData: state.extra as GetAllDepartmentResponse,
             ),
           );
         },
@@ -399,14 +413,10 @@ abstract class AppRouter {
       GoRoute(
         path: kDepartmentDetails,
         builder: (context, state) {
-          Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
           return BlocProvider(
             create: (context) => getIt.get<GetAllDepartmentCubit>(),
             child: DepartmentDetails(
-              departmentName: myData['departmentName'],
-              departmentDescription: myData['departmentDescription'],
-              // employees: myData['employees']as List<Employee>,
-              id: myData['id'],
+              departmentData: state.extra as GetAllDepartmentResponse,
             ),
           );
         },

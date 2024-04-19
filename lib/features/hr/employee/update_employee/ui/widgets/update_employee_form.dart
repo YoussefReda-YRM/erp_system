@@ -1,15 +1,22 @@
+import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/core/helpers/app_regex.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_form_field.dart';
 import 'package:erp_system/core/widgets/custom_intl_phone_field.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
+import 'package:erp_system/features/hr/employee/details_employee/data/models/details_employee_model.dart';
+import 'package:erp_system/features/hr/employee/get_all_employees/data/models/employee_response.dart';
 import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 class UpdateEmployeeForm extends StatefulWidget {
-  const UpdateEmployeeForm({super.key});
+  const UpdateEmployeeForm(
+      {super.key, this.employeeData, this.detailsEmployeeModel});
+  final EmployeeData? employeeData;
+  final DetailsEmployeeModel? detailsEmployeeModel;
 
   @override
   State<UpdateEmployeeForm> createState() => _UpdateEmployeeFormState();
@@ -27,30 +34,53 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
 
   late TextEditingController passwordController;
 
-  @override
-  // void initState() {
-  //   super.initState();
-  //   passwordController = context.read<SignupCubit>().passwordController;
-  //   setupPasswordControllerListener();
-  // }
+  late GetAllDepartmentResponse _selectedDepartment;
+  List<GetAllDepartmentResponse> departments = getAllDepartmentGetIt;
 
-  // void setupPasswordControllerListener() {
-  //   passwordController.addListener(() {
-  //     setState(() {
-  //       hasLowercase = AppRegex.hasLowerCase(passwordController.text);
-  //       hasUppercase = AppRegex.hasUpperCase(passwordController.text);
-  //       hasSpecialCharacters =
-  //           AppRegex.hasSpecialCharacter(passwordController.text);
-  //       hasNumber = AppRegex.hasNumber(passwordController.text);
-  //       hasMinLength = AppRegex.hasMinLength(passwordController.text);
-  //     });
-  //   });
-  // }
+  @override
+  void initState() {
+    super.initState();
+    departments == []
+        ? _selectedDepartment = GetAllDepartmentResponse(
+            id: -1,
+            departmentName: "There is no department",
+            description: "Ther is no department")
+        : _selectedDepartment = departments[0];
+  }
 
   @override
   Widget build(BuildContext context) {
+    context.read<UpdateEmployeeCubit>().userNameController.text =
+        widget.employeeData!.name.toString();
+    context.read<UpdateEmployeeCubit>().emailController.text =
+        widget.employeeData!.email.toString();
+    context.read<UpdateEmployeeCubit>().passwordController.text = "**********";
+    context.read<UpdateEmployeeCubit>().passwordConfirmationController.text =
+        "**********";
+    // // context.read<UpdateEmployeeCubit>().employeeJobController.text =
+    // //     widget.employeeData!.employeeJob.toString();
+    // context.read<UpdateEmployeeCubit>().employeeDepartmentId = widget.employeeData!.employeeDepartment.toString();
+    context.read<UpdateEmployeeCubit>().roleController.text =
+        widget.employeeData!.role.toString();
+    context.read<UpdateEmployeeCubit>().addressController.text =
+        widget.employeeData!.address.toString();
+    context.read<UpdateEmployeeCubit>().nationalityController.text =
+        widget.employeeData!.nationality.toString();
+    context.read<UpdateEmployeeCubit>().nameController.text =
+        widget.employeeData!.email.toString();
+    context.read<UpdateEmployeeCubit>().identificationNoController.text =
+        widget.employeeData!.identificationNo.toString();
+    context.read<UpdateEmployeeCubit>().phoneNumberController.text =
+        widget.employeeData!.phoneNumber.toString();
+    context.read<UpdateEmployeeCubit>().bankAccountController.text =
+        widget.employeeData!.bankAccount.toString();
+    context.read<UpdateEmployeeCubit>().birthDateController.text =
+        widget.employeeData!.birthDate.toString();
+    context.read<UpdateEmployeeCubit>().salaryController.text =
+        widget.employeeData!.salary.toString();
+
     return Form(
-      // key: context.read<SignupCubit>().formKey,
+      key: context.read<UpdateEmployeeCubit>().formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -74,6 +104,7 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
           const SizedBox(height: 18),
           AppTextFormField(
             hintText: 'Name',
+            keyboardType: TextInputType.name,
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(
                 color: ColorsApp.primaryColor,
@@ -315,26 +346,31 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
                 return 'Please enter an employee role';
               }
             },
-            controller: context.read<UpdateEmployeeCubit>().roleController,
+            // controller: context.read<AddEmployeeCubit>().roleController,
           ),
           const SizedBox(height: 18),
-          AppTextFormField(
-            hintText: 'Employee Department',
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: ColorsApp.primaryColor,
-                width: 1.3,
-              ),
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter an employee department';
-              }
+          DropdownButtonFormField<GetAllDepartmentResponse>(
+            value: _selectedDepartment,
+            items: departments.map((department) {
+              return DropdownMenuItem<GetAllDepartmentResponse>(
+                value: department,
+                child: Text(department.departmentName),
+              );
+            }).toList(),
+            onChanged: (value) {
+              setState(() {
+                _selectedDepartment = value!;
+                context.read<UpdateEmployeeCubit>().employeeDepartmentId =
+                    _selectedDepartment.id;
+              });
             },
-            controller: context
-                .read<UpdateEmployeeCubit>()
-                .employeeDepartmentIdController,
+            decoration: const InputDecoration(labelText: 'Department'),
+            validator: (value) {
+              if (value == null) {
+                return 'Please select a department';
+              }
+              return null;
+            },
           ),
           const SizedBox(height: 18),
           AppTextFormField(

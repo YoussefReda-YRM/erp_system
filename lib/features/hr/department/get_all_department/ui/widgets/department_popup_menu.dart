@@ -3,19 +3,17 @@ import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/functions/delete_show_dialog.dart';
 import 'package:erp_system/core/utils/styles.dart';
-import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_employee_cubit.dart';
+import 'package:erp_system/features/hr/department/delete_department/logic/delete_department_cubit.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:erp_system/features/hr/employee/get_all_employees/data/models/employee_response.dart';
-
-
-class CustomPopupMenuButton extends StatelessWidget {
-  const CustomPopupMenuButton({
+class DepartmentPopupMenuButton extends StatelessWidget {
+  const DepartmentPopupMenuButton({
     super.key,
-    required this.employeeData,
+    required this.departmentData,
   });
-  final EmployeeData employeeData;
+  final GetAllDepartmentResponse departmentData;
 
   @override
   Widget build(BuildContext context) {
@@ -30,21 +28,21 @@ class CustomPopupMenuButton extends StatelessWidget {
       onSelected: (value) {
         if (value == 'edit') {
           GoRouter.of(context).push(
-            AppRouter.kUpdateEmployeeView,
-            extra: employeeData,
+            AppRouter.kUpdateDepartment,
+            extra: departmentData,
           );
         } else if (value == 'delete') {
           deleteShowDialog(
             context,
             'Are you sure you want to delete this Employee?',
             () {
-              getIt.get<GetAllEmployeeCubit>().deleteEmployee(
-                    employeeData.userId.toString(),
-                  );
+              getIt.get<DeleteDepartmentCubit>().deleteDepartment(
+                    departmentData.id,
+              );
               GoRouter.of(context).pop();
               Future.delayed(const Duration(milliseconds: 200), () {
                 GoRouter.of(context)
-                    .pushReplacement(AppRouter.kAllEmployeesView);
+                    .pushReplacement(AppRouter.kAllDepartmentsView);
               });
             },
           );

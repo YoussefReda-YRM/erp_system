@@ -15,7 +15,7 @@ class AddEmployeeCubit extends Cubit<AddEmployeeState> {
   TextEditingController passwordConfirmationController =
       TextEditingController();
   TextEditingController employeeJobController = TextEditingController();
-  int employeeDepartmentId = 0;
+  int? employeeDepartmentId ;
   String roleController = '';
   TextEditingController addressController = TextEditingController();
   TextEditingController nationalityController = TextEditingController();
@@ -40,7 +40,7 @@ class AddEmployeeCubit extends Cubit<AddEmployeeState> {
         birthDate: birthDateController.text,
         confirmPassword: passwordConfirmationController.text,
         email: emailController.text,
-        employeeDepartmentId: employeeDepartmentId,
+        employeeDepartmentId: employeeDepartmentId!,
         employeeJob: employeeJobController.text,
         gender: genderNotifier.value.toString(),
         identificationNo: identificationNoController.text,

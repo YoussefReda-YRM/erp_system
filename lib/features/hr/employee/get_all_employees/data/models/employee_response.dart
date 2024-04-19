@@ -24,22 +24,52 @@ class GetAllEmployeeResponse {
 }
 
 class EmployeeData {
-  final String? id;
+  final String? userId;
   final String? name;
   final String? email;
-  final String? department;
+  final String? userName;
+  final String? role;
+  final String? employeeDepartment;
+  final String? address;
+  final String? phoneNumber;
+  final String? nationality;
+  final String? identificationNo;
+  final String? bankAccount;
+  final String? gender;
+  final String? birthDate;
+  final double? salary;
 
   EmployeeData({
-    this.id,
+    this.userId,
     this.name,
     this.email,
-    this.department,
+    this.userName,
+    this.role,
+    this.employeeDepartment,
+    this.address,
+    this.phoneNumber,
+    this.nationality,
+    this.identificationNo,
+    this.bankAccount,
+    this.gender,
+    this.birthDate,
+    this.salary,
   });
 
   factory EmployeeData.fromJson(Map<String, dynamic> json) => EmployeeData(
-        id: json['id'],
+        userId: json['userID'],
         name: json['name'],
         email: json['email'],
-        department: json['department'],
+        userName: json['username'],
+        role: json['role'],
+        employeeDepartment: json['employeeDepartment'],
+        address: json['address'],
+        phoneNumber: json['phoneNumber'],
+        nationality: json['nationality'],
+        identificationNo: json['identificationNo'],
+        bankAccount: json['bankAccount'],
+        gender: json['gender'],
+        birthDate: json['birthDate'],
+        salary: json['salary'],
       );
 }
