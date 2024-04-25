@@ -1,3 +1,4 @@
+
 import 'package:dio/dio.dart';
 import 'package:erp_system/core/networking/api_constants.dart';
 import 'package:erp_system/features/auth/login/data/models/login_request_body.dart';
@@ -9,6 +10,7 @@ import 'package:erp_system/features/hr/department/update_department/data/models/
 import 'package:erp_system/features/hr/department/update_department/data/models/UpdateDepartmentResponse.dart';
 import 'package:erp_system/features/hr/employee/add_employee/data/models/add_employee_body.dart';
 import 'package:erp_system/features/hr/employee/add_employee/data/models/add_employee_response.dart';
+import 'package:erp_system/features/hr/employee/add_employee/data/models/get_all_roles_model.dart';
 import 'package:erp_system/features/hr/employee/details_employee/data/models/details_employee_model.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/data/models/employee_response.dart';
 import 'package:erp_system/features/hr/employee/update_employee/data/models/update_employee_request.dart';
@@ -168,6 +170,12 @@ abstract class ApiService {
   Future<GetAllEmployeeResponse> getAllEmployees(
     @Header("Authorization") String token,
   );
+
+  @GET(ApiConstants.getAllRoles)
+  Future<List<GetAllRolesResponse>> getAllRoles(
+    @Header("Authorization") String token,
+  );
+
   @GET("${ApiConstants.getSpecificEmployee}/{employeeId}")
   Future<DetailsEmployeeModel> getSpecificEmployee(
     @Header("Authorization") String token,

@@ -666,6 +666,37 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<List<GetAllRolesResponse>> getAllRoles(String token) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<List<dynamic>>(_setStreamType<List<GetAllRolesResponse>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/Employee/roles',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    var value = _result.data!
+        .map((dynamic i) =>
+            GetAllRolesResponse.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
   Future<DetailsEmployeeModel> getSpecificEmployee(
     String token,
     String employeeId,
@@ -761,8 +792,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<List<GetAllDepartmentResponse>>(Options(
+    final _result = await _dio
+        .fetch<List<dynamic>>(_setStreamType<List<GetAllDepartmentResponse>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -779,8 +810,7 @@ class _ApiService implements ApiService {
               baseUrl,
             ))));
     var value = _result.data!
-        .map((dynamic i) =>
-            GetAllDepartmentResponse.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => GetAllDepartmentResponse.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }

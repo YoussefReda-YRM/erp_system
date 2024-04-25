@@ -13,6 +13,7 @@ import 'package:erp_system/features/hr/employee/add_employee/logic/add_employee_
 import 'package:erp_system/features/hr/department/add_department/logic/add_department_cubit.dart';
 import 'package:erp_system/features/hr/department/update_department/logic/update_department_cubit.dart';
 import 'package:erp_system/features/hr/department/update_department/ui/update_department.dart';
+import 'package:erp_system/features/hr/employee/add_employee/logic/get_all_roles_cubit.dart';
 import 'package:erp_system/features/hr/employee/add_employee/ui/add_employee_view.dart';
 import 'package:erp_system/features/hr/employee/details_employee/logic/details_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/details_employee/ui/details_employee_view.dart';
@@ -345,6 +346,9 @@ abstract class AppRouter {
             ),
             BlocProvider<GetAllDepartmentCubit>(
               create: (context) => getIt.get<GetAllDepartmentCubit>(),
+            ),
+            BlocProvider<GetAllRolesCubit>(
+              create: (context) => getIt.get<GetAllRolesCubit>(),
             )
           ],
           child: const GetAllEmployeeView(),

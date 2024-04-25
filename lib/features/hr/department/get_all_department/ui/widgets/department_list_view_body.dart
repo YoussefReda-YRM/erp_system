@@ -30,13 +30,13 @@ class DepartmentListViewBody extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 2),
               child: ListTile(
-                leading: CircleAvatar(
-                  radius: 24,
-                  child: Text(
-                    //response.data![index].id.toString() ?? "0"
-                    response[index].id.toString(),
-                  ),
-                ),
+                // leading: CircleAvatar(
+                //   radius: 24,
+                //   child: Text(
+                //     //response.data![index].id.toString() ?? "0"
+                //     response[index].id.toString(),
+                //   ),
+                // ),
                 title: FittedBox(
                   fit: BoxFit.scaleDown,
                   alignment: AlignmentDirectional.centerStart,

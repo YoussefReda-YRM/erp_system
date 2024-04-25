@@ -15,8 +15,8 @@ class AddEmployeeCubit extends Cubit<AddEmployeeState> {
   TextEditingController passwordConfirmationController =
       TextEditingController();
   TextEditingController employeeJobController = TextEditingController();
-  int? employeeDepartmentId ;
-  String roleController = '';
+  int? employeeDepartmentId;
+  String? roleController;
   TextEditingController addressController = TextEditingController();
   TextEditingController nationalityController = TextEditingController();
   TextEditingController nameController = TextEditingController();
@@ -48,7 +48,7 @@ class AddEmployeeCubit extends Cubit<AddEmployeeState> {
         nationality: nationalityController.text,
         password: passwordController.text,
         phoneNumber: "+20${phoneNumberController.text}",
-        role: "HRAdmin", //roleController.text,
+        role: roleController!,
         salary: double.parse(salaryController.text),
         userName: userNameController.text,
       ),
@@ -66,4 +66,5 @@ class AddEmployeeCubit extends Cubit<AddEmployeeState> {
   void updateGender(String gender) {
     genderNotifier.value = gender;
   }
+
 }
