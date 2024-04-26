@@ -21,6 +21,12 @@ import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_
 import 'package:erp_system/features/hr/employee/get_all_employees/ui/get_all_employee_view.dart';
 import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/update_employee/ui/update_employee.dart';
+import 'package:erp_system/features/hr/job_position/add_job_position/logic/add_job_position_cubit.dart';
+import 'package:erp_system/features/hr/job_position/add_job_position/ui/add_job_position_view.dart';
+import 'package:erp_system/features/hr/job_position/get_all_job_position/logic/get_all_job_position_cubit.dart';
+import 'package:erp_system/features/hr/job_position/get_all_job_position/ui/get_all_position_view.dart';
+import 'package:erp_system/features/hr/permissions/get_all_permissions/logic/get_all_permission_cubit.dart';
+import 'package:erp_system/features/hr/permissions/get_all_permissions/ui/get_all_permission_view.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/logic/get_all_vacations_cubit.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/ui/get_all_vacations_view.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_parent_category_cubit.dart';
@@ -122,6 +128,18 @@ abstract class AppRouter {
 
   //vacations
   static const kGetAllVacationsView = '/getAllVacationsView';
+
+  //job position
+  static const kGetAllJobPositionsView = '/getAllJobPositionView';
+  static const kAddJobPositionsView = '/AddJobPositionsView';
+
+  //permission
+  static const kGetAllPermissionView = '/getAllPermissionView';
+
+
+
+
+
 
   static final router = GoRouter(
     routes: [
@@ -445,6 +463,39 @@ abstract class AppRouter {
           );
         },
       ),
+
+      //job position
+
+      GoRoute(
+        path: kGetAllJobPositionsView,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+          getIt.get<GetAllJobPositionCubit>()..getAllJobPositions(state.extra as int),
+          child: const GetAllJobPosition(),
+        ),
+      ),
+
+      GoRoute(
+        path: kAddJobPositionsView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<AddJobPositionCubit>(),
+          child: AddJobPositionView(depId: state.extra as int),
+        ),
+      ),
+   //permission
+
+      GoRoute(
+        path: kGetAllPermissionView,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) =>
+            getIt.get<GetAllPermissionCubit>()..getAllPermissions(),
+            child: const GetAllPermissionView(),
+          );
+        },
+      ),
+
+
     ],
   );
 }

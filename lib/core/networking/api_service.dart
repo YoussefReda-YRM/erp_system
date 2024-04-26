@@ -12,6 +12,13 @@ import 'package:erp_system/features/hr/employee/add_employee/data/models/add_emp
 import 'package:erp_system/features/hr/employee/details_employee/data/models/details_employee_model.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/data/models/employee_response.dart';
 import 'package:erp_system/features/hr/employee/update_employee/data/models/update_employee_request.dart';
+import 'package:erp_system/features/hr/job_position/add_job_position/data/model/AddJobPositionRequest.dart';
+import 'package:erp_system/features/hr/job_position/add_job_position/data/model/AddJobPositionResponse.dart';
+import 'package:erp_system/features/hr/job_position/delete_job_position/data/models/DeleteJobPositionResponse.dart';
+import 'package:erp_system/features/hr/job_position/get_all_job_position/data/models/GetAllJobPositionResponse.dart';
+import 'package:erp_system/features/hr/job_position/update_job_position/data/UpdateJobRequest.dart';
+import 'package:erp_system/features/hr/job_position/update_job_position/data/UpdateJobResponse.dart';
+import 'package:erp_system/features/hr/permissions/get_all_permissions/data/models/GetAllPermissionResponse.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/data/models/get_all_vacation_model.dart';
 import 'package:erp_system/features/inventory/category/delete_category/data/models/response_delete_category.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
@@ -223,4 +230,37 @@ abstract class ApiService {
   Future<List<GetAllVacationModel>> getAllVacations(
     @Header("Authorization") String token,
   );
+
+  //job position
+  @GET(ApiConstants.getAllJobPosition)
+  Future<List<GetAllJobPositionResponse>> getAllJobPosition(
+      @Header("Authorization") String token,
+      @Path("departmentId") int depId,
+      );
+
+  @POST(ApiConstants.createJobPosition)
+  Future<AddJobPositionResponse> addJobPosition(
+      @Body() AddJobPositionRequest addJobPositionRequest,
+      @Header("Authorization") String token,
+      );
+
+  @PUT(ApiConstants.updateJobPosition)
+  Future<UpdateJobResponse> updateJobPosition(
+      @Header("Authorization") String token,
+      @Path("id") int id,
+      @Body() UpdateJobRequest updateJobRequest,
+      );
+  @DELETE(ApiConstants.deleteJobPosition)
+  Future<DeleteJobPositionResponse> deleteJobPosition(
+      @Header("Authorization") String token,
+      @Path("id") int id,
+      );
+
+  //permission
+
+  @GET(ApiConstants.getAllPermission)
+  Future<List<GetAllPermissionResponse>> getAllPermission(
+      @Header("Authorization") String token,
+      );
+
 }

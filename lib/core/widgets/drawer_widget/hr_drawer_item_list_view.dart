@@ -32,6 +32,10 @@ class _DrawerItemListViewState extends State<HrDrawerItemListView> {
       title: 'Vacations',
       icon: Icons.description_outlined,
     ),
+    DrawerItemModel(
+      title: 'Permissions',
+      icon: Icons.description_outlined,
+    ),
   ];
 
   @override
@@ -59,6 +63,9 @@ class _DrawerItemListViewState extends State<HrDrawerItemListView> {
                     } else if (activeIndex == 3) {
                       GoRouter.of(context).push(AppRouter.kGetAllVacationsView);
                     }
+                     else if (activeIndex == 4) {
+                     GoRouter.of(context).push(AppRouter.kGetAllPermissionView);
+                     }
                   });
                 }
               },

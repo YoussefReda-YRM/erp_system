@@ -23,6 +23,13 @@ import 'package:erp_system/features/hr/department/update_department/data/repos/u
 import 'package:erp_system/features/hr/department/update_department/logic/update_department_cubit.dart';
 import 'package:erp_system/features/hr/employee/update_employee/data/repos/update_employee_repo.dart';
 import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
+import 'package:erp_system/features/hr/job_position/add_job_position/data/repos/add_job_position_repo.dart';
+import 'package:erp_system/features/hr/job_position/add_job_position/logic/add_job_position_cubit.dart';
+import 'package:erp_system/features/hr/job_position/get_all_job_position/data/models/GetAllJobPositionResponse.dart';
+import 'package:erp_system/features/hr/job_position/get_all_job_position/data/repos/get_all_job_position_repo.dart';
+import 'package:erp_system/features/hr/job_position/get_all_job_position/logic/get_all_job_position_cubit.dart';
+import 'package:erp_system/features/hr/permissions/get_all_permissions/data/repos/get_all_permission_repo.dart';
+import 'package:erp_system/features/hr/permissions/get_all_permissions/logic/get_all_permission_cubit.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/data/repos/get_all_vacation_repo.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/logic/get_all_vacations_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/repos/add_parent_category_repo.dart';
@@ -66,6 +73,8 @@ final getIt = GetIt.instance;
 LoginResponse? loginResponseInGetIt;
 
 List<CategoryAllCategoryModel>? categoriesInGetIt;
+List<GetAllJobPositionResponse>? jobPositionInGetIt;
+
 
 int activeIndex = 0;
 
@@ -237,4 +246,25 @@ Future<void> setupServiceLocator() async {
       () => GetAllVacationRepo(getIt()));
   getIt.registerFactory<GetAllVacationsCubit>(
       () => GetAllVacationsCubit(getIt()));
+
+  //job position
+  getIt.registerLazySingleton<GetAllJobPositionRepo>(
+          () => GetAllJobPositionRepo(getIt()));
+  getIt.registerFactory<GetAllJobPositionCubit>(
+          () => GetAllJobPositionCubit(getIt()));
+
+  getIt.registerLazySingleton<AddJobPositionRepo>(
+          () => AddJobPositionRepo(getIt()));
+  getIt.registerFactory<AddJobPositionCubit>(
+          () => AddJobPositionCubit(getIt()));
+
+  //permissions
+  getIt.registerLazySingleton<GetAllPermissionRepo>(
+          () => GetAllPermissionRepo(getIt()));
+  getIt.registerFactory<GetAllPermissionCubit>(
+          () => GetAllPermissionCubit(getIt()));
+
+
+
+
 }

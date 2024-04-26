@@ -53,6 +53,22 @@ class ApiConstants {
 
   //vacations
   static const String getAllVacations = "/Vacation";
+
+  //job position
+  static const String getAllJobPosition = "/JobPositions/{departmentId}";
+  static const String createJobPosition = "/JobPositions";
+  static const String updateJobPosition = "/JobPositions/{id}";
+  static const String deleteJobPosition = "/JobPositions/{id}";
+
+  //permission
+  static const String getAllPermission = "/Permission";
+
+
+
+
+
+
+
 }
 
 class ApiErrors {

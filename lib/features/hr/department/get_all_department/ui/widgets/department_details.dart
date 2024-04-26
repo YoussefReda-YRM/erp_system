@@ -125,6 +125,37 @@ class DepartmentDetails extends StatelessWidget {
                                   const SizedBox(
                                     height: 16,
                                   ),
+                                  Row(
+                                    children: [
+                                      FittedBox(
+                                        fit: BoxFit.scaleDown,
+                                        alignment:
+                                        AlignmentDirectional.centerStart,
+                                        child: Text(
+                                          "Department Job Position: ",
+                                          style: Styles.font13BlueSemiBold(
+                                              context),
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      Expanded(
+                                        child: FittedBox(
+                                          fit: BoxFit.scaleDown,
+                                          alignment:
+                                          AlignmentDirectional.centerStart,
+                                          child: Text(
+                                            departmentData.jobPositions
+                                                .toString() ??
+                                                "none",
+                                            style: Styles.font13BlueSemiBold(
+                                                context)
+                                                .copyWith(color: Colors.pink),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
                                   /*  Row(
                                         children: [
                                           Text(
@@ -143,11 +174,12 @@ class DepartmentDetails extends StatelessWidget {
                                           ),
                                         ],
                                       ),*/
-                                  /* ListView.builder(
-                                  itemCount: employees?.length ?? 0,
+                                /* ListView.builder(
+                                  itemCount:departmentData.jobPositions!.length ?? 0,
                                        itemBuilder: (context, index) {
                                          return ListTile(
-                                           title: Text(employees![index].userName.toString()),
+                                           title: Text(departmentData.jobPositions![index]['jobName'] ?? "none",
+                                           ),
                                          );
                                          })*/
                                 ],
@@ -160,7 +192,7 @@ class DepartmentDetails extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        AppTextButton(
+                        Expanded(child: AppTextButton(
                           buttonText: "Edit",
                           width: MediaQuery.of(context).size.width / 2.5,
                           backgroundColor: Colors.green,
@@ -171,9 +203,8 @@ class DepartmentDetails extends StatelessWidget {
                               extra: departmentData,
                             );
                           },
-                        ),
-                        const Spacer(),
-                        AppTextButton(
+                        ), ),
+                        Expanded(child:AppTextButton(
                           buttonText: "Delete",
                           width: MediaQuery.of(context).size.width / 2.5,
                           backgroundColor: Colors.red,
@@ -182,7 +213,7 @@ class DepartmentDetails extends StatelessWidget {
                             deleteShowDialog(
                               context,
                               'Are you sure you want to delete this Department?',
-                              () {
+                                  () {
                                 getIt
                                     .get<DeleteDepartmentCubit>()
                                     .deleteDepartment(departmentData.id);
@@ -195,7 +226,21 @@ class DepartmentDetails extends StatelessWidget {
                               },
                             );
                           },
+                        ), ),
+                        Expanded(child: AppTextButton(
+                            buttonText: "Job Position",
+                            width: MediaQuery.of(context).size.width / 2.5,
+                            backgroundColor: ColorsApp.primaryColor,
+                            textStyle: Styles.font13GreyMedium(context),
+                            onPressed: () {
+                              GoRouter.of(context).push(
+                                AppRouter.kGetAllJobPositionsView,
+                                //extra: departmentData,
+                              );
+                            },
+                          ),
                         ),
+
                       ],
                     )
                   ],
