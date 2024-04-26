@@ -1,8 +1,10 @@
+import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/ui/widgets/get_all_vacations_list_view.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class GetAllVacationsViewBody extends StatelessWidget {
   const GetAllVacationsViewBody({super.key, required this.scaffoldKey});
@@ -30,7 +32,9 @@ class GetAllVacationsViewBody extends StatelessWidget {
               size: 34,
               color: ColorsApp.lightGrey,
             ),
-            onPressed: () {},
+            onPressed: () {
+              GoRouter.of(context).push(AppRouter.kApplyVacationView);
+            },
           ),
         ),
         const Expanded(
@@ -44,4 +48,3 @@ class GetAllVacationsViewBody extends StatelessWidget {
     );
   }
 }
-

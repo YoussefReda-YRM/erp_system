@@ -54,7 +54,7 @@ class ApiConstants {
 
   //vacations
   static const String getAllVacations = "/Vacation";
-
+  static const String applyVacation = "/Vacation";
   //job position
   static const String getAllJobPosition = "/JobPositions/{departmentId}";
   static const String createJobPosition = "/JobPositions";
@@ -63,12 +63,6 @@ class ApiConstants {
 
   //permission
   static const String getAllPermission = "/Permission";
-
-
-
-
-
-
 
 }
 

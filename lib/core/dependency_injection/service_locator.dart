@@ -33,6 +33,8 @@ import 'package:erp_system/features/hr/job_position/get_all_job_position/data/re
 import 'package:erp_system/features/hr/job_position/get_all_job_position/logic/get_all_job_position_cubit.dart';
 import 'package:erp_system/features/hr/permissions/get_all_permissions/data/repos/get_all_permission_repo.dart';
 import 'package:erp_system/features/hr/permissions/get_all_permissions/logic/get_all_permission_cubit.dart';
+import 'package:erp_system/features/hr/vacations/add_vacations/data/repos/apply_vacation_repo.dart';
+import 'package:erp_system/features/hr/vacations/add_vacations/logic/apply_vacation_cubit.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/data/repos/get_all_vacation_repo.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/logic/get_all_vacations_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/repos/add_parent_category_repo.dart';
@@ -77,7 +79,6 @@ LoginResponse? loginResponseInGetIt;
 
 List<CategoryAllCategoryModel>? categoriesInGetIt;
 List<GetAllJobPositionResponse>? jobPositionInGetIt;
-
 
 int activeIndex = 0;
 
@@ -253,6 +254,10 @@ Future<void> setupServiceLocator() async {
       () => GetAllVacationRepo(getIt()));
   getIt.registerFactory<GetAllVacationsCubit>(
       () => GetAllVacationsCubit(getIt()));
+  getIt.registerLazySingleton<ApplyVacationRepo>(
+          () => ApplyVacationRepo(getIt()));
+  getIt.registerFactory<ApplyVacationCubit>(() => ApplyVacationCubit(getIt()));
+
 
   //job position
   getIt.registerLazySingleton<GetAllJobPositionRepo>(

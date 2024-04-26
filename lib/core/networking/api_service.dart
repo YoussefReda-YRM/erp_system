@@ -14,6 +14,8 @@ import 'package:erp_system/features/hr/employee/add_employee/data/models/get_all
 import 'package:erp_system/features/hr/employee/details_employee/data/models/details_employee_model.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/data/models/employee_response.dart';
 import 'package:erp_system/features/hr/employee/update_employee/data/models/update_employee_request.dart';
+import 'package:erp_system/features/hr/vacations/add_vacations/data/models/apply_vacation_request.dart';
+import 'package:erp_system/features/hr/vacations/add_vacations/data/models/apply_vacation_response.dart';
 import 'package:erp_system/features/hr/job_position/add_job_position/data/model/AddJobPositionRequest.dart';
 import 'package:erp_system/features/hr/job_position/add_job_position/data/model/AddJobPositionResponse.dart';
 import 'package:erp_system/features/hr/job_position/delete_job_position/data/models/DeleteJobPositionResponse.dart';
@@ -238,6 +240,12 @@ abstract class ApiService {
   Future<List<GetAllVacationModel>> getAllVacations(
     @Header("Authorization") String token,
   );
+  @POST(ApiConstants.applyVacation)
+  Future<ApplyVacationResponse> applyVacation(
+      @Body() ApplyVacationRequest applyVacationRequest,
+      @Header("Authorization") String token,
+      );
+
 
   //job position
   @GET(ApiConstants.getAllJobPosition)
@@ -270,5 +278,4 @@ abstract class ApiService {
   Future<List<GetAllPermissionResponse>> getAllPermission(
       @Header("Authorization") String token,
       );
-
 }
