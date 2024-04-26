@@ -9,8 +9,11 @@ import 'package:erp_system/features/hr/attendance/logic/get_all_attendance_cubit
 import 'package:erp_system/features/hr/department/delete_department/data/repos/delete_department_repo.dart';
 import 'package:erp_system/features/hr/department/delete_department/logic/delete_department_cubit.dart';
 import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
+import 'package:erp_system/features/hr/employee/add_employee/data/models/get_all_roles_model.dart';
 import 'package:erp_system/features/hr/employee/add_employee/data/repos/Add_employee_repo.dart';
+import 'package:erp_system/features/hr/employee/add_employee/data/repos/get_all_roles_repo.dart';
 import 'package:erp_system/features/hr/employee/add_employee/logic/add_employee_cubit.dart';
+import 'package:erp_system/features/hr/employee/add_employee/logic/get_all_roles_cubit.dart';
 import 'package:erp_system/features/hr/employee/details_employee/data/repo/details_employee_repo.dart';
 import 'package:erp_system/features/hr/employee/details_employee/logic/details_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/data/repos/get_all_employee_repo.dart';
@@ -96,6 +99,7 @@ String departmentNameControllerInGetIt = '';
 String departmentDescriptionInGetIt = '';
 
 List<GetAllDepartmentResponse> getAllDepartmentGetIt = [];
+List<GetAllRolesResponse> getAllRolesGetIt = [];
 
 Future<void> setupServiceLocator() async {
   // Dio & ApiService
@@ -215,6 +219,9 @@ Future<void> setupServiceLocator() async {
       () => UpdateEmployeeRepo(getIt()));
   getIt
       .registerFactory<UpdateEmployeeCubit>(() => UpdateEmployeeCubit(getIt()));
+
+  getIt.registerLazySingleton<GetAllRolesRepo>(() => GetAllRolesRepo(getIt()));
+  getIt.registerFactory<GetAllRolesCubit>(() => GetAllRolesCubit(getIt()));
 
   //department
   getIt.registerLazySingleton<GetAllDepartmentRepo>(

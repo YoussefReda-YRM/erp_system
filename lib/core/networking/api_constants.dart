@@ -38,6 +38,7 @@ class ApiConstants {
   //HR
   static const String addEmployee = "/Auth/register";
   static const String getAllEmployees = "/Employee";
+  static const String getAllRoles = "/Employee/roles";
   static const String getSpecificEmployee = "/Employee";
   static const String deleteEmployee = "/Employee";
   static const String updateEmployee = "/Auth";
