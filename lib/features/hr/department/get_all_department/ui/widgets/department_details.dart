@@ -235,7 +235,7 @@ class DepartmentDetails extends StatelessWidget {
                             onPressed: () {
                               GoRouter.of(context).push(
                                 AppRouter.kGetAllJobPositionsView,
-                                //extra: departmentData,
+                                extra: departmentData.id,
                               );
                             },
                           ),

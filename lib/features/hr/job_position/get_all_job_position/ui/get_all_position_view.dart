@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class GetAllJobPosition extends StatefulWidget {
-  const GetAllJobPosition({super.key});
+  const GetAllJobPosition({super.key, required this.depId});
+
+  final int depId;
 
   @override
   State<GetAllJobPosition> createState() => _GetAllJobPositionState();
@@ -25,7 +27,7 @@ class _GetAllJobPositionState extends State<GetAllJobPosition> {
       floatingActionButton: CustomFloatingActionButton(
         ctxt: context,
         onPressed: () {
-          GoRouter.of(context).push(AppRouter.kAddJobPositionsView);
+          GoRouter.of(context).push(AppRouter.kAddJobPositionsView, extra: widget.depId);
         },
       ),
     );

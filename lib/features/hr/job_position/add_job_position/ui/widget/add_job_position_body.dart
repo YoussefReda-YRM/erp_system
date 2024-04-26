@@ -7,11 +7,10 @@ import 'package:erp_system/features/hr/job_position/add_job_position/logic/add_j
 import 'package:erp_system/features/hr/job_position/add_job_position/ui/widget/add_job_position_bloc.dart';
 import 'package:erp_system/features/hr/job_position/add_job_position/ui/widget/add_job_position_form.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddJobPositionBody extends StatelessWidget {
-  const AddJobPositionBody({super.key,required this.depId});
+  const AddJobPositionBody({super.key, required this.depId});
   final int depId;
 
   @override
@@ -66,7 +65,9 @@ class AddJobPositionBody extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  const AddJobPositionBloc(),
+                  AddJobPositionBloc(
+                    depId: depId,
+                  ),
                 ],
               ),
             ),
@@ -82,4 +83,3 @@ void validateThenDoAddJobPosition(BuildContext context, int depId) {
     context.read<AddJobPositionCubit>().addJobPosition(depId);
   }
 }
-

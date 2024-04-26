@@ -495,7 +495,9 @@ abstract class AppRouter {
         builder: (context, state) => BlocProvider(
           create: (context) =>
           getIt.get<GetAllJobPositionCubit>()..getAllJobPositions(state.extra as int),
-          child: const GetAllJobPosition(),
+          child: GetAllJobPosition(
+            depId: state.extra as int
+          ),
         ),
       ),
 

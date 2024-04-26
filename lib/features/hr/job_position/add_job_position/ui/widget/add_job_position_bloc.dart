@@ -8,13 +8,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AddJobPositionBloc extends StatelessWidget {
-  const AddJobPositionBloc({super.key});
+  const AddJobPositionBloc({super.key, required this.depId});
+  final int depId;
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<AddJobPositionCubit, AddJobPositionState>(
       listenWhen: (previous, current) =>
-      current is AddJobPositionLoading ||
+          current is AddJobPositionLoading ||
           current is AddJobPositionSuccess ||
           current is AddJobPositionFailure,
       listener: (context, state) {
@@ -22,9 +23,8 @@ class AddJobPositionBloc extends StatelessWidget {
           customLoadingIndicator(context);
         } else if (state is AddJobPositionSuccess) {
           GoRouter.of(context).pop();
-          GoRouter.of(context).pushReplacement(
-            AppRouter.kGetAllJobPositionsView,
-          );
+          GoRouter.of(context)
+              .pushReplacement(AppRouter.kGetAllJobPositionsView, extra: depId);
         } else if (state is AddJobPositionFailure) {
           setupErrorState(context, state.error.toString());
         }
