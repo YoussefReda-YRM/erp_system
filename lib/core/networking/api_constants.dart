@@ -54,6 +54,7 @@ class ApiConstants {
 
   //vacations
   static const String getAllVacations = "/Vacation";
+  static const String applyVacation = "/Vacation";
 }
 
 class ApiErrors {

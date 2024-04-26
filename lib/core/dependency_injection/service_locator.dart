@@ -26,6 +26,8 @@ import 'package:erp_system/features/hr/department/update_department/data/repos/u
 import 'package:erp_system/features/hr/department/update_department/logic/update_department_cubit.dart';
 import 'package:erp_system/features/hr/employee/update_employee/data/repos/update_employee_repo.dart';
 import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
+import 'package:erp_system/features/hr/vacations/add_vacations/data/repos/apply_vacation_repo.dart';
+import 'package:erp_system/features/hr/vacations/add_vacations/logic/apply_vacation_cubit.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/data/repos/get_all_vacation_repo.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/logic/get_all_vacations_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/repos/add_parent_category_repo.dart';
@@ -244,4 +246,8 @@ Future<void> setupServiceLocator() async {
       () => GetAllVacationRepo(getIt()));
   getIt.registerFactory<GetAllVacationsCubit>(
       () => GetAllVacationsCubit(getIt()));
+
+  getIt.registerLazySingleton<ApplyVacationRepo>(
+      () => ApplyVacationRepo(getIt()));
+  getIt.registerFactory<ApplyVacationCubit>(() => ApplyVacationCubit(getIt()));
 }

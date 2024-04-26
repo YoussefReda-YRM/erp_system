@@ -22,8 +22,12 @@ import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_
 import 'package:erp_system/features/hr/employee/get_all_employees/ui/get_all_employee_view.dart';
 import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/update_employee/ui/update_employee.dart';
+import 'package:erp_system/features/hr/vacations/add_vacations/logic/apply_vacation_cubit.dart';
+import 'package:erp_system/features/hr/vacations/add_vacations/ui/apply_vacation_view.dart';
+import 'package:erp_system/features/hr/vacations/get_all_vacations/data/models/get_all_vacation_model.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/logic/get_all_vacations_cubit.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/ui/get_all_vacations_view.dart';
+import 'package:erp_system/features/hr/vacations/vacation_details/ui/vacation_details_view.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_parent_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_sub_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/ui/add_parent_category_view.dart';
@@ -123,6 +127,8 @@ abstract class AppRouter {
 
   //vacations
   static const kGetAllVacationsView = '/getAllVacationsView';
+  static const kApplyVacationView = '/applyVacationView';
+  static const kDetailsVacationView = '/detailsVacationView';
 
   static final router = GoRouter(
     routes: [
@@ -446,6 +452,25 @@ abstract class AppRouter {
             create: (context) =>
                 getIt.get<GetAllVacationsCubit>()..getAllVacations(),
             child: const GetAllVacationsView(),
+          );
+        },
+      ),
+
+      GoRoute(
+        path: kApplyVacationView,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => getIt.get<ApplyVacationCubit>(),
+            child: const ApplyVacationView(),
+          );
+        },
+      ),
+
+      GoRoute(
+        path: kDetailsVacationView,
+        builder: (context, state) {
+          return VacationDetailsView(
+            vacationModel: state.extra as GetAllVacationModel,
           );
         },
       ),

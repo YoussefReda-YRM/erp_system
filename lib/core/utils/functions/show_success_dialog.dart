@@ -2,7 +2,7 @@ import 'package:erp_system/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-void showSuccessDialog(BuildContext context, String title, String content) {
+void showSuccessDialog(BuildContext context, String title, String content, Function functionNavigate) {
   GoRouter.of(context).pop();
 
   showDialog(
@@ -12,7 +12,8 @@ void showSuccessDialog(BuildContext context, String title, String content) {
         title: Center(
           child: Text(
             title,
-            style: Styles.font15DarkBlueMedium(context).copyWith(color: Colors.pink),
+            style: Styles.font15DarkBlueMedium(context)
+                .copyWith(color: Colors.pink),
           ),
         ),
         content: Text(
@@ -23,6 +24,7 @@ void showSuccessDialog(BuildContext context, String title, String content) {
           TextButton(
             onPressed: () {
               GoRouter.of(context).pop();
+              functionNavigate();
             },
             child: Text(
               "OK",
