@@ -3,7 +3,7 @@ import 'package:erp_system/core/networking/api_error_handler.dart';
 import 'package:erp_system/core/networking/api_result.dart';
 import 'package:erp_system/core/networking/api_service.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
-import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/get_all_department_response.dart';
 
 class GetAllDepartmentRepo {
   final ApiService _apiService;

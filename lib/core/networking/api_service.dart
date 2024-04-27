@@ -5,7 +5,7 @@ import 'package:erp_system/features/auth/login/data/models/login_request_body.da
 import 'package:erp_system/features/hr/attendance/data/models/attendance_response.dart';
 import 'package:erp_system/features/hr/department/add_department/data/models/AddDepartmentRequest.dart';
 import 'package:erp_system/features/hr/department/add_department/data/models/AddDepartmentResponse.dart';
-import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/get_all_department_response.dart';
 import 'package:erp_system/features/hr/department/update_department/data/models/UpdateDepartmentRequest.dart';
 import 'package:erp_system/features/hr/department/update_department/data/models/UpdateDepartmentResponse.dart';
 import 'package:erp_system/features/hr/employee/add_employee/data/models/add_employee_body.dart';

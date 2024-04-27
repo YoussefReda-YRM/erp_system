@@ -2,7 +2,6 @@ import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/functions/setup_error_state.dart';
 import 'package:erp_system/features/hr/department/delete_department/logic/delete_department_cubit.dart';
-import 'package:erp_system/features/inventory/category/get_all_category/logic/get_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/logic/get_category_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

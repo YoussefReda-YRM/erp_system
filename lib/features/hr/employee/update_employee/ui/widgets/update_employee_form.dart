@@ -4,7 +4,7 @@ import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_form_field.dart';
 import 'package:erp_system/core/widgets/custom_intl_phone_field.dart';
-import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/get_all_department_response.dart';
 import 'package:erp_system/features/hr/employee/details_employee/data/models/details_employee_model.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/data/models/employee_response.dart';
 import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';

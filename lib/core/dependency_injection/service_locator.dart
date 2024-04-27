@@ -8,7 +8,7 @@ import 'package:erp_system/features/hr/attendance/data/repos/attendance_repo.dar
 import 'package:erp_system/features/hr/attendance/logic/get_all_attendance_cubit.dart';
 import 'package:erp_system/features/hr/department/delete_department/data/repos/delete_department_repo.dart';
 import 'package:erp_system/features/hr/department/delete_department/logic/delete_department_cubit.dart';
-import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/get_all_department_response.dart';
 import 'package:erp_system/features/hr/employee/add_employee/data/models/get_all_roles_model.dart';
 import 'package:erp_system/features/hr/employee/add_employee/data/repos/Add_employee_repo.dart';
 import 'package:erp_system/features/hr/employee/add_employee/data/repos/get_all_roles_repo.dart';

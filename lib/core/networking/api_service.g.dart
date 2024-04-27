@@ -792,8 +792,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<List<dynamic>>(_setStreamType<List<GetAllDepartmentResponse>>(Options(
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<GetAllDepartmentResponse>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -810,7 +810,8 @@ class _ApiService implements ApiService {
               baseUrl,
             ))));
     var value = _result.data!
-        .map((dynamic i) => GetAllDepartmentResponse.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) =>
+            GetAllDepartmentResponse.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }

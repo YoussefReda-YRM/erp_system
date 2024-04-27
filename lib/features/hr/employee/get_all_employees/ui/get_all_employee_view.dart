@@ -23,7 +23,6 @@ class _GetAllEmployeeViewState extends State<GetAllEmployeeView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     context.read<GetAllDepartmentCubit>().getAllDepartment();
     context.read<GetAllRolesCubit>().getAllRoles();

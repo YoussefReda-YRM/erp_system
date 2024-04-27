@@ -5,7 +5,7 @@ import 'package:erp_system/features/auth/create_new_password/ui/create_new_passw
 import 'package:erp_system/features/hr/attendance/logic/get_all_attendance_cubit.dart';
 import 'package:erp_system/features/hr/attendance/ui/attendance_view.dart';
 import 'package:erp_system/features/hr/department/add_department/ui/add_department_view.dart';
-import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/get_all_department_response.dart';
 import 'package:erp_system/features/hr/department/get_all_department/logic/get_all_department_cubit.dart';
 import 'package:erp_system/features/hr/department/get_all_department/ui/get_all_department_view.dart';
 import 'package:erp_system/features/hr/department/get_all_department/ui/widgets/department_details.dart';

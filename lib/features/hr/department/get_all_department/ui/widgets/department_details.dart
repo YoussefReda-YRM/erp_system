@@ -8,7 +8,7 @@ import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/core/widgets/custom_back_button.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
 import 'package:erp_system/features/hr/department/delete_department/logic/delete_department_cubit.dart';
-import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/get_all_department_response.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -79,8 +79,7 @@ class DepartmentDetails extends StatelessWidget {
                                               AlignmentDirectional.centerStart,
                                           child: Text(
                                             departmentData.departmentName
-                                                    .toString() ??
-                                                "none",
+                                                .toString(),
                                             style: Styles.font13BlueSemiBold(
                                                     context)
                                                 .copyWith(color: Colors.pink),
@@ -112,8 +111,7 @@ class DepartmentDetails extends StatelessWidget {
                                               AlignmentDirectional.centerStart,
                                           child: Text(
                                             departmentData.description
-                                                    .toString() ??
-                                                "none",
+                                                .toString(),
                                             style: Styles.font13BlueSemiBold(
                                                     context)
                                                 .copyWith(color: Colors.pink),
@@ -130,7 +128,7 @@ class DepartmentDetails extends StatelessWidget {
                                       FittedBox(
                                         fit: BoxFit.scaleDown,
                                         alignment:
-                                        AlignmentDirectional.centerStart,
+                                            AlignmentDirectional.centerStart,
                                         child: Text(
                                           "Department Job Position: ",
                                           style: Styles.font13BlueSemiBold(
@@ -142,13 +140,12 @@ class DepartmentDetails extends StatelessWidget {
                                         child: FittedBox(
                                           fit: BoxFit.scaleDown,
                                           alignment:
-                                          AlignmentDirectional.centerStart,
+                                              AlignmentDirectional.centerStart,
                                           child: Text(
                                             departmentData.jobPositions
-                                                .toString() ??
-                                                "none",
+                                                .toString(),
                                             style: Styles.font13BlueSemiBold(
-                                                context)
+                                                    context)
                                                 .copyWith(color: Colors.pink),
                                           ),
                                         ),
@@ -174,7 +171,7 @@ class DepartmentDetails extends StatelessWidget {
                                           ),
                                         ],
                                       ),*/
-                                /* ListView.builder(
+                                  /* ListView.builder(
                                   itemCount:departmentData.jobPositions!.length ?? 0,
                                        itemBuilder: (context, index) {
                                          return ListTile(
@@ -192,42 +189,47 @@ class DepartmentDetails extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Expanded(child: AppTextButton(
-                          buttonText: "Edit",
-                          width: MediaQuery.of(context).size.width / 2.5,
-                          backgroundColor: Colors.green,
-                          textStyle: Styles.font13BlueSemiBold(context),
-                          onPressed: () {
-                            GoRouter.of(context).push(
-                              AppRouter.kUpdateDepartment,
-                              extra: departmentData,
-                            );
-                          },
-                        ), ),
-                        Expanded(child:AppTextButton(
-                          buttonText: "Delete",
-                          width: MediaQuery.of(context).size.width / 2.5,
-                          backgroundColor: Colors.red,
-                          textStyle: Styles.font13BlueSemiBold(context),
-                          onPressed: () {
-                            deleteShowDialog(
-                              context,
-                              'Are you sure you want to delete this Department?',
-                                  () {
-                                getIt
-                                    .get<DeleteDepartmentCubit>()
-                                    .deleteDepartment(departmentData.id);
-                                GoRouter.of(context).pop();
-                                Future.delayed(
-                                    const Duration(milliseconds: 200), () {
-                                  GoRouter.of(context).pushReplacement(
-                                      AppRouter.kAllDepartmentsView);
-                                });
-                              },
-                            );
-                          },
-                        ), ),
-                        Expanded(child: AppTextButton(
+                        Expanded(
+                          child: AppTextButton(
+                            buttonText: "Edit",
+                            width: MediaQuery.of(context).size.width / 2.5,
+                            backgroundColor: Colors.green,
+                            textStyle: Styles.font13BlueSemiBold(context),
+                            onPressed: () {
+                              GoRouter.of(context).push(
+                                AppRouter.kUpdateDepartment,
+                                extra: departmentData,
+                              );
+                            },
+                          ),
+                        ),
+                        Expanded(
+                          child: AppTextButton(
+                            buttonText: "Delete",
+                            width: MediaQuery.of(context).size.width / 2.5,
+                            backgroundColor: Colors.red,
+                            textStyle: Styles.font13BlueSemiBold(context),
+                            onPressed: () {
+                              deleteShowDialog(
+                                context,
+                                'Are you sure you want to delete this Department?',
+                                () {
+                                  getIt
+                                      .get<DeleteDepartmentCubit>()
+                                      .deleteDepartment(departmentData.id);
+                                  GoRouter.of(context).pop();
+                                  Future.delayed(
+                                      const Duration(milliseconds: 200), () {
+                                    GoRouter.of(context).pushReplacement(
+                                        AppRouter.kAllDepartmentsView);
+                                  });
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                        Expanded(
+                          child: AppTextButton(
                             buttonText: "Job Position",
                             width: MediaQuery.of(context).size.width / 2.5,
                             backgroundColor: ColorsApp.primaryColor,
@@ -240,7 +242,6 @@ class DepartmentDetails extends StatelessWidget {
                             },
                           ),
                         ),
-
                       ],
                     )
                   ],
