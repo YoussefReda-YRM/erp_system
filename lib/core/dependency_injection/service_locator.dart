@@ -100,7 +100,6 @@ String quantityControllerInGetIt = '';
 String referenceControllerInGetIt = '';
 String departmentNameControllerInGetIt = '';
 String departmentDescriptionInGetIt = '';
-String jobPositionNameInGetIt='';
 
 List<GetAllDepartmentResponse> getAllDepartmentGetIt = [];
 List<GetAllRolesResponse> getAllRolesGetIt = [];

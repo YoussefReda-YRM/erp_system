@@ -10,10 +10,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UpdateJobPositionViewBody extends StatelessWidget {
-  const UpdateJobPositionViewBody({super.key,required this.depId,required this.jobId/*,required this.jobName*/});
- final int jobId;
- // final String jobName;
- final int depId;
+  const UpdateJobPositionViewBody({
+    super.key,
+    required this.depId,
+    required this.jobId,
+    required this.jobName,
+  });
+  final int jobId;
+  final int depId;
+  final String jobName;
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +53,11 @@ class UpdateJobPositionViewBody extends StatelessWidget {
                   const SizedBox(
                     height: 50,
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(20),
-                    child: UpdateJobPositionForm(),
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: UpdateJobPositionForm(
+                      jobName: jobName,
+                    ),
                   ),
                   const Spacer(),
                   Padding(
@@ -60,8 +67,7 @@ class UpdateJobPositionViewBody extends StatelessWidget {
                       textStyle: Styles.font16LightGreyMedium(context),
                       backgroundColor: ColorsApp.primaryColor,
                       onPressed: () {
-                        validateThenDoUpdateSubCategory(
-                            context, jobId, depId);
+                        validateThenDoUpdateJobPosition(context, jobId, depId);
                       },
                     ),
                   ),
@@ -79,7 +85,7 @@ class UpdateJobPositionViewBody extends StatelessWidget {
   }
 }
 
-void validateThenDoUpdateSubCategory(
+void validateThenDoUpdateJobPosition(
     BuildContext context, int jobId, int depId) {
   if (context.read<UpdateJObPositionCubit>().formKey.currentState!.validate()) {
     context.read<UpdateJObPositionCubit>().updateJobPosition(jobId, depId);

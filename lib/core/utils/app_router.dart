@@ -496,11 +496,9 @@ abstract class AppRouter {
       GoRoute(
         path: kGetAllJobPositionsView,
         builder: (context, state) => BlocProvider(
-          create: (context) =>
-          getIt.get<GetAllJobPositionCubit>()..getAllJobPositions(state.extra as int),
-          child: GetAllJobPosition(
-            depId: state.extra as int
-          ),
+          create: (context) => getIt.get<GetAllJobPositionCubit>()
+            ..getAllJobPositions(state.extra as int),
+          child: GetAllJobPosition(depId: state.extra as int),
         ),
       ),
 
@@ -518,9 +516,9 @@ abstract class AppRouter {
           return BlocProvider(
             create: (context) => getIt.get<UpdateJObPositionCubit>(),
             child: UpdateJobPositionView(
-                jobId: myData['id'],
-                depId: myData['depId']
-
+              jobId: myData['jobId'],
+              depId: myData['depId'],
+              jobName: myData['jobName'],
             ),
           );
         },
@@ -532,13 +530,11 @@ abstract class AppRouter {
         builder: (context, state) {
           return BlocProvider(
             create: (context) =>
-            getIt.get<GetAllPermissionCubit>()..getAllPermissions(),
+                getIt.get<GetAllPermissionCubit>()..getAllPermissions(),
             child: const GetAllPermissionView(),
           );
         },
       ),
-
-
     ],
   );
 }

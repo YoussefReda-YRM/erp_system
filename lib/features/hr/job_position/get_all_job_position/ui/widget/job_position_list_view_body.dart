@@ -9,95 +9,81 @@ import 'package:erp_system/features/inventory/category/get_all_category/logic/ge
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class JobPositionListViewBody extends StatelessWidget{
-  const JobPositionListViewBody({super.key,required this.response,required this.depId});
+class JobPositionListViewBody extends StatelessWidget {
+  const JobPositionListViewBody(
+      {super.key, required this.response, required this.depId});
   final int depId;
   final List<GetAllJobPositionResponse> response;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-
+      itemCount: response.length,
       itemBuilder: (context, index) {
-        return InkWell(
-          onTap: () {
-            GoRouter.of(context).push(
-              AppRouter.kDepartmentDetails,
-              extra: response[index],
-            );
-          },
-          child: Card(
-            shape: RoundedRectangleBorder(
-              side: const BorderSide(color: ColorsApp.primaryColor, width: 1.0),
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 2),
-              child: ListTile(
-                title: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Text(
-                    response[index].jobName.toString(),
+        return Card(
+          shape: RoundedRectangleBorder(
+            side: const BorderSide(color: ColorsApp.primaryColor, width: 1.0),
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 2),
+            child: ListTile(
+              title: FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: AlignmentDirectional.centerStart,
+                child: Text(
+                  response[index].jobName.toString(),
 
-                    // response.data![index].departmentName??"non",
-                    //response.childDepartment![index].departmentName.toString(),
-                    style: Styles.font18DarkBlueBold(context),
-                  ),
-
+                  // response.data![index].departmentName??"non",
+                  //response.childDepartment![index].departmentName.toString(),
+                  style: Styles.font18DarkBlueBold(context),
                 ),
-               trailing:Row(
-                 mainAxisSize: MainAxisSize.min, // Ensures the row only takes up needed space
-                 children: [
-                             IconButton(
-                             onPressed: () {
-               jobPositionNameInGetIt =
-                           response[index].jobName!;
-                           GoRouter.of(context).push(
-                           AppRouter.kUpdatePositionsView,
-                           extra: {
-                           "jobPositionId": response[index].id,
-                           //"jobName": response[index].jobName,
-                             "depId":depId,
+              ),
+              trailing: Row(
+                mainAxisSize: MainAxisSize
+                    .min, // Ensures the row only takes up needed space
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      GoRouter.of(context).push(
+                        AppRouter.kUpdatePositionsView,
+                        extra: {
+                          "jobId": response[index].id,
+                          "depId": depId,
+                          "jobName": response[index].jobName,
+                        },
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.edit,
+                      color: ColorsApp.primaryColor,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () async {
+                      await deleteShowDialog(
+                        context,
+                        'Are you sure you want to delete this Job Position?',
+                        () {
+                          getIt.get<CategoryCubit>().deleteSubcategory(
+                              getIt.get<LoginResponse>().token!, 1
+                              //subCategory.subCategoryId!,
+                              );
+                          GoRouter.of(context).pop();
 
-
-                           //"subName": subCategory.subCategoryName
-                           },
-                           );
-                           },
-                             icon: const Icon(
-               Icons.edit,
-               color: ColorsApp.primaryColor,
-                             ),
-                           ),
-                           IconButton(
-                             onPressed: () async {
-               await deleteShowDialog(
-                 context,
-                 'Are you sure you want to delete this Job Position?',
-                     () {
-                   getIt.get<CategoryCubit>().deleteSubcategory(
-                     getIt.get<LoginResponse>().token!,1
-                     //subCategory.subCategoryId!,
-                   );
-                   GoRouter.of(context).pop();
-
-                   Future.delayed(const Duration(milliseconds: 200),
-                           () {
-                         GoRouter.of(context)
-                             .pushReplacement(AppRouter.kCategoryView);
-                       });
-                 },
-               );
-                             },
-                             icon: const Icon(
-               Icons.delete,
-               color: Colors.red,
-                             ),
-                           ),
-                           ],
-                         ),
-
+                          Future.delayed(const Duration(milliseconds: 200), () {
+                            GoRouter.of(context)
+                                .pushReplacement(AppRouter.kCategoryView);
+                          });
+                        },
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.delete,
+                      color: Colors.red,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

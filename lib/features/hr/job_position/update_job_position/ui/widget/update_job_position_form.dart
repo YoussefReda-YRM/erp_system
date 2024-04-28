@@ -5,17 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UpdateJobPositionForm extends StatelessWidget {
-  const UpdateJobPositionForm({super.key});
+  const UpdateJobPositionForm({super.key, required this.jobName});
+
+  final String jobName;
 
   @override
   Widget build(BuildContext context) {
+    context.read<UpdateJObPositionCubit>().jobPositionNameController.text =
+        jobName.toString();
     return Form(
       key: context.read<UpdateJObPositionCubit>().formKey,
       child: Column(
         children: [
           AppTextFormField(
             controller: context
-                .read<UpdateJObPositionCubit>().jobPositionNameController,
+                .read<UpdateJObPositionCubit>()
+                .jobPositionNameController,
             hintText: "Job Position Name",
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(
