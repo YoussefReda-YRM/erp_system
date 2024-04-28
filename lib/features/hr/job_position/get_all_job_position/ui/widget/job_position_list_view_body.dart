@@ -1,18 +1,23 @@
+import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
+import 'package:erp_system/core/utils/functions/delete_show_dialog.dart';
 import 'package:erp_system/core/utils/styles.dart';
+import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/hr/job_position/get_all_job_position/data/models/GetAllJobPositionResponse.dart';
+import 'package:erp_system/features/inventory/category/get_all_category/logic/get_category_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class JobPositionListViewBody extends StatelessWidget{
-  const JobPositionListViewBody({super.key,required this.response});
+  const JobPositionListViewBody({super.key,required this.response,required this.depId});
+  final int depId;
   final List<GetAllJobPositionResponse> response;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: response.length,
+
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
@@ -29,13 +34,6 @@ class JobPositionListViewBody extends StatelessWidget{
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 2),
               child: ListTile(
-                leading: CircleAvatar(
-                  radius: 24,
-                  child: Text(
-                    //response.data![index].id.toString() ?? "0"
-                    response[index].id.toString(),
-                  ),
-                ),
                 title: FittedBox(
                   fit: BoxFit.scaleDown,
                   alignment: AlignmentDirectional.centerStart,
@@ -46,11 +44,60 @@ class JobPositionListViewBody extends StatelessWidget{
                     //response.childDepartment![index].departmentName.toString(),
                     style: Styles.font18DarkBlueBold(context),
                   ),
+
                 ),
-               // trailing:
-                /* DepartmentPopupMenuButton(
-                    departmentData: response[index]
-                ),*/
+               trailing:Row(
+                 mainAxisSize: MainAxisSize.min, // Ensures the row only takes up needed space
+                 children: [
+                             IconButton(
+                             onPressed: () {
+               jobPositionNameInGetIt =
+                           response[index].jobName!;
+                           GoRouter.of(context).push(
+                           AppRouter.kUpdatePositionsView,
+                           extra: {
+                           "jobPositionId": response[index].id,
+                           //"jobName": response[index].jobName,
+                             "depId":depId,
+
+
+                           //"subName": subCategory.subCategoryName
+                           },
+                           );
+                           },
+                             icon: const Icon(
+               Icons.edit,
+               color: ColorsApp.primaryColor,
+                             ),
+                           ),
+                           IconButton(
+                             onPressed: () async {
+               await deleteShowDialog(
+                 context,
+                 'Are you sure you want to delete this Job Position?',
+                     () {
+                   getIt.get<CategoryCubit>().deleteSubcategory(
+                     getIt.get<LoginResponse>().token!,1
+                     //subCategory.subCategoryId!,
+                   );
+                   GoRouter.of(context).pop();
+
+                   Future.delayed(const Duration(milliseconds: 200),
+                           () {
+                         GoRouter.of(context)
+                             .pushReplacement(AppRouter.kCategoryView);
+                       });
+                 },
+               );
+                             },
+                             icon: const Icon(
+               Icons.delete,
+               color: Colors.red,
+                             ),
+                           ),
+                           ],
+                         ),
+
               ),
             ),
           ),

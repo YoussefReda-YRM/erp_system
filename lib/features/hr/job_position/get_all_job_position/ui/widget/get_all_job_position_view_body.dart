@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class GetAllJobPositionViewBody extends StatelessWidget {
-  const GetAllJobPositionViewBody({super.key, required this.scaffoldKey});
+  const GetAllJobPositionViewBody({super.key, required this.scaffoldKey,required this.depId});
   final GlobalKey<ScaffoldState> scaffoldKey;
+  final int depId;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class GetAllJobPositionViewBody extends StatelessWidget {
             },
           ),
         ),
-        const Expanded(child: GetAllJobPositionBloc()),
+        Expanded(child: GetAllJobPositionBloc(depId: depId,)),
       ],
     );
   }

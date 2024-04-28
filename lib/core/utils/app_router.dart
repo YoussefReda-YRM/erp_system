@@ -22,6 +22,8 @@ import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_
 import 'package:erp_system/features/hr/employee/get_all_employees/ui/get_all_employee_view.dart';
 import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/update_employee/ui/update_employee.dart';
+import 'package:erp_system/features/hr/job_position/update_job_position/logic/update_job_position_cubit.dart';
+import 'package:erp_system/features/hr/job_position/update_job_position/ui/update_job_position_view.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/logic/apply_vacation_cubit.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/ui/apply_vacation_view.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/data/models/get_all_vacation_model.dart';
@@ -139,6 +141,7 @@ abstract class AppRouter {
   //job position
   static const kGetAllJobPositionsView = '/getAllJobPositionView';
   static const kAddJobPositionsView = '/AddJobPositionsView';
+  static const kUpdatePositionsView = '/UpdateJobPositionsView';
 
   //permission
   static const kGetAllPermissionView = '/getAllPermissionView';
@@ -507,6 +510,20 @@ abstract class AppRouter {
           create: (context) => getIt.get<AddJobPositionCubit>(),
           child: AddJobPositionView(depId: state.extra as int),
         ),
+      ),
+      GoRoute(
+        path: kUpdatePositionsView,
+        builder: (context, state) {
+          Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
+          return BlocProvider(
+            create: (context) => getIt.get<UpdateJObPositionCubit>(),
+            child: UpdateJobPositionView(
+                jobId: myData['id'],
+                depId: myData['depId']
+
+            ),
+          );
+        },
       ),
       //permission
 

@@ -3,22 +3,24 @@ import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:erp_system/core/widgets/custom_back_button.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
-import 'package:erp_system/features/hr/job_position/add_job_position/logic/add_job_position_cubit.dart';
-import 'package:erp_system/features/hr/job_position/add_job_position/ui/widget/add_job_position_bloc.dart';
-import 'package:erp_system/features/hr/job_position/add_job_position/ui/widget/add_job_position_form.dart';
+import 'package:erp_system/features/hr/job_position/update_job_position/logic/update_job_position_cubit.dart';
+import 'package:erp_system/features/hr/job_position/update_job_position/ui/widget/update_job_position_bloc.dart';
+import 'package:erp_system/features/hr/job_position/update_job_position/ui/widget/update_job_position_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AddJobPositionBody extends StatelessWidget {
-  const AddJobPositionBody({super.key, required this.depId});
-  final int depId;
+class UpdateJobPositionViewBody extends StatelessWidget {
+  const UpdateJobPositionViewBody({super.key,required this.depId,required this.jobId/*,required this.jobName*/});
+ final int jobId;
+ // final String jobName;
+ final int depId;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CustomAppBarApp(
-          title: 'Add New Job Position',
+          title: 'Edit Job Position',
           iconLeading: const CustomBackButton(),
           iconTrailing: IconButton(
             onPressed: () {},
@@ -48,26 +50,25 @@ class AddJobPositionBody extends StatelessWidget {
                   ),
                   const Padding(
                     padding: EdgeInsets.all(20),
-                    child: AddJobPositionForm(),
+                    child: UpdateJobPositionForm(),
                   ),
                   const Spacer(),
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: AppTextButton(
-                      buttonText: 'Create',
+                      buttonText: 'Edit',
                       textStyle: Styles.font16LightGreyMedium(context),
                       backgroundColor: ColorsApp.primaryColor,
                       onPressed: () {
-                        validateThenDoAddJobPosition(context, depId);
+                        validateThenDoUpdateSubCategory(
+                            context, jobId, depId);
                       },
                     ),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  AddJobPositionBloc(
-                    depId: depId,
-                  ),
+                  const UpdateJobPositionBloc(),
                 ],
               ),
             ),
@@ -78,8 +79,9 @@ class AddJobPositionBody extends StatelessWidget {
   }
 }
 
-void validateThenDoAddJobPosition(BuildContext context, int depId) {
-  if (context.read<AddJobPositionCubit>().formKey.currentState!.validate()) {
-    context.read<AddJobPositionCubit>().addJobPosition(depId);
+void validateThenDoUpdateSubCategory(
+    BuildContext context, int jobId, int depId) {
+  if (context.read<UpdateJObPositionCubit>().formKey.currentState!.validate()) {
+    context.read<UpdateJObPositionCubit>().updateJobPosition(jobId, depId);
   }
 }

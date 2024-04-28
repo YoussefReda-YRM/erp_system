@@ -22,6 +22,7 @@ class _GetAllJobPositionState extends State<GetAllJobPosition> {
       key: scaffoldKey,
       backgroundColor: Colors.white,
       body: GetAllJobPositionViewBody(
+        depId: widget.depId,
         scaffoldKey: scaffoldKey,
       ),
       floatingActionButton: CustomFloatingActionButton(

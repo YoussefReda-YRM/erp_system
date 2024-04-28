@@ -31,6 +31,8 @@ import 'package:erp_system/features/hr/job_position/add_job_position/logic/add_j
 import 'package:erp_system/features/hr/job_position/get_all_job_position/data/models/GetAllJobPositionResponse.dart';
 import 'package:erp_system/features/hr/job_position/get_all_job_position/data/repos/get_all_job_position_repo.dart';
 import 'package:erp_system/features/hr/job_position/get_all_job_position/logic/get_all_job_position_cubit.dart';
+import 'package:erp_system/features/hr/job_position/update_job_position/data/repos/update_job_position_repo.dart';
+import 'package:erp_system/features/hr/job_position/update_job_position/logic/update_job_position_cubit.dart';
 import 'package:erp_system/features/hr/permissions/get_all_permissions/data/repos/get_all_permission_repo.dart';
 import 'package:erp_system/features/hr/permissions/get_all_permissions/logic/get_all_permission_cubit.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/data/repos/apply_vacation_repo.dart';
@@ -98,6 +100,7 @@ String quantityControllerInGetIt = '';
 String referenceControllerInGetIt = '';
 String departmentNameControllerInGetIt = '';
 String departmentDescriptionInGetIt = '';
+String jobPositionNameInGetIt='';
 
 List<GetAllDepartmentResponse> getAllDepartmentGetIt = [];
 List<GetAllRolesResponse> getAllRolesGetIt = [];
@@ -269,6 +272,11 @@ Future<void> setupServiceLocator() async {
           () => AddJobPositionRepo(getIt()));
   getIt.registerFactory<AddJobPositionCubit>(
           () => AddJobPositionCubit(getIt()));
+
+  getIt.registerLazySingleton<UpdateJobPositionRepo>(
+          () => UpdateJobPositionRepo(getIt()));
+  getIt.registerFactory<UpdateJObPositionCubit>(
+          () => UpdateJObPositionCubit(getIt()));
 
   //permissions
   getIt.registerLazySingleton<GetAllPermissionRepo>(

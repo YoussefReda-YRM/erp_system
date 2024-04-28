@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GetAllJobPositionBloc extends StatelessWidget{
-  const GetAllJobPositionBloc({super.key});
+  const GetAllJobPositionBloc({super.key,required this.depId});
+  final int depId;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,7 @@ class GetAllJobPositionBloc extends StatelessWidget{
               padding: const EdgeInsets.only(top: 20),
               child: SizedBox(
                 child: JobPositionListViewBody(
+                  depId: depId,
                   response: state.response,
                   //  context,
                 ),
