@@ -1,4 +1,4 @@
-import 'package:erp_system/features/hr/job_position/update_job_position/data/UpdateJobResponse.dart';
+import 'package:erp_system/features/hr/job_position/update_job_position/data/update_job_response.dart';
 
 abstract class UpdateJobPositionState {}
 

@@ -74,7 +74,9 @@ class UpdateJobPositionViewBody extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  const UpdateJobPositionBloc(),
+                  UpdateJobPositionBloc(
+                    depId: depId,
+                  ),
                 ],
               ),
             ),

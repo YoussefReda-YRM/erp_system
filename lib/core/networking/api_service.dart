@@ -21,7 +21,7 @@ import 'package:erp_system/features/hr/job_position/add_job_position/data/model/
 import 'package:erp_system/features/hr/job_position/delete_job_position/data/models/DeleteJobPositionResponse.dart';
 import 'package:erp_system/features/hr/job_position/get_all_job_position/data/models/GetAllJobPositionResponse.dart';
 import 'package:erp_system/features/hr/job_position/update_job_position/data/UpdateJobRequest.dart';
-import 'package:erp_system/features/hr/job_position/update_job_position/data/UpdateJobResponse.dart';
+import 'package:erp_system/features/hr/job_position/update_job_position/data/update_job_response.dart';
 import 'package:erp_system/features/hr/permissions/get_all_permissions/data/models/GetAllPermissionResponse.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/data/models/get_all_vacation_model.dart';
 import 'package:erp_system/features/inventory/category/delete_category/data/models/response_delete_category.dart';
