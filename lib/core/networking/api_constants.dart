@@ -63,6 +63,8 @@ class ApiConstants {
 
   //permission
   static const String getAllPermission = "/Permission";
+  static const String getAllPermissionOfSpecificEmployee = "/Permission/GetPermissionsOfEmployee";
+
 
 }
 

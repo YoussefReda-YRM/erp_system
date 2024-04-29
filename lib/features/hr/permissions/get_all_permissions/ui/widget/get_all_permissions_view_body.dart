@@ -4,8 +4,8 @@ import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/features/hr/permissions/get_all_permissions/ui/widget/get_all_permission_list_view.dart';
 import 'package:flutter/material.dart';
 
-class GetAllVacationViewBody extends StatelessWidget {
-  const GetAllVacationViewBody({super.key,required this.scaffoldKey});
+class GetAllPermissionViewBody extends StatelessWidget {
+  const GetAllPermissionViewBody({super.key,required this.scaffoldKey});
   final GlobalKey<ScaffoldState> scaffoldKey;
 
 

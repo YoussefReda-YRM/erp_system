@@ -24,6 +24,8 @@ import 'package:erp_system/features/hr/employee/update_employee/logic/update_emp
 import 'package:erp_system/features/hr/employee/update_employee/ui/update_employee.dart';
 import 'package:erp_system/features/hr/job_position/update_job_position/logic/update_job_position_cubit.dart';
 import 'package:erp_system/features/hr/job_position/update_job_position/ui/update_job_position_view.dart';
+import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/logic/get_permission_of_specific_employee_cubit.dart';
+import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/ui/get_permission_of_specific_employee_view.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/logic/apply_vacation_cubit.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/ui/apply_vacation_view.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/data/models/get_all_vacation_model.dart';
@@ -145,6 +147,8 @@ abstract class AppRouter {
 
   //permission
   static const kGetAllPermissionView = '/getAllPermissionView';
+  static const kGetPermissionOfSpecificEmployeeView = '/getPermissionOfSpecificEmployeeView';
+
 
   static final router = GoRouter(
     routes: [
@@ -524,7 +528,6 @@ abstract class AppRouter {
         },
       ),
       //permission
-
       GoRoute(
         path: kGetAllPermissionView,
         builder: (context, state) {
@@ -535,6 +538,18 @@ abstract class AppRouter {
           );
         },
       ),
+
+      GoRoute(
+        path:kGetPermissionOfSpecificEmployeeView,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) =>
+            getIt.get<GetPermissionOfSpecificEmployeeCubit>()..getPermissionsOfSpecificEmployee(),
+            child: const GetPermissionOfSpecificEmployeeView(),
+          );
+        },
+      ),
+
     ],
   );
 }

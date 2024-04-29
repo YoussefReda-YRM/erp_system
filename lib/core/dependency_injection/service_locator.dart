@@ -35,6 +35,8 @@ import 'package:erp_system/features/hr/job_position/get_all_job_position/data/re
 import 'package:erp_system/features/hr/job_position/get_all_job_position/logic/get_all_job_position_cubit.dart';
 import 'package:erp_system/features/hr/job_position/update_job_position/data/repos/update_job_position_repo.dart';
 import 'package:erp_system/features/hr/job_position/update_job_position/logic/update_job_position_cubit.dart';
+import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/data/repos/get_permission_of_specific_employee_repo.dart';
+import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/logic/get_permission_of_specific_employee_cubit.dart';
 import 'package:erp_system/features/hr/permissions/get_all_permissions/data/repos/get_all_permission_repo.dart';
 import 'package:erp_system/features/hr/permissions/get_all_permissions/logic/get_all_permission_cubit.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/data/repos/apply_vacation_repo.dart';
@@ -289,6 +291,11 @@ Future<void> setupServiceLocator() async {
           () => GetAllPermissionRepo(getIt()));
   getIt.registerFactory<GetAllPermissionCubit>(
           () => GetAllPermissionCubit(getIt()));
+
+  getIt.registerLazySingleton<GetPermissionOfSpecificEmployeeRepo>(
+          () => GetPermissionOfSpecificEmployeeRepo(getIt()));
+  getIt.registerFactory<GetPermissionOfSpecificEmployeeCubit>(
+          () => GetPermissionOfSpecificEmployeeCubit(getIt()));
 
 
 

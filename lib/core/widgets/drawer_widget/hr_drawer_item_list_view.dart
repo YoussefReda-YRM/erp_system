@@ -36,6 +36,10 @@ class _DrawerItemListViewState extends State<HrDrawerItemListView> {
       title: 'Permissions',
       icon: Icons.description_outlined,
     ),
+    DrawerItemModel(
+      title: 'My Permissions',
+      icon: Icons.description_outlined,
+    ),
   ];
 
   @override
@@ -66,6 +70,9 @@ class _DrawerItemListViewState extends State<HrDrawerItemListView> {
                      else if (activeIndex == 4) {
                      GoRouter.of(context).push(AppRouter.kGetAllPermissionView);
                      }
+                    else if (activeIndex == 5) {
+                      GoRouter.of(context).push(AppRouter.kGetPermissionOfSpecificEmployeeView);
+                    }
                   });
                 }
               },
