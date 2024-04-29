@@ -269,7 +269,7 @@ abstract class ApiService {
   @DELETE(ApiConstants.deleteJobPosition)
   Future<DeleteJobPositionResponse> deleteJobPosition(
       @Header("Authorization") String token,
-      @Path("id") int id,
+      @Path("id") String id,
       );
 
   //permission

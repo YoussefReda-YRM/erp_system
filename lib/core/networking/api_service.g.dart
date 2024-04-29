@@ -1105,7 +1105,7 @@ class _ApiService implements ApiService {
   @override
   Future<DeleteJobPositionResponse> deleteJobPosition(
     String token,
-    int id,
+    String id,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

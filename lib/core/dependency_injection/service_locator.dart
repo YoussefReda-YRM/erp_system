@@ -28,6 +28,8 @@ import 'package:erp_system/features/hr/employee/update_employee/data/repos/updat
 import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
 import 'package:erp_system/features/hr/job_position/add_job_position/data/repos/add_job_position_repo.dart';
 import 'package:erp_system/features/hr/job_position/add_job_position/logic/add_job_position_cubit.dart';
+import 'package:erp_system/features/hr/job_position/delete_job_position/data/repos/delete_job_position_repo.dart';
+import 'package:erp_system/features/hr/job_position/delete_job_position/logic/delete_job_position_cubit.dart';
 import 'package:erp_system/features/hr/job_position/get_all_job_position/data/models/GetAllJobPositionResponse.dart';
 import 'package:erp_system/features/hr/job_position/get_all_job_position/data/repos/get_all_job_position_repo.dart';
 import 'package:erp_system/features/hr/job_position/get_all_job_position/logic/get_all_job_position_cubit.dart';
@@ -276,6 +278,11 @@ Future<void> setupServiceLocator() async {
           () => UpdateJobPositionRepo(getIt()));
   getIt.registerFactory<UpdateJObPositionCubit>(
           () => UpdateJObPositionCubit(getIt()));
+
+  getIt.registerLazySingleton<DeleteJobPositionRepo>(
+          () => DeleteJobPositionRepo(getIt()));
+  getIt.registerFactory<DeleteJobPositionCubit>(
+          () => DeleteJobPositionCubit(getIt()));
 
   //permissions
   getIt.registerLazySingleton<GetAllPermissionRepo>(

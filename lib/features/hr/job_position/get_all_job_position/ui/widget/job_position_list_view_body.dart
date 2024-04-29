@@ -4,6 +4,7 @@ import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/functions/delete_show_dialog.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
+import 'package:erp_system/features/hr/job_position/delete_job_position/logic/delete_job_position_cubit.dart';
 import 'package:erp_system/features/hr/job_position/get_all_job_position/data/models/GetAllJobPositionResponse.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/logic/get_category_cubit.dart';
 import 'package:flutter/material.dart';
@@ -65,15 +66,13 @@ class JobPositionListViewBody extends StatelessWidget {
                         context,
                         'Are you sure you want to delete this Job Position?',
                         () {
-                          getIt.get<CategoryCubit>().deleteSubcategory(
-                              getIt.get<LoginResponse>().token!, 1
-                              //subCategory.subCategoryId!,
+                          getIt.get<DeleteJobPositionCubit>().deleteJobPosition(response[index].id.toString(),
                               );
                           GoRouter.of(context).pop();
 
                           Future.delayed(const Duration(milliseconds: 200), () {
                             GoRouter.of(context)
-                                .pushReplacement(AppRouter.kCategoryView);
+                                .pushReplacement(AppRouter.kGetAllJobPositionsView,extra: depId);
                           });
                         },
                       );
