@@ -1,6 +1,9 @@
+import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/functions/delete_show_dialog.dart';
 import 'package:erp_system/core/utils/styles.dart';
+import 'package:erp_system/features/hr/department/delete_department/logic/delete_department_cubit.dart';
 import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/data/models/GetPermissionOfSpecificEmployeeResponse.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -19,11 +22,11 @@ class PermissionPopupMenu extends StatelessWidget{
         Icons.more_vert_outlined,
         color: Colors.pink, // Change the color here
       ),
-      /*onSelected: (value) {
+      onSelected: (value) {
         if (value == 'edit') {
           GoRouter.of(context).push(
-            AppRouter.kUpdateDepartment,
-            extra: permissionDat,
+            AppRouter.kUpdatePermissionView,
+            extra: permissionData,
           );
         } else if (value == 'delete') {
           deleteShowDialog(
@@ -31,7 +34,7 @@ class PermissionPopupMenu extends StatelessWidget{
             'Are you sure you want to delete this Employee?',
                 () {
               getIt.get<DeleteDepartmentCubit>().deleteDepartment(
-                departmentData.id,
+                permissionData.id as int,
               );
               GoRouter.of(context).pop();
               Future.delayed(const Duration(milliseconds: 200), () {
@@ -41,7 +44,7 @@ class PermissionPopupMenu extends StatelessWidget{
             },
           );
         }
-      },*/
+      },
       itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
         PopupMenuItem<String>(
           value: 'edit',

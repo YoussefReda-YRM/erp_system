@@ -41,6 +41,8 @@ import 'package:erp_system/features/hr/permissions/add_permissions/data/repos/ad
 import 'package:erp_system/features/hr/permissions/add_permissions/logic/add_permission_cubit.dart';
 import 'package:erp_system/features/hr/permissions/get_all_permissions/data/repos/get_all_permission_repo.dart';
 import 'package:erp_system/features/hr/permissions/get_all_permissions/logic/get_all_permission_cubit.dart';
+import 'package:erp_system/features/hr/permissions/update_permission/data/repos/update_permission_repo.dart';
+import 'package:erp_system/features/hr/permissions/update_permission/logic/update_permission_cubit.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/data/repos/apply_vacation_repo.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/logic/apply_vacation_cubit.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/data/repos/get_all_vacation_repo.dart';
@@ -106,6 +108,13 @@ String quantityControllerInGetIt = '';
 String referenceControllerInGetIt = '';
 String departmentNameControllerInGetIt = '';
 String departmentDescriptionInGetIt = '';
+
+String startTimeOfPermissionInGetIt = '';
+String endTimeOfPermissionInGetIt = '';
+String dateOfPermissionInGetIt = '';
+String descriptionOfPermissionInGetIt = '';
+
+
 
 List<GetAllDepartmentResponse> getAllDepartmentGetIt = [];
 List<GetAllRolesResponse> getAllRolesGetIt = [];
@@ -303,6 +312,11 @@ Future<void> setupServiceLocator() async {
           () => AddPermissionRepo(getIt()));
   getIt.registerFactory<AddPermissionCubit>(
           () => AddPermissionCubit(getIt()));
+
+  getIt.registerLazySingleton<UpdatePermissionRepo>(
+          () => UpdatePermissionRepo(getIt()));
+  getIt.registerFactory<UpdatePermissionCubit>(
+          () => UpdatePermissionCubit(getIt()));
 
 
 

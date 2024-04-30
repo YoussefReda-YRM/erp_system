@@ -1,4 +1,7 @@
-/*import 'package:erp_system/features/hr/permissions/update_permission/data/repos/update_permission_repo.dart';
+import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/features/auth/login/data/models/login_response.dart';
+import 'package:erp_system/features/hr/permissions/update_permission/data/models/UpdatePermissionRequest.dart';
+import 'package:erp_system/features/hr/permissions/update_permission/data/repos/update_permission_repo.dart';
 import 'package:erp_system/features/hr/permissions/update_permission/logic/update_permission_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,29 +12,32 @@ class UpdatePermissionCubit extends Cubit<UpdatePermissionState> {
   UpdatePermissionCubit(this._updatePermissionRepo)
       : super(UpdatePermissionInitial());
 
-  TextEditingController startTimeController = TextEditingController(text: departmentNameControllerInGetIt.toString());
-  TextEditingController endTimeController = TextEditingController(text: departmentDescriptionInGetIt.toString());
+  TextEditingController startTimeController = TextEditingController(text: startTimeOfPermissionInGetIt.toString());
+  TextEditingController endTimeController = TextEditingController(text: endTimeOfPermissionInGetIt.toString());
+  TextEditingController dateController = TextEditingController(text: dateOfPermissionInGetIt.toString());
+  TextEditingController descriptionController = TextEditingController(text: descriptionOfPermissionInGetIt.toString());
 
   final formKey = GlobalKey<FormState>();
 
-  void updateDepartment(int depId) async {
-    emit(UpdateDepartmentLoading());
-    final response = await _updateDepartmentRepo.updateDepartment(getIt.get<LoginResponse>().token!, depId, UpdateDepartmentRequest(
-        departmentName:departmentNameController.text,
-        description: departmentDescriptionController.text
-
-    ));
+  void updatePermission(int permissionId) async {
+    emit(UpdatePermissionLoading());
+    final response = await _updatePermissionRepo.updatePermission(getIt.get<LoginResponse>().token!, permissionId, UpdatePermissionRequest(
+      start: startTimeController.text,
+      end:endTimeController.text,
+      date: dateController.text,
+      description:descriptionController.text
+    ))
+    ;
 
     response.when(
       success: (response) {
-        emit(UpdateDepartmentSuccess(response: response));
+        emit(UpdatePermissionSuccess(response: response));
       },
       failure: (error) {
         emit(
-          UpdateDepartmentFailure(error: error.apiErrorModel.message ?? ''),
+          UpdatePermissionFailure(error: error.apiErrorModel.message ?? ''),
         );
       },
     );
   }
 }
-*/
