@@ -21,6 +21,7 @@ class GetAllPermissionOfSpecificEmployeeListViewItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
               leading: const CircleAvatar(
@@ -33,18 +34,41 @@ class GetAllPermissionOfSpecificEmployeeListViewItem extends StatelessWidget {
                 data.employee!,
                 style: Styles.font14BlueSemiBold(context),
               ),
-              subtitle: Row(
+              subtitle:Row(
                 children: [
-                  Text("${data.start} - ${data.end}",
-                      style: Styles.font16DarkBlueBold(context)),
-                const  SizedBox(width: 20,),
-                  Text("${data.date}",
-                      style: Styles.font16DarkBlueBold(context)),
-
+                 /* Flexible(
+                    child: Text(
+                      "${data.start} - ${data.end}",
+                      style: Styles.font16DarkBlueBold(context),
+                      overflow: TextOverflow.clip,
+                    ),
+                  ),*/
+               /*   const SizedBox(width: 3),
+                  Flexible(
+                    child: Text(
+                      "${data.date}",
+                      style: Styles.font16DarkBlueBold(context),
+                      overflow: TextOverflow.clip,
+                    ),
+                  ),*/
+                  const SizedBox(width: 3),
+                  Flexible(
+                    child: Text(
+                      data.status == 0
+                          ? "Pending"
+                          : data.status == 1
+                          ? "Accepted"
+                          : data.status == 2
+                          ? "Rejected"
+                          : "Unknown Status",
+                      style: Styles.font16DarkBlueBold(context),
+                      overflow: TextOverflow.clip,
+                    ),
+                  ),
                 ],
               ),
-              trailing: PermissionPopupMenu(permissionData:data ),
 
+              trailing: data.status == 0 ? PermissionPopupMenu(permissionData: data) : null,
             ),
           ],
         ),

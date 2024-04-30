@@ -39,6 +39,8 @@ import 'package:erp_system/features/hr/permissions/Permissions_of_specific_emplo
 import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/logic/get_permission_of_specific_employee_cubit.dart';
 import 'package:erp_system/features/hr/permissions/add_permissions/data/repos/add_permission_repo.dart';
 import 'package:erp_system/features/hr/permissions/add_permissions/logic/add_permission_cubit.dart';
+import 'package:erp_system/features/hr/permissions/delete_permission/data/repos/delete_permission_repo.dart';
+import 'package:erp_system/features/hr/permissions/delete_permission/logic/delete_permission_cubit.dart';
 import 'package:erp_system/features/hr/permissions/get_all_permissions/data/repos/get_all_permission_repo.dart';
 import 'package:erp_system/features/hr/permissions/get_all_permissions/logic/get_all_permission_cubit.dart';
 import 'package:erp_system/features/hr/permissions/update_permission/data/repos/update_permission_repo.dart';
@@ -318,7 +320,10 @@ Future<void> setupServiceLocator() async {
   getIt.registerFactory<UpdatePermissionCubit>(
           () => UpdatePermissionCubit(getIt()));
 
-
+  getIt.registerLazySingleton<DeletePermissionRepo>(
+          () => DeletePermissionRepo(getIt()));
+  getIt.registerFactory<DeletePermissionCubit>(
+          () => DeletePermissionCubit(getIt()));
 
 
 }

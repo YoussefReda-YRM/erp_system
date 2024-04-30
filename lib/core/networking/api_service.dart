@@ -17,6 +17,7 @@ import 'package:erp_system/features/hr/employee/update_employee/data/models/upda
 import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/data/models/GetPermissionOfSpecificEmployeeResponse.dart';
 import 'package:erp_system/features/hr/permissions/add_permissions/data/models/AddPermissionRequest.dart';
 import 'package:erp_system/features/hr/permissions/add_permissions/data/models/AddPermissionResponse.dart';
+import 'package:erp_system/features/hr/permissions/delete_permission/data/models/DeletePermissionResponse.dart';
 import 'package:erp_system/features/hr/permissions/update_permission/data/models/UpdatePermissionRequest.dart';
 import 'package:erp_system/features/hr/permissions/update_permission/data/models/UpdatePermissionResponse.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/data/models/apply_vacation_request.dart';
@@ -300,5 +301,10 @@ abstract class ApiService {
       @Header("Authorization") String token,
       @Path("id") int id,
       @Body() UpdatePermissionRequest updatePermissionRequest,
+      );
+  @DELETE(ApiConstants.deletePermission)
+  Future<DeletePermissionResponse> deletePermission(
+      @Header("Authorization") String token,
+      @Path("id") String id,
       );
 }
