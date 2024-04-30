@@ -26,6 +26,8 @@ import 'package:erp_system/features/hr/job_position/update_job_position/logic/up
 import 'package:erp_system/features/hr/job_position/update_job_position/ui/update_job_position_view.dart';
 import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/logic/get_permission_of_specific_employee_cubit.dart';
 import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/ui/get_permission_of_specific_employee_view.dart';
+import 'package:erp_system/features/hr/permissions/add_permissions/logic/add_permission_cubit.dart';
+import 'package:erp_system/features/hr/permissions/add_permissions/ui/add_permission_view.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/logic/apply_vacation_cubit.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/ui/apply_vacation_view.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/data/models/get_all_vacation_model.dart';
@@ -148,6 +150,8 @@ abstract class AppRouter {
   //permission
   static const kGetAllPermissionView = '/getAllPermissionView';
   static const kGetPermissionOfSpecificEmployeeView = '/getPermissionOfSpecificEmployeeView';
+  static const kAddPermissionView = '/addPermissionView';
+
 
 
   static final router = GoRouter(
@@ -421,13 +425,7 @@ abstract class AppRouter {
           child: const GetAllDepartmentView(),
         ),
       ),
-      GoRoute(
-        path: kAddDepartment,
-        builder: (context, state) => BlocProvider(
-          create: (context) => getIt.get<AddDepartmentCubit>(),
-          child: const AddDepartmentView(),
-        ),
-      ),
+
       GoRoute(
         path: kUpdateDepartment,
         builder: (context, state) {
@@ -549,6 +547,14 @@ abstract class AppRouter {
           );
         },
       ),
+      GoRoute(
+        path: kAddPermissionView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<AddPermissionCubit>(),
+          child: const AddPermissionView(),
+        ),
+      ),
+
 
     ],
   );

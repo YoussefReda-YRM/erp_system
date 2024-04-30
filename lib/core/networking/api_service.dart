@@ -15,6 +15,10 @@ import 'package:erp_system/features/hr/employee/details_employee/data/models/det
 import 'package:erp_system/features/hr/employee/get_all_employees/data/models/employee_response.dart';
 import 'package:erp_system/features/hr/employee/update_employee/data/models/update_employee_request.dart';
 import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/data/models/GetPermissionOfSpecificEmployeeResponse.dart';
+import 'package:erp_system/features/hr/permissions/add_permissions/data/models/AddPermissionRequest.dart';
+import 'package:erp_system/features/hr/permissions/add_permissions/data/models/AddPermissionResponse.dart';
+import 'package:erp_system/features/hr/permissions/update_permission/data/models/UpdatePermissionRequest.dart';
+import 'package:erp_system/features/hr/permissions/update_permission/data/models/UpdatePermissionResponse.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/data/models/apply_vacation_request.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/data/models/apply_vacation_response.dart';
 import 'package:erp_system/features/hr/job_position/add_job_position/data/model/AddJobPositionRequest.dart';
@@ -283,5 +287,18 @@ abstract class ApiService {
   @GET(ApiConstants.getAllPermissionOfSpecificEmployee)
   Future<List<GetPermissionOfSpecificEmployeeResponse>> getAllPermissionOfSpecificEmployee(
       @Header("Authorization") String token,
+      );
+
+  @POST(ApiConstants.addPermission)
+  Future<AddPermissionResponse> addPermission(
+      @Body() AddPermissionRequest addPermissionRequest,
+      @Header("Authorization") String token,
+      );
+
+  @PUT(ApiConstants.updatePermission)
+  Future<UpdatePermissionResponse> updatePermission(
+      @Header("Authorization") String token,
+      @Path("id") int id,
+      @Body() UpdatePermissionRequest updatePermissionRequest,
       );
 }

@@ -2,6 +2,7 @@ import 'package:erp_system/core/utils/assets.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/data/models/GetPermissionOfSpecificEmployeeResponse.dart';
+import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/ui/widget/permission_popup_menu.dart';
 import 'package:flutter/material.dart';
 
 class GetAllPermissionOfSpecificEmployeeListViewItem extends StatelessWidget {
@@ -36,12 +37,13 @@ class GetAllPermissionOfSpecificEmployeeListViewItem extends StatelessWidget {
                 children: [
                   Text("${data.start} - ${data.end}",
                       style: Styles.font16DarkBlueBold(context)),
-                  const   Spacer(),
+                const  SizedBox(width: 20,),
                   Text("${data.date}",
                       style: Styles.font16DarkBlueBold(context)),
 
                 ],
               ),
+              trailing: PermissionPopupMenu(permissionData:data ),
 
             ),
           ],
