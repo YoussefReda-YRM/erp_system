@@ -27,16 +27,6 @@ class GetAllVacationOfSpecificEmployeeViewBody extends StatelessWidget {
               scaffoldKey.currentState!.openDrawer();
             },
           ),
-          iconTrailing: IconButton(
-            icon: const Icon(
-              Icons.search_outlined,
-              size: 34,
-              color: ColorsApp.lightGrey,
-            ),
-            onPressed: () {
-              GoRouter.of(context).push(AppRouter.kApplyVacationView);
-            },
-          ),
         ),
         const Expanded(
           child: CustomAppBody(

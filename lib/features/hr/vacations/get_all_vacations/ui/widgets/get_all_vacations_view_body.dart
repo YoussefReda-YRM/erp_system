@@ -33,7 +33,6 @@ class GetAllVacationsViewBody extends StatelessWidget {
               color: ColorsApp.lightGrey,
             ),
             onPressed: () {
-              GoRouter.of(context).push(AppRouter.kApplyVacationView);
             },
           ),
         ),
