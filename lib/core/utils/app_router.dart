@@ -44,7 +44,11 @@ import 'package:erp_system/features/hr/permissions/get_all_permissions/logic/get
 import 'package:erp_system/features/hr/permissions/get_all_permissions/ui/get_all_permission_view.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/logic/get_all_vacations_cubit.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/ui/get_all_vacations_view.dart';
+import 'package:erp_system/features/hr/vacations/update_vacation/logic/update_vacation_cubit.dart';
+import 'package:erp_system/features/hr/vacations/update_vacation/ui/update_vacation_view.dart';
 import 'package:erp_system/features/hr/vacations/vacation_details/ui/vacation_details_view.dart';
+import 'package:erp_system/features/hr/vacations/vacation_of_specific_employee/logic/get_all_vacation_of_specific_employee_cubit.dart';
+import 'package:erp_system/features/hr/vacations/vacation_of_specific_employee/ui/get_all_vacation_of_specific_employee_view.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_parent_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_sub_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/ui/add_parent_category_view.dart';
@@ -146,6 +150,10 @@ abstract class AppRouter {
   static const kGetAllVacationsView = '/getAllVacationsView';
   static const kApplyVacationView = '/applyVacationView';
   static const kDetailsVacationView = '/detailsVacationView';
+  static const kGetAllVacationOfSpecificEmployeeView = '/getAllOfSpecificEmployeeVacationsView';
+  static const kUpdateVacationView = '/updateVacationView';
+
+
 
   //job position
   static const kGetAllJobPositionsView = '/getAllJobPositionView';
@@ -481,6 +489,16 @@ abstract class AppRouter {
           );
         },
       ),
+      GoRoute(
+        path: kGetAllVacationOfSpecificEmployeeView,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) =>
+            getIt.get<GetAllVacationOfSpecificEmployeeCubit>()..getAllVacationOfSpecificEmployee(),
+            child: const GetAllVacationOfSpecificEmployeeView(),
+          );
+        },
+      ),
 
       GoRoute(
         path: kApplyVacationView,
@@ -500,6 +518,18 @@ abstract class AppRouter {
           );
         },
       ),
+      GoRoute(
+        path:kUpdateVacationView,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => getIt.get<UpdateVacationCubit>(),
+            child: UpdateVacationView(
+              getAllVacationModel: state.extra as GetAllVacationModel,
+            ),
+          );
+        },
+      ),
+
 
       //job position
 

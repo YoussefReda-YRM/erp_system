@@ -55,6 +55,11 @@ class ApiConstants {
   //vacations
   static const String getAllVacations = "/Vacation";
   static const String applyVacation = "/Vacation";
+  static const String getAllVacationOfSpecificEmployee = "/Vacation/GetVacationsOfEmployee";
+  static const String updateVacation = "/Vacation/{id}";
+  static const String deleteVacation = "/Vacation/{id}";
+
+
   //job position
   static const String getAllJobPosition = "/JobPositions/{departmentId}";
   static const String createJobPosition = "/JobPositions";

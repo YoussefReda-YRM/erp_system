@@ -51,6 +51,10 @@ import 'package:erp_system/features/hr/vacations/add_vacations/data/repos/apply_
 import 'package:erp_system/features/hr/vacations/add_vacations/logic/apply_vacation_cubit.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/data/repos/get_all_vacation_repo.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/logic/get_all_vacations_cubit.dart';
+import 'package:erp_system/features/hr/vacations/update_vacation/data/repos/update_vacation_repo.dart';
+import 'package:erp_system/features/hr/vacations/update_vacation/logic/update_vacation_cubit.dart';
+import 'package:erp_system/features/hr/vacations/vacation_of_specific_employee/data/repos/get_all_vacation_of_specific_employee_repo.dart';
+import 'package:erp_system/features/hr/vacations/vacation_of_specific_employee/logic/get_all_vacation_of_specific_employee_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/repos/add_parent_category_repo.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/repos/add_sub_category_repo.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_parent_category_cubit.dart';
@@ -278,6 +282,16 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<ApplyVacationRepo>(
           () => ApplyVacationRepo(getIt()));
   getIt.registerFactory<ApplyVacationCubit>(() => ApplyVacationCubit(getIt()));
+
+  getIt.registerLazySingleton<GetAllVacationOfSpecificEmployeeRepo>(
+          () => GetAllVacationOfSpecificEmployeeRepo(getIt()));
+  getIt.registerFactory<GetAllVacationOfSpecificEmployeeCubit>(
+          () => GetAllVacationOfSpecificEmployeeCubit(getIt()));
+
+  getIt.registerLazySingleton<UpdateVacationRepo>(
+          () => UpdateVacationRepo(getIt()));
+  getIt.registerFactory<UpdateVacationCubit>(
+          () => UpdateVacationCubit(getIt()));
 
 
   //job position
