@@ -20,7 +20,7 @@ class UpdatePermissionBody extends StatelessWidget {
       child: Column(
         children: [
           CustomAppBarApp(
-            title: 'Edit Department',
+            title: 'Edit Permission',
             iconLeading: const CustomBackButton(),
             iconTrailing: IconButton(
               onPressed: () {},
