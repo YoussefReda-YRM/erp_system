@@ -3,7 +3,7 @@ import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/functions/delete_show_dialog.dart';
 import 'package:erp_system/core/utils/styles.dart';
-import 'package:erp_system/features/hr/permissions/delete_permission/logic/delete_permission_cubit.dart';
+import 'package:erp_system/features/hr/vacations/delete_vacation/logic/delete_vacation_cubit.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/data/models/get_all_vacation_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -32,15 +32,14 @@ class VacationPopupMenu extends StatelessWidget{
         } else if (value == 'delete') {
           deleteShowDialog(
             context,
-            'Are you sure you want to delete this Permission?',
+            'Are you sure you want to delete this Vacation?',
                 () {
-              getIt.get<DeletePermissionCubit>().deletePermission(data.id.toString()
-               // permissionData.id.toString(),
+              getIt.get<DeleteVacationCubit>().deleteVacation(data.id.toString()
               );
               GoRouter.of(context).pop();
               Future.delayed(const Duration(milliseconds: 200), () {
                 GoRouter.of(context)
-                    .pushReplacement(AppRouter.kGetPermissionOfSpecificEmployeeView);
+                    .pushReplacement(AppRouter.kGetAllVacationOfSpecificEmployeeView);
               });
             },
           );

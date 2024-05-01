@@ -31,6 +31,7 @@ import 'package:erp_system/features/hr/job_position/get_all_job_position/data/mo
 import 'package:erp_system/features/hr/job_position/update_job_position/data/UpdateJobRequest.dart';
 import 'package:erp_system/features/hr/job_position/update_job_position/data/update_job_response.dart';
 import 'package:erp_system/features/hr/permissions/get_all_permissions/data/models/GetAllPermissionResponse.dart';
+import 'package:erp_system/features/hr/vacations/delete_vacation/data/models/DeleteVacationResponse.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/data/models/get_all_vacation_model.dart';
 import 'package:erp_system/features/hr/vacations/update_vacation/data/models/UpdateVacationRequest.dart';
 import 'package:erp_system/features/hr/vacations/update_vacation/data/models/UpdateVacationResponse.dart';
@@ -265,6 +266,11 @@ abstract class ApiService {
       @Header("Authorization") String token,
       @Path("id") int id,
       @Body() UpdateVacationRequest updateVacationRequest,
+      );
+  @DELETE(ApiConstants.deleteVacation)
+  Future<DeleteVacationResponse> deleteVacation(
+      @Header("Authorization") String token,
+      @Path("id") String id,
       );
 
 

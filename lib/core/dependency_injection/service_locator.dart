@@ -49,6 +49,8 @@ import 'package:erp_system/features/hr/permissions/update_status_of_permission/d
 import 'package:erp_system/features/hr/permissions/update_status_of_permission/logic/update_status_of_permission_cubit.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/data/repos/apply_vacation_repo.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/logic/apply_vacation_cubit.dart';
+import 'package:erp_system/features/hr/vacations/delete_vacation/data/repos/delete_vacation_repo.dart';
+import 'package:erp_system/features/hr/vacations/delete_vacation/logic/delete_vacation_cubit.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/data/repos/get_all_vacation_repo.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/logic/get_all_vacations_cubit.dart';
 import 'package:erp_system/features/hr/vacations/update_vacation/data/repos/update_vacation_repo.dart';
@@ -293,6 +295,10 @@ Future<void> setupServiceLocator() async {
   getIt.registerFactory<UpdateVacationCubit>(
           () => UpdateVacationCubit(getIt()));
 
+  getIt.registerLazySingleton<DeleteVacationRepo>(
+          () => DeleteVacationRepo(getIt()));
+  getIt.registerFactory<DeleteVacationCubit>(
+          () => DeleteVacationCubit(getIt()));
 
   //job position
   getIt.registerLazySingleton<GetAllJobPositionRepo>(
