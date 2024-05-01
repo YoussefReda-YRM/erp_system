@@ -1,9 +1,13 @@
+import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/assets.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
 import 'package:erp_system/features/hr/permissions/get_all_permissions/data/models/GetAllPermissionResponse.dart';
+import 'package:erp_system/features/hr/permissions/update_status_of_permission/logic/update_status_of_permission_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class GetAllPermissionsListViewItem extends StatelessWidget {
   const GetAllPermissionsListViewItem({super.key,required this.data});
@@ -80,7 +84,14 @@ class GetAllPermissionsListViewItem extends StatelessWidget {
                       buttonText: "Accept",
                       backgroundColor: const Color(0xff30BEB6),
                       textStyle: Styles.font13BlueSemiBold(context),
-                      onPressed: () {},
+                      onPressed: () {
+
+                        context.read<UpdateStatusOfPermissionCubit>().updatePermission(data.id.toString(),0);
+                       GoRouter.of(context).push(
+                          AppRouter.kGetAllPermissionView,
+
+                        );
+                      },
                     ),
                   ),
                 ],

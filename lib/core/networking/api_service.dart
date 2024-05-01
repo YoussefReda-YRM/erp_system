@@ -20,6 +20,8 @@ import 'package:erp_system/features/hr/permissions/add_permissions/data/models/A
 import 'package:erp_system/features/hr/permissions/delete_permission/data/models/DeletePermissionResponse.dart';
 import 'package:erp_system/features/hr/permissions/update_permission/data/models/UpdatePermissionRequest.dart';
 import 'package:erp_system/features/hr/permissions/update_permission/data/models/UpdatePermissionResponse.dart';
+import 'package:erp_system/features/hr/permissions/update_status_of_permission/data/models/UpdateStatusOfPermissionRequest.dart';
+import 'package:erp_system/features/hr/permissions/update_status_of_permission/data/models/UpdateStatusOfPermissionResponse.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/data/models/apply_vacation_request.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/data/models/apply_vacation_response.dart';
 import 'package:erp_system/features/hr/job_position/add_job_position/data/model/AddJobPositionRequest.dart';
@@ -306,5 +308,11 @@ abstract class ApiService {
   Future<DeletePermissionResponse> deletePermission(
       @Header("Authorization") String token,
       @Path("id") String id,
+      );
+  @PUT(ApiConstants.updateStatusOfPermission)
+  Future<UpdateStatusOfPermissionResponse> updateStatusOfPermission(
+      @Header("Authorization") String token,
+      @Path("id") String id,
+      @Body() UpdateStatusOfPermissionRequest updateStatusOfPermissionRequest,
       );
 }

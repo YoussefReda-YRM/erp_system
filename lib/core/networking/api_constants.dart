@@ -67,6 +67,7 @@ class ApiConstants {
   static const String addPermission = "/permission";
   static const String updatePermission = "/permission/{id}";
   static const String deletePermission = "/permission/{id}";
+  static const String updateStatusOfPermission = "/permission/status/{id}";
 
 
 

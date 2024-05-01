@@ -32,6 +32,7 @@ import 'package:erp_system/features/hr/permissions/add_permissions/ui/add_permis
 import 'package:erp_system/features/hr/permissions/update_permission/data/models/UpdatePermissionRequest.dart';
 import 'package:erp_system/features/hr/permissions/update_permission/logic/update_permission_cubit.dart';
 import 'package:erp_system/features/hr/permissions/update_permission/ui/update_permission_view.dart';
+import 'package:erp_system/features/hr/permissions/update_status_of_permission/logic/update_status_of_permission_cubit.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/logic/apply_vacation_cubit.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/ui/apply_vacation_view.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/data/models/get_all_vacation_model.dart';
@@ -157,6 +158,7 @@ abstract class AppRouter {
   static const kAddPermissionView = '/addPermissionView';
   static const kUpdatePermissionView = '/updatePermissionView';
 
+  static const kUpdateStatusOfPermissionView = '/updateStatusOfPermissionView';
 
 
 
@@ -532,16 +534,26 @@ abstract class AppRouter {
         },
       ),
       //permission
+
       GoRoute(
         path: kGetAllPermissionView,
-        builder: (context, state) {
-          return BlocProvider(
-            create: (context) =>
-                getIt.get<GetAllPermissionCubit>()..getAllPermissions(),
-            child: const GetAllPermissionView(),
-          );
-        },
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+
+            BlocProvider<UpdateStatusOfPermissionCubit>(
+              create: (context) =>getIt.get<UpdateStatusOfPermissionCubit>()
+                ..updatePermission(state.extra.toString(), state.extra as int),
+            ),
+            BlocProvider<GetAllPermissionCubit>(
+              create: (context) =>  getIt.get<GetAllPermissionCubit>()..getAllPermissions(),
+            )
+          ],
+          child: const GetAllPermissionView(),
+        ),
+
+
       ),
+
 
       GoRoute(
         path:kGetPermissionOfSpecificEmployeeView,
