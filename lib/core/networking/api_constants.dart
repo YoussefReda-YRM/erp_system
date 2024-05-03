@@ -54,10 +54,11 @@ class ApiConstants {
   //vacations
   static const String getAllVacations = "/Vacation";
   static const String applyVacation = "/Vacation";
-  static const String getAllVacationOfSpecificEmployee = "/Vacation/GetVacationsOfEmployee";
+  static const String getAllVacationOfSpecificEmployee =
+      "/Vacation/GetVacationsOfEmployee";
   static const String updateVacation = "/Vacation/{id}";
   static const String deleteVacation = "/Vacation/{id}";
-
+  static const String updateStatusOfVacation = "/Vacation/status/{id}";
 
   //job position
   static const String getAllJobPosition = "/JobPositions/{departmentId}";
@@ -67,15 +68,12 @@ class ApiConstants {
 
   //permission
   static const String getAllPermission = "/Permission";
-  static const String getAllPermissionOfSpecificEmployee = "/Permission/GetPermissionsOfEmployee";
+  static const String getAllPermissionOfSpecificEmployee =
+      "/Permission/GetPermissionsOfEmployee";
   static const String addPermission = "/permission";
   static const String updatePermission = "/permission/{id}";
   static const String deletePermission = "/permission/{id}";
   static const String updateStatusOfPermission = "/permission/status/{id}";
-
-
-
-
 }
 
 class ApiErrors {

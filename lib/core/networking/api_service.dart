@@ -32,6 +32,8 @@ import 'package:erp_system/features/hr/job_position/update_job_position/data/upd
 import 'package:erp_system/features/hr/permissions/get_all_permissions/data/models/GetAllPermissionResponse.dart';
 import 'package:erp_system/features/hr/vacations/delete_vacation/data/models/DeleteVacationResponse.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/data/models/get_all_vacation_model.dart';
+import 'package:erp_system/features/hr/vacations/update_status_of_vacation/data/models/pdate_status_of_vacation_response.dart';
+import 'package:erp_system/features/hr/vacations/update_status_of_vacation/data/models/update_status_of_vacation_request.dart';
 import 'package:erp_system/features/hr/vacations/update_vacation/data/models/UpdateVacationRequest.dart';
 import 'package:erp_system/features/hr/vacations/update_vacation/data/models/UpdateVacationResponse.dart';
 import 'package:erp_system/features/inventory/category/delete_category/data/models/response_delete_category.dart';
@@ -252,26 +254,32 @@ abstract class ApiService {
   );
   @POST(ApiConstants.applyVacation)
   Future<ApplyVacationResponse> applyVacation(
-      @Body() ApplyVacationRequest applyVacationRequest,
-      @Header("Authorization") String token,
-      );
+    @Body() ApplyVacationRequest applyVacationRequest,
+    @Header("Authorization") String token,
+  );
   @GET(ApiConstants.getAllVacationOfSpecificEmployee)
   Future<List<GetAllVacationModel>> getAllVacationOfSpecificEmployee(
-      @Header("Authorization") String token,
-      );
+    @Header("Authorization") String token,
+  );
 
   @PUT(ApiConstants.updateVacation)
   Future<UpdateVacationResponse> updateVacation(
-      @Header("Authorization") String token,
-      @Path("id") int id,
-      @Body() UpdateVacationRequest updateVacationRequest,
-      );
+    @Header("Authorization") String token,
+    @Path("id") int id,
+    @Body() UpdateVacationRequest updateVacationRequest,
+  );
   @DELETE(ApiConstants.deleteVacation)
   Future<DeleteVacationResponse> deleteVacation(
-      @Header("Authorization") String token,
-      @Path("id") String id,
-      );
+    @Header("Authorization") String token,
+    @Path("id") String id,
+  );
 
+  @PUT(ApiConstants.updateStatusOfVacation)
+  Future<UpdateStatusOfVacationResponse> updateStatusOfVacation(
+    @Header("Authorization") String token,
+    @Path("id") String id,
+    @Body() UpdateStatusOfVacationRequest updateStatusOfVacationRequest,
+  );
 
   //job position
   @GET(ApiConstants.getAllJobPosition)
@@ -294,43 +302,44 @@ abstract class ApiService {
   );
   @DELETE(ApiConstants.deleteJobPosition)
   Future<DeleteJobPositionResponse> deleteJobPosition(
-      @Header("Authorization") String token,
-      @Path("id") String id,
-      );
+    @Header("Authorization") String token,
+    @Path("id") String id,
+  );
 
   //permission
 
   @GET(ApiConstants.getAllPermission)
   Future<List<GetAllPermissionResponse>> getAllPermission(
-      @Header("Authorization") String token,
-      );
+    @Header("Authorization") String token,
+  );
 
   @GET(ApiConstants.getAllPermissionOfSpecificEmployee)
-  Future<List<GetPermissionOfSpecificEmployeeResponse>> getAllPermissionOfSpecificEmployee(
-      @Header("Authorization") String token,
-      );
+  Future<List<GetPermissionOfSpecificEmployeeResponse>>
+      getAllPermissionOfSpecificEmployee(
+    @Header("Authorization") String token,
+  );
 
   @POST(ApiConstants.addPermission)
   Future<AddPermissionResponse> addPermission(
-      @Body() AddPermissionRequest addPermissionRequest,
-      @Header("Authorization") String token,
-      );
+    @Body() AddPermissionRequest addPermissionRequest,
+    @Header("Authorization") String token,
+  );
 
   @PUT(ApiConstants.updatePermission)
   Future<UpdatePermissionResponse> updatePermission(
-      @Header("Authorization") String token,
-      @Path("id") int id,
-      @Body() UpdatePermissionRequest updatePermissionRequest,
-      );
+    @Header("Authorization") String token,
+    @Path("id") int id,
+    @Body() UpdatePermissionRequest updatePermissionRequest,
+  );
   @DELETE(ApiConstants.deletePermission)
   Future<DeletePermissionResponse> deletePermission(
-      @Header("Authorization") String token,
-      @Path("id") String id,
-      );
+    @Header("Authorization") String token,
+    @Path("id") String id,
+  );
   @PUT(ApiConstants.updateStatusOfPermission)
   Future<UpdateStatusOfPermissionResponse> updateStatusOfPermission(
-      @Header("Authorization") String token,
-      @Path("id") String id,
-      @Body() UpdateStatusOfPermissionRequest updateStatusOfPermissionRequest,
-      );
+    @Header("Authorization") String token,
+    @Path("id") String id,
+    @Body() UpdateStatusOfPermissionRequest updateStatusOfPermissionRequest,
+  );
 }

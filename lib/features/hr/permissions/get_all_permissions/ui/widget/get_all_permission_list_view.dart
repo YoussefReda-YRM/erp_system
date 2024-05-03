@@ -14,23 +14,23 @@ class GetAllPermissionListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GetAllPermissionCubit, GetAllPermissionsState>(
         builder: (context, state) {
-          if (state is GetAllPermissionsLoading) {
-            return const CustomCircularProgressIndicator();
-          } else if (state is GetAllPermissionsSuccess) {
-            return ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: state.response.length,
-              itemBuilder: (context, index) {
-                return GetAllPermissionsListViewItem(
-                  data: state.response[index],
-                );
-              },
+      if (state is GetAllPermissionsLoading) {
+        return const CustomCircularProgressIndicator();
+      } else if (state is GetAllPermissionsSuccess) {
+        return ListView.builder(
+          physics: const BouncingScrollPhysics(),
+          itemCount: state.response.length,
+          itemBuilder: (context, index) {
+            return GetAllPermissionsListViewItem(
+              data: state.response[index],
             );
-          } else if (state is GetAllPermissionsFailure) {
-            return CustomErrorWidget(error: state.error);
-          } else {
-            return const CustomNoProductWidget();
-          }
-        });
+          },
+        );
+      } else if (state is GetAllPermissionsFailure) {
+        return CustomErrorWidget(error: state.error);
+      } else {
+        return const CustomNoProductWidget();
+      }
+    });
   }
 }

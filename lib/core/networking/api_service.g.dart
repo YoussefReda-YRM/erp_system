@@ -1100,6 +1100,39 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<UpdateStatusOfVacationResponse> updateStatusOfVacation(
+    String token,
+    String id,
+    UpdateStatusOfVacationRequest updateStatusOfVacationRequest,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(updateStatusOfVacationRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<UpdateStatusOfVacationResponse>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/Vacation/status/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = UpdateStatusOfVacationResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<List<GetAllJobPositionResponse>> getAllJobPosition(
     String token,
     int depId,

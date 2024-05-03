@@ -10,13 +10,16 @@ class UpdateStatusOfPermissionRepo {
   UpdateStatusOfPermissionRepo(this._apiService);
 
   Future<ApiResult<UpdateStatusOfPermissionResponse>> updateStatusOfPermission(
-      String token,
-      String permissionId,
-      UpdateStatusOfPermissionRequest updateStatusOfPermissionRequest,
-      ) async {
+    String token,
+    String permissionId,
+    UpdateStatusOfPermissionRequest updateStatusOfPermissionRequest,
+  ) async {
     try {
-      final response = await _apiService.updateStatusOfPermission
-        ("Bearer $token", permissionId, updateStatusOfPermissionRequest);
+      final response = await _apiService.updateStatusOfPermission(
+        "Bearer $token",
+        permissionId,
+        updateStatusOfPermissionRequest,
+      );
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ErrorHandler.handle(error));

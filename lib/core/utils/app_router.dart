@@ -41,6 +41,7 @@ import 'package:erp_system/features/hr/permissions/get_all_permissions/logic/get
 import 'package:erp_system/features/hr/permissions/get_all_permissions/ui/get_all_permission_view.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/logic/get_all_vacations_cubit.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/ui/get_all_vacations_view.dart';
+import 'package:erp_system/features/hr/vacations/update_status_of_vacation/logic/update_status_of_vacation_cubit.dart';
 import 'package:erp_system/features/hr/vacations/update_vacation/logic/update_vacation_cubit.dart';
 import 'package:erp_system/features/hr/vacations/update_vacation/ui/update_vacation_view.dart';
 import 'package:erp_system/features/hr/vacations/vacation_details/ui/vacation_details_view.dart';
@@ -147,10 +148,9 @@ abstract class AppRouter {
   static const kGetAllVacationsView = '/getAllVacationsView';
   static const kApplyVacationView = '/applyVacationView';
   static const kDetailsVacationView = '/detailsVacationView';
-  static const kGetAllVacationOfSpecificEmployeeView = '/getAllOfSpecificEmployeeVacationsView';
+  static const kGetAllVacationOfSpecificEmployeeView =
+      '/getAllOfSpecificEmployeeVacationsView';
   static const kUpdateVacationView = '/updateVacationView';
-
-
 
   //job position
   static const kGetAllJobPositionsView = '/getAllJobPositionView';
@@ -159,13 +159,12 @@ abstract class AppRouter {
 
   //permission
   static const kGetAllPermissionView = '/getAllPermissionView';
-  static const kGetPermissionOfSpecificEmployeeView = '/getPermissionOfSpecificEmployeeView';
+  static const kGetPermissionOfSpecificEmployeeView =
+      '/getPermissionOfSpecificEmployeeView';
   static const kAddPermissionView = '/addPermissionView';
   static const kUpdatePermissionView = '/updatePermissionView';
 
   static const kUpdateStatusOfPermissionView = '/updateStatusOfPermissionView';
-
-
 
   static final router = GoRouter(
     routes: [
@@ -476,22 +475,30 @@ abstract class AppRouter {
       ),
 
       //vacations
+
       GoRoute(
         path: kGetAllVacationsView,
-        builder: (context, state) {
-          return BlocProvider(
-            create: (context) =>
-                getIt.get<GetAllVacationsCubit>()..getAllVacations(),
-            child: const GetAllVacationsView(),
-          );
-        },
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider<GetAllVacationsCubit>(
+              create: (context) =>
+                  getIt.get<GetAllVacationsCubit>()..getAllVacations(),
+            ),
+            BlocProvider<UpdateStatusOfVacationCubit>(
+              create: (context) => getIt.get<UpdateStatusOfVacationCubit>(),
+            )
+          ],
+          child: const GetAllVacationsView(),
+        ),
       ),
+
       GoRoute(
         path: kGetAllVacationOfSpecificEmployeeView,
         builder: (context, state) {
           return BlocProvider(
             create: (context) =>
-            getIt.get<GetAllVacationOfSpecificEmployeeCubit>()..getAllVacationOfSpecificEmployee(),
+                getIt.get<GetAllVacationOfSpecificEmployeeCubit>()
+                  ..getAllVacationOfSpecificEmployee(),
             child: const GetAllVacationOfSpecificEmployeeView(),
           );
         },
@@ -516,7 +523,7 @@ abstract class AppRouter {
         },
       ),
       GoRoute(
-        path:kUpdateVacationView,
+        path: kUpdateVacationView,
         builder: (context, state) {
           return BlocProvider(
             create: (context) => getIt.get<UpdateVacationCubit>(),
@@ -526,7 +533,6 @@ abstract class AppRouter {
           );
         },
       ),
-
 
       //job position
 
@@ -566,28 +572,25 @@ abstract class AppRouter {
         path: kGetAllPermissionView,
         builder: (context, state) => MultiBlocProvider(
           providers: [
-
-            BlocProvider<UpdateStatusOfPermissionCubit>(
-              create: (context) =>getIt.get<UpdateStatusOfPermissionCubit>()
-                ..updatePermission(state.extra.toString(), state.extra as int),
-            ),
             BlocProvider<GetAllPermissionCubit>(
-              create: (context) =>  getIt.get<GetAllPermissionCubit>()..getAllPermissions(),
+              create: (context) =>
+                  getIt.get<GetAllPermissionCubit>()..getAllPermissions(),
+            ),
+            BlocProvider<UpdateStatusOfPermissionCubit>(
+              create: (context) => getIt.get<UpdateStatusOfPermissionCubit>(),
             )
           ],
           child: const GetAllPermissionView(),
         ),
-
-
       ),
 
-
       GoRoute(
-        path:kGetPermissionOfSpecificEmployeeView,
+        path: kGetPermissionOfSpecificEmployeeView,
         builder: (context, state) {
           return BlocProvider(
             create: (context) =>
-            getIt.get<GetPermissionOfSpecificEmployeeCubit>()..getPermissionsOfSpecificEmployee(),
+                getIt.get<GetPermissionOfSpecificEmployeeCubit>()
+                  ..getPermissionsOfSpecificEmployee(),
             child: const GetPermissionOfSpecificEmployeeView(),
           );
         },
@@ -605,15 +608,12 @@ abstract class AppRouter {
           return BlocProvider(
             create: (context) => getIt.get<UpdatePermissionCubit>(),
             child: UpdatePermissionView(
-               getPermissionOfSpecificEmployeeResponse: state.extra as GetPermissionOfSpecificEmployeeResponse,
-
+              getPermissionOfSpecificEmployeeResponse:
+                  state.extra as GetPermissionOfSpecificEmployeeResponse,
             ),
           );
         },
       ),
-
-
-
     ],
   );
 }

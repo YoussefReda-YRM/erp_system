@@ -1,7 +1,7 @@
-class UpdateStatusOfPermissionRequest {
+class UpdateStatusOfVacationRequest {
   int? status;
 
-  UpdateStatusOfPermissionRequest({
+  UpdateStatusOfVacationRequest({
     this.status,
   });
 

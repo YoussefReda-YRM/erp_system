@@ -53,6 +53,8 @@ import 'package:erp_system/features/hr/vacations/delete_vacation/data/repos/dele
 import 'package:erp_system/features/hr/vacations/delete_vacation/logic/delete_vacation_cubit.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/data/repos/get_all_vacation_repo.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/logic/get_all_vacations_cubit.dart';
+import 'package:erp_system/features/hr/vacations/update_status_of_vacation/data/repos/update_status_of_vacation_repo.dart';
+import 'package:erp_system/features/hr/vacations/update_status_of_vacation/logic/update_status_of_vacation_cubit.dart';
 import 'package:erp_system/features/hr/vacations/update_vacation/data/repos/update_vacation_repo.dart';
 import 'package:erp_system/features/hr/vacations/update_vacation/logic/update_vacation_cubit.dart';
 import 'package:erp_system/features/hr/vacations/vacation_of_specific_employee/data/repos/get_all_vacation_of_specific_employee_repo.dart';
@@ -275,75 +277,77 @@ Future<void> setupServiceLocator() async {
   getIt.registerFactory<GetAllVacationsCubit>(
       () => GetAllVacationsCubit(getIt()));
   getIt.registerLazySingleton<ApplyVacationRepo>(
-          () => ApplyVacationRepo(getIt()));
+      () => ApplyVacationRepo(getIt()));
   getIt.registerFactory<ApplyVacationCubit>(() => ApplyVacationCubit(getIt()));
 
   getIt.registerLazySingleton<GetAllVacationOfSpecificEmployeeRepo>(
-          () => GetAllVacationOfSpecificEmployeeRepo(getIt()));
+      () => GetAllVacationOfSpecificEmployeeRepo(getIt()));
   getIt.registerFactory<GetAllVacationOfSpecificEmployeeCubit>(
-          () => GetAllVacationOfSpecificEmployeeCubit(getIt()));
+      () => GetAllVacationOfSpecificEmployeeCubit(getIt()));
 
   getIt.registerLazySingleton<UpdateVacationRepo>(
-          () => UpdateVacationRepo(getIt()));
-  getIt.registerFactory<UpdateVacationCubit>(
-          () => UpdateVacationCubit(getIt()));
+      () => UpdateVacationRepo(getIt()));
+  getIt
+      .registerFactory<UpdateVacationCubit>(() => UpdateVacationCubit(getIt()));
 
   getIt.registerLazySingleton<DeleteVacationRepo>(
-          () => DeleteVacationRepo(getIt()));
-  getIt.registerFactory<DeleteVacationCubit>(
-          () => DeleteVacationCubit(getIt()));
+      () => DeleteVacationRepo(getIt()));
+  getIt
+      .registerFactory<DeleteVacationCubit>(() => DeleteVacationCubit(getIt()));
 
   //job position
   getIt.registerLazySingleton<GetAllJobPositionRepo>(
-          () => GetAllJobPositionRepo(getIt()));
+      () => GetAllJobPositionRepo(getIt()));
   getIt.registerFactory<GetAllJobPositionCubit>(
-          () => GetAllJobPositionCubit(getIt()));
+      () => GetAllJobPositionCubit(getIt()));
 
   getIt.registerLazySingleton<AddJobPositionRepo>(
-          () => AddJobPositionRepo(getIt()));
-  getIt.registerFactory<AddJobPositionCubit>(
-          () => AddJobPositionCubit(getIt()));
+      () => AddJobPositionRepo(getIt()));
+  getIt
+      .registerFactory<AddJobPositionCubit>(() => AddJobPositionCubit(getIt()));
 
   getIt.registerLazySingleton<UpdateJobPositionRepo>(
-          () => UpdateJobPositionRepo(getIt()));
+      () => UpdateJobPositionRepo(getIt()));
   getIt.registerFactory<UpdateJObPositionCubit>(
-          () => UpdateJObPositionCubit(getIt()));
+      () => UpdateJObPositionCubit(getIt()));
 
   getIt.registerLazySingleton<DeleteJobPositionRepo>(
-          () => DeleteJobPositionRepo(getIt()));
+      () => DeleteJobPositionRepo(getIt()));
   getIt.registerFactory<DeleteJobPositionCubit>(
-          () => DeleteJobPositionCubit(getIt()));
+      () => DeleteJobPositionCubit(getIt()));
 
   //permissions
   getIt.registerLazySingleton<GetAllPermissionRepo>(
-          () => GetAllPermissionRepo(getIt()));
+      () => GetAllPermissionRepo(getIt()));
   getIt.registerFactory<GetAllPermissionCubit>(
-          () => GetAllPermissionCubit(getIt()));
+      () => GetAllPermissionCubit(getIt()));
 
   getIt.registerLazySingleton<GetPermissionOfSpecificEmployeeRepo>(
-          () => GetPermissionOfSpecificEmployeeRepo(getIt()));
+      () => GetPermissionOfSpecificEmployeeRepo(getIt()));
   getIt.registerFactory<GetPermissionOfSpecificEmployeeCubit>(
-          () => GetPermissionOfSpecificEmployeeCubit(getIt()));
+      () => GetPermissionOfSpecificEmployeeCubit(getIt()));
 
   getIt.registerLazySingleton<AddPermissionRepo>(
-          () => AddPermissionRepo(getIt()));
-  getIt.registerFactory<AddPermissionCubit>(
-          () => AddPermissionCubit(getIt()));
+      () => AddPermissionRepo(getIt()));
+  getIt.registerFactory<AddPermissionCubit>(() => AddPermissionCubit(getIt()));
 
   getIt.registerLazySingleton<UpdatePermissionRepo>(
-          () => UpdatePermissionRepo(getIt()));
+      () => UpdatePermissionRepo(getIt()));
   getIt.registerFactory<UpdatePermissionCubit>(
-          () => UpdatePermissionCubit(getIt()));
+      () => UpdatePermissionCubit(getIt()));
 
   getIt.registerLazySingleton<DeletePermissionRepo>(
-          () => DeletePermissionRepo(getIt()));
+      () => DeletePermissionRepo(getIt()));
   getIt.registerFactory<DeletePermissionCubit>(
-          () => DeletePermissionCubit(getIt()));
+      () => DeletePermissionCubit(getIt()));
 
   getIt.registerLazySingleton<UpdateStatusOfPermissionRepo>(
-          () => UpdateStatusOfPermissionRepo(getIt()));
+      () => UpdateStatusOfPermissionRepo(getIt()));
   getIt.registerFactory<UpdateStatusOfPermissionCubit>(
-          () => UpdateStatusOfPermissionCubit(getIt()));
+      () => UpdateStatusOfPermissionCubit(getIt()));
 
-
+  getIt.registerLazySingleton<UpdateStatusOfVacationRepo>(
+      () => UpdateStatusOfVacationRepo(getIt()));
+  getIt.registerFactory<UpdateStatusOfVacationCubit>(
+      () => UpdateStatusOfVacationCubit(getIt()));
 }

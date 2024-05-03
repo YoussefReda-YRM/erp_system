@@ -10,9 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class GetAllPermissionsListViewItem extends StatelessWidget {
-  const GetAllPermissionsListViewItem({super.key,required this.data});
+  const GetAllPermissionsListViewItem({super.key, required this.data});
   final GetAllPermissionResponse data;
-
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +38,13 @@ class GetAllPermissionsListViewItem extends StatelessWidget {
                 style: Styles.font14BlueSemiBold(context),
               ),
               subtitle: Row(
-                 children: [
-                   Text("${data.start} - ${data.end}",
-                       style: Styles.font16DarkBlueBold(context)),
-                const   Spacer(),
-                   Text("${data.date}",
-                       style: Styles.font16DarkBlueBold(context)),
-
-                 ],
+                children: [
+                  Text("${data.start} - ${data.end}",
+                      style: Styles.font16DarkBlueBold(context)),
+                  const Spacer(),
+                  Text("${data.date}",
+                      style: Styles.font16DarkBlueBold(context)),
+                ],
               ),
               /*FittedBox(
                 fit: BoxFit.scaleDown,
@@ -54,13 +52,12 @@ class GetAllPermissionsListViewItem extends StatelessWidget {
                 child: Text("${data.start} - ${data.end}",
                     style: Styles.font16DarkBlueBold(context)),
               ),*/
-             /* trailing: FittedBox(
+              /* trailing: FittedBox(
                 fit: BoxFit.scaleDown,
                 alignment: AlignmentDirectional.bottomEnd,
                 child: Text("${data.date}",
                     style: Styles.font16DarkBlueBold(context)),
               ) ,*/
-
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -72,7 +69,22 @@ class GetAllPermissionsListViewItem extends StatelessWidget {
                       buttonText: "Reject",
                       backgroundColor: const Color(0xffFF7F74),
                       textStyle: Styles.font13BlueSemiBold(context),
-                      onPressed: () {},
+                      onPressed: () {
+                        context
+                            .read<UpdateStatusOfPermissionCubit>()
+                            .updatePermission(
+                              data.id.toString(),
+                              2,
+                            );
+                        Future.delayed(
+                          const Duration(milliseconds: 200),
+                          () {
+                            GoRouter.of(context).push(
+                              AppRouter.kGetAllPermissionView,
+                            );
+                          },
+                        );
+                      },
                     ),
                   ),
                   const SizedBox(
@@ -85,12 +97,18 @@ class GetAllPermissionsListViewItem extends StatelessWidget {
                       backgroundColor: const Color(0xff30BEB6),
                       textStyle: Styles.font13BlueSemiBold(context),
                       onPressed: () {
+                        context
+                            .read<UpdateStatusOfPermissionCubit>()
+                            .updatePermission(
+                              data.id.toString(),
+                              1,
+                            );
 
-                        context.read<UpdateStatusOfPermissionCubit>().updatePermission(data.id.toString(),0);
-                       GoRouter.of(context).push(
-                          AppRouter.kGetAllPermissionView,
-
-                        );
+                        Future.delayed(const Duration(milliseconds: 200), () {
+                          GoRouter.of(context).push(
+                            AppRouter.kGetAllPermissionView,
+                          );
+                        });
                       },
                     ),
                   ),
