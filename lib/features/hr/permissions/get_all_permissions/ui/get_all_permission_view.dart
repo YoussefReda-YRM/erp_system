@@ -1,6 +1,6 @@
 import 'package:erp_system/core/widgets/drawer_widget/drawer_widget.dart';
 import 'package:erp_system/core/widgets/drawer_widget/hr_drawer_item_list_view.dart';
-import 'package:erp_system/features/hr/permissions/get_all_permissions/ui/widget/get_all_vacations_view_body.dart';
+import 'package:erp_system/features/hr/permissions/get_all_permissions/ui/widget/get_all_permissions_view_body.dart';
 import 'package:flutter/material.dart';
 
 class GetAllPermissionView extends StatefulWidget {
@@ -20,7 +20,7 @@ class _GetAllPermissionViewState extends State<GetAllPermissionView> {
       drawer: const DrawerWidget(
         drawerItemListView: HrDrawerItemListView(),
       ),
-      body: GetAllVacationViewBody(
+      body: GetAllPermissionViewBody(
         scaffoldKey: scaffoldKey,
       ),
     );

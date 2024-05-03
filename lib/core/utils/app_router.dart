@@ -4,13 +4,11 @@ import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/auth/create_new_password/ui/create_new_password_view.dart';
 import 'package:erp_system/features/hr/attendance/logic/get_all_attendance_cubit.dart';
 import 'package:erp_system/features/hr/attendance/ui/attendance_view.dart';
-import 'package:erp_system/features/hr/department/add_department/ui/add_department_view.dart';
 import 'package:erp_system/features/hr/department/get_all_department/data/models/get_all_department_response.dart';
 import 'package:erp_system/features/hr/department/get_all_department/logic/get_all_department_cubit.dart';
 import 'package:erp_system/features/hr/department/get_all_department/ui/get_all_department_view.dart';
 import 'package:erp_system/features/hr/department/get_all_department/ui/widgets/department_details.dart';
 import 'package:erp_system/features/hr/employee/add_employee/logic/add_employee_cubit.dart';
-import 'package:erp_system/features/hr/department/add_department/logic/add_department_cubit.dart';
 import 'package:erp_system/features/hr/department/update_department/logic/update_department_cubit.dart';
 import 'package:erp_system/features/hr/department/update_department/ui/update_department.dart';
 import 'package:erp_system/features/hr/employee/add_employee/logic/get_all_roles_cubit.dart';
@@ -24,6 +22,14 @@ import 'package:erp_system/features/hr/employee/update_employee/logic/update_emp
 import 'package:erp_system/features/hr/employee/update_employee/ui/update_employee.dart';
 import 'package:erp_system/features/hr/job_position/update_job_position/logic/update_job_position_cubit.dart';
 import 'package:erp_system/features/hr/job_position/update_job_position/ui/update_job_position_view.dart';
+import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/data/models/GetPermissionOfSpecificEmployeeResponse.dart';
+import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/logic/get_permission_of_specific_employee_cubit.dart';
+import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/ui/get_permission_of_specific_employee_view.dart';
+import 'package:erp_system/features/hr/permissions/add_permissions/logic/add_permission_cubit.dart';
+import 'package:erp_system/features/hr/permissions/add_permissions/ui/add_permission_view.dart';
+import 'package:erp_system/features/hr/permissions/update_permission/logic/update_permission_cubit.dart';
+import 'package:erp_system/features/hr/permissions/update_permission/ui/update_permission_view.dart';
+import 'package:erp_system/features/hr/permissions/update_status_of_permission/logic/update_status_of_permission_cubit.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/logic/apply_vacation_cubit.dart';
 import 'package:erp_system/features/hr/vacations/add_vacations/ui/apply_vacation_view.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/data/models/get_all_vacation_model.dart';
@@ -35,7 +41,11 @@ import 'package:erp_system/features/hr/permissions/get_all_permissions/logic/get
 import 'package:erp_system/features/hr/permissions/get_all_permissions/ui/get_all_permission_view.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/logic/get_all_vacations_cubit.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/ui/get_all_vacations_view.dart';
+import 'package:erp_system/features/hr/vacations/update_vacation/logic/update_vacation_cubit.dart';
+import 'package:erp_system/features/hr/vacations/update_vacation/ui/update_vacation_view.dart';
 import 'package:erp_system/features/hr/vacations/vacation_details/ui/vacation_details_view.dart';
+import 'package:erp_system/features/hr/vacations/vacation_of_specific_employee/logic/get_all_vacation_of_specific_employee_cubit.dart';
+import 'package:erp_system/features/hr/vacations/vacation_of_specific_employee/ui/get_all_vacation_of_specific_employee_view.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_parent_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_sub_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/ui/add_parent_category_view.dart';
@@ -137,6 +147,10 @@ abstract class AppRouter {
   static const kGetAllVacationsView = '/getAllVacationsView';
   static const kApplyVacationView = '/applyVacationView';
   static const kDetailsVacationView = '/detailsVacationView';
+  static const kGetAllVacationOfSpecificEmployeeView = '/getAllOfSpecificEmployeeVacationsView';
+  static const kUpdateVacationView = '/updateVacationView';
+
+
 
   //job position
   static const kGetAllJobPositionsView = '/getAllJobPositionView';
@@ -145,6 +159,13 @@ abstract class AppRouter {
 
   //permission
   static const kGetAllPermissionView = '/getAllPermissionView';
+  static const kGetPermissionOfSpecificEmployeeView = '/getPermissionOfSpecificEmployeeView';
+  static const kAddPermissionView = '/addPermissionView';
+  static const kUpdatePermissionView = '/updatePermissionView';
+
+  static const kUpdateStatusOfPermissionView = '/updateStatusOfPermissionView';
+
+
 
   static final router = GoRouter(
     routes: [
@@ -417,13 +438,7 @@ abstract class AppRouter {
           child: const GetAllDepartmentView(),
         ),
       ),
-      GoRoute(
-        path: kAddDepartment,
-        builder: (context, state) => BlocProvider(
-          create: (context) => getIt.get<AddDepartmentCubit>(),
-          child: const AddDepartmentView(),
-        ),
-      ),
+
       GoRoute(
         path: kUpdateDepartment,
         builder: (context, state) {
@@ -471,6 +486,16 @@ abstract class AppRouter {
           );
         },
       ),
+      GoRoute(
+        path: kGetAllVacationOfSpecificEmployeeView,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) =>
+            getIt.get<GetAllVacationOfSpecificEmployeeCubit>()..getAllVacationOfSpecificEmployee(),
+            child: const GetAllVacationOfSpecificEmployeeView(),
+          );
+        },
+      ),
 
       GoRoute(
         path: kApplyVacationView,
@@ -490,6 +515,18 @@ abstract class AppRouter {
           );
         },
       ),
+      GoRoute(
+        path:kUpdateVacationView,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => getIt.get<UpdateVacationCubit>(),
+            child: UpdateVacationView(
+              getAllVacationModel: state.extra as GetAllVacationModel,
+            ),
+          );
+        },
+      ),
+
 
       //job position
 
@@ -527,14 +564,56 @@ abstract class AppRouter {
 
       GoRoute(
         path: kGetAllPermissionView,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+
+            BlocProvider<UpdateStatusOfPermissionCubit>(
+              create: (context) =>getIt.get<UpdateStatusOfPermissionCubit>()
+                ..updatePermission(state.extra.toString(), state.extra as int),
+            ),
+            BlocProvider<GetAllPermissionCubit>(
+              create: (context) =>  getIt.get<GetAllPermissionCubit>()..getAllPermissions(),
+            )
+          ],
+          child: const GetAllPermissionView(),
+        ),
+
+
+      ),
+
+
+      GoRoute(
+        path:kGetPermissionOfSpecificEmployeeView,
         builder: (context, state) {
           return BlocProvider(
             create: (context) =>
-                getIt.get<GetAllPermissionCubit>()..getAllPermissions(),
-            child: const GetAllPermissionView(),
+            getIt.get<GetPermissionOfSpecificEmployeeCubit>()..getPermissionsOfSpecificEmployee(),
+            child: const GetPermissionOfSpecificEmployeeView(),
           );
         },
       ),
+      GoRoute(
+        path: kAddPermissionView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<AddPermissionCubit>(),
+          child: const AddPermissionView(),
+        ),
+      ),
+      GoRoute(
+        path: kUpdatePermissionView,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => getIt.get<UpdatePermissionCubit>(),
+            child: UpdatePermissionView(
+               getPermissionOfSpecificEmployeeResponse: state.extra as GetPermissionOfSpecificEmployeeResponse,
+
+            ),
+          );
+        },
+      ),
+
+
+
     ],
   );
 }

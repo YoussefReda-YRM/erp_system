@@ -5,6 +5,7 @@ import 'package:erp_system/features/scm/supplier/get_all_suplier/data/models/Get
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+// ignore: must_be_immutable
 class SupplierListViewBody extends StatelessWidget {
   SupplierListViewBody(this.response, {super.key});
   GetAllSupplierResponse response = GetAllSupplierResponse();

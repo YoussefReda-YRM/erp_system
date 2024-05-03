@@ -40,16 +40,6 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
   @override
   void initState() {
     super.initState();
-    departments == []
-        ? _selectedDepartment = GetAllDepartmentResponse(
-            id: -1,
-            departmentName: "There is no department",
-            description: "Ther is no department")
-        : _selectedDepartment = departments[0];
-  }
-
-  @override
-  Widget build(BuildContext context) {
     context.read<UpdateEmployeeCubit>().userNameController.text =
         widget.employeeData!.name.toString();
     context.read<UpdateEmployeeCubit>().emailController.text =
@@ -57,9 +47,6 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
     context.read<UpdateEmployeeCubit>().passwordController.text = "**********";
     context.read<UpdateEmployeeCubit>().passwordConfirmationController.text =
         "**********";
-    // // context.read<UpdateEmployeeCubit>().employeeJobController.text =
-    // //     widget.employeeData!.employeeJob.toString();
-    // context.read<UpdateEmployeeCubit>().employeeDepartmentId = widget.employeeData!.employeeDepartment.toString();
     context.read<UpdateEmployeeCubit>().roleController.text =
         widget.employeeData!.role.toString();
     context.read<UpdateEmployeeCubit>().addressController.text =
@@ -78,7 +65,16 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
         widget.employeeData!.birthDate.toString();
     context.read<UpdateEmployeeCubit>().salaryController.text =
         widget.employeeData!.salary.toString();
+    departments == []
+        ? _selectedDepartment = GetAllDepartmentResponse(
+            id: -1,
+            departmentName: "There is no department",
+            description: "Ther is no department")
+        : _selectedDepartment = departments[0];
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Form(
       key: context.read<UpdateEmployeeCubit>().formKey,
       child: Column(

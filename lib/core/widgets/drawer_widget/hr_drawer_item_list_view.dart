@@ -33,7 +33,15 @@ class _DrawerItemListViewState extends State<HrDrawerItemListView> {
       icon: Icons.description_outlined,
     ),
     DrawerItemModel(
+      title: 'My Vacations',
+      icon: Icons.description_outlined,
+    ),
+    DrawerItemModel(
       title: 'Permissions',
+      icon: Icons.description_outlined,
+    ),
+    DrawerItemModel(
+      title: 'My Permissions',
       icon: Icons.description_outlined,
     ),
   ];
@@ -63,9 +71,15 @@ class _DrawerItemListViewState extends State<HrDrawerItemListView> {
                     } else if (activeIndex == 3) {
                       GoRouter.of(context).push(AppRouter.kGetAllVacationsView);
                     }
-                     else if (activeIndex == 4) {
+                    else if (activeIndex == 4) {
+                      GoRouter.of(context).push(AppRouter.kGetAllVacationOfSpecificEmployeeView);
+                    }
+                     else if (activeIndex == 5) {
                      GoRouter.of(context).push(AppRouter.kGetAllPermissionView);
                      }
+                    else if (activeIndex == 6) {
+                      GoRouter.of(context).push(AppRouter.kGetPermissionOfSpecificEmployeeView);
+                    }
                   });
                 }
               },
