@@ -279,9 +279,9 @@ abstract class ApiService {
     @Header("Authorization") String token,
   );
 
-  @POST(ApiConstants.addPermission)
-  Future<AddPermissionResponse> addPermission(
-    @Body() AddPermissionRequest addPermissionRequest,
-    @Header("Authorization") String token,
-  );
+  // @POST(ApiConstants.addPermission)
+  // Future<AddPermissionResponse> addPermission(
+  //   @Body() AddPermissionRequest addPermissionRequest,
+  //   @Header("Authorization") String token,
+  // );
 }

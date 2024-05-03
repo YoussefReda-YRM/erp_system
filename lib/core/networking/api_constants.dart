@@ -1,6 +1,5 @@
 class ApiConstants {
-  static const String apiBaseUrl =
-      "http://erp-gp.runasp.net/api";
+  static const String apiBaseUrl = "http://erp-gp.runasp.net/api";
   static const String login = "/Auth/Login";
   static const String signup = "/Auth/register";
 
@@ -63,9 +62,7 @@ class ApiConstants {
 
   //permission
   static const String getAllPermission = "/Permission";
-    static const String addPermission = "/permission";
-
-
+  static const String addPermission = "/permission";
 }
 
 class ApiErrors {

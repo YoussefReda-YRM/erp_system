@@ -1,14 +1,14 @@
 class AddPermissionRequest {
-  final String? start;
-  final String? end;
-  final String? date;
-  final String? description;
+  final String start;
+  final String end;
+  final String date;
+  final String description;
 
   AddPermissionRequest({
-    this.start,
-    this.end,
-    this.date,
-    this.description,
+    required this.start,
+    required this.end,
+    required this.date,
+    required this.description,
   });
 
   Map<String, dynamic> toJson() {

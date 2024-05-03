@@ -9,7 +9,8 @@ class AddPermissionResponse {
     this.data,
   });
 
-  factory AddPermissionResponse.fromJson(dynamic json) => AddPermissionResponse(
+  factory AddPermissionResponse.fromJson(Map<String, dynamic> json) =>
+      AddPermissionResponse(
         status: json['status'],
         message: json['message'],
         data:
@@ -36,7 +37,7 @@ class PermissionData {
     this.employee,
   });
 
-  factory PermissionData.fromJson(dynamic json) => PermissionData(
+  factory PermissionData.fromJson(Map<String, dynamic> json) => PermissionData(
         id: json['id'],
         date: json['date'],
         start: json['start'],
