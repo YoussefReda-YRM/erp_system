@@ -21,7 +21,7 @@ class GetAllEmployeeListViewItem extends StatelessWidget {
       onTap: () {
         GoRouter.of(context).push(
           AppRouter.kDetailsEmployeeView,
-          extra: employeeData.id,
+          extra: employeeData.userId.toString(),
         );
       },
       child: Card(
@@ -55,7 +55,7 @@ class GetAllEmployeeListViewItem extends StatelessWidget {
               ),
             ),
             trailing: CustomPopupMenuButton(
-              employeeId: employeeData.id.toString(),
+              employeeData: employeeData,
             ),
           ),
         ),

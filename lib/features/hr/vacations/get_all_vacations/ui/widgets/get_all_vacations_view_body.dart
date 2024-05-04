@@ -30,7 +30,8 @@ class GetAllVacationsViewBody extends StatelessWidget {
               size: 34,
               color: ColorsApp.lightGrey,
             ),
-            onPressed: () {},
+            onPressed: () {
+            },
           ),
         ),
         const Expanded(
@@ -44,4 +45,3 @@ class GetAllVacationsViewBody extends StatelessWidget {
     );
   }
 }
-

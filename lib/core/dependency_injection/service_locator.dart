@@ -8,9 +8,12 @@ import 'package:erp_system/features/hr/attendance/data/repos/attendance_repo.dar
 import 'package:erp_system/features/hr/attendance/logic/get_all_attendance_cubit.dart';
 import 'package:erp_system/features/hr/department/delete_department/data/repos/delete_department_repo.dart';
 import 'package:erp_system/features/hr/department/delete_department/logic/delete_department_cubit.dart';
-import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/get_all_department_response.dart';
+import 'package:erp_system/features/hr/employee/add_employee/data/models/get_all_roles_model.dart';
 import 'package:erp_system/features/hr/employee/add_employee/data/repos/Add_employee_repo.dart';
+import 'package:erp_system/features/hr/employee/add_employee/data/repos/get_all_roles_repo.dart';
 import 'package:erp_system/features/hr/employee/add_employee/logic/add_employee_cubit.dart';
+import 'package:erp_system/features/hr/employee/add_employee/logic/get_all_roles_cubit.dart';
 import 'package:erp_system/features/hr/employee/details_employee/data/repo/details_employee_repo.dart';
 import 'package:erp_system/features/hr/employee/details_employee/logic/details_employee_cubit.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/data/repos/get_all_employee_repo.dart';
@@ -23,8 +26,39 @@ import 'package:erp_system/features/hr/department/update_department/data/repos/u
 import 'package:erp_system/features/hr/department/update_department/logic/update_department_cubit.dart';
 import 'package:erp_system/features/hr/employee/update_employee/data/repos/update_employee_repo.dart';
 import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
+import 'package:erp_system/features/hr/job_position/add_job_position/data/repos/add_job_position_repo.dart';
+import 'package:erp_system/features/hr/job_position/add_job_position/logic/add_job_position_cubit.dart';
+import 'package:erp_system/features/hr/job_position/delete_job_position/data/repos/delete_job_position_repo.dart';
+import 'package:erp_system/features/hr/job_position/delete_job_position/logic/delete_job_position_cubit.dart';
+import 'package:erp_system/features/hr/job_position/get_all_job_position/data/models/GetAllJobPositionResponse.dart';
+import 'package:erp_system/features/hr/job_position/get_all_job_position/data/repos/get_all_job_position_repo.dart';
+import 'package:erp_system/features/hr/job_position/get_all_job_position/logic/get_all_job_position_cubit.dart';
+import 'package:erp_system/features/hr/job_position/update_job_position/data/repos/update_job_position_repo.dart';
+import 'package:erp_system/features/hr/job_position/update_job_position/logic/update_job_position_cubit.dart';
+import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/data/repos/get_permission_of_specific_employee_repo.dart';
+import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/logic/get_permission_of_specific_employee_cubit.dart';
+import 'package:erp_system/features/hr/permissions/add_permissions/data/repos/add_permission_repo.dart';
+import 'package:erp_system/features/hr/permissions/add_permissions/logic/add_permission_cubit.dart';
+import 'package:erp_system/features/hr/permissions/delete_permission/data/repos/delete_permission_repo.dart';
+import 'package:erp_system/features/hr/permissions/delete_permission/logic/delete_permission_cubit.dart';
+import 'package:erp_system/features/hr/permissions/get_all_permissions/data/repos/get_all_permission_repo.dart';
+import 'package:erp_system/features/hr/permissions/get_all_permissions/logic/get_all_permission_cubit.dart';
+import 'package:erp_system/features/hr/permissions/update_permission/data/repos/update_permission_repo.dart';
+import 'package:erp_system/features/hr/permissions/update_permission/logic/update_permission_cubit.dart';
+import 'package:erp_system/features/hr/permissions/update_status_of_permission/data/repos/update_status_of_permission_repo.dart';
+import 'package:erp_system/features/hr/permissions/update_status_of_permission/logic/update_status_of_permission_cubit.dart';
+import 'package:erp_system/features/hr/vacations/add_vacations/data/repos/apply_vacation_repo.dart';
+import 'package:erp_system/features/hr/vacations/add_vacations/logic/apply_vacation_cubit.dart';
+import 'package:erp_system/features/hr/vacations/delete_vacation/data/repos/delete_vacation_repo.dart';
+import 'package:erp_system/features/hr/vacations/delete_vacation/logic/delete_vacation_cubit.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/data/repos/get_all_vacation_repo.dart';
 import 'package:erp_system/features/hr/vacations/get_all_vacations/logic/get_all_vacations_cubit.dart';
+import 'package:erp_system/features/hr/vacations/update_status_of_vacation/data/repos/update_status_of_vacation_repo.dart';
+import 'package:erp_system/features/hr/vacations/update_status_of_vacation/logic/update_status_of_vacation_cubit.dart';
+import 'package:erp_system/features/hr/vacations/update_vacation/data/repos/update_vacation_repo.dart';
+import 'package:erp_system/features/hr/vacations/update_vacation/logic/update_vacation_cubit.dart';
+import 'package:erp_system/features/hr/vacations/vacation_of_specific_employee/data/repos/get_all_vacation_of_specific_employee_repo.dart';
+import 'package:erp_system/features/hr/vacations/vacation_of_specific_employee/logic/get_all_vacation_of_specific_employee_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/repos/add_parent_category_repo.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/repos/add_sub_category_repo.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_parent_category_cubit.dart';
@@ -66,6 +100,7 @@ final getIt = GetIt.instance;
 LoginResponse? loginResponseInGetIt;
 
 List<CategoryAllCategoryModel>? categoriesInGetIt;
+List<GetAllJobPositionResponse>? jobPositionInGetIt;
 
 int activeIndex = 0;
 
@@ -87,6 +122,7 @@ String departmentNameControllerInGetIt = '';
 String departmentDescriptionInGetIt = '';
 
 List<GetAllDepartmentResponse> getAllDepartmentGetIt = [];
+List<GetAllRolesResponse> getAllRolesGetIt = [];
 
 Future<void> setupServiceLocator() async {
   // Dio & ApiService
@@ -207,6 +243,9 @@ Future<void> setupServiceLocator() async {
   getIt
       .registerFactory<UpdateEmployeeCubit>(() => UpdateEmployeeCubit(getIt()));
 
+  getIt.registerLazySingleton<GetAllRolesRepo>(() => GetAllRolesRepo(getIt()));
+  getIt.registerFactory<GetAllRolesCubit>(() => GetAllRolesCubit(getIt()));
+
   //department
   getIt.registerLazySingleton<GetAllDepartmentRepo>(
       () => GetAllDepartmentRepo(getIt()));
@@ -237,4 +276,78 @@ Future<void> setupServiceLocator() async {
       () => GetAllVacationRepo(getIt()));
   getIt.registerFactory<GetAllVacationsCubit>(
       () => GetAllVacationsCubit(getIt()));
+  getIt.registerLazySingleton<ApplyVacationRepo>(
+      () => ApplyVacationRepo(getIt()));
+  getIt.registerFactory<ApplyVacationCubit>(() => ApplyVacationCubit(getIt()));
+
+  getIt.registerLazySingleton<GetAllVacationOfSpecificEmployeeRepo>(
+      () => GetAllVacationOfSpecificEmployeeRepo(getIt()));
+  getIt.registerFactory<GetAllVacationOfSpecificEmployeeCubit>(
+      () => GetAllVacationOfSpecificEmployeeCubit(getIt()));
+
+  getIt.registerLazySingleton<UpdateVacationRepo>(
+      () => UpdateVacationRepo(getIt()));
+  getIt
+      .registerFactory<UpdateVacationCubit>(() => UpdateVacationCubit(getIt()));
+
+  getIt.registerLazySingleton<DeleteVacationRepo>(
+      () => DeleteVacationRepo(getIt()));
+  getIt
+      .registerFactory<DeleteVacationCubit>(() => DeleteVacationCubit(getIt()));
+
+  //job position
+  getIt.registerLazySingleton<GetAllJobPositionRepo>(
+      () => GetAllJobPositionRepo(getIt()));
+  getIt.registerFactory<GetAllJobPositionCubit>(
+      () => GetAllJobPositionCubit(getIt()));
+
+  getIt.registerLazySingleton<AddJobPositionRepo>(
+      () => AddJobPositionRepo(getIt()));
+  getIt
+      .registerFactory<AddJobPositionCubit>(() => AddJobPositionCubit(getIt()));
+
+  getIt.registerLazySingleton<UpdateJobPositionRepo>(
+      () => UpdateJobPositionRepo(getIt()));
+  getIt.registerFactory<UpdateJObPositionCubit>(
+      () => UpdateJObPositionCubit(getIt()));
+
+  getIt.registerLazySingleton<DeleteJobPositionRepo>(
+      () => DeleteJobPositionRepo(getIt()));
+  getIt.registerFactory<DeleteJobPositionCubit>(
+      () => DeleteJobPositionCubit(getIt()));
+
+  //permissions
+  getIt.registerLazySingleton<GetAllPermissionRepo>(
+      () => GetAllPermissionRepo(getIt()));
+  getIt.registerFactory<GetAllPermissionCubit>(
+      () => GetAllPermissionCubit(getIt()));
+
+  getIt.registerLazySingleton<GetPermissionOfSpecificEmployeeRepo>(
+      () => GetPermissionOfSpecificEmployeeRepo(getIt()));
+  getIt.registerFactory<GetPermissionOfSpecificEmployeeCubit>(
+      () => GetPermissionOfSpecificEmployeeCubit(getIt()));
+
+  getIt.registerLazySingleton<AddPermissionRepo>(
+      () => AddPermissionRepo(getIt()));
+  getIt.registerFactory<AddPermissionCubit>(() => AddPermissionCubit(getIt()));
+
+  getIt.registerLazySingleton<UpdatePermissionRepo>(
+      () => UpdatePermissionRepo(getIt()));
+  getIt.registerFactory<UpdatePermissionCubit>(
+      () => UpdatePermissionCubit(getIt()));
+
+  getIt.registerLazySingleton<DeletePermissionRepo>(
+      () => DeletePermissionRepo(getIt()));
+  getIt.registerFactory<DeletePermissionCubit>(
+      () => DeletePermissionCubit(getIt()));
+
+  getIt.registerLazySingleton<UpdateStatusOfPermissionRepo>(
+      () => UpdateStatusOfPermissionRepo(getIt()));
+  getIt.registerFactory<UpdateStatusOfPermissionCubit>(
+      () => UpdateStatusOfPermissionCubit(getIt()));
+
+  getIt.registerLazySingleton<UpdateStatusOfVacationRepo>(
+      () => UpdateStatusOfVacationRepo(getIt()));
+  getIt.registerFactory<UpdateStatusOfVacationCubit>(
+      () => UpdateStatusOfVacationCubit(getIt()));
 }

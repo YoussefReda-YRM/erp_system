@@ -4,8 +4,8 @@ import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_form_field.dart';
 import 'package:erp_system/core/widgets/custom_intl_phone_field.dart';
-import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
-import 'package:erp_system/features/hr/department/get_all_department/logic/get_all_department_cubit.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/get_all_department_response.dart';
+import 'package:erp_system/features/hr/employee/add_employee/data/models/get_all_roles_model.dart';
 import 'package:erp_system/features/hr/employee/add_employee/logic/add_employee_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,12 +34,16 @@ class _AddEmployeeFormState extends State<AddEmployeeForm> {
   late GetAllDepartmentResponse _selectedDepartment;
   List<GetAllDepartmentResponse> departments = getAllDepartmentGetIt;
 
+  late GetAllRolesResponse _selectedRole;
+  List<GetAllRolesResponse> roles = getAllRolesGetIt;
+
   @override
   void initState() {
     super.initState();
     passwordController = context.read<AddEmployeeCubit>().passwordController;
     setupPasswordControllerListener();
     _selectedDepartment = departments[0];
+    _selectedRole = roles[0];
   }
 
   void setupPasswordControllerListener() {
@@ -57,6 +61,11 @@ class _AddEmployeeFormState extends State<AddEmployeeForm> {
 
   @override
   Widget build(BuildContext context) {
+    List<JobPosition>? jobPositions = _selectedDepartment.jobPositions;
+    JobPosition selectedJobPosition = jobPositions!.isEmpty
+        ? JobPosition(id: 0, jobName: "No Job")
+        : jobPositions[0];
+
     return Form(
       key: context.read<AddEmployeeCubit>().formKey,
       child: Column(
@@ -287,59 +296,30 @@ class _AddEmployeeFormState extends State<AddEmployeeForm> {
             ],
           ),
           const SizedBox(height: 18),
-          AppTextFormField(
-            hintText: 'Employee job',
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: ColorsApp.primaryColor,
-                width: 1.3,
-              ),
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter an employee job';
-              }
+          DropdownButtonFormField<GetAllRolesResponse>(
+            value: _selectedRole,
+            items: roles.map((role) {
+              return DropdownMenuItem<GetAllRolesResponse>(
+                value: role,
+                child: Text(role.roleName!),
+              );
+            }).toList(),
+            onChanged: (value) {
+              setState(() {
+                _selectedRole = value!;
+                context.read<AddEmployeeCubit>().roleController =
+                    _selectedRole.roleName;
+              });
             },
-            controller: context.read<AddEmployeeCubit>().employeeJobController,
+            decoration: const InputDecoration(labelText: 'Employee Role'),
+            validator: (value) {
+              if (value == null) {
+                return 'Please select a job position';
+              }
+              return null;
+            },
           ),
           const SizedBox(height: 18),
-          AppTextFormField(
-            hintText: 'Enter role',
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: ColorsApp.primaryColor,
-                width: 1.3,
-              ),
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter an employee role';
-              }
-            },
-            // controller: context.read<AddEmployeeCubit>().roleController,
-          ),
-
-          const SizedBox(height: 18),
-          // AppTextFormField(
-          //   hintText: 'Employee Department',
-          //   enabledBorder: OutlineInputBorder(
-          //     borderSide: const BorderSide(
-          //       color: ColorsApp.primaryColor,
-          //       width: 1.3,
-          //     ),
-          //     borderRadius: BorderRadius.circular(16.0),
-          //   ),
-          //   validator: (value) {
-          //     if (value == null || value.isEmpty) {
-          //       return 'Please enter an employee department';
-          //     }
-          //   },
-          //   controller:
-          //       context.read<AddEmployeeCubit>().employeeDepartmentIdController,
-          // ),
-
           DropdownButtonFormField<GetAllDepartmentResponse>(
             value: _selectedDepartment,
             items: departments.map((department) {
@@ -363,7 +343,30 @@ class _AddEmployeeFormState extends State<AddEmployeeForm> {
               return null;
             },
           ),
-
+          const SizedBox(height: 18),
+          DropdownButtonFormField<JobPosition>(
+            value: selectedJobPosition,
+            items: jobPositions.map((job) {
+              return DropdownMenuItem<JobPosition>(
+                value: job,
+                child: Text(job.jobName),
+              );
+            }).toList(),
+            onChanged: (value) {
+              setState(() {
+                selectedJobPosition = value!;
+                context.read<AddEmployeeCubit>().employeeJobController =
+                    selectedJobPosition.jobName.toString();
+              });
+            },
+            decoration: const InputDecoration(labelText: 'Job Position'),
+            validator: (value) {
+              if (value == null) {
+                return 'Please select a Job Position';
+              }
+              return null;
+            },
+          ),
           const SizedBox(height: 18),
           AppTextFormField(
             hintText: 'Address',

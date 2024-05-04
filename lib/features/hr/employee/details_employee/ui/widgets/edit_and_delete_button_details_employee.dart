@@ -5,6 +5,7 @@ import 'package:erp_system/core/utils/functions/delete_show_dialog.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
 import 'package:erp_system/core/widgets/custom_text_form_field.dart';
+import 'package:erp_system/features/hr/employee/details_employee/data/models/details_employee_model.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_employee_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,11 +15,11 @@ class EditAndDeleteButton extends StatelessWidget {
   const EditAndDeleteButton({
     super.key,
     required this.size,
-    required this.employeeId,
+    required this.employeeData,
   });
 
   final Size size;
-  final String employeeId;
+  final DetailsEmployeeModel employeeData;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,10 @@ class EditAndDeleteButton extends StatelessWidget {
           backgroundColor: Colors.green,
           textStyle: Styles.font13BlueSemiBold(context),
           onPressed: () {
-            GoRouter.of(context).push(AppRouter.kUpdateEmployeeView);
+            GoRouter.of(context).push(
+              AppRouter.kUpdateEmployeeView,
+              extra: employeeData,
+            );
           },
         ),
         const Spacer(),
@@ -45,7 +49,7 @@ class EditAndDeleteButton extends StatelessWidget {
               'Are you sure you want to delete this Employee?',
               () {
                 getIt.get<GetAllEmployeeCubit>().deleteEmployee(
-                      employeeId,
+                      employeeData.userID!,
                     );
                 GoRouter.of(context).pop();
                 Future.delayed(const Duration(milliseconds: 200), () {

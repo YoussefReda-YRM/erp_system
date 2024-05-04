@@ -19,6 +19,7 @@ class AppTextFormField extends StatelessWidget {
   final Function? function;
   final TextInputType? keyboardType;
   final bool? readOnly;
+  final int? maxLines;
 
   const AppTextFormField({
     super.key,
@@ -38,6 +39,7 @@ class AppTextFormField extends StatelessWidget {
     this.function,
     this.keyboardType,
     this.readOnly,
+    this.maxLines,
   });
 
   @override
@@ -47,6 +49,7 @@ class AppTextFormField extends StatelessWidget {
         function!();
       },
       child: TextFormField(
+        maxLines: maxLines ?? 1,
         keyboardType: keyboardType,
         enabled: isEnabled ?? true,
         readOnly: readOnly ?? false,

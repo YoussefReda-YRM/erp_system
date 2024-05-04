@@ -1,8 +1,8 @@
-import 'package:erp_system/core/utils/app_router.dart';
+ import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
-import 'package:erp_system/features/hr/department/get_all_department/data/models/getAllDepartment.dart';
-import 'package:erp_system/features/hr/employee/get_all_employees/ui/widgets/custom_popup_menu_button.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/get_all_department_response.dart';
+import 'package:erp_system/features/hr/department/get_all_department/ui/widgets/department_popup_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -19,13 +19,7 @@ class DepartmentListViewBody extends StatelessWidget {
           onTap: () {
             GoRouter.of(context).push(
               AppRouter.kDepartmentDetails,
-              extra: {
-                "departmentName": response[index].departmentName,
-                "departmentDescription": response[index].description,
-                "id":response[index].id
-              //  "employee": response[index].employees,
-
-              },
+              extra: response[index],
             );
           },
           child: Card(
@@ -36,13 +30,13 @@ class DepartmentListViewBody extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 2),
               child: ListTile(
-                leading: CircleAvatar(
-                  radius: 24,
-                  child: Text(
-                    //response.data![index].id.toString() ?? "0"
-                    response[index].id.toString(),
-                  ),
-                ),
+                // leading: CircleAvatar(
+                //   radius: 24,
+                //   child: Text(
+                //     //response.data![index].id.toString() ?? "0"
+                //     response[index].id.toString(),
+                //   ),
+                // ),
                 title: FittedBox(
                   fit: BoxFit.scaleDown,
                   alignment: AlignmentDirectional.centerStart,
@@ -54,8 +48,8 @@ class DepartmentListViewBody extends StatelessWidget {
                     style: Styles.font18DarkBlueBold(context),
                   ),
                 ),
-                trailing: const CustomPopupMenuButton(
-                  employeeId: "",
+                trailing: DepartmentPopupMenuButton(
+                  departmentData: response[index]
                 ),
               ),
             ),

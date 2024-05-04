@@ -7,12 +7,15 @@ import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:erp_system/features/hr/employee/get_all_employees/data/models/employee_response.dart';
+
+
 class CustomPopupMenuButton extends StatelessWidget {
   const CustomPopupMenuButton({
     super.key,
-    required this.employeeId,
+    required this.employeeData,
   });
-  final String employeeId;
+  final EmployeeData employeeData;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,7 @@ class CustomPopupMenuButton extends StatelessWidget {
         if (value == 'edit') {
           GoRouter.of(context).push(
             AppRouter.kUpdateEmployeeView,
-            extra: employeeId,
+            extra: employeeData,
           );
         } else if (value == 'delete') {
           deleteShowDialog(
@@ -36,7 +39,7 @@ class CustomPopupMenuButton extends StatelessWidget {
             'Are you sure you want to delete this Employee?',
             () {
               getIt.get<GetAllEmployeeCubit>().deleteEmployee(
-                    employeeId,
+                    employeeData.userId.toString(),
                   );
               GoRouter.of(context).pop();
               Future.delayed(const Duration(milliseconds: 200), () {

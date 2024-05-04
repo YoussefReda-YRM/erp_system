@@ -3,6 +3,7 @@ import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:erp_system/core/widgets/custom_back_button.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/get_all_department_response.dart';
 import 'package:erp_system/features/hr/department/update_department/logic/update_department_cubit.dart';
 import 'package:erp_system/features/hr/department/update_department/ui/widget/update_department_bloc_listener.dart';
 import 'package:erp_system/features/hr/department/update_department/ui/widget/update_department_form.dart';
@@ -10,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UpdateDepartmentBody extends StatelessWidget {
-  final int id;
-  const UpdateDepartmentBody({super.key, required this.id});
+  final GetAllDepartmentResponse departmentData;
+  const UpdateDepartmentBody({super.key, required this.departmentData});
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +49,11 @@ class UpdateDepartmentBody extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Padding(
-                      padding: EdgeInsets.all(20),
-                      child: UpdateDepartmentForm(),
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: UpdateDepartmentForm(
+                        departmentData: departmentData,
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(20),
@@ -59,10 +62,10 @@ class UpdateDepartmentBody extends StatelessWidget {
                         textStyle: Styles.font16LightGreyMedium(context),
                         backgroundColor: ColorsApp.primaryColor,
                         onPressed: () {
-                          validateThenDoUpdateDepartment(context, id);
-                          // context
-                          //     .read<UpdateParentCategoryCubit>()
-                          //     .updateparentcategory(parentId);
+                          validateThenDoUpdateDepartment(
+                            context,
+                            departmentData.id,
+                          );
                         },
                       ),
                     ),
