@@ -3,8 +3,15 @@ import 'package:erp_system/core/widgets/drawer_widget/scm_drawer_item_list_view.
 import 'package:erp_system/features/scm/orders/inventory_order/ui/widgets/get_all_inventory_orders_view_body.dart';
 import 'package:flutter/material.dart';
 
-class GetAllInventoryOrdersView extends StatelessWidget {
-  GetAllInventoryOrdersView({super.key});
+class GetAllInventoryOrdersView extends StatefulWidget {
+  const GetAllInventoryOrdersView({super.key});
+
+  @override
+  State<GetAllInventoryOrdersView> createState() =>
+      _GetAllInventoryOrdersViewState();
+}
+
+class _GetAllInventoryOrdersViewState extends State<GetAllInventoryOrdersView> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override

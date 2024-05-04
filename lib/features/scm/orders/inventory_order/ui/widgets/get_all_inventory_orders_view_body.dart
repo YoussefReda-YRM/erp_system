@@ -1,7 +1,7 @@
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/ui/widgets/custom_no_product_widget.dart';
-import 'package:erp_system/features/inventory/product/widgets/custom_app_bar_product.dart';
+import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:erp_system/features/inventory/product/widgets/custom_circular_progress_indicator.dart';
 import 'package:erp_system/features/inventory/product/widgets/custom_error_widget.dart';
 import 'package:erp_system/features/scm/orders/inventory_order/logic/get_all_inventory_orders_cubit.dart';
@@ -18,7 +18,7 @@ class GetAllInventoryOrdersViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomAppBarProduct(
+        CustomAppBarApp(
           scaffoldKey: scaffoldKey,
           title: "Inventory Orders",
           iconLeading: IconButton(

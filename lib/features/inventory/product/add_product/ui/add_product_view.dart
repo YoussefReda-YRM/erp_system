@@ -6,7 +6,7 @@ import 'package:erp_system/core/widgets/custom_text_button.dart';
 import 'package:erp_system/features/inventory/product/add_product/logic/add_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/add_product/ui/widgets/add_product_bloc_listnere.dart';
 import 'package:erp_system/features/inventory/product/add_product/ui/widgets/add_product_form.dart';
-import 'package:erp_system/features/inventory/product/widgets/custom_app_bar_product.dart';
+import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,7 +21,7 @@ class AddProductView extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomAppBarProduct(
+          CustomAppBarApp(
             title: 'New Product',
             iconLeading: CustomBackButton(
               onTap: () {

@@ -1,7 +1,7 @@
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/core/widgets/custom_back_button.dart';
-import 'package:erp_system/features/inventory/product/widgets/custom_app_bar_product.dart';
+import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:erp_system/features/scm/orders/order_details/ui/widgets/order_details_view_body.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +13,7 @@ class OrderDetailsView extends StatelessWidget {
         backgroundColor: Colors.white,
         body: Column(
           children: [
-            CustomAppBarProduct(
+            CustomAppBarApp(
               title: "Details Order",
               iconLeading: const CustomBackButton(),
               iconTrailing: IconButton(

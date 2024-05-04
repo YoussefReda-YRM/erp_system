@@ -77,7 +77,6 @@ class CircularElevatedButton extends StatelessWidget {
               deleteShowDialog(
                 context,
                 'Are you sure you want to delete this Parent Category?',
-                parentCategoryId!,
                 () {
                   getIt.get<CategoryCubit>().deleteparentcategory(
                         getIt.get<LoginResponse>().token!,

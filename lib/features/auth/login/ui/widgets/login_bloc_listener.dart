@@ -32,6 +32,10 @@ class LoginBlocListener extends StatelessWidget {
             GoRouter.of(context).push(
               AppRouter.kScmHomeView,
             );
+          } else if (role == "HR") {
+            GoRouter.of(context).push(
+              AppRouter.kAllEmployeesView,
+            );
           }
         } else if (state is LoginFailure) {
           setupErrorState(context, state.error.toString());
