@@ -1,38 +1,77 @@
 class LoginResponse {
   String? token;
   String? expiresOn;
-  UserData? userData;
-  String? message;
   bool? isAuthenticated;
+  UserData? userData;
+  int? status;
+  String? message;
 
   LoginResponse({
     this.token,
     this.expiresOn,
+    this.isAuthenticated,
+    this.status,
     this.userData,
     this.message,
-    this.isAuthenticated,
   });
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) => LoginResponse(
-      token: json['token'] as String?,
-      expiresOn: json['expiresOn'],
-      userData: json['user'] == null
-          ? null
-          : UserData.fromJson(json['user'] as Map<String, dynamic>),
-      message: json['message'] as String?,
-      isAuthenticated: json['isAuthenticated'] as bool?);
+        token: json['token'],
+        expiresOn: json['expiresOn'],
+        isAuthenticated: json['isAuthenticated'],
+        userData: json['user'] == null ? null : UserData.fromJson(json['user']),
+        status: json['status'],
+        message: json['message'],
+      );
 }
 
 class UserData {
   String? userID;
+  String? name;
   String? email;
   String? userName;
-  List? roles;
-  UserData({this.userID, this.email, this.userName, this.roles});
+  String? role;
+  String? employeeDepartment;
+  String? address;
+  String? phoneNumber;
+  String? nationality;
+  String? identificationNo;
+  String? bankAccount;
+  String? gender;
+  String? birthDate;
+  double? salary;
+
+  UserData({
+    this.userID,
+    this.email,
+    this.userName,
+    this.role,
+    this.address,
+    this.bankAccount,
+    this.birthDate,
+    this.employeeDepartment,
+    this.gender,
+    this.identificationNo,
+    this.name,
+    this.nationality,
+    this.phoneNumber,
+    this.salary,
+  });
 
   factory UserData.fromJson(Map<String, dynamic> json) => UserData(
-      userID: json['userID'] as String?,
-      email: json['email'] as String?,
-      userName: json['username'] as String?,
-      roles: json['roles'] as List?);
+        userID: json['userID'],
+        name: json['name'],
+        email: json['email'],
+        userName: json['username'],
+        role: json['role'],
+        employeeDepartment: json['employeeDepartment'],
+        address: json['address'],
+        phoneNumber: json['phoneNumber'],
+        nationality: json['nationality'],
+        identificationNo: json['identificationNo'],
+        bankAccount: json['bankAccount'],
+        gender: json['gender'],
+        birthDate: json['birthDate'],
+        salary: json['salary'],
+      );
 }

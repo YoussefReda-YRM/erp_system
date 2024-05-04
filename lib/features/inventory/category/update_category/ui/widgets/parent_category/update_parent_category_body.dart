@@ -5,7 +5,7 @@ import 'package:erp_system/core/widgets/custom_text_button.dart';
 import 'package:erp_system/features/inventory/category/update_category/logic/update_parent_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/update_category/ui/widgets/parent_category/update_parent_category_bloc_listner.dart';
 import 'package:erp_system/features/inventory/category/update_category/ui/widgets/parent_category/update_parent_category_form.dart';
-import 'package:erp_system/features/inventory/product/widgets/custom_app_bar_product.dart';
+import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,7 +20,7 @@ class UpdateParentCategoryBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomAppBarProduct(
+        CustomAppBarApp(
           title: 'Edit parent Category',
           iconLeading: const CustomBackButton(),
           iconTrailing: IconButton(

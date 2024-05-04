@@ -4,7 +4,7 @@ import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/core/widgets/custom_back_button.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
 import 'package:erp_system/core/widgets/custom_text_form_field.dart';
-import 'package:erp_system/features/inventory/product/widgets/custom_app_bar_product.dart';
+import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:flutter/material.dart';
 
 class ReorderViewBody extends StatelessWidget {
@@ -14,7 +14,7 @@ class ReorderViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomAppBarProduct(
+        CustomAppBarApp(
           title: "Re-order",
           iconLeading: const CustomBackButton(),
           iconTrailing: IconButton(

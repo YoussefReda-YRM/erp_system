@@ -2,8 +2,51 @@ import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/auth/create_new_password/ui/create_new_password_view.dart';
-import 'package:erp_system/features/auth/sign_up/logic/sign_up_cubit.dart';
-import 'package:erp_system/features/auth/sign_up/ui/register_view.dart';
+import 'package:erp_system/features/hr/attendance/logic/get_all_attendance_cubit.dart';
+import 'package:erp_system/features/hr/attendance/ui/attendance_view.dart';
+import 'package:erp_system/features/hr/department/get_all_department/data/models/get_all_department_response.dart';
+import 'package:erp_system/features/hr/department/get_all_department/logic/get_all_department_cubit.dart';
+import 'package:erp_system/features/hr/department/get_all_department/ui/get_all_department_view.dart';
+import 'package:erp_system/features/hr/department/get_all_department/ui/widgets/department_details.dart';
+import 'package:erp_system/features/hr/employee/add_employee/logic/add_employee_cubit.dart';
+import 'package:erp_system/features/hr/department/update_department/logic/update_department_cubit.dart';
+import 'package:erp_system/features/hr/department/update_department/ui/update_department.dart';
+import 'package:erp_system/features/hr/employee/add_employee/logic/get_all_roles_cubit.dart';
+import 'package:erp_system/features/hr/employee/add_employee/ui/add_employee_view.dart';
+import 'package:erp_system/features/hr/employee/details_employee/logic/details_employee_cubit.dart';
+import 'package:erp_system/features/hr/employee/details_employee/ui/details_employee_view.dart';
+import 'package:erp_system/features/hr/employee/get_all_employees/data/models/employee_response.dart';
+import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_employee_cubit.dart';
+import 'package:erp_system/features/hr/employee/get_all_employees/ui/get_all_employee_view.dart';
+import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
+import 'package:erp_system/features/hr/employee/update_employee/ui/update_employee.dart';
+import 'package:erp_system/features/hr/job_position/update_job_position/logic/update_job_position_cubit.dart';
+import 'package:erp_system/features/hr/job_position/update_job_position/ui/update_job_position_view.dart';
+import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/data/models/GetPermissionOfSpecificEmployeeResponse.dart';
+import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/logic/get_permission_of_specific_employee_cubit.dart';
+import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/ui/get_permission_of_specific_employee_view.dart';
+import 'package:erp_system/features/hr/permissions/add_permissions/logic/add_permission_cubit.dart';
+import 'package:erp_system/features/hr/permissions/add_permissions/ui/add_permission_view.dart';
+import 'package:erp_system/features/hr/permissions/update_permission/logic/update_permission_cubit.dart';
+import 'package:erp_system/features/hr/permissions/update_permission/ui/update_permission_view.dart';
+import 'package:erp_system/features/hr/permissions/update_status_of_permission/logic/update_status_of_permission_cubit.dart';
+import 'package:erp_system/features/hr/vacations/add_vacations/logic/apply_vacation_cubit.dart';
+import 'package:erp_system/features/hr/vacations/add_vacations/ui/apply_vacation_view.dart';
+import 'package:erp_system/features/hr/vacations/get_all_vacations/data/models/get_all_vacation_model.dart';
+import 'package:erp_system/features/hr/job_position/add_job_position/logic/add_job_position_cubit.dart';
+import 'package:erp_system/features/hr/job_position/add_job_position/ui/add_job_position_view.dart';
+import 'package:erp_system/features/hr/job_position/get_all_job_position/logic/get_all_job_position_cubit.dart';
+import 'package:erp_system/features/hr/job_position/get_all_job_position/ui/get_all_position_view.dart';
+import 'package:erp_system/features/hr/permissions/get_all_permissions/logic/get_all_permission_cubit.dart';
+import 'package:erp_system/features/hr/permissions/get_all_permissions/ui/get_all_permission_view.dart';
+import 'package:erp_system/features/hr/vacations/get_all_vacations/logic/get_all_vacations_cubit.dart';
+import 'package:erp_system/features/hr/vacations/get_all_vacations/ui/get_all_vacations_view.dart';
+import 'package:erp_system/features/hr/vacations/update_status_of_vacation/logic/update_status_of_vacation_cubit.dart';
+import 'package:erp_system/features/hr/vacations/update_vacation/logic/update_vacation_cubit.dart';
+import 'package:erp_system/features/hr/vacations/update_vacation/ui/update_vacation_view.dart';
+import 'package:erp_system/features/hr/vacations/vacation_details/ui/vacation_details_view.dart';
+import 'package:erp_system/features/hr/vacations/vacation_of_specific_employee/logic/get_all_vacation_of_specific_employee_cubit.dart';
+import 'package:erp_system/features/hr/vacations/vacation_of_specific_employee/ui/get_all_vacation_of_specific_employee_view.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_parent_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_sub_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/add_category/ui/add_parent_category_view.dart';
@@ -86,6 +129,42 @@ abstract class AppRouter {
   static const kInventoryOrders = '/inventoryOrders';
   static const kOrdersDetailsView = '/ordersDetailsView';
   static const kUpdateOrderView = '/updateOrderView';
+
+  //HR
+  static const kAllEmployeesView = '/allEmployeesView';
+  static const kAddEmployeeView = '/addEmployeeView';
+  static const kDetailsEmployeeView = '/detailsEmployeeView';
+  //department
+  static const kAllDepartmentsView = '/allDepartmentsView';
+  static const kUpdateEmployeeView = '/updateEmployeeView';
+  static const kAddDepartment = '/addDepartment';
+  static const kUpdateDepartment = '/updateDepartment';
+  static const kDepartmentDetails = '/departmentDetails';
+
+  //attendance
+  static const kAttendanceView = '/attendanceView';
+
+  //vacations
+  static const kGetAllVacationsView = '/getAllVacationsView';
+  static const kApplyVacationView = '/applyVacationView';
+  static const kDetailsVacationView = '/detailsVacationView';
+  static const kGetAllVacationOfSpecificEmployeeView =
+      '/getAllOfSpecificEmployeeVacationsView';
+  static const kUpdateVacationView = '/updateVacationView';
+
+  //job position
+  static const kGetAllJobPositionsView = '/getAllJobPositionView';
+  static const kAddJobPositionsView = '/AddJobPositionsView';
+  static const kUpdatePositionsView = '/UpdateJobPositionsView';
+
+  //permission
+  static const kGetAllPermissionView = '/getAllPermissionView';
+  static const kGetPermissionOfSpecificEmployeeView =
+      '/getPermissionOfSpecificEmployeeView';
+  static const kAddPermissionView = '/addPermissionView';
+  static const kUpdatePermissionView = '/updatePermissionView';
+
+  static const kUpdateStatusOfPermissionView = '/updateStatusOfPermissionView';
 
   static final router = GoRouter(
     routes: [
@@ -233,12 +312,6 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
-        path: kSignupView,
-        builder: (context, state) => BlocProvider(
-            create: (context) => getIt.get<SignupCubit>(),
-            child: const SignupView()),
-      ),
-      GoRoute(
         path: kOtpView,
         builder: (context, state) => const OtpView(),
       ),
@@ -276,7 +349,7 @@ abstract class AppRouter {
         builder: (context, state) => BlocProvider(
           create: (context) =>
               getIt.get<GetAllInventoryOrdersCubit>()..getAllInventoryOrders(),
-          child: GetAllInventoryOrdersView(),
+          child: const GetAllInventoryOrdersView(),
         ),
       ),
 
@@ -298,6 +371,245 @@ abstract class AppRouter {
             create: (context) => getIt.get<UpdateOrderCubit>(),
             child: UpdateOrderView(
               orderId: state.extra as int,
+            ),
+          );
+        },
+      ),
+
+      //HR
+
+      GoRoute(
+        path: kAllEmployeesView,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider<GetAllEmployeeCubit>(
+              create: (context) =>
+                  getIt.get<GetAllEmployeeCubit>()..getAllEmployees(),
+            ),
+            BlocProvider<GetAllDepartmentCubit>(
+              create: (context) => getIt.get<GetAllDepartmentCubit>(),
+            ),
+            BlocProvider<GetAllRolesCubit>(
+              create: (context) => getIt.get<GetAllRolesCubit>(),
+            )
+          ],
+          child: const GetAllEmployeeView(),
+        ),
+
+        // BlocProvider(
+        // create: (context) =>
+        //     getIt.get<GetAllEmployeeCubit>()..getAllEmployees(),
+        //   child: const GetAllEmployeeView(),
+        // ),
+      ),
+
+      GoRoute(
+        path: kAddEmployeeView,
+        builder: (context, state) => BlocProvider(
+            create: (context) => getIt.get<AddEmployeeCubit>(),
+            child: const AddEmployeeView()),
+      ),
+      GoRoute(
+        path: kDetailsEmployeeView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<DetailsEmployeeCubit>()
+            ..getSpecificEmployee(
+              state.extra as String,
+            ),
+          child: const DetailsEmployeeView(),
+        ),
+      ),
+
+      GoRoute(
+        path: kUpdateEmployeeView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<UpdateEmployeeCubit>(),
+          child: UpdateEmployeeView(
+            employeeData: state.extra as EmployeeData,
+          ),
+        ),
+      ),
+      GoRoute(
+        path: kAllDepartmentsView,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              getIt.get<GetAllDepartmentCubit>()..getAllDepartment(),
+          child: const GetAllDepartmentView(),
+        ),
+      ),
+
+      GoRoute(
+        path: kUpdateDepartment,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => getIt.get<UpdateDepartmentCubit>(),
+            child: UpdateDepartment(
+              departmentData: state.extra as GetAllDepartmentResponse,
+            ),
+          );
+        },
+      ),
+
+      GoRoute(
+        path: kDepartmentDetails,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => getIt.get<GetAllDepartmentCubit>(),
+            child: DepartmentDetails(
+              departmentData: state.extra as GetAllDepartmentResponse,
+            ),
+          );
+        },
+      ),
+
+      //attendance
+      GoRoute(
+        path: kAttendanceView,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) =>
+                getIt.get<GetAllAttendanceCubit>()..getAllAttendance(),
+            child: const AttendanceView(),
+          );
+        },
+      ),
+
+      //vacations
+
+      GoRoute(
+        path: kGetAllVacationsView,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider<GetAllVacationsCubit>(
+              create: (context) =>
+                  getIt.get<GetAllVacationsCubit>()..getAllVacations(),
+            ),
+            BlocProvider<UpdateStatusOfVacationCubit>(
+              create: (context) => getIt.get<UpdateStatusOfVacationCubit>(),
+            )
+          ],
+          child: const GetAllVacationsView(),
+        ),
+      ),
+
+      GoRoute(
+        path: kGetAllVacationOfSpecificEmployeeView,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) =>
+                getIt.get<GetAllVacationOfSpecificEmployeeCubit>()
+                  ..getAllVacationOfSpecificEmployee(),
+            child: const GetAllVacationOfSpecificEmployeeView(),
+          );
+        },
+      ),
+
+      GoRoute(
+        path: kApplyVacationView,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => getIt.get<ApplyVacationCubit>(),
+            child: const ApplyVacationView(),
+          );
+        },
+      ),
+
+      GoRoute(
+        path: kDetailsVacationView,
+        builder: (context, state) {
+          return VacationDetailsView(
+            vacationModel: state.extra as GetAllVacationModel,
+          );
+        },
+      ),
+      GoRoute(
+        path: kUpdateVacationView,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => getIt.get<UpdateVacationCubit>(),
+            child: UpdateVacationView(
+              getAllVacationModel: state.extra as GetAllVacationModel,
+            ),
+          );
+        },
+      ),
+
+      //job position
+
+      GoRoute(
+        path: kGetAllJobPositionsView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<GetAllJobPositionCubit>()
+            ..getAllJobPositions(state.extra as int),
+          child: GetAllJobPosition(depId: state.extra as int),
+        ),
+      ),
+
+      GoRoute(
+        path: kAddJobPositionsView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<AddJobPositionCubit>(),
+          child: AddJobPositionView(depId: state.extra as int),
+        ),
+      ),
+      GoRoute(
+        path: kUpdatePositionsView,
+        builder: (context, state) {
+          Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
+          return BlocProvider(
+            create: (context) => getIt.get<UpdateJObPositionCubit>(),
+            child: UpdateJobPositionView(
+              jobId: myData['jobId'],
+              depId: myData['depId'],
+              jobName: myData['jobName'],
+            ),
+          );
+        },
+      ),
+      //permission
+
+      GoRoute(
+        path: kGetAllPermissionView,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider<GetAllPermissionCubit>(
+              create: (context) =>
+                  getIt.get<GetAllPermissionCubit>()..getAllPermissions(),
+            ),
+            BlocProvider<UpdateStatusOfPermissionCubit>(
+              create: (context) => getIt.get<UpdateStatusOfPermissionCubit>(),
+            )
+          ],
+          child: const GetAllPermissionView(),
+        ),
+      ),
+
+      GoRoute(
+        path: kGetPermissionOfSpecificEmployeeView,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) =>
+                getIt.get<GetPermissionOfSpecificEmployeeCubit>()
+                  ..getPermissionsOfSpecificEmployee(),
+            child: const GetPermissionOfSpecificEmployeeView(),
+          );
+        },
+      ),
+      GoRoute(
+        path: kAddPermissionView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<AddPermissionCubit>(),
+          child: const AddPermissionView(),
+        ),
+      ),
+      GoRoute(
+        path: kUpdatePermissionView,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => getIt.get<UpdatePermissionCubit>(),
+            child: UpdatePermissionView(
+              getPermissionOfSpecificEmployeeResponse:
+                  state.extra as GetPermissionOfSpecificEmployeeResponse,
             ),
           );
         },

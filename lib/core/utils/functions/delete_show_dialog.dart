@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 deleteShowDialog(
-    BuildContext context, String content, int categoryId, Function()? onPressed) {
+    BuildContext context, String content, Function()? onPressed) {
   return showDialog(
     context: context,
     builder: (BuildContext dialogContext) {

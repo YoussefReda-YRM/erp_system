@@ -1,6 +1,5 @@
 class ApiConstants {
-  static const String apiBaseUrl =
-      "http://yahya2002-001-site1.anytempurl.com/api";
+  static const String apiBaseUrl = "http://erp-gp.runasp.net/api";
   static const String login = "/Auth/Login";
   static const String signup = "/Auth/register";
 
@@ -34,6 +33,47 @@ class ApiConstants {
   static const String getAllInventoryOrder = '/Order/AllInventoryOrders';
   static const String getSpecificInventoryOrder = "/Order/InventoryOrder";
   static const String updateOrder = "/order/{orderId}";
+
+  //HR
+  static const String addEmployee = "/Auth/register";
+  static const String getAllEmployees = "/Employee";
+  static const String getAllRoles = "/Employee/roles";
+  static const String getSpecificEmployee = "/Employee";
+  static const String deleteEmployee = "/Employee";
+  static const String updateEmployee = "/Auth";
+
+  //Departments
+  static const String getAllDepartments = "/Department/GetAllDepartment";
+  static const String addDepartment = "/Department";
+  static const String updateDepartment = "/Department/{id}";
+  static const String deleteDepartment = "/Department/{id}";
+
+  //attendance
+  static const String getAllAttendance = "/Employee/GetAllAttends";
+
+  //vacations
+  static const String getAllVacations = "/Vacation";
+  static const String applyVacation = "/Vacation";
+  static const String getAllVacationOfSpecificEmployee =
+      "/Vacation/GetVacationsOfEmployee";
+  static const String updateVacation = "/Vacation/{id}";
+  static const String deleteVacation = "/Vacation/{id}";
+  static const String updateStatusOfVacation = "/Vacation/status/{id}";
+
+  //job position
+  static const String getAllJobPosition = "/JobPositions/{departmentId}";
+  static const String createJobPosition = "/JobPositions";
+  static const String updateJobPosition = "/JobPositions/{id}";
+  static const String deleteJobPosition = "/JobPositions/{id}";
+
+  //permission
+  static const String getAllPermission = "/Permission";
+  static const String getAllPermissionOfSpecificEmployee =
+      "/Permission/GetPermissionsOfEmployee";
+  static const String addPermission = "/permission";
+  static const String updatePermission = "/permission/{id}";
+  static const String deletePermission = "/permission/{id}";
+  static const String updateStatusOfPermission = "/permission/status/{id}";
 }
 
 class ApiErrors {

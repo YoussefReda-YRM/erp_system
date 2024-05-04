@@ -3,7 +3,7 @@ import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/core/widgets/custom_back_button.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
-import 'package:erp_system/features/inventory/product/widgets/custom_app_bar_product.dart';
+import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:erp_system/features/scm/orders/update_order/logic/update_order_cubit.dart';
 import 'package:erp_system/features/scm/orders/update_order/ui/widgets/update_order_bloc_listner.dart';
 import 'package:erp_system/features/scm/orders/update_order/ui/widgets/update_order_form.dart';
@@ -21,7 +21,7 @@ class UpdateOrderBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomAppBarProduct(
+        CustomAppBarApp(
           title: 'Edit Order',
           iconLeading: const CustomBackButton(),
           iconTrailing: IconButton(

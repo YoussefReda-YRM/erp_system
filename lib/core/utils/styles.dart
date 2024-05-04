@@ -109,6 +109,13 @@ abstract class Styles {
         color: ColorsApp.lightGrey,
       );
 
+  static TextStyle font16DarkBlueBold(context) => TextStyle(
+        fontFamily: 'Montserrat',
+        fontSize: getResponsiveFontSize(context, fontSize: 16),
+        fontWeight: FontWeightHelper.bold,
+        color: ColorsApp.primaryColor,
+      );
+
   static TextStyle font18DarkBlueBold(context) => TextStyle(
         fontFamily: 'Montserrat',
         fontSize: getResponsiveFontSize(context, fontSize: 18),
