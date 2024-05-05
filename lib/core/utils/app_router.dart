@@ -1,4 +1,5 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/features/accounting/dashboard/accounting_dashboard_view.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/auth/create_new_password/ui/create_new_password_view.dart';
@@ -165,6 +166,9 @@ abstract class AppRouter {
   static const kUpdatePermissionView = '/updatePermissionView';
 
   static const kUpdateStatusOfPermissionView = '/updateStatusOfPermissionView';
+
+  //Accounting
+  static const kAccountingDashboardView = '/accountingDashboardView';
 
   static final router = GoRouter(
     routes: [
@@ -613,6 +617,12 @@ abstract class AppRouter {
             ),
           );
         },
+      ),
+
+      //Accouting
+      GoRoute(
+        path: kAccountingDashboardView,
+        builder: (context, state) => const AccountingDashboardView(),
       ),
     ],
   );
