@@ -73,9 +73,9 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
                     } else if (activeIndex == 1) {
                       GoRouter.of(context).push(AppRouter.kGetAllScmOrdersView);
                     } else if (activeIndex == 2) {
-                      // GoRouter.of(context).push(AppRouter.kAttendanceView);
+                      GoRouter.of(context).push(AppRouter.kSupplierViewAccounting);
                     } else if (activeIndex == 3) {
-                      // GoRouter.of(context).push(AppRouter.kGetAllVacationsView);
+                       //GoRouter.of(context).push(AppRouter.kSupplierViewAccounting);
                     } else if (activeIndex == 4) {
                       // GoRouter.of(context).push(AppRouter.kGetAllVacationOfSpecificEmployeeView);
                     } else if (activeIndex == 5) {
