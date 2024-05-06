@@ -83,8 +83,10 @@ import 'package:erp_system/features/scm/scm_home/ui/scm_home_view.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/logic/add_supplier_cubit.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/ui/add_supplier_view.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/logic/get_supplier_cubit.dart';
+import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/get_all_supplier_accounting_view.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/get_all_supplier_view.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/widget/supllier_details.dart';
+import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/widget/supllier_details_accounting.dart';
 import 'package:erp_system/features/scm/supplier/update_supplier/logic/update_supplier_cubit.dart';
 import 'package:erp_system/features/scm/supplier/update_supplier/ui/update_supplier.dart';
 import 'package:erp_system/features/splash/ui/splash_view.dart';
@@ -169,6 +171,10 @@ abstract class AppRouter {
 
   //Accounting
   static const kAccountingDashboardView = '/accountingDashboardView';
+  static const kSupplierViewAccounting = '/supplierViewAccounting';
+  static const kSupplierDetailsAccounting = '/supplierDetailsAccounting';
+
+
 
   static final router = GoRouter(
     routes: [
@@ -180,12 +186,19 @@ abstract class AppRouter {
         path: kSupplierView,
         builder: (context, state) => BlocProvider(
           create: (context) => getIt.get<GetAllSupplierCubit>()
-            ..getAllSupplier(
-              "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJCYXNtYU1vaHNlbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImJhc21hbW9oc2VuNTNAZ21haWwuY29tIiwiZXhwIjoxNzA4NzI1MzI2LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDY5IiwiYXVkIjoiTXlTZWN1cmVkQVBJVXNlcnMifQ.YtfYcIexDCmQQUZl7RHAXr07vQMdMzZISeHt0zG6qFM",
-            ),
+            ..getAllSupplier(),
           child: const GetAllSupplierView(),
         ),
       ),
+      GoRoute(
+        path: kSupplierViewAccounting,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+          getIt.get<GetAllSupplierCubit>()..getAllSupplier(),
+          child: const GetAllSupplierAccounting(),
+        ),
+      ),
+
       GoRoute(
         path: kSupplierDetails,
         builder: (context, state) {
@@ -202,6 +215,23 @@ abstract class AppRouter {
           );
         },
       ),
+      GoRoute(
+        path: kSupplierDetailsAccounting,
+        builder: (context, state) {
+          Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
+          return BlocProvider(
+            create: (context) => getIt.get<GetAllSupplierCubit>(),
+            child: SupplierDetailsAccounting(
+              id: myData['id'],
+              supplierAddedBy: myData['addedBy'],
+              supplierPhone: myData['supplierPhone'],
+              supplierEmail: myData['supplierEmail'],
+              supplierName: myData['supplierName'],
+            ),
+          );
+        },
+      ),
+
       GoRoute(
         path: kAddSupplier,
         builder: (context, state) => BlocProvider(

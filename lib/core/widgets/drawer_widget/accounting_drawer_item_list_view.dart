@@ -1,8 +1,10 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/widgets/custom_divider.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_item.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_item_model.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AccountingDrawerItemListView extends StatefulWidget {
   const AccountingDrawerItemListView({
@@ -63,9 +65,9 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
                     } else if (activeIndex == 1) {
                       // GoRouter.of(context).push(AppRouter.kAllDepartmentsView);
                     } else if (activeIndex == 2) {
-                      // GoRouter.of(context).push(AppRouter.kAttendanceView);
+                      GoRouter.of(context).push(AppRouter.kSupplierViewAccounting);
                     } else if (activeIndex == 3) {
-                      // GoRouter.of(context).push(AppRouter.kGetAllVacationsView);
+                       //GoRouter.of(context).push(AppRouter.kSupplierViewAccounting);
                     } else if (activeIndex == 4) {
                       // GoRouter.of(context).push(AppRouter.kGetAllVacationOfSpecificEmployeeView);
                     } else if (activeIndex == 5) {
