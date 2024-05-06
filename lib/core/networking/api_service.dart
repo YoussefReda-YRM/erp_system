@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:erp_system/core/networking/api_constants.dart';
+import 'package:erp_system/features/accounting/get_all_scm_orders.dart/data/models/get_all_scm_orders_response.dart';
 import 'package:erp_system/features/auth/login/data/models/login_request_body.dart';
 import 'package:erp_system/features/hr/attendance/data/models/attendance_response.dart';
 import 'package:erp_system/features/hr/department/add_department/data/models/AddDepartmentRequest.dart';
@@ -178,6 +179,11 @@ abstract class ApiService {
     @Header("Authorization") String token,
     @Path("orderId") int orderId,
     @Body() UpdateOrderRequest requestParentCategory,
+  );
+
+  @GET(ApiConstants.getAllScmOrders)
+  Future<List<GetAllScmOrdersResponse>> getAllScmOrders(
+    @Header("Authorization") String token,
   );
 
   //HR

@@ -1,8 +1,10 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/widgets/custom_divider.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_item.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_item_model.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AccountingDrawerItemListView extends StatefulWidget {
   const AccountingDrawerItemListView({
@@ -17,7 +19,15 @@ class AccountingDrawerItemListView extends StatefulWidget {
 class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
   final List<DrawerItemModel> items = [
     DrawerItemModel(
-      title: 'Orders',
+      title: 'Main',
+      icon: Icons.home_outlined,
+    ),
+    DrawerItemModel(
+      title: 'SCM Orders',
+      icon: Icons.shopping_cart_checkout_outlined,
+    ),
+    DrawerItemModel(
+      title: 'Inventory Orders',
       icon: Icons.shopping_cart_checkout_outlined,
     ),
     DrawerItemModel(
@@ -61,7 +71,7 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
                     if (activeIndex == 0) {
                       // GoRouter.of(context).push(AppRouter.kAllEmployeesView);
                     } else if (activeIndex == 1) {
-                      // GoRouter.of(context).push(AppRouter.kAllDepartmentsView);
+                      GoRouter.of(context).push(AppRouter.kGetAllScmOrdersView);
                     } else if (activeIndex == 2) {
                       // GoRouter.of(context).push(AppRouter.kAttendanceView);
                     } else if (activeIndex == 3) {
@@ -77,7 +87,9 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
                 }
               },
             ),
-            index == 2 || index == 3 || index == 6 ? const CustomDivider() : const SizedBox(),
+            index == 0 || index == 4 || index == 5 || index == 8
+                ? const CustomDivider()
+                : const SizedBox(),
           ],
         );
       },

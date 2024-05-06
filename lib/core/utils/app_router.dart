@@ -1,5 +1,7 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/features/accounting/dashboard/accounting_dashboard_view.dart';
+import 'package:erp_system/features/accounting/get_all_scm_orders.dart/logic/get_all_scm_orders_cubit.dart';
+import 'package:erp_system/features/accounting/get_all_scm_orders.dart/ui/get_all_scm_orders_view.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/auth/create_new_password/ui/create_new_password_view.dart';
@@ -169,6 +171,7 @@ abstract class AppRouter {
 
   //Accounting
   static const kAccountingDashboardView = '/accountingDashboardView';
+  static const kGetAllScmOrdersView = '/getAllScmOrdersView';
 
   static final router = GoRouter(
     routes: [
@@ -623,6 +626,15 @@ abstract class AppRouter {
       GoRoute(
         path: kAccountingDashboardView,
         builder: (context, state) => const AccountingDashboardView(),
+      ),
+
+      GoRoute(
+        path: kGetAllScmOrdersView,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              getIt.get<GetAllScmOrdersCubit>()..getAllScmOrders(),
+          child: const GetAllScmOrdersView(),
+        ),
       ),
     ],
   );
