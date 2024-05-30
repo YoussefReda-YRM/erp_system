@@ -19,7 +19,15 @@ class AccountingDrawerItemListView extends StatefulWidget {
 class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
   final List<DrawerItemModel> items = [
     DrawerItemModel(
-      title: 'Orders',
+      title: 'Main',
+      icon: Icons.home_outlined,
+    ),
+    DrawerItemModel(
+      title: 'SCM Orders',
+      icon: Icons.shopping_cart_checkout_outlined,
+    ),
+    DrawerItemModel(
+      title: 'Inventory Orders',
       icon: Icons.shopping_cart_checkout_outlined,
     ),
     DrawerItemModel(
@@ -63,7 +71,7 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
                     if (activeIndex == 0) {
                       // GoRouter.of(context).push(AppRouter.kAllEmployeesView);
                     } else if (activeIndex == 1) {
-                      // GoRouter.of(context).push(AppRouter.kAllDepartmentsView);
+                      GoRouter.of(context).push(AppRouter.kGetAllScmOrdersView);
                     } else if (activeIndex == 2) {
                       GoRouter.of(context).push(AppRouter.kSupplierViewAccounting);
                     } else if (activeIndex == 3) {
@@ -79,7 +87,9 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
                 }
               },
             ),
-            index == 2 || index == 3 || index == 6 ? const CustomDivider() : const SizedBox(),
+            index == 0 || index == 4 || index == 5 || index == 8
+                ? const CustomDivider()
+                : const SizedBox(),
           ],
         );
       },

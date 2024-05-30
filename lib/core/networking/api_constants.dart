@@ -33,6 +33,7 @@ class ApiConstants {
   static const String getAllInventoryOrder = '/Order/AllInventoryOrders';
   static const String getSpecificInventoryOrder = "/Order/InventoryOrder";
   static const String updateOrder = "/order/{orderId}";
+  static const String getAllScmOrders = '/ScmOrder';
 
   //HR
   static const String addEmployee = "/Auth/register";
@@ -74,6 +75,9 @@ class ApiConstants {
   static const String updatePermission = "/permission/{id}";
   static const String deletePermission = "/permission/{id}";
   static const String updateStatusOfPermission = "/permission/status/{id}";
+
+  //Accounting
+
 }
 
 class ApiErrors {

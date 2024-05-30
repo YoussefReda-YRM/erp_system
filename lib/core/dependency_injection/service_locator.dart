@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:erp_system/core/networking/api_service.dart';
 import 'package:erp_system/core/networking/dio_factory.dart';
+import 'package:erp_system/features/accounting/get_all_scm_orders.dart/data/repos/get_all_scm_orders_repo.dart';
+import 'package:erp_system/features/accounting/get_all_scm_orders.dart/logic/get_all_scm_orders_cubit.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/login/data/repos/login_repo.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
@@ -350,4 +352,10 @@ Future<void> setupServiceLocator() async {
       () => UpdateStatusOfVacationRepo(getIt()));
   getIt.registerFactory<UpdateStatusOfVacationCubit>(
       () => UpdateStatusOfVacationCubit(getIt()));
+
+  //Accounting
+  getIt.registerLazySingleton<GetAllScmOrdersRepo>(
+      () => GetAllScmOrdersRepo(getIt()));
+  getIt.registerFactory<GetAllScmOrdersCubit>(
+      () => GetAllScmOrdersCubit(getIt()));
 }
