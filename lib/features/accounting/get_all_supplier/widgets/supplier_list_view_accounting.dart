@@ -4,8 +4,7 @@ import 'package:erp_system/features/inventory/product/widgets/custom_circular_pr
 import 'package:erp_system/features/inventory/product/widgets/custom_error_widget.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/logic/get_supplier_cubit.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/logic/get_supplier_state.dart';
-import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/widget/supplier_list_view_body.dart';
-import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/widget/supplier_list_view_body_accounting.dart';
+import 'package:erp_system/features/accounting/get_all_supplier/widgets/supplier_list_view_body_accounting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

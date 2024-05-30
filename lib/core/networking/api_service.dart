@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:erp_system/core/networking/api_constants.dart';
+import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/data/models/get_all_invoices_of_supplier_response.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/data/models/get_all_scm_orders_response.dart';
 import 'package:erp_system/features/accounting/taxes/add_taxes/data/models/AddTaxesRequest.dart';
 import 'package:erp_system/features/accounting/taxes/add_taxes/data/models/AddTaxesResponse.dart';
@@ -352,14 +353,20 @@ abstract class ApiService {
     @Body() UpdateStatusOfPermissionRequest updateStatusOfPermissionRequest,
   );
 
-  //taxes
+  //Accounting
   @GET(ApiConstants.getAllTaxes)
   Future<List<GetAllTaxesModel>> getAllTaxes(
-      @Header("Authorization") String token,
-      );
+    @Header("Authorization") String token,
+  );
   @POST(ApiConstants.addTaxes)
   Future<AddTaxesResponse> addTaxes(
-      @Body() AddTaxesRequest AddTaxesRequest,
-      @Header("Authorization") String token,
-      );
+    @Body() AddTaxesRequest AddTaxesRequest,
+    @Header("Authorization") String token,
+  );
+
+  @GET(ApiConstants.getAllInvoicesOfSupplier)
+  Future<List<GetAllInvoicesOfSupplierResponse>> getAllInvoicesOfSupplier(
+    @Header("Authorization") String token,
+    @Path("supplierId") int supplierId,
+  );
 }

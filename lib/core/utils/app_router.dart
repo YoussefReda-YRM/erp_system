@@ -1,5 +1,7 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/features/accounting/dashboard/accounting_dashboard_view.dart';
+import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/logic/get_all_invoices_of_supplier_cubit.dart';
+import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/ui/get_all_invoices_of_supplier_view.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/logic/get_all_scm_orders_cubit.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/ui/get_all_scm_orders_view.dart';
 import 'package:erp_system/features/accounting/taxes/add_taxes/logic/add_taxes_cubit.dart';
@@ -89,10 +91,10 @@ import 'package:erp_system/features/scm/scm_home/ui/scm_home_view.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/logic/add_supplier_cubit.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/ui/add_supplier_view.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/logic/get_supplier_cubit.dart';
-import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/get_all_supplier_accounting_view.dart';
+import 'package:erp_system/features/accounting/get_all_supplier/get_all_supplier_accounting_view.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/get_all_supplier_view.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/widget/supllier_details.dart';
-import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/widget/supllier_details_accounting.dart';
+import 'package:erp_system/features/accounting/get_all_supplier/widgets/supllier_details_accounting.dart';
 import 'package:erp_system/features/scm/supplier/update_supplier/logic/update_supplier_cubit.dart';
 import 'package:erp_system/features/scm/supplier/update_supplier/ui/update_supplier.dart';
 import 'package:erp_system/features/splash/ui/splash_view.dart';
@@ -182,8 +184,7 @@ abstract class AppRouter {
   static const kSupplierDetailsAccounting = '/supplierDetailsAccounting';
   static const kGetAllTaxes = '/getAllTaxes';
   static const kAddTaxes = '/addTaxes';
-
-
+  static const kGetAllInvoicesOfSupplier = '/getAllInvoicesOfSupplier';
 
   static final router = GoRouter(
     routes: [
@@ -194,8 +195,8 @@ abstract class AppRouter {
       GoRoute(
         path: kSupplierView,
         builder: (context, state) => BlocProvider(
-          create: (context) => getIt.get<GetAllSupplierCubit>()
-            ..getAllSupplier(),
+          create: (context) =>
+              getIt.get<GetAllSupplierCubit>()..getAllSupplier(),
           child: const GetAllSupplierView(),
         ),
       ),
@@ -203,7 +204,7 @@ abstract class AppRouter {
         path: kSupplierViewAccounting,
         builder: (context, state) => BlocProvider(
           create: (context) =>
-          getIt.get<GetAllSupplierCubit>()..getAllSupplier(),
+              getIt.get<GetAllSupplierCubit>()..getAllSupplier(),
           child: const GetAllSupplierAccounting(),
         ),
       ),
@@ -675,8 +676,7 @@ abstract class AppRouter {
       GoRoute(
         path: kGetAllTaxes,
         builder: (context, state) => BlocProvider(
-          create: (context) =>
-          getIt.get<GetAllTaxesCubit>()..getAllTaxes(),
+          create: (context) => getIt.get<GetAllTaxesCubit>()..getAllTaxes(),
           child: const GetAllTaxesView(),
         ),
       ),
@@ -687,7 +687,14 @@ abstract class AppRouter {
             child: const AddTaxesView()),
       ),
 
-
+      GoRoute(
+        path: kGetAllInvoicesOfSupplier,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<GetAllInvoicesOfSupplierCubit>()
+            ..getAllInvoicesOfSupplier(state.extra as int),
+          child: GetAllInvoicesOfSupplierView(supplierId: state.extra as int),
+        ),
+      ),
     ],
   );
 }

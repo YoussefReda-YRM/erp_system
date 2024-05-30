@@ -8,16 +8,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddJobPositionCubit extends Cubit<AddJobPositionState> {
   final AddJobPositionRepo _addJobPositionRepo;
-  AddJobPositionCubit(this._addJobPositionRepo) : super(AddJobPositionInitial());
+  AddJobPositionCubit(this._addJobPositionRepo)
+      : super(AddJobPositionInitial());
 
   TextEditingController jobNameController = TextEditingController();
- // TextEditingController departmentDescriptionController = TextEditingController();
+  // TextEditingController departmentDescriptionController = TextEditingController();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   void addJobPosition(int id) async {
     emit(AddJobPositionLoading());
-    final response = await _addJobPositionRepo.addJobPosition(AddJobPositionRequest(jobName:jobNameController.text,departmentId: id ), getIt.get<LoginResponse>().token!,);
+    final response = await _addJobPositionRepo.addJobPosition(
+      AddJobPositionRequest(jobName: jobNameController.text, departmentId: id),
+      getIt.get<LoginResponse>().token!,
+    );
     response.when(
       success: (response) {
         emit(AddJobPositionSuccess(response: response));

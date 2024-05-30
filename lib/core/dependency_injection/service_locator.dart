@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:erp_system/core/networking/api_service.dart';
 import 'package:erp_system/core/networking/dio_factory.dart';
+import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/data/repos/get_all_invoices_of_supplier_repo.dart';
+import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/logic/get_all_invoices_of_supplier_cubit.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/data/repos/get_all_scm_orders_repo.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/logic/get_all_scm_orders_cubit.dart';
 import 'package:erp_system/features/accounting/taxes/add_taxes/data/repos/add_taxes_repo.dart';
@@ -363,13 +365,14 @@ Future<void> setupServiceLocator() async {
   getIt.registerFactory<GetAllScmOrdersCubit>(
       () => GetAllScmOrdersCubit(getIt()));
 
-  getIt.registerLazySingleton<GetAllTaxesRepo>(
-          () => GetAllTaxesRepo(getIt()));
-  getIt.registerFactory<GetAllTaxesCubit>(
-          () => GetAllTaxesCubit(getIt()));
+  getIt.registerLazySingleton<GetAllTaxesRepo>(() => GetAllTaxesRepo(getIt()));
+  getIt.registerFactory<GetAllTaxesCubit>(() => GetAllTaxesCubit(getIt()));
 
-  getIt.registerLazySingleton<AddTaxesRepo>(
-          () => AddTaxesRepo(getIt()));
-  getIt.registerFactory<AddTaxesCubit>(
-          () => AddTaxesCubit(getIt()));
+  getIt.registerLazySingleton<AddTaxesRepo>(() => AddTaxesRepo(getIt()));
+  getIt.registerFactory<AddTaxesCubit>(() => AddTaxesCubit(getIt()));
+
+  getIt.registerLazySingleton<GetAllInvoicesOfSupplierRepo>(
+      () => GetAllInvoicesOfSupplierRepo(getIt()));
+  getIt.registerFactory<GetAllInvoicesOfSupplierCubit>(
+      () => GetAllInvoicesOfSupplierCubit(getIt()));
 }

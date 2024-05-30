@@ -3,6 +3,7 @@ import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/core/widgets/custom_back_button.dart';
+import 'package:erp_system/features/accounting/get_all_supplier/widgets/accounting_popup_menu_button.dart';
 import 'package:flutter/material.dart';
 
 class SupplierDetailsAccounting extends StatelessWidget {
@@ -30,13 +31,8 @@ class SupplierDetailsAccounting extends StatelessWidget {
             CustomAppBarApp(
               title: 'Supplier Details',
               iconLeading: const CustomBackButton(),
-              iconTrailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.more_vert_outlined,
-                  size: 34,
-                  color: ColorsApp.lightGrey,
-                ),
+              iconTrailing: AccountingPopupMenuButton(
+                supplierId: id!,
               ),
             ),
             CustomAppBody(

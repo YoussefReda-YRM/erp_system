@@ -1,7 +1,6 @@
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
-import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/widget/supplier_list_view.dart';
-import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/widget/supplier_list_view_accounting.dart';
+import 'package:erp_system/features/accounting/get_all_supplier/widgets/supplier_list_view_accounting.dart';
 import 'package:flutter/material.dart';
 
 class SupplierAccountingViewBody extends StatelessWidget {
