@@ -77,6 +77,10 @@ class ApiConstants {
   static const String updateStatusOfPermission = "/permission/status/{id}";
 
   //Accounting
+  //taxes
+  static const String getAllTaxes = "/accounting/AllTaxes";
+  static const String addTaxes = "/accounting/AddTax";
+
 
 }
 

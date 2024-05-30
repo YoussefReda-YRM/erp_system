@@ -3,6 +3,8 @@ import 'package:erp_system/core/networking/api_service.dart';
 import 'package:erp_system/core/networking/dio_factory.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/data/repos/get_all_scm_orders_repo.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/logic/get_all_scm_orders_cubit.dart';
+import 'package:erp_system/features/accounting/taxes/add_taxes/data/repos/add_taxes_repo.dart';
+import 'package:erp_system/features/accounting/taxes/add_taxes/logic/add_taxes_cubit.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/login/data/repos/login_repo.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
@@ -96,6 +98,8 @@ import 'package:erp_system/features/scm/scm_home/data/repo/scm_home_repo.dart';
 import 'package:erp_system/features/scm/scm_home/logic/scm_home_cubit.dart';
 import 'package:erp_system/features/scm/supplier/update_supplier/data/repos/update_supplier_repo.dart';
 import 'package:erp_system/features/scm/supplier/update_supplier/logic/update_supplier_cubit.dart';
+import 'package:erp_system/features/accounting/taxes/get_all_taxes/data/repos/get_all_taxes_repo.dart';
+import 'package:erp_system/features/accounting/taxes/get_all_taxes/logic/get_all_taxes_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -358,4 +362,14 @@ Future<void> setupServiceLocator() async {
       () => GetAllScmOrdersRepo(getIt()));
   getIt.registerFactory<GetAllScmOrdersCubit>(
       () => GetAllScmOrdersCubit(getIt()));
+
+  getIt.registerLazySingleton<GetAllTaxesRepo>(
+          () => GetAllTaxesRepo(getIt()));
+  getIt.registerFactory<GetAllTaxesCubit>(
+          () => GetAllTaxesCubit(getIt()));
+
+  getIt.registerLazySingleton<AddTaxesRepo>(
+          () => AddTaxesRepo(getIt()));
+  getIt.registerFactory<AddTaxesCubit>(
+          () => AddTaxesCubit(getIt()));
 }

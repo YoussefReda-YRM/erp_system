@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:erp_system/core/networking/api_constants.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/data/models/get_all_scm_orders_response.dart';
+import 'package:erp_system/features/accounting/taxes/add_taxes/data/models/AddTaxesRequest.dart';
+import 'package:erp_system/features/accounting/taxes/add_taxes/data/models/AddTaxesResponse.dart';
+import 'package:erp_system/features/accounting/taxes/get_all_taxes/data/models/GetAllTaxesModel.dart';
 import 'package:erp_system/features/auth/login/data/models/login_request_body.dart';
 import 'package:erp_system/features/hr/attendance/data/models/attendance_response.dart';
 import 'package:erp_system/features/hr/department/add_department/data/models/AddDepartmentRequest.dart';
@@ -348,4 +351,15 @@ abstract class ApiService {
     @Path("id") String id,
     @Body() UpdateStatusOfPermissionRequest updateStatusOfPermissionRequest,
   );
+
+  //taxes
+  @GET(ApiConstants.getAllTaxes)
+  Future<List<GetAllTaxesModel>> getAllTaxes(
+      @Header("Authorization") String token,
+      );
+  @POST(ApiConstants.addTaxes)
+  Future<AddTaxesResponse> addTaxes(
+      @Body() AddTaxesRequest AddTaxesRequest,
+      @Header("Authorization") String token,
+      );
 }

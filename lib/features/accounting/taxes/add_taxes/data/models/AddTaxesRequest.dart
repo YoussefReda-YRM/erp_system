@@ -10,8 +10,8 @@ class AddTaxesRequest {
     taxType = json['taxType'];
   }
   String? taxName;
-  int? taxValue;
-  int? taxType;
+  String? taxValue;
+  String? taxType;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

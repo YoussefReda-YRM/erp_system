@@ -2,6 +2,10 @@ import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/features/accounting/dashboard/accounting_dashboard_view.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/logic/get_all_scm_orders_cubit.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/ui/get_all_scm_orders_view.dart';
+import 'package:erp_system/features/accounting/taxes/add_taxes/logic/add_taxes_cubit.dart';
+import 'package:erp_system/features/accounting/taxes/add_taxes/ui/add_taxes_view.dart';
+import 'package:erp_system/features/accounting/taxes/get_all_taxes/logic/get_all_taxes_cubit.dart';
+import 'package:erp_system/features/accounting/taxes/get_all_taxes/ui/get_all_taxes_view.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/auth/create_new_password/ui/create_new_password_view.dart';
@@ -176,6 +180,8 @@ abstract class AppRouter {
   static const kGetAllScmOrdersView = '/getAllScmOrdersView';
   static const kSupplierViewAccounting = '/supplierViewAccounting';
   static const kSupplierDetailsAccounting = '/supplierDetailsAccounting';
+  static const kGetAllTaxes = '/getAllTaxes';
+  static const kAddTaxes = '/addTaxes';
 
 
 
@@ -666,6 +672,22 @@ abstract class AppRouter {
           child: const GetAllScmOrdersView(),
         ),
       ),
+      GoRoute(
+        path: kGetAllTaxes,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+          getIt.get<GetAllTaxesCubit>()..getAllTaxes(),
+          child: const GetAllTaxesView(),
+        ),
+      ),
+      GoRoute(
+        path: kAddTaxes,
+        builder: (context, state) => BlocProvider(
+            create: (context) => getIt.get<AddTaxesCubit>(),
+            child: const AddTaxesView()),
+      ),
+
+
     ],
   );
 }

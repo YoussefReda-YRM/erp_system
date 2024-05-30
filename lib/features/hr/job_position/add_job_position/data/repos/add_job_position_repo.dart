@@ -8,16 +8,12 @@ class AddJobPositionRepo {
   final ApiService _apiService;
   AddJobPositionRepo(this._apiService);
 
-  Future<ApiResult<AddJobPositionResponse>> addJobPosition( AddJobPositionRequest addJobPositionRequest,
-      String bearerToken,
-      ) async {
+  Future<ApiResult<AddJobPositionResponse>>  addJobPosition( AddJobPositionRequest addJobPositionRequest, String bearerToken,)
+  async {
     try {
-      print("tryyy");
-      var response = await _apiService.addJobPosition(addJobPositionRequest, 'Bearer $bearerToken'
-      );
+      var response = await _apiService.addJobPosition(addJobPositionRequest, 'Bearer $bearerToken');
       return ApiResult.success(response);
     } catch (error) {
-      print("catchh");
       return ApiResult.failure(ErrorHandler.handle(error));
     }
   }

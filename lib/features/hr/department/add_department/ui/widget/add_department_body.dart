@@ -64,6 +64,7 @@ class AddDepartmentBody extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
+
                   const AddDepartmentBlocListener(),
                 ],
               ),
