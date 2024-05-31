@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GetAllInvoicesOfSupplierListView extends StatelessWidget {
-  const GetAllInvoicesOfSupplierListView({super.key});
-
+  const GetAllInvoicesOfSupplierListView({super.key, required this.supplierId});
+  final int supplierId;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetAllInvoicesOfSupplierCubit,
@@ -19,13 +19,14 @@ class GetAllInvoicesOfSupplierListView extends StatelessWidget {
           return const CustomCircularProgressIndicator();
         } else if (state is GetAllInvoicesOfSupplierSuccess) {
           return SizedBox(
-            height: MediaQuery.of(context).size.height *0.68,
+            height: MediaQuery.of(context).size.height * 0.68,
             child: ListView.builder(
               shrinkWrap: true,
               itemCount: state.response.length,
               itemBuilder: (context, index) {
                 return GetAllInvoicesOfSupplierItem(
                   invoice: state.response[index],
+                  supplierId: supplierId,
                 );
               },
             ),

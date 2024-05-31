@@ -80,9 +80,9 @@ class ApiConstants {
   //taxes
   static const String getAllTaxes = "/accounting/AllTaxes";
   static const String addTaxes = "/accounting/AddTax";
-  static const String getAllInvoicesOfSupplier = "/accounting/AllInvoicesOfSupplier/{supplierId}";
-
-
+  static const String getAllInvoicesOfSupplier =
+      "/accounting/AllInvoicesOfSupplier/{supplierId}";
+  static const String registerPayment = "/accounting/RegisterPayment";
 }
 
 class ApiErrors {

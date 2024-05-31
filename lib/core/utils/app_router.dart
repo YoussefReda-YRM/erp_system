@@ -1,11 +1,12 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/features/accounting/dashboard/accounting_dashboard_view.dart';
-import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/data/models/get_all_invoices_of_supplier_response.dart';
 import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/logic/get_all_invoices_of_supplier_cubit.dart';
 import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/ui/get_all_invoices_of_supplier_view.dart';
 import 'package:erp_system/features/accounting/get_all_payments_of_supplier/ui/get_all_payments_of_supplier_view.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/logic/get_all_scm_orders_cubit.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/ui/get_all_scm_orders_view.dart';
+import 'package:erp_system/features/accounting/register_payment/logic/register_payment_cubit.dart';
+import 'package:erp_system/features/accounting/register_payment/ui/register_payment_view.dart';
 import 'package:erp_system/features/accounting/taxes/add_taxes/logic/add_taxes_cubit.dart';
 import 'package:erp_system/features/accounting/taxes/add_taxes/ui/add_taxes_view.dart';
 import 'package:erp_system/features/accounting/taxes/get_all_taxes/logic/get_all_taxes_cubit.dart';
@@ -188,6 +189,7 @@ abstract class AppRouter {
   static const kAddTaxes = '/addTaxes';
   static const kGetAllInvoicesOfSupplier = '/getAllInvoicesOfSupplier';
   static const kGetAllPaymentsOfSupplier = '/getAllPaymentsOfSupplier';
+  static const kRegisterPayment = '/registerPayment';
 
   static final router = GoRouter(
     routes: [
@@ -700,11 +702,28 @@ abstract class AppRouter {
       ),
 
       GoRoute(
-        path: kGetAllPaymentsOfSupplier,
-        builder: (context, state) => GetAllPaymentsOfSupplierView(
-          payments: state.extra as List<Payments>
-        ),
-      ),
+          path: kGetAllPaymentsOfSupplier,
+          builder: (context, state) {
+            Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
+            return GetAllPaymentsOfSupplierView(
+              supplierId: myData['supplierId'],
+              invoice: myData['invoice'],
+            );
+          }),
+
+      GoRoute(
+          path: kRegisterPayment,
+          builder: (context, state) {
+            Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
+
+            return BlocProvider(
+              create: (context) => getIt.get<RegisterPaymentCubit>(),
+              child: RegisterPaymentView(
+                invoice: myData['invoice'],
+                supplierId: myData['supplierId'],
+              ),
+            );
+          }),
     ],
   );
 }

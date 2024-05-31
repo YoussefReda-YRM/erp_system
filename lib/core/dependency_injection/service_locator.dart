@@ -5,6 +5,8 @@ import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/data
 import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/logic/get_all_invoices_of_supplier_cubit.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/data/repos/get_all_scm_orders_repo.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/logic/get_all_scm_orders_cubit.dart';
+import 'package:erp_system/features/accounting/register_payment/data/repos/register_payment_repo.dart';
+import 'package:erp_system/features/accounting/register_payment/logic/register_payment_cubit.dart';
 import 'package:erp_system/features/accounting/taxes/add_taxes/data/repos/add_taxes_repo.dart';
 import 'package:erp_system/features/accounting/taxes/add_taxes/logic/add_taxes_cubit.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
@@ -375,4 +377,9 @@ Future<void> setupServiceLocator() async {
       () => GetAllInvoicesOfSupplierRepo(getIt()));
   getIt.registerFactory<GetAllInvoicesOfSupplierCubit>(
       () => GetAllInvoicesOfSupplierCubit(getIt()));
+
+  getIt.registerLazySingleton<RegisterPaymentRepo>(
+      () => RegisterPaymentRepo(getIt()));
+  getIt.registerFactory<RegisterPaymentCubit>(
+      () => RegisterPaymentCubit(getIt()));
 }

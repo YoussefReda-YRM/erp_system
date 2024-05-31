@@ -7,26 +7,29 @@ import 'package:flutter/material.dart';
 class GetAllInvoicesOfSupplierViewBody extends StatelessWidget {
   const GetAllInvoicesOfSupplierViewBody({
     super.key,
+    required this.supplierId,
   });
+
+  final int supplierId;
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        CustomAppBarApp(
+        const CustomAppBarApp(
           title: 'All Invoices',
           iconLeading: CustomBackButton(),
         ),
         Expanded(
           child: CustomAppBody(
               child: Padding(
-            padding: EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.only(top: 10),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                GetAllInvoicesOfSupplierListView(),
+                GetAllInvoicesOfSupplierListView(supplierId: supplierId),
               ],
             ),
           )),
