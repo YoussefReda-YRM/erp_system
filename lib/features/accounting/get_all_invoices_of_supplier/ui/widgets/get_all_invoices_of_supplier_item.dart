@@ -1,8 +1,10 @@
+import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
 import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/data/models/get_all_invoices_of_supplier_response.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class GetAllInvoicesOfSupplierItem extends StatelessWidget {
   const GetAllInvoicesOfSupplierItem({
@@ -220,7 +222,10 @@ class GetAllInvoicesOfSupplierItem extends StatelessWidget {
                     buttonText: "Show All Payments",
                     textStyle: Styles.font13LightGreyRegular(context),
                     onPressed: () {
-                      // validateThenDoLogin(context);
+                      GoRouter.of(context).push(
+                        AppRouter.kGetAllPaymentsOfSupplier,
+                        extra: invoice.payment
+                      );
                     },
                   ),
                 ],
