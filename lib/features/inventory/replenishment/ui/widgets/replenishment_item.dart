@@ -1,24 +1,26 @@
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/styles.dart';
+import 'package:erp_system/features/inventory/replenishment/data/models/stock_out_products_response.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class ReplenishmentItem extends StatelessWidget {
   const ReplenishmentItem({
     super.key,
+    required this.data,
   });
-
+  final ProductData data;
   @override
   Widget build(BuildContext context) {
     return Card(
       color: const Color(0xffF7F8F9),
       child: ListTile(
         title: Text(
-          "T-shirt",
+          data.productName!,
           style: Styles.font18DarkBlueBold(context),
         ),
         subtitle: Text(
-          "Clothes",
+          "On Hand : ${data.productOnHand.toString()}",
           style: Styles.font10BlueSemiBold(context).copyWith(
             color: const Color(0xff9E9E9E),
           ),

@@ -61,6 +61,7 @@ import 'package:erp_system/features/inventory/product/details_product/data/model
 import 'package:erp_system/features/inventory/product/get_all_product/data/models/product_response.dart';
 import 'package:erp_system/features/inventory/product/update_product/data/models/update_product_request_body.dart';
 import 'package:erp_system/features/inventory/product/update_product/data/models/update_product_response.dart';
+import 'package:erp_system/features/inventory/replenishment/data/models/stock_out_products_response.dart';
 import 'package:erp_system/features/scm/orders/inventory_order/data/models/get_all_inventory_orders_model.dart';
 import 'package:erp_system/features/scm/orders/order_details/data/models/order_details_model.dart';
 import 'package:erp_system/features/scm/orders/update_order/data/models/update_order_request.dart';
@@ -103,6 +104,11 @@ abstract class ApiService {
   Future<DetailsProductModel> getProductById(
     @Header("Authorization") String token,
     @Path("id") int id,
+  );
+
+  @GET(ApiConstants.stockOutProduct)
+  Future<StockOutProductsResponse> stockOutProducts(
+    @Header("Authorization") String token,
   );
 
   @PUT(ApiConstants.updateProduct)

@@ -85,6 +85,7 @@ import 'package:erp_system/features/inventory/product/get_all_product/logic/get_
 import 'package:erp_system/features/inventory/product/get_all_product/ui/get_all_product_view.dart';
 import 'package:erp_system/features/inventory/product/update_product/logic/update_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/update_product/ui/update_product_view.dart';
+import 'package:erp_system/features/inventory/replenishment/logic/stock_out_products_cubit.dart';
 import 'package:erp_system/features/inventory/replenishment/ui/reorder_view.dart';
 import 'package:erp_system/features/inventory/replenishment/ui/replenishment_view.dart';
 import 'package:erp_system/features/modules/ui/modules_view.dart';
@@ -412,7 +413,11 @@ abstract class AppRouter {
       //replenishment
       GoRoute(
         path: kReplenishmentView,
-        builder: (context, state) => ReplenishmentView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              getIt.get<StockOutProductsCubit>()..stockOutProducts(),
+          child: ReplenishmentView(),
+        ),
       ),
 
       GoRoute(

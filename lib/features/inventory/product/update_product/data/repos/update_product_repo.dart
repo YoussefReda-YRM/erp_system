@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/core/networking/api_error_handler.dart';
 import 'package:erp_system/core/networking/api_result.dart';
@@ -18,7 +16,6 @@ class UpdateProductRepo {
     int produtcId,
   ) async {
     try {
-      log("token to add product is : ${getIt.get<LoginResponse>().token.toString()}");
       final response = await _apiService.updateProduct(
         "Bearer ${getIt.get<LoginResponse>().token!}",
         produtcId,

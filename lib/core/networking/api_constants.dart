@@ -11,6 +11,8 @@ class ApiConstants {
   static const String getProductById = "/Product";
   static const String updateProduct = "/Product/{productId}";
 
+  static const String stockOutProduct = "/Product/StockOutProduct";
+
   //category
   static const String getAllCategories = "/Category";
   static const String deleteSubcategory =
