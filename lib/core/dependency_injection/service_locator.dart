@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:erp_system/core/networking/api_service.dart';
 import 'package:erp_system/core/networking/dio_factory.dart';
+import 'package:erp_system/features/accounting/get_all_invoices/data/repos/get_all_invoices_repo.dart';
+import 'package:erp_system/features/accounting/get_all_invoices/logic/get_all_invoices_cubit.dart';
 import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/data/repos/get_all_invoices_of_supplier_repo.dart';
 import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/logic/get_all_invoices_of_supplier_cubit.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/data/repos/get_all_scm_orders_repo.dart';
@@ -382,4 +384,9 @@ Future<void> setupServiceLocator() async {
       () => RegisterPaymentRepo(getIt()));
   getIt.registerFactory<RegisterPaymentCubit>(
       () => RegisterPaymentCubit(getIt()));
+
+  getIt.registerLazySingleton<GetAllInvoicesRepo>(
+      () => GetAllInvoicesRepo(getIt()));
+  getIt
+      .registerFactory<GetAllInvoicesCubit>(() => GetAllInvoicesCubit(getIt()));
 }

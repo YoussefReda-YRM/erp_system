@@ -83,6 +83,8 @@ class ApiConstants {
   static const String getAllInvoicesOfSupplier =
       "/accounting/AllInvoicesOfSupplier/{supplierId}";
   static const String registerPayment = "/accounting/RegisterPayment";
+    static const String getAllInvoices = "/Accounting/AllInvoices";
+
 }
 
 class ApiErrors {

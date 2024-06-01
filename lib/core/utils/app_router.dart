@@ -1,7 +1,11 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/features/accounting/dashboard/accounting_dashboard_view.dart';
+import 'package:erp_system/features/accounting/get_all_invoices/data/models/get_all_invoices_response.dart';
+import 'package:erp_system/features/accounting/get_all_invoices/logic/get_all_invoices_cubit.dart';
+import 'package:erp_system/features/accounting/get_all_invoices/ui/get_all_invoices_view.dart';
 import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/logic/get_all_invoices_of_supplier_cubit.dart';
 import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/ui/get_all_invoices_of_supplier_view.dart';
+import 'package:erp_system/features/accounting/get_all_payments_of_invoice/ui/get_all_payments_of_invoice_view.dart';
 import 'package:erp_system/features/accounting/get_all_payments_of_supplier/ui/get_all_payments_of_supplier_view.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/logic/get_all_scm_orders_cubit.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/ui/get_all_scm_orders_view.dart';
@@ -190,6 +194,8 @@ abstract class AppRouter {
   static const kGetAllInvoicesOfSupplier = '/getAllInvoicesOfSupplier';
   static const kGetAllPaymentsOfSupplier = '/getAllPaymentsOfSupplier';
   static const kRegisterPayment = '/registerPayment';
+  static const kGetAllInvoices = '/getAllInvoices';
+  static const kGetAllPaymentsOfInvoice = '/getAllPaymentsOfInvoice';
 
   static final router = GoRouter(
     routes: [
@@ -722,6 +728,23 @@ abstract class AppRouter {
                 invoice: myData['invoice'],
                 supplierId: myData['supplierId'],
               ),
+            );
+          }),
+
+      GoRoute(
+        path: kGetAllInvoices,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              getIt.get<GetAllInvoicesCubit>()..getAllInvoices(),
+          child: const GetAllInvoicesView(),
+        ),
+      ),
+
+      GoRoute(
+          path: kGetAllPaymentsOfInvoice,
+          builder: (context, state) {
+            return GetAllPaymentsOfInvoiceView(
+              invoice: state.extra as GetAllInvoicesResponse,
             );
           }),
     ],

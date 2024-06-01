@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:erp_system/core/networking/api_constants.dart';
+import 'package:erp_system/features/accounting/get_all_invoices/data/models/get_all_invoices_response.dart';
 import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/data/models/get_all_invoices_of_supplier_response.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/data/models/get_all_scm_orders_response.dart';
 import 'package:erp_system/features/accounting/register_payment/data/models/register_payment_request.dart';
@@ -375,6 +376,11 @@ abstract class ApiService {
   @POST(ApiConstants.registerPayment)
   Future<RegisterPaymentResponse> registerPayment(
     @Body() RegisterPaymentRequest registerPaymentRequest,
+    @Header("Authorization") String token,
+  );
+
+  @GET(ApiConstants.getAllInvoices)
+  Future<List<GetAllInvoicesResponse>> getAllInvoices(
     @Header("Authorization") String token,
   );
 }
