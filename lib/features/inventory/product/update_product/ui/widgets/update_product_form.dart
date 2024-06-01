@@ -2,31 +2,49 @@ import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/widgets/custom_text_form_field.dart';
 import 'package:erp_system/features/inventory/category/get_all_sup_category/logic/get_all_sup_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/get_all_sup_category/logic/get_all_sup_category_state.dart';
-import 'package:erp_system/features/inventory/product/add_product/logic/add_product_cubit.dart';
-import 'package:erp_system/features/inventory/product/add_product/ui/widgets/show_product_category_dialog.dart';
+import 'package:erp_system/features/inventory/product/details_product/data/models/details_product_model.dart';
+import 'package:erp_system/features/inventory/product/update_product/logic/update_product_cubit.dart';
+import 'package:erp_system/features/inventory/product/update_product/ui/widgets/show_product_category_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AddProductForm extends StatefulWidget {
-  const AddProductForm({super.key});
+class UpdateProductForm extends StatefulWidget {
+  const UpdateProductForm({super.key, required this.productData});
+
+  final DetailsProductModel productData;
 
   @override
-  State<AddProductForm> createState() => _AddProductFormState();
+  State<UpdateProductForm> createState() => _UpdateProductFormState();
 }
 
-class _AddProductFormState extends State<AddProductForm> {
+class _UpdateProductFormState extends State<UpdateProductForm> {
   @override
   void initState() {
     super.initState();
     context.read<GetAllSupCategoryCubit>().getAllSupCategories();
+
+    context.read<UpdateProductCubit>().productNameController.text =
+        widget.productData.productName!;
+    context.read<UpdateProductCubit>().productOnHandController.text =
+        widget.productData.productOnHand.toString();
+    context.read<UpdateProductCubit>().productCostPriceController.text =
+        widget.productData.productCostPrice.toString();
+    context.read<UpdateProductCubit>().productSellPriceController.text =
+        widget.productData.productSellPrice.toString();
+    context.read<UpdateProductCubit>().productInComingController.text =
+        widget.productData.productInComing.toString();
+    context.read<UpdateProductCubit>().productOutGoingController.text =
+        widget.productData.productOutGoing.toString();
+    context.read<UpdateProductCubit>().subCategoryIdController.text =
+        widget.productData.category!;
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Form(
-      key: context.read<AddProductCubit>().formKey,
+      key: context.read<UpdateProductCubit>().formKey,
       child: Column(
         children: [
           AppTextFormField(
@@ -43,7 +61,8 @@ class _AddProductFormState extends State<AddProductForm> {
                 return 'Please enter a valid product name';
               }
             },
-            controller: context.read<AddProductCubit>().productNameController,
+            controller:
+                context.read<UpdateProductCubit>().productNameController,
           ),
           SizedBox(height: 18.h),
           AppTextFormField(
@@ -60,12 +79,13 @@ class _AddProductFormState extends State<AddProductForm> {
                 return 'Please enter a valid on hand';
               }
             },
-            controller: context.read<AddProductCubit>().productOnHandController,
+            controller:
+                context.read<UpdateProductCubit>().productOnHandController,
           ),
           SizedBox(height: 18.h),
           AppTextFormField(
             controller:
-                context.read<AddProductCubit>().productCostPriceController,
+                context.read<UpdateProductCubit>().productCostPriceController,
             hintText: 'cost price',
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(
@@ -83,7 +103,7 @@ class _AddProductFormState extends State<AddProductForm> {
           SizedBox(height: 18.h),
           AppTextFormField(
             controller:
-                context.read<AddProductCubit>().productSellPriceController,
+                context.read<UpdateProductCubit>().productSellPriceController,
             hintText: 'sell price',
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(
@@ -114,7 +134,7 @@ class _AddProductFormState extends State<AddProductForm> {
               }
             },
             controller:
-                context.read<AddProductCubit>().productInComingController,
+                context.read<UpdateProductCubit>().productInComingController,
           ),
           SizedBox(height: 18.h),
           AppTextFormField(
@@ -132,7 +152,7 @@ class _AddProductFormState extends State<AddProductForm> {
               }
             },
             controller:
-                context.read<AddProductCubit>().productOutGoingController,
+                context.read<UpdateProductCubit>().productOutGoingController,
           ),
           SizedBox(height: 18.h),
           BlocBuilder<GetAllSupCategoryCubit, GetAllSupCategoryState>(
@@ -144,8 +164,9 @@ class _AddProductFormState extends State<AddProductForm> {
               } else if (state is GetAllSupCategorySuccess) {
                 final categories = state.categories;
                 return AppTextFormField(
-                  controller:
-                      context.read<AddProductCubit>().subCategoryIdController,
+                  controller: context
+                      .read<UpdateProductCubit>()
+                      .subCategoryIdController,
                   hintText: 'Select category',
                   isEnabled: false,
                   enabledBorder: OutlineInputBorder(

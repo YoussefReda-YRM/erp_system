@@ -1,7 +1,7 @@
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/features/inventory/category/get_all_sup_category/data/models/get_all_sup_category_model.dart';
-import 'package:erp_system/features/inventory/product/add_product/logic/add_product_cubit.dart';
+import 'package:erp_system/features/inventory/product/update_product/logic/update_product_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,7 +25,7 @@ showProductCategoriesDialog(
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
-                  BlocProvider.of<AddProductCubit>(ctxt)
+                  BlocProvider.of<UpdateProductCubit>(ctxt)
                       .subCategoryIdController
                       .text = allCategories[index].subCategoryId.toString();
                   GoRouter.of(context).pop();

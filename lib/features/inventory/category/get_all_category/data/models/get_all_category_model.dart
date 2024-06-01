@@ -1,7 +1,9 @@
+import 'package:erp_system/features/inventory/category/get_all_sup_category/data/models/get_all_sup_category_model.dart';
+
 class CategoryAllCategoryModel {
   int? parentCategoryId;
   String? parentCategoryName;
-  List<SubCategories>? subCategories;
+  List<GetAllSupCategoryModel>? subCategories;
 
   CategoryAllCategoryModel({
     this.parentCategoryId,
@@ -15,39 +17,8 @@ class CategoryAllCategoryModel {
     if (json['subCategories'] != null) {
       subCategories = [];
       json['subCategories'].forEach((v) {
-        subCategories?.add(SubCategories.fromJson(v));
+        subCategories?.add(GetAllSupCategoryModel.fromJson(v));
       });
     }
-  }
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['parentCategoryId'] = parentCategoryId;
-    map['parentCategoryName'] = parentCategoryName;
-    if (subCategories != null) {
-      map['subCategories'] = subCategories?.map((v) => v.toJson()).toList();
-    }
-    return map;
-  }
-}
-
-class SubCategories {
-  SubCategories({
-    this.subCategoryId,
-    this.subCategoryName,
-  });
-
-  SubCategories.fromJson(dynamic json) {
-    subCategoryId = json['subCategoryId'];
-    subCategoryName = json['subCategoryName'];
-  }
-  int? subCategoryId;
-  String? subCategoryName;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['subCategoryId'] = subCategoryId;
-    map['subCategoryName'] = subCategoryName;
-    return map;
   }
 }

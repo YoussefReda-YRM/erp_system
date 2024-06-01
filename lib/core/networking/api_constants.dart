@@ -9,6 +9,7 @@ class ApiConstants {
   static const String getAllProducts = "/Product/AllProducts";
   static const String addProduct = "/Product/CreateProduct";
   static const String getProductById = "/Product";
+  static const String updateProduct = "/Product/{productId}";
 
   //category
   static const String getAllCategories = "/Category";
@@ -22,6 +23,8 @@ class ApiConstants {
       "/Category/SubCategory/{subCategoryId}";
   static const String updateParentcategory =
       "/Category/ParentCategory/{parentCategoryId}";
+
+  static const String getAllSupCategory = '/Category/subCategories';
 
   //Supplier
   static const String getAllSuppliers = "/Supplier";
@@ -83,8 +86,7 @@ class ApiConstants {
   static const String getAllInvoicesOfSupplier =
       "/accounting/AllInvoicesOfSupplier/{supplierId}";
   static const String registerPayment = "/accounting/RegisterPayment";
-    static const String getAllInvoices = "/Accounting/AllInvoices";
-
+  static const String getAllInvoices = "/Accounting/AllInvoices";
 }
 
 class ApiErrors {

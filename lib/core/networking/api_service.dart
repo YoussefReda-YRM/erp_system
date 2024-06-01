@@ -49,6 +49,7 @@ import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/models/add_request_parent_category.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/models/add_request_sub_category.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/data/models/get_all_category_model.dart';
+import 'package:erp_system/features/inventory/category/get_all_sup_category/data/models/get_all_sup_category_model.dart';
 import 'package:erp_system/features/inventory/category/repos/ResponseParentCategory.dart';
 import 'package:erp_system/features/inventory/category/repos/ResponseSubCategory.dart';
 import 'package:erp_system/features/inventory/category/update_category/data/models/update_request_parent_category.dart';
@@ -58,6 +59,8 @@ import 'package:erp_system/features/inventory/product/add_product/data/models/ad
 import 'package:erp_system/features/inventory/product/add_product/data/models/add_product_response.dart';
 import 'package:erp_system/features/inventory/product/details_product/data/models/details_product_model.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/data/models/product_response.dart';
+import 'package:erp_system/features/inventory/product/update_product/data/models/update_product_request_body.dart';
+import 'package:erp_system/features/inventory/product/update_product/data/models/update_product_response.dart';
 import 'package:erp_system/features/scm/orders/inventory_order/data/models/get_all_inventory_orders_model.dart';
 import 'package:erp_system/features/scm/orders/order_details/data/models/order_details_model.dart';
 import 'package:erp_system/features/scm/orders/update_order/data/models/update_order_request.dart';
@@ -102,6 +105,13 @@ abstract class ApiService {
     @Path("id") int id,
   );
 
+  @PUT(ApiConstants.updateProduct)
+  Future<UpdateProductResponse> updateProduct(
+    @Header("Authorization") String token,
+    @Path("productId") int productId,
+    @Body() UpdateProductRequestBody updateProductRequestBody,
+  );
+
   @POST(ApiConstants.createParent)
   Future<ResponseParentCategory> createparent(
     @Body() AddRequestParentCategory addRequestParentCategory,
@@ -142,6 +152,11 @@ abstract class ApiService {
 
   @GET(ApiConstants.getAllCategories)
   Future<List<CategoryAllCategoryModel>> getAllCategories(
+    @Header("Authorization") String token,
+  );
+
+  @GET(ApiConstants.getAllSupCategory)
+  Future<List<GetAllSupCategoryModel>> getAllSupCategories(
     @Header("Authorization") String token,
   );
 

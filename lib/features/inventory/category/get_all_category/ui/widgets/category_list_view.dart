@@ -7,6 +7,7 @@ import 'package:erp_system/core/widgets/custom_divider.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/data/models/get_all_category_model.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/logic/get_category_cubit.dart';
+import 'package:erp_system/features/inventory/category/get_all_sup_category/data/models/get_all_sup_category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,14 +29,15 @@ class _CategoryListViewState extends State<CategoryListView> {
     return ListView.builder(
       itemCount: widget.category.subCategories!.length,
       itemBuilder: (context, index) {
-        SubCategories subCategory = widget.category.subCategories![index];
+        GetAllSupCategoryModel subCategory =
+            widget.category.subCategories![index];
         return Column(
           children: [
             SizedBox(
               width: double.infinity,
               child: ListTile(
                 title: Text(
-                  subCategory.subCategoryName ?? 'none',
+                  subCategory.subCategoryName,
                   style: Styles.font14DarkBlueMedium(context),
                 ),
                 trailing: SizedBox(
@@ -45,7 +47,7 @@ class _CategoryListViewState extends State<CategoryListView> {
                       IconButton(
                         onPressed: () {
                           subCategoryNameControllerInGetIt =
-                              subCategory.subCategoryName!;
+                              subCategory.subCategoryName;
                           GoRouter.of(context).push(
                             AppRouter.kUpdateSubCategory,
                             extra: {
@@ -68,7 +70,7 @@ class _CategoryListViewState extends State<CategoryListView> {
                             () {
                               getIt.get<CategoryCubit>().deleteSubcategory(
                                     getIt.get<LoginResponse>().token!,
-                                    subCategory.subCategoryId!,
+                                    subCategory.subCategoryId,
                                   );
                               GoRouter.of(context).pop();
 

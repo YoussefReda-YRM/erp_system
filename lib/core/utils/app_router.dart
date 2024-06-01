@@ -69,6 +69,7 @@ import 'package:erp_system/features/inventory/category/add_category/ui/add_paren
 import 'package:erp_system/features/inventory/category/add_category/ui/add_sub_category_view.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/logic/get_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/ui/category_view.dart';
+import 'package:erp_system/features/inventory/category/get_all_sup_category/logic/get_all_sup_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/update_category/logic/update_parent_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/update_category/logic/update_sub_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/update_category/ui/update_parent_category.dart';
@@ -77,10 +78,13 @@ import 'package:erp_system/features/inventory/inventory_home/logic/inventory_hom
 import 'package:erp_system/features/inventory/inventory_home/ui/inventory_home_view.dart';
 import 'package:erp_system/features/inventory/product/add_product/logic/add_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/add_product/ui/add_product_view.dart';
+import 'package:erp_system/features/inventory/product/details_product/data/models/details_product_model.dart';
 import 'package:erp_system/features/inventory/product/details_product/logic/details_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/details_product/ui/details_product_view.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/logic/get_all_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/ui/get_all_product_view.dart';
+import 'package:erp_system/features/inventory/product/update_product/logic/update_product_cubit.dart';
+import 'package:erp_system/features/inventory/product/update_product/ui/update_product_view.dart';
 import 'package:erp_system/features/inventory/replenishment/ui/reorder_view.dart';
 import 'package:erp_system/features/inventory/replenishment/ui/replenishment_view.dart';
 import 'package:erp_system/features/modules/ui/modules_view.dart';
@@ -123,6 +127,7 @@ abstract class AppRouter {
   static const kProductView = '/productView';
   static const kAddProductView = '/addProductView';
   static const kDetailsProductView = '/detailsProductView';
+  static const kUpdateProduct = '/updateProduct';
 
   //category
   static const kCategoryView = '/categoryView';
@@ -342,6 +347,22 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
+        path: kUpdateProduct,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => getIt.get<GetAllSupCategoryCubit>(),
+            ),
+            BlocProvider(
+              create: (context) => getIt.get<UpdateProductCubit>(),
+            ),
+          ],
+          child: UpdateProductView(
+            productData: state.extra as DetailsProductModel,
+          ),
+        ),
+      ),
+      GoRoute(
         path: kAddSubCategory,
         builder: (context, state) => BlocProvider(
           create: (context) => getIt.get<AddSubCategoryCubit>(),
@@ -350,8 +371,15 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kAddProductView,
-        builder: (context, state) => BlocProvider(
-          create: (context) => getIt.get<AddProductCubit>(),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => getIt.get<GetAllSupCategoryCubit>(),
+            ),
+            BlocProvider(
+              create: (context) => getIt.get<AddProductCubit>(),
+            ),
+          ],
           child: const AddProductView(),
         ),
       ),
@@ -363,7 +391,9 @@ abstract class AppRouter {
               getIt.get<LoginResponse>().token,
               state.extra as int,
             ),
-          child: const DetailsProductView(),
+          child: DetailsProductView(
+            productId: state.extra as int,
+          ),
         ),
       ),
       GoRoute(

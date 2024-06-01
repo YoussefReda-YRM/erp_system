@@ -30,7 +30,7 @@ class ScmOrderItem extends StatelessWidget {
                   children: [
                     for (var product in order.scmOrderProducts!)
                       Text(
-                        '${product.productName} - Quantity: ${product.quantity}',
+                        'Name: ${product.productName} - Quantity: ${product.quantity}',
                         style: Styles.font14BlueSemiBold(context),
                       )
                   ],

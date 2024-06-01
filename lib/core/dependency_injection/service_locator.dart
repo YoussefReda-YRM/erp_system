@@ -78,6 +78,8 @@ import 'package:erp_system/features/inventory/category/get_all_category/data/mod
 import 'package:erp_system/features/inventory/category/get_all_category/data/repos/get_category_repo.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_sub_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/logic/get_category_cubit.dart';
+import 'package:erp_system/features/inventory/category/get_all_sup_category/data/repos/get_all_sup_category_repo.dart';
+import 'package:erp_system/features/inventory/category/get_all_sup_category/logic/get_all_sup_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/update_category/data/repos/update_parent_category_repo.dart';
 import 'package:erp_system/features/inventory/category/update_category/data/repos/update_sub_category_repo.dart';
 import 'package:erp_system/features/inventory/category/update_category/logic/update_parent_category_cubit.dart';
@@ -90,6 +92,8 @@ import 'package:erp_system/features/inventory/product/details_product/data/repo/
 import 'package:erp_system/features/inventory/product/details_product/logic/details_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/data/repos/get_all_product_repo.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/logic/get_all_product_cubit.dart';
+import 'package:erp_system/features/inventory/product/update_product/data/repos/update_product_repo.dart';
+import 'package:erp_system/features/inventory/product/update_product/logic/update_product_cubit.dart';
 import 'package:erp_system/features/scm/orders/inventory_order/data/repos/get_all_inventory_orders_repo.dart';
 import 'package:erp_system/features/scm/orders/inventory_order/logic/get_all_inventory_orders_cubit.dart';
 import 'package:erp_system/features/scm/orders/order_details/data/repos/order_details_repo.dart';
@@ -170,6 +174,10 @@ Future<void> setupServiceLocator() async {
   getIt
       .registerFactory<DetailsProductCubit>(() => DetailsProductCubit(getIt()));
 
+  getIt.registerLazySingleton<UpdateProductRepo>(
+      () => UpdateProductRepo(getIt()));
+  getIt.registerFactory<UpdateProductCubit>(() => UpdateProductCubit(getIt()));
+
   //categories
 
   getIt.registerLazySingleton<CategoryRepo>(() => CategoryRepo(getIt()));
@@ -204,6 +212,11 @@ Future<void> setupServiceLocator() async {
       () => AddSubCategoryRepo(getIt()));
   getIt
       .registerFactory<AddSubCategoryCubit>(() => AddSubCategoryCubit(getIt()));
+
+  getIt.registerLazySingleton<GetAllSupCategoryRepo>(
+      () => GetAllSupCategoryRepo(getIt()));
+  getIt.registerFactory<GetAllSupCategoryCubit>(
+      () => GetAllSupCategoryCubit(getIt()));
 
   // Supplier
   getIt.registerLazySingleton<GetAllSupplierRepo>(
