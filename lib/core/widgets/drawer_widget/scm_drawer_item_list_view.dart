@@ -63,7 +63,12 @@ class _DrawerItemListViewState extends State<ScmDrawerItemListView> {
                       GoRouter.of(context).push(AppRouter.kScmHomeView);
                     } else if (activeIndex == 1) {
                       GoRouter.of(context).push(AppRouter.kInventoryOrders);
-                    }else if(activeIndex==5){
+                    }
+                    else if(activeIndex==3){
+                      GoRouter.of(context).push(AppRouter.kGetAllScmOrderView);
+
+                    }
+                    else if(activeIndex==5){
                       GoRouter.of(context).push(AppRouter.kSupplierView);
                     }
                   });

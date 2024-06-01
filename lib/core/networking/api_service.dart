@@ -52,6 +52,9 @@ import 'package:erp_system/features/inventory/product/details_product/data/model
 import 'package:erp_system/features/inventory/product/get_all_product/data/models/product_response.dart';
 import 'package:erp_system/features/scm/orders/inventory_order/data/models/get_all_inventory_orders_model.dart';
 import 'package:erp_system/features/scm/orders/order_details/data/models/order_details_model.dart';
+import 'package:erp_system/features/scm/orders/scm_order/add_scm_order/data/models/AddScmOrderRequest.dart';
+import 'package:erp_system/features/scm/orders/scm_order/add_scm_order/data/models/AddScmOrderResponse.dart';
+import 'package:erp_system/features/scm/orders/scm_order/get_all_scm_order/data/models/GetAllScmOrdersModel.dart';
 import 'package:erp_system/features/scm/orders/update_order/data/models/update_order_request.dart';
 import 'package:erp_system/features/scm/orders/update_order/data/models/update_order_response.dart';
 import 'package:erp_system/features/scm/scm_home/data/models/scm_home_model.dart';
@@ -342,4 +345,18 @@ abstract class ApiService {
     @Path("id") String id,
     @Body() UpdateStatusOfPermissionRequest updateStatusOfPermissionRequest,
   );
+
+  //scm orders
+  @GET(ApiConstants.getAllScmOrders)
+  Future<List<GetAllScmOrdersModel>>
+  getAllScmOrders(
+      @Header("Authorization") String token,
+      );
+
+  @POST(ApiConstants.addScmOrders)
+  Future<AddScmOrderResponse> addScmOrder(
+      @Body() AddScmOrderModel addScmOrderModel,
+      @Header("Authorization") String token,
+      );
+
 }

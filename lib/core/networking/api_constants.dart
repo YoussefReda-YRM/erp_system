@@ -74,6 +74,13 @@ class ApiConstants {
   static const String updatePermission = "/permission/{id}";
   static const String deletePermission = "/permission/{id}";
   static const String updateStatusOfPermission = "/permission/status/{id}";
+
+  //scm order
+  static const String getAllScmOrders = "/ScmOrder";
+  static const String addScmOrders = "/ScmOrder";
+
+
+
 }
 
 class ApiErrors {

@@ -84,6 +84,9 @@ import 'package:erp_system/features/scm/orders/inventory_order/data/repos/get_al
 import 'package:erp_system/features/scm/orders/inventory_order/logic/get_all_inventory_orders_cubit.dart';
 import 'package:erp_system/features/scm/orders/order_details/data/repos/order_details_repo.dart';
 import 'package:erp_system/features/scm/orders/order_details/logic/order_details_cubit.dart';
+import 'package:erp_system/features/scm/orders/scm_order/get_all_scm_order/data/models/GetAllScmOrdersModel.dart';
+import 'package:erp_system/features/scm/orders/scm_order/get_all_scm_order/data/repos/get_all_scm_order_repo.dart';
+import 'package:erp_system/features/scm/orders/scm_order/get_all_scm_order/logic/get_all_scm_order_cubit.dart';
 import 'package:erp_system/features/scm/orders/update_order/data/repos/update_order_repo.dart';
 import 'package:erp_system/features/scm/orders/update_order/logic/update_order_cubit.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/data/repos/add_supplier_repo.dart';
@@ -101,6 +104,8 @@ LoginResponse? loginResponseInGetIt;
 
 List<CategoryAllCategoryModel>? categoriesInGetIt;
 List<GetAllJobPositionResponse>? jobPositionInGetIt;
+List<GetAllScmOrdersModel>? scmOrderModelInGetIt;
+
 
 int activeIndex = 0;
 
@@ -350,4 +355,10 @@ Future<void> setupServiceLocator() async {
       () => UpdateStatusOfVacationRepo(getIt()));
   getIt.registerFactory<UpdateStatusOfVacationCubit>(
       () => UpdateStatusOfVacationCubit(getIt()));
+
+
+  getIt.registerLazySingleton<GetAllScmOrderRepo>(
+          () => GetAllScmOrderRepo(getIt()));
+  getIt.registerFactory<GetAllScmOrderCubit>(
+          () => GetAllScmOrderCubit(getIt()));
 }

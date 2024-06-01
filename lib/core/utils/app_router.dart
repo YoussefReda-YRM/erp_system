@@ -75,6 +75,8 @@ import 'package:erp_system/features/scm/orders/inventory_order/logic/get_all_inv
 import 'package:erp_system/features/scm/orders/inventory_order/ui/get_all_inventory_orders_view.dart';
 import 'package:erp_system/features/scm/orders/order_details/logic/order_details_cubit.dart';
 import 'package:erp_system/features/scm/orders/order_details/ui/order_details_view.dart';
+import 'package:erp_system/features/scm/orders/scm_order/get_all_scm_order/logic/get_all_scm_order_cubit.dart';
+import 'package:erp_system/features/scm/orders/scm_order/get_all_scm_order/ui/get_all_scm_order_view.dart';
 import 'package:erp_system/features/scm/orders/update_order/logic/update_order_cubit.dart';
 import 'package:erp_system/features/scm/orders/update_order/ui/update_order_view.dart';
 import 'package:erp_system/features/scm/scm_home/logic/scm_home_cubit.dart';
@@ -165,6 +167,11 @@ abstract class AppRouter {
   static const kUpdatePermissionView = '/updatePermissionView';
 
   static const kUpdateStatusOfPermissionView = '/updateStatusOfPermissionView';
+
+  //scm order
+  static const kGetAllScmOrderView = '/getAllScmOrderView';
+
+
 
   static final router = GoRouter(
     routes: [
@@ -614,6 +621,15 @@ abstract class AppRouter {
           );
         },
       ),
+      GoRoute(
+        path: kGetAllScmOrderView,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+          getIt.get<GetAllScmOrderCubit>()..getAllScmOrder(),
+          child: const GetAllScmOrderView(),
+        ),
+      ),
+
     ],
   );
 }
