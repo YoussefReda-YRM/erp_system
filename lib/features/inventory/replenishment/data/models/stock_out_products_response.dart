@@ -30,14 +30,17 @@ class ProductData {
   final String? productBarcode;
   final int? productOnHand;
   final double? productSellPrice;
+  final bool? isOrdered;
 
-  ProductData(
-      {this.id,
-      this.productId,
-      this.productName,
-      this.productBarcode,
-      this.productOnHand,
-      this.productSellPrice});
+  ProductData({
+    this.id,
+    this.productId,
+    this.productName,
+    this.productBarcode,
+    this.productOnHand,
+    this.productSellPrice,
+    this.isOrdered,
+  });
 
   factory ProductData.fromJson(Map<String, dynamic> json) => ProductData(
         id: json['id'],
@@ -46,5 +49,6 @@ class ProductData {
         productBarcode: json['productBarcode'],
         productOnHand: json['productOnHand'],
         productSellPrice: json['productSellPrice'],
+        isOrdered: json['isOrdered'],
       );
 }

@@ -29,7 +29,10 @@ class ReplenishmentItem extends StatelessWidget {
           width: 127,
           child: ElevatedButton(
             onPressed: () {
-              GoRouter.of(context).push(AppRouter.kReorderView);
+              GoRouter.of(context).push(
+                AppRouter.kReorderView,
+                extra: data,
+              );
             },
             style: ElevatedButton.styleFrom(
               shape: const RoundedRectangleBorder(

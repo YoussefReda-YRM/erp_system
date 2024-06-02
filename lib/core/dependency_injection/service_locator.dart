@@ -84,6 +84,8 @@ import 'package:erp_system/features/inventory/category/update_category/data/repo
 import 'package:erp_system/features/inventory/category/update_category/data/repos/update_sub_category_repo.dart';
 import 'package:erp_system/features/inventory/category/update_category/logic/update_parent_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/update_category/logic/update_sub_category_cubit.dart';
+import 'package:erp_system/features/inventory/get_all_accounting_employee/data/repos/get_all_accounting_employee_repo.dart';
+import 'package:erp_system/features/inventory/get_all_accounting_employee/logic/get_all_sup_category_cubit.dart';
 import 'package:erp_system/features/inventory/inventory_home/data/repo/inventory_home_repo.dart';
 import 'package:erp_system/features/inventory/inventory_home/logic/inventory_home_cubit.dart';
 import 'package:erp_system/features/inventory/product/add_product/data/repos/add_product_repo.dart';
@@ -94,14 +96,16 @@ import 'package:erp_system/features/inventory/product/get_all_product/data/repos
 import 'package:erp_system/features/inventory/product/get_all_product/logic/get_all_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/update_product/data/repos/update_product_repo.dart';
 import 'package:erp_system/features/inventory/product/update_product/logic/update_product_cubit.dart';
+import 'package:erp_system/features/inventory/replenishment/data/repos/re_order_repo.dart';
 import 'package:erp_system/features/inventory/replenishment/data/repos/stock_out_products_repo.dart';
+import 'package:erp_system/features/inventory/replenishment/logic/re_order_cubit.dart';
 import 'package:erp_system/features/inventory/replenishment/logic/stock_out_products_cubit.dart';
-import 'package:erp_system/features/scm/orders/inventory_order/data/repos/get_all_inventory_orders_repo.dart';
-import 'package:erp_system/features/scm/orders/inventory_order/logic/get_all_inventory_orders_cubit.dart';
-import 'package:erp_system/features/scm/orders/order_details/data/repos/order_details_repo.dart';
-import 'package:erp_system/features/scm/orders/order_details/logic/order_details_cubit.dart';
-import 'package:erp_system/features/scm/orders/update_order/data/repos/update_order_repo.dart';
-import 'package:erp_system/features/scm/orders/update_order/logic/update_order_cubit.dart';
+import 'package:erp_system/features/inventory/orders/inventory_order/data/repos/get_all_inventory_orders_repo.dart';
+import 'package:erp_system/features/inventory/orders/inventory_order/logic/get_all_inventory_orders_cubit.dart';
+import 'package:erp_system/features/inventory/orders/order_details/data/repos/order_details_repo.dart';
+import 'package:erp_system/features/inventory/orders/order_details/logic/order_details_cubit.dart';
+import 'package:erp_system/features/inventory/orders/update_order/data/repos/update_order_repo.dart';
+import 'package:erp_system/features/inventory/orders/update_order/logic/update_order_cubit.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/data/repos/add_supplier_repo.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/logic/add_supplier_cubit.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/data/repos/get_all_supplier_repo.dart';
@@ -133,9 +137,6 @@ String supplierNameControllerInGetIt = '';
 String supplierEmailControllerInGetIt = '';
 String supplierPhoneControllerInGetIt = '';
 
-String accEmployeeIdControllerInGetIt = '';
-String quantityControllerInGetIt = '';
-String referenceControllerInGetIt = '';
 String departmentNameControllerInGetIt = '';
 String departmentDescriptionInGetIt = '';
 
@@ -204,6 +205,9 @@ Future<void> setupServiceLocator() async {
       () => UpdateSubCategoryRepo(getIt()));
   getIt.registerFactory<UpdateSubCategoryCubit>(
       () => UpdateSubCategoryCubit(getIt()));
+
+  getIt.registerLazySingleton<ReOrderRepo>(() => ReOrderRepo(getIt()));
+  getIt.registerFactory<ReOrderCubit>(() => ReOrderCubit(getIt()));
 
   getIt.registerLazySingleton<UpdateParentCategoryRepo>(
       () => UpdateParentCategoryRepo(getIt()));
@@ -409,4 +413,9 @@ Future<void> setupServiceLocator() async {
       () => GetAllInvoicesRepo(getIt()));
   getIt
       .registerFactory<GetAllInvoicesCubit>(() => GetAllInvoicesCubit(getIt()));
+
+  getIt.registerLazySingleton<GetAllAccountingEmployeeRepo>(
+      () => GetAllAccountingEmployeeRepo(getIt()));
+  getIt.registerFactory<GetAllAccountingEmployeeCubit>(
+      () => GetAllAccountingEmployeeCubit(getIt()));
 }

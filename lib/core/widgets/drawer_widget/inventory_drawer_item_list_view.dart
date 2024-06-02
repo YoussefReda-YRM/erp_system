@@ -12,7 +12,8 @@ class InventoryDrawerItemListView extends StatefulWidget {
   });
 
   @override
-  State<InventoryDrawerItemListView> createState() => _DrawerItemListViewState();
+  State<InventoryDrawerItemListView> createState() =>
+      _DrawerItemListViewState();
 }
 
 class _DrawerItemListViewState extends State<InventoryDrawerItemListView> {
@@ -35,7 +36,7 @@ class _DrawerItemListViewState extends State<InventoryDrawerItemListView> {
     ),
     DrawerItemModel(
       title: 'Inventory Adjustment',
-      icon: Icons.trending_up_outlined,
+      icon: Icons.edit_outlined,
     ),
     DrawerItemModel(
       title: 'Transfers',
@@ -75,6 +76,8 @@ class _DrawerItemListViewState extends State<InventoryDrawerItemListView> {
                       GoRouter.of(context).push(AppRouter.kCategoryView);
                     } else if (activeIndex == 3) {
                       GoRouter.of(context).push(AppRouter.kReplenishmentView);
+                    } else if (activeIndex == 4) {
+                      GoRouter.of(context).push(AppRouter.kInventoryOrders);
                     }
                   });
                 }

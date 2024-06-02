@@ -13,6 +13,8 @@ class ApiConstants {
 
   static const String stockOutProduct = "/Product/StockOutProduct";
 
+  static const String reOrder = "/order";
+
   //category
   static const String getAllCategories = "/Category";
   static const String deleteSubcategory =
@@ -89,6 +91,7 @@ class ApiConstants {
       "/accounting/AllInvoicesOfSupplier/{supplierId}";
   static const String registerPayment = "/accounting/RegisterPayment";
   static const String getAllInvoices = "/Accounting/AllInvoices";
+  static const String getAllAccountingEmployee = '/Employee/accounting';
 }
 
 class ApiErrors {

@@ -60,7 +60,7 @@ class ReplenishmentViewBody extends StatelessWidget {
                           itemCount: state.response.data?.length,
                           itemBuilder: (context, index) {
                             return ReplenishmentItem(
-                              data : state.response.data![index],
+                              data: state.response.data![index],
                             );
                           },
                         ),
