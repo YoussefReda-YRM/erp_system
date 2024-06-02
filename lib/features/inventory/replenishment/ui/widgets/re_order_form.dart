@@ -5,6 +5,7 @@ import 'package:erp_system/core/widgets/custom_text_form_field.dart';
 import 'package:erp_system/features/inventory/get_all_accounting_employee/logic/get_all_sup_category_cubit.dart';
 import 'package:erp_system/features/inventory/get_all_accounting_employee/logic/get_all_sup_category_state.dart';
 import 'package:erp_system/features/inventory/replenishment/logic/re_order_cubit.dart';
+import 'package:erp_system/features/inventory/replenishment/ui/widgets/re_order_bloc_listnere.dart';
 import 'package:erp_system/features/inventory/replenishment/ui/widgets/show_accounting_employee_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +17,7 @@ class ReOrderForm extends StatelessWidget {
     required this.data,
   });
 
-  final ProductData data;
+  final StockOutProductsResponse data;
 
   @override
   Widget build(BuildContext context) {
@@ -129,11 +130,10 @@ class ReOrderForm extends StatelessWidget {
                                   ),
                                   function: () {
                                     showAccountingEmployeeDialog(
-                                      context,
-                                      size,
-                                      getAllAccounting,
-                                       BlocProvider.of<ReOrderCubit>(context)
-                                    );
+                                        context,
+                                        size,
+                                        getAllAccounting,
+                                        BlocProvider.of<ReOrderCubit>(context));
                                   },
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
@@ -153,17 +153,18 @@ class ReOrderForm extends StatelessWidget {
                           AppTextButton(
                             buttonText: "Re-order",
                             backgroundColor: const Color(0xff51CC5D),
-                            textStyle:
-                                Styles.font16LightGreyMedium(context).copyWith(
+                            textStyle: Styles.font16LightGreyMedium(context)
+                                .copyWith(
                               color: Colors.white,
                             ),
                             onPressed: () {
                               validateThenDoReOrder(
                                 context,
-                                data.productId!,
+                                data.id!,
                               );
                             },
                           ),
+                          const ReOrderBlocListener(),
                         ],
                       ),
                     ),

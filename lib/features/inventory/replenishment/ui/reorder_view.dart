@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class ReorderView extends StatelessWidget {
   const ReorderView({super.key, required this.data});
 
-  final ProductData data;
+  final StockOutProductsResponse data;
 
   @override
   Widget build(BuildContext context) {

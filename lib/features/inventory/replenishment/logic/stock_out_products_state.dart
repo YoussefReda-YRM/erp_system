@@ -13,7 +13,7 @@ class StockOutProductsFailure extends StockOutProductstState {
 }
 
 class StockOutProductsSuccess extends StockOutProductstState {
-  final StockOutProductsResponse response;
+  final List<StockOutProductsResponse> response;
 
   StockOutProductsSuccess({
     required this.response,

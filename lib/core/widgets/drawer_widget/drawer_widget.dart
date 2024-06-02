@@ -45,12 +45,6 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   const CustomDivider(),
                   InActiveDrawerItem(
                     drawerItemModel: DrawerItemModel(
-                      title: 'Settings',
-                      icon: Icons.settings_outlined,
-                    ),
-                  ),
-                  InActiveDrawerItem(
-                    drawerItemModel: DrawerItemModel(
                       title: 'Sign Out',
                       icon: Icons.logout_outlined,
                     ),

@@ -42,14 +42,6 @@ class _DrawerItemListViewState extends State<InventoryDrawerItemListView> {
       title: 'Transfers',
       icon: Icons.transfer_within_a_station_outlined,
     ),
-    DrawerItemModel(
-      title: 'Reporting',
-      icon: Icons.report_outlined,
-    ),
-    DrawerItemModel(
-      title: 'Moves History',
-      icon: Icons.history_outlined,
-    ),
   ];
 
   @override
@@ -78,12 +70,14 @@ class _DrawerItemListViewState extends State<InventoryDrawerItemListView> {
                       GoRouter.of(context).push(AppRouter.kReplenishmentView);
                     } else if (activeIndex == 4) {
                       GoRouter.of(context).push(AppRouter.kInventoryOrders);
+                    } else if (activeIndex == 5) {
+                      GoRouter.of(context).push(AppRouter.kTransfersOfOrders);
                     }
                   });
                 }
               },
             ),
-            index == 2 || index == 5 ? const CustomDivider() : const SizedBox(),
+            index == 2 ? const CustomDivider() : const SizedBox(),
           ],
         );
       },

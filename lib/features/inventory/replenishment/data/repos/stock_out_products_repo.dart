@@ -9,7 +9,7 @@ class StockOutProductsRepo {
   final ApiService _apiService;
   StockOutProductsRepo(this._apiService);
 
-  Future<ApiResult<StockOutProductsResponse>> stockoutProducts() async {
+  Future<ApiResult<List<StockOutProductsResponse>>> stockoutProducts() async {
     try {
       var response = await _apiService
           .stockOutProducts("Bearer ${getIt.get<LoginResponse>().token!}");

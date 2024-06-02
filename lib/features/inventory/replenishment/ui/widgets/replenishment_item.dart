@@ -9,7 +9,7 @@ class ReplenishmentItem extends StatelessWidget {
     super.key,
     required this.data,
   });
-  final ProductData data;
+  final StockOutProductsResponse data;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -25,31 +25,37 @@ class ReplenishmentItem extends StatelessWidget {
             color: const Color(0xff9E9E9E),
           ),
         ),
-        trailing: SizedBox(
-          width: 127,
-          child: ElevatedButton(
-            onPressed: () {
-              GoRouter.of(context).push(
-                AppRouter.kReorderView,
-                extra: data,
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(15),
+        trailing: data.isOrdered!
+            ? Text(
+                "Pendind",
+                style: Styles.font14BlueSemiBold(context)
+                    .copyWith(color: Colors.orange),
+              )
+            : SizedBox(
+                width: 127,
+                child: ElevatedButton(
+                  onPressed: () {
+                    GoRouter.of(context).push(
+                      AppRouter.kReorderView,
+                      extra: data,
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(15),
+                      ),
+                    ),
+                    backgroundColor: const Color(0xff51CC5D),
+                  ),
+                  child: Text(
+                    "Reorder",
+                    style: Styles.font16LightGreyMedium(context).copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
-              backgroundColor: const Color(0xff51CC5D),
-            ),
-            child: Text(
-              "Reorder",
-              style: Styles.font16LightGreyMedium(context).copyWith(
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
       ),
     );
   }

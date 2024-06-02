@@ -6,12 +6,12 @@ import 'package:erp_system/features/inventory/product/widgets/custom_circular_pr
 import 'package:erp_system/features/inventory/product/widgets/custom_error_widget.dart';
 import 'package:erp_system/features/inventory/orders/inventory_order/logic/get_all_inventory_orders_cubit.dart';
 import 'package:erp_system/features/inventory/orders/inventory_order/logic/get_all_inventory_orders_state.dart';
-import 'package:erp_system/features/inventory/orders/inventory_order/ui/widgets/order_scm_item.dart';
+import 'package:erp_system/features/inventory/transfer/transfer_orders/ui/widgets/transfer_of_orders_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class GetAllInventoryOrdersViewBody extends StatelessWidget {
-  const GetAllInventoryOrdersViewBody({super.key, required this.scaffoldKey});
+class TransferOfOrdersViewBody extends StatelessWidget {
+  const TransferOfOrdersViewBody({super.key, required this.scaffoldKey});
   final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
@@ -20,7 +20,7 @@ class GetAllInventoryOrdersViewBody extends StatelessWidget {
       children: [
         CustomAppBarApp(
           scaffoldKey: scaffoldKey,
-          title: "Inventory Orders",
+          title: "All Orders",
           iconLeading: IconButton(
             icon: const Icon(
               Icons.menu,
@@ -58,11 +58,9 @@ class GetAllInventoryOrdersViewBody extends StatelessWidget {
                         physics: const BouncingScrollPhysics(),
                         itemCount: state.response.data!.length,
                         itemBuilder: (context, index) {
-                          return state.response.data![index].status == 0
-                              ? OrderScmItem(
-                                  data: state.response.data![index],
-                                )
-                              : const SizedBox();
+                          return TransferOfOrdersItem(
+                            data: state.response.data![index],
+                          );
                         },
                       );
                     } else if (state is GetAllInventoryOrdersFailure) {

@@ -47,7 +47,7 @@ class ReplenishmentViewBody extends StatelessWidget {
                         height: 30,
                       ),
                       Text(
-                        "${state.response.count.toString()} items",
+                        "${state.response.length.toString()} items",
                         style: Styles.font18DarkBlueBold(context)
                             .copyWith(fontSize: 20),
                       ),
@@ -57,10 +57,10 @@ class ReplenishmentViewBody extends StatelessWidget {
                       Expanded(
                         child: ListView.builder(
                           physics: const BouncingScrollPhysics(),
-                          itemCount: state.response.data?.length,
+                          itemCount: state.response.length,
                           itemBuilder: (context, index) {
                             return ReplenishmentItem(
-                              data: state.response.data![index],
+                              data: state.response[index],
                             );
                           },
                         ),

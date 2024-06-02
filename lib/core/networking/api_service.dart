@@ -109,7 +109,7 @@ abstract class ApiService {
   );
 
   @GET(ApiConstants.stockOutProduct)
-  Future<StockOutProductsResponse> stockOutProducts(
+  Future<List<StockOutProductsResponse>> stockOutProducts(
     @Header("Authorization") String token,
   );
 

@@ -169,14 +169,14 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<StockOutProductsResponse> stockOutProducts(String token) async {
+  Future<List<StockOutProductsResponse>> stockOutProducts(String token) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<StockOutProductsResponse>(Options(
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<StockOutProductsResponse>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -192,7 +192,10 @@ class _ApiService implements ApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = StockOutProductsResponse.fromJson(_result.data!);
+    var value = _result.data!
+        .map((dynamic i) =>
+            StockOutProductsResponse.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 
