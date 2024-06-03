@@ -11,8 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GetAllInventoryOrdersViewBody extends StatelessWidget {
-  const GetAllInventoryOrdersViewBody({super.key, required this.scaffoldKey});
+  const GetAllInventoryOrdersViewBody(
+      {super.key, required this.scaffoldKey, required this.title});
   final GlobalKey<ScaffoldState> scaffoldKey;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -58,11 +60,20 @@ class GetAllInventoryOrdersViewBody extends StatelessWidget {
                         physics: const BouncingScrollPhysics(),
                         itemCount: state.response.data!.length,
                         itemBuilder: (context, index) {
-                          return state.response.data![index].status == 0
-                              ? OrderScmItem(
-                                  data: state.response.data![index],
-                                )
-                              : const SizedBox();
+                          if (title == 'adjustment') {
+                            return state.response.data![index].status == 0
+                                ? OrderScmItem(
+                                    data: state.response.data![index],
+                                    title: title,
+                                  )
+                                : const SizedBox();
+                          } else if (title == "transfar") {
+                            return OrderScmItem(
+                              data: state.response.data![index],
+                              title: title,
+                            );
+                          }
+                          return null;
                         },
                       );
                     } else if (state is GetAllInventoryOrdersFailure) {

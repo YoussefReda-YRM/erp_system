@@ -91,8 +91,6 @@ import 'package:erp_system/features/inventory/replenishment/logic/re_order_cubit
 import 'package:erp_system/features/inventory/replenishment/logic/stock_out_products_cubit.dart';
 import 'package:erp_system/features/inventory/replenishment/ui/reorder_view.dart';
 import 'package:erp_system/features/inventory/replenishment/ui/replenishment_view.dart';
-import 'package:erp_system/features/inventory/transfer/transfer_orders/ui/transfers_of_orders_view.dart';
-import 'package:erp_system/features/inventory/transfer/transfer_orders_details/ui/transfer_order_details_view.dart';
 import 'package:erp_system/features/modules/ui/modules_view.dart';
 import 'package:erp_system/features/auth/login/ui/login_view.dart';
 import 'package:erp_system/features/auth/otp/ui/otp_view.dart';
@@ -160,9 +158,6 @@ abstract class AppRouter {
   static const kInventoryOrders = '/inventoryOrders';
   static const kOrdersDetailsView = '/ordersDetailsView';
   static const kUpdateOrderView = '/updateOrderView';
-
-  static const kTransfersOfOrders = '/transfersOfOrders';
-  static const kTransferOfOrdersDetailsView = '/transferOfOrdersDetailsView';
 
   //HR
   static const kAllEmployeesView = '/allEmployeesView';
@@ -460,40 +455,25 @@ abstract class AppRouter {
         builder: (context, state) => BlocProvider(
           create: (context) =>
               getIt.get<GetAllInventoryOrdersCubit>()..getAllInventoryOrders(),
-          child: const GetAllInventoryOrdersView(),
+          child: GetAllInventoryOrdersView(title: state.extra as String),
         ),
       ),
 
       GoRoute(
-        path: kOrdersDetailsView,
-        builder: (context, state) => BlocProvider(
-          create: (context) => getIt.get<OrderDetailsCubit>()
-            ..getSpecificInventoryOrder(
-              state.extra as int,
-            ),
-          child: const OrderDetailsView(),
-        ),
-      ),
+          path: kOrdersDetailsView,
+          builder: (context, state) {
+            Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
 
-      GoRoute(
-        path: kTransfersOfOrders,
-        builder: (context, state) => BlocProvider(
-          create: (context) =>
-              getIt.get<GetAllInventoryOrdersCubit>()..getAllInventoryOrders(),
-          child: const TransferOfOrdersView(),
-        ),
-      ),
-
-      GoRoute(
-        path: kTransferOfOrdersDetailsView,
-        builder: (context, state) => BlocProvider(
-          create: (context) => getIt.get<OrderDetailsCubit>()
-            ..getSpecificInventoryOrder(
-              state.extra as int,
-            ),
-          child: const TransferOrdersDetailsView(),
-        ),
-      ),
+            return BlocProvider(
+              create: (context) => getIt.get<OrderDetailsCubit>()
+                ..getSpecificInventoryOrder(
+                  myData['id'],
+                ),
+              child: OrderDetailsView(
+                title: myData['title'],
+              ),
+            );
+          }),
 
       GoRoute(
         path: kUpdateOrderView,

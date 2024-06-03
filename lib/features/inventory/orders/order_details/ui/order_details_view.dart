@@ -6,7 +6,8 @@ import 'package:erp_system/features/inventory/orders/order_details/ui/widgets/or
 import 'package:flutter/material.dart';
 
 class OrderDetailsView extends StatelessWidget {
-  const OrderDetailsView({super.key});
+  const OrderDetailsView({super.key, required this.title});
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,9 +26,9 @@ class OrderDetailsView extends StatelessWidget {
                 ),
               ),
             ),
-            const Expanded(
+            Expanded(
               child: CustomAppBody(
-                child: OrderDetailsViewBody(),
+                child: OrderDetailsViewBody(title: title),
               ),
             ),
           ],

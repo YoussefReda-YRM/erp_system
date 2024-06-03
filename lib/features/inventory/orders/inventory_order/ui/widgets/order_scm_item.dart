@@ -9,16 +9,19 @@ class OrderScmItem extends StatelessWidget {
   const OrderScmItem({
     super.key,
     required this.data,
+    required this.title,
   });
 
   final InventoryOrderData data;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
         onTap: () {
-          GoRouter.of(context).push(AppRouter.kOrdersDetailsView, extra: data.id);
+          GoRouter.of(context).push(AppRouter.kOrdersDetailsView,
+              extra: {"id": data.id, "title": title});
         },
         child: Row(
           children: [

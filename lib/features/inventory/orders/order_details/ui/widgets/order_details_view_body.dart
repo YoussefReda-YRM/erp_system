@@ -15,7 +15,9 @@ import 'package:go_router/go_router.dart';
 class OrderDetailsViewBody extends StatelessWidget {
   const OrderDetailsViewBody({
     super.key,
+    required this.title,
   });
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +51,7 @@ class OrderDetailsViewBody extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  state.response.data?.status == 0
+                  title == "adjustment"
                       ? AppTextButton(
                           buttonText: "Edit",
                           backgroundColor: Colors.green,

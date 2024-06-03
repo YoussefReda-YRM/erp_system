@@ -35,7 +35,7 @@ class _DrawerItemListViewState extends State<InventoryDrawerItemListView> {
       icon: Icons.autorenew_outlined,
     ),
     DrawerItemModel(
-      title: 'Inventory Adjustment',
+      title: 'Adjustment',
       icon: Icons.edit_outlined,
     ),
     DrawerItemModel(
@@ -69,9 +69,9 @@ class _DrawerItemListViewState extends State<InventoryDrawerItemListView> {
                     } else if (activeIndex == 3) {
                       GoRouter.of(context).push(AppRouter.kReplenishmentView);
                     } else if (activeIndex == 4) {
-                      GoRouter.of(context).push(AppRouter.kInventoryOrders);
+                      GoRouter.of(context).push(AppRouter.kInventoryOrders, extra: 'adjustment');
                     } else if (activeIndex == 5) {
-                      GoRouter.of(context).push(AppRouter.kTransfersOfOrders);
+                      GoRouter.of(context).push(AppRouter.kInventoryOrders, extra: 'transfar');
                     }
                   });
                 }

@@ -4,7 +4,9 @@ import 'package:erp_system/features/inventory/orders/inventory_order/ui/widgets/
 import 'package:flutter/material.dart';
 
 class GetAllInventoryOrdersView extends StatefulWidget {
-  const GetAllInventoryOrdersView({super.key});
+  const GetAllInventoryOrdersView({super.key, required this.title});
+
+  final String title;
 
   @override
   State<GetAllInventoryOrdersView> createState() =>
@@ -22,9 +24,8 @@ class _GetAllInventoryOrdersViewState extends State<GetAllInventoryOrdersView> {
       drawer: const DrawerWidget(
         drawerItemListView: InventoryDrawerItemListView(),
       ),
-      body: GetAllInventoryOrdersViewBody(
-        scaffoldKey: scaffoldKey,
-      ),
+      body:
+          GetAllInventoryOrdersViewBody(scaffoldKey: scaffoldKey, title: widget.title),
     );
   }
 }
