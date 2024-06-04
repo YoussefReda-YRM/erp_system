@@ -1,5 +1,4 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
-import 'package:erp_system/features/accounting/dashboard/accounting_dashboard_view.dart';
 import 'package:erp_system/features/accounting/get_all_invoices/data/models/get_all_invoices_response.dart';
 import 'package:erp_system/features/accounting/get_all_invoices/logic/get_all_invoices_cubit.dart';
 import 'package:erp_system/features/accounting/get_all_invoices/ui/get_all_invoices_view.dart';
@@ -20,6 +19,8 @@ import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/auth/create_new_password/ui/create_new_password_view.dart';
 import 'package:erp_system/features/hr/attendance/logic/get_all_attendance_cubit.dart';
 import 'package:erp_system/features/hr/attendance/ui/attendance_view.dart';
+import 'package:erp_system/features/hr/department/add_department/logic/add_department_cubit.dart';
+import 'package:erp_system/features/hr/department/add_department/ui/add_department_view.dart';
 import 'package:erp_system/features/hr/department/get_all_department/data/models/get_all_department_response.dart';
 import 'package:erp_system/features/hr/department/get_all_department/logic/get_all_department_cubit.dart';
 import 'package:erp_system/features/hr/department/get_all_department/ui/get_all_department_view.dart';
@@ -203,7 +204,6 @@ abstract class AppRouter {
   static const kUpdateStatusOfPermissionView = '/updateStatusOfPermissionView';
 
   //Accounting
-  static const kAccountingDashboardView = '/accountingDashboardView';
   static const kGetAllScmOrdersView = '/getAllScmOrdersView';
   static const kSupplierViewAccounting = '/supplierViewAccounting';
   static const kSupplierDetailsAccounting = '/supplierDetailsAccounting';
@@ -214,6 +214,16 @@ abstract class AppRouter {
   static const kRegisterPayment = '/registerPayment';
   static const kGetAllInvoices = '/getAllInvoices';
   static const kGetAllPaymentsOfInvoice = '/getAllPaymentsOfInvoice';
+
+  static final modules = GoRouter(
+    initialLocation: kModulesView,
+    routes: [
+      GoRoute(
+        path: kModulesView,
+        builder: (context, state) => const ModulesView(),
+      ),
+    ],
+  );
 
   static final router = GoRouter(
     routes: [
@@ -290,16 +300,11 @@ abstract class AppRouter {
           );
         },
       ),
-
-      GoRoute(
-        path: kModulesView,
-        builder: (context, state) => const ModulesView(),
-      ),
       GoRoute(
         path: kLoginView,
         builder: (context, state) => BlocProvider(
           create: (context) => getIt.get<LoginCubit>(),
-          child: LoginView(role: state.extra as String),
+          child: const LoginView(),
         ),
       ),
       GoRoute(
@@ -527,12 +532,6 @@ abstract class AppRouter {
           ],
           child: const GetAllEmployeeView(),
         ),
-
-        // BlocProvider(
-        // create: (context) =>
-        //     getIt.get<GetAllEmployeeCubit>()..getAllEmployees(),
-        //   child: const GetAllEmployeeView(),
-        // ),
       ),
 
       GoRoute(
@@ -568,6 +567,13 @@ abstract class AppRouter {
               getIt.get<GetAllDepartmentCubit>()..getAllDepartment(),
           child: const GetAllDepartmentView(),
         ),
+      ),
+
+      GoRoute(
+        path: kAddDepartment,
+        builder: (context, state) => BlocProvider(
+            create: (context) => getIt.get<AddDepartmentCubit>(),
+            child: const AddDepartmentView()),
       ),
 
       GoRoute(
@@ -748,11 +754,6 @@ abstract class AppRouter {
       ),
 
       //Accouting
-      GoRoute(
-        path: kAccountingDashboardView,
-        builder: (context, state) => const AccountingDashboardView(),
-      ),
-
       GoRoute(
         path: kGetAllScmOrdersView,
         builder: (context, state) => BlocProvider(

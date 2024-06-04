@@ -1,4 +1,6 @@
 import 'package:erp_system/core/utils/app_router.dart';
+import 'package:erp_system/core/utils/assets.dart';
+import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/data/models/GetAllSupplierResponse.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +14,9 @@ class SupplierListViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: response.count,
+        itemCount: response.data?.length,
         itemBuilder: (context, index) {
-          return InkWell(
+          return GestureDetector(
             onTap: () {
               GoRouter.of(context).push(
                 AppRouter.kSupplierDetails,
@@ -28,21 +30,37 @@ class SupplierListViewBody extends StatelessWidget {
               );
             },
             child: Card(
+              shape: RoundedRectangleBorder(
+                side:
+                    const BorderSide(color: ColorsApp.primaryColor, width: 1.0),
+                borderRadius: BorderRadius.circular(12.0),
+              ),
               child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                    // mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                          "Supplier Name: ${response.data![index].supplierName}",
-                          style: Styles.font16DarkBlueBold(context)),
-                      const SizedBox(
-                        height: 8,
+                padding: const EdgeInsets.symmetric(vertical: 2),
+                child: ListTile(
+                    leading: const CircleAvatar(
+                      radius: 24,
+                      backgroundImage: AssetImage(
+                        AssetsData.profile,
                       ),
-                      Text("Email: ${response.data![index].supplierEmail}",
-                          style: Styles.font13BlueSemiBold(context)),
-                    ]),
+                    ),
+                    title: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: AlignmentDirectional.centerStart,
+                      child: Text(
+                        response.data![index].supplierName!,
+                        style: Styles.font18DarkBlueBold(context),
+                      ),
+                    ),
+                    subtitle: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: AlignmentDirectional.centerStart,
+                      child: Text(
+                        response.data![index].supplierEmail!,
+                        style: Styles.font14BlueSemiBold(context),
+                      ),
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios_rounded, color: Colors.pink,)),
               ),
             ),
           );

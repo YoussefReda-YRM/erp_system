@@ -6,7 +6,16 @@ import 'package:go_router/go_router.dart';
 
 itemModule(BuildContext context, String title, String moduleImage) => InkWell(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kLoginView, extra: title);
+        if (title == "SCM") {
+          GoRouter.of(context).go(AppRouter.kScmHomeView);
+        } else if (title == "HR") {
+          GoRouter.of(context).go(AppRouter.kAllEmployeesView);
+        } else if (title == "Inventory") {
+          GoRouter.of(context).go(AppRouter.kInventoryHomeView);
+        } else if (title == "Accounting") {
+          GoRouter.of(context)
+              .go(AppRouter.kGetAllScmOrdersView, extra: 'accounting');
+        }
       },
       child: Container(
         decoration: BoxDecoration(

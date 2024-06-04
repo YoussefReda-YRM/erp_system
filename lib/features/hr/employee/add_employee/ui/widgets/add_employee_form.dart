@@ -403,6 +403,7 @@ class _AddEmployeeFormState extends State<AddEmployeeForm> {
           ),
           const SizedBox(height: 18),
           AppTextFormField(
+            keyboardType: TextInputType.number,
             hintText: 'Identification Number',
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(

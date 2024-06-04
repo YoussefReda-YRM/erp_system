@@ -16,17 +16,9 @@ class AddTaxesBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomAppBarApp(
+        const CustomAppBarApp(
           title: 'Add Taxes',
-          iconLeading: const CustomBackButton(),
-          iconTrailing: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.more_vert_outlined,
-              size: 34,
-              color: ColorsApp.lightGrey,
-            ),
-          ),
+          iconLeading: CustomBackButton(),
         ),
         Expanded(
           child: Container(
@@ -75,6 +67,7 @@ class AddTaxesBody extends StatelessWidget {
     );
   }
 }
+
 void validateThenDoAddTaxes(BuildContext context) {
   if (context.read<AddTaxesCubit>().formKey.currentState!.validate()) {
     context.read<AddTaxesCubit>().addTaxes();

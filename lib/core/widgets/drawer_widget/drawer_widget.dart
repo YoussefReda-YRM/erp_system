@@ -1,9 +1,12 @@
+import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/widgets/custom_divider.dart';
 import 'package:erp_system/core/widgets/drawer_widget/active_and_inactive_item.dart/in_active_drawer_item.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_item_model.dart';
 import 'package:erp_system/core/widgets/drawer_widget/user_info_list_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class DrawerWidget extends StatefulWidget {
   const DrawerWidget({super.key, required this.drawerItemListView});
@@ -14,8 +17,6 @@ class DrawerWidget extends StatefulWidget {
 }
 
 class _DrawerWidgetState extends State<DrawerWidget> {
-  int activeIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return ClipPath(
@@ -43,6 +44,18 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 children: [
                   const Expanded(child: SizedBox()),
                   const CustomDivider(),
+                  GestureDetector(
+                    onTap: () {
+                      activeIndex = 0;
+                      GoRouter.of(context).go(AppRouter.kModulesView);
+                    },
+                    child: InActiveDrawerItem(
+                      drawerItemModel: DrawerItemModel(
+                        title: 'My Modules',
+                        icon: Icons.view_module_outlined,
+                      ),
+                    ),
+                  ),
                   InActiveDrawerItem(
                     drawerItemModel: DrawerItemModel(
                       title: 'Sign Out',

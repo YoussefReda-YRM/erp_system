@@ -5,9 +5,8 @@ import 'package:erp_system/features/accounting/taxes/get_all_taxes/ui/widget/get
 import 'package:flutter/material.dart';
 
 class GetAllTaxesViewBody extends StatelessWidget {
-  const GetAllTaxesViewBody({super.key,required this.scaffoldKey});
+  const GetAllTaxesViewBody({super.key, required this.scaffoldKey});
   final GlobalKey<ScaffoldState> scaffoldKey;
-
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +24,6 @@ class GetAllTaxesViewBody extends StatelessWidget {
             onPressed: () {
               scaffoldKey.currentState!.openDrawer();
             },
-          ),
-          iconTrailing: IconButton(
-            icon: const Icon(
-              Icons.search_outlined,
-              size: 34,
-              color: ColorsApp.lightGrey,
-            ),
-            onPressed: () {},
           ),
         ),
         const Expanded(

@@ -1,5 +1,7 @@
+import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/core/utils/assets.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
+import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/modules/ui/widgets/item_module.dart';
 import 'package:flutter/material.dart';
 
@@ -27,10 +29,26 @@ class ItemsModules extends StatelessWidget {
             crossAxisSpacing: 40,
             mainAxisSpacing: 30,
             children: [
-              itemModule(context, 'SCM', AssetsData.scm),
-              itemModule(context, 'HR', AssetsData.hr),
-              itemModule(context, 'Accounting', AssetsData.accounting),
-              itemModule(context, 'Inventory', AssetsData.inventory),
+              getIt.get<LoginResponse>().userData?.role == "SuperAdmin" ||
+                      getIt.get<LoginResponse>().userData?.role == "SCMEmployee"
+                  ? itemModule(context, 'SCM', AssetsData.scm)
+                  : const SizedBox(),
+              getIt.get<LoginResponse>().userData?.role == "SuperAdmin" ||
+                      getIt.get<LoginResponse>().userData?.role ==
+                          "HREmployee" ||
+                      getIt.get<LoginResponse>().userData?.role == "HRAdmin"
+                  ? itemModule(context, 'HR', AssetsData.hr)
+                  : const SizedBox(),
+              getIt.get<LoginResponse>().userData?.role == "SuperAdmin" ||
+                      getIt.get<LoginResponse>().userData?.role ==
+                          "AccountingEmployee"
+                  ? itemModule(context, 'Accounting', AssetsData.accounting)
+                  : const SizedBox(),
+              getIt.get<LoginResponse>().userData?.role == "SuperAdmin" ||
+                      getIt.get<LoginResponse>().userData?.role ==
+                          "InventoryEmployee"
+                  ? itemModule(context, 'Inventory', AssetsData.inventory)
+                  : const SizedBox(),
             ],
           ),
         ),

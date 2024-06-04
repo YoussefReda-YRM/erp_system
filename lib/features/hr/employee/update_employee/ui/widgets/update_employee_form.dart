@@ -5,6 +5,7 @@ import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_form_field.dart';
 import 'package:erp_system/core/widgets/custom_intl_phone_field.dart';
 import 'package:erp_system/features/hr/department/get_all_department/data/models/get_all_department_response.dart';
+import 'package:erp_system/features/hr/employee/add_employee/data/models/get_all_roles_model.dart';
 import 'package:erp_system/features/hr/employee/details_employee/data/models/details_employee_model.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/data/models/employee_response.dart';
 import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
@@ -32,14 +33,35 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
   bool hasNumber = false;
   bool hasMinLength = false;
 
+  void setupPasswordControllerListener() {
+    passwordController.addListener(() {
+      setState(() {
+        hasLowercase = AppRegex.hasLowerCase(passwordController.text);
+        hasUppercase = AppRegex.hasUpperCase(passwordController.text);
+        hasSpecialCharacters =
+            AppRegex.hasSpecialCharacter(passwordController.text);
+        hasNumber = AppRegex.hasNumber(passwordController.text);
+        hasMinLength = AppRegex.hasMinLength(passwordController.text);
+      });
+    });
+  }
+
+  String gender = 'male';
   late TextEditingController passwordController;
 
   late GetAllDepartmentResponse _selectedDepartment;
   List<GetAllDepartmentResponse> departments = getAllDepartmentGetIt;
 
+  late GetAllRolesResponse _selectedRole;
+  List<GetAllRolesResponse> roles = getAllRolesGetIt;
   @override
   void initState() {
     super.initState();
+    passwordController = context.read<UpdateEmployeeCubit>().passwordController;
+    setupPasswordControllerListener();
+    _selectedDepartment = departments[0];
+    _selectedRole = roles[0];
+
     context.read<UpdateEmployeeCubit>().userNameController.text =
         widget.employeeData!.name.toString();
     context.read<UpdateEmployeeCubit>().emailController.text =
@@ -47,7 +69,7 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
     context.read<UpdateEmployeeCubit>().passwordController.text = "**********";
     context.read<UpdateEmployeeCubit>().passwordConfirmationController.text =
         "**********";
-    context.read<UpdateEmployeeCubit>().roleController.text =
+    context.read<UpdateEmployeeCubit>().roleController =
         widget.employeeData!.role.toString();
     context.read<UpdateEmployeeCubit>().addressController.text =
         widget.employeeData!.address.toString();
@@ -65,6 +87,7 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
         widget.employeeData!.birthDate.toString();
     context.read<UpdateEmployeeCubit>().salaryController.text =
         widget.employeeData!.salary.toString();
+
     departments == []
         ? _selectedDepartment = GetAllDepartmentResponse(
             id: -1,
@@ -75,6 +98,10 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
 
   @override
   Widget build(BuildContext context) {
+    List<JobPosition>? jobPositions = _selectedDepartment.jobPositions;
+    JobPosition selectedJobPosition = jobPositions!.isEmpty
+        ? JobPosition(id: 0, jobName: "No Job")
+        : jobPositions[0];
     return Form(
       key: context.read<UpdateEmployeeCubit>().formKey,
       child: Column(
@@ -310,39 +337,28 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
             ],
           ),
           const SizedBox(height: 18),
-          AppTextFormField(
-            hintText: 'Employee job',
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: ColorsApp.primaryColor,
-                width: 1.3,
-              ),
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter an employee job';
-              }
+          DropdownButtonFormField<GetAllRolesResponse>(
+            value: _selectedRole,
+            items: roles.map((role) {
+              return DropdownMenuItem<GetAllRolesResponse>(
+                value: role,
+                child: Text(role.roleName!),
+              );
+            }).toList(),
+            onChanged: (value) {
+              setState(() {
+                _selectedRole = value!;
+                context.read<UpdateEmployeeCubit>().roleController =
+                    _selectedRole.roleName.toString();
+              });
             },
-            controller:
-                context.read<UpdateEmployeeCubit>().employeeJobController,
-          ),
-          const SizedBox(height: 18),
-          AppTextFormField(
-            hintText: 'Enter role',
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: ColorsApp.primaryColor,
-                width: 1.3,
-              ),
-              borderRadius: BorderRadius.circular(16.0),
-            ),
+            decoration: const InputDecoration(labelText: 'Employee Role'),
             validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter an employee role';
+              if (value == null) {
+                return 'Please select a job position';
               }
+              return null;
             },
-            // controller: context.read<AddEmployeeCubit>().roleController,
           ),
           const SizedBox(height: 18),
           DropdownButtonFormField<GetAllDepartmentResponse>(
@@ -364,6 +380,30 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
             validator: (value) {
               if (value == null) {
                 return 'Please select a department';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 18),
+          DropdownButtonFormField<JobPosition>(
+            value: selectedJobPosition,
+            items: jobPositions.map((job) {
+              return DropdownMenuItem<JobPosition>(
+                value: job,
+                child: Text(job.jobName),
+              );
+            }).toList(),
+            onChanged: (value) {
+              setState(() {
+                selectedJobPosition = value!;
+                context.read<UpdateEmployeeCubit>().employeeJobController =
+                    selectedJobPosition.jobName.toString();
+              });
+            },
+            decoration: const InputDecoration(labelText: 'Job Position'),
+            validator: (value) {
+              if (value == null) {
+                return 'Please select a Job Position';
               }
               return null;
             },
@@ -405,6 +445,7 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
           ),
           const SizedBox(height: 18),
           AppTextFormField(
+            keyboardType: TextInputType.number,
             hintText: 'Identification Number',
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(

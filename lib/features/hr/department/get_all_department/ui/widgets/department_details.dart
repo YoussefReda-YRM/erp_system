@@ -25,17 +25,9 @@ class DepartmentDetails extends StatelessWidget {
         backgroundColor: Colors.white,
         body: Column(
           children: [
-            CustomAppBarApp(
+            const CustomAppBarApp(
               title: 'Department Details',
-              iconLeading: const CustomBackButton(),
-              iconTrailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.more_vert_outlined,
-                  size: 34,
-                  color: ColorsApp.lightGrey,
-                ),
-              ),
+              iconLeading: CustomBackButton(),
             ),
             CustomAppBody(
                 child: Padding(
@@ -56,8 +48,9 @@ class DepartmentDetails extends StatelessWidget {
                         child: SingleChildScrollView(
                           child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 40, vertical: 20),
+                                  horizontal: 20, vertical: 20),
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
                                     children: [
@@ -91,7 +84,9 @@ class DepartmentDetails extends StatelessWidget {
                                   const SizedBox(
                                     height: 16,
                                   ),
-                                  Row(
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       FittedBox(
                                         fit: BoxFit.scaleDown,
@@ -103,19 +98,18 @@ class DepartmentDetails extends StatelessWidget {
                                               context),
                                         ),
                                       ),
-                                      const Spacer(),
-                                      Expanded(
-                                        child: FittedBox(
-                                          fit: BoxFit.scaleDown,
-                                          alignment:
-                                              AlignmentDirectional.centerStart,
-                                          child: Text(
-                                            departmentData.description
-                                                .toString(),
-                                            style: Styles.font13BlueSemiBold(
-                                                    context)
-                                                .copyWith(color: Colors.pink),
-                                          ),
+                                      const SizedBox(
+                                        height: 8,
+                                      ),
+                                      FittedBox(
+                                        fit: BoxFit.scaleDown,
+                                        alignment:
+                                            AlignmentDirectional.centerStart,
+                                        child: Text(
+                                          departmentData.description.toString(),
+                                          style:
+                                              Styles.font13BlueSemiBold(context)
+                                                  .copyWith(color: Colors.pink),
                                         ),
                                       ),
                                     ],
@@ -123,7 +117,9 @@ class DepartmentDetails extends StatelessWidget {
                                   const SizedBox(
                                     height: 16,
                                   ),
-                                  Row(
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       FittedBox(
                                         fit: BoxFit.scaleDown,
@@ -135,19 +131,19 @@ class DepartmentDetails extends StatelessWidget {
                                               context),
                                         ),
                                       ),
-                                      const Spacer(),
-                                      Expanded(
-                                        child: FittedBox(
-                                          fit: BoxFit.scaleDown,
-                                          alignment:
-                                              AlignmentDirectional.centerStart,
-                                          child: Text(
-                                            departmentData.jobPositions
-                                                .toString(),
-                                            style: Styles.font13BlueSemiBold(
-                                                    context)
-                                                .copyWith(color: Colors.pink),
-                                          ),
+                                      const SizedBox(
+                                        height: 8,
+                                      ),
+                                      FittedBox(
+                                        fit: BoxFit.scaleDown,
+                                        alignment:
+                                            AlignmentDirectional.centerStart,
+                                        child: Text(
+                                          departmentData.jobPositions
+                                              .toString(),
+                                          style:
+                                              Styles.font13BlueSemiBold(context)
+                                                  .copyWith(color: Colors.pink),
                                         ),
                                       ),
                                     ],
@@ -203,6 +199,9 @@ class DepartmentDetails extends StatelessWidget {
                             },
                           ),
                         ),
+                        const SizedBox(
+                          width: 10,
+                        ),
                         Expanded(
                           child: AppTextButton(
                             buttonText: "Delete",
@@ -227,6 +226,9 @@ class DepartmentDetails extends StatelessWidget {
                               );
                             },
                           ),
+                        ),
+                        const SizedBox(
+                          width: 10,
                         ),
                         Expanded(
                           child: AppTextButton(

@@ -1,8 +1,10 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/core/utils/app_router.dart';
+import 'package:erp_system/core/utils/functions/show_snack_bar.dart';
 import 'package:erp_system/core/widgets/custom_divider.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_item.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_item_model.dart';
+import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,10 +20,6 @@ class AccountingDrawerItemListView extends StatefulWidget {
 
 class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
   final List<DrawerItemModel> items = [
-    DrawerItemModel(
-      title: 'Main',
-      icon: Icons.home_outlined,
-    ),
     DrawerItemModel(
       title: 'SCM Orders',
       icon: Icons.shopping_cart_checkout_outlined,
@@ -69,21 +67,34 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
                   setState(() {
                     activeIndex = index;
                     if (activeIndex == 0) {
-                      // GoRouter.of(context).push(AppRouter.kAllEmployeesView);
+                      getIt.get<LoginResponse>().userData?.role ==
+                                  "AccountingEmployee" ||
+                              getIt.get<LoginResponse>().userData?.role ==
+                                  "SuperAdmin"
+                          ? GoRouter.of(context).push(
+                              AppRouter.kGetAllScmOrdersView,
+                              extra: "accounting",
+                            )
+                          : showSnackBar(context);
                     } else if (activeIndex == 1) {
-                      GoRouter.of(context).push(
-                        AppRouter.kGetAllScmOrdersView,
-                        extra: "accounting",
-                      );
                     } else if (activeIndex == 2) {
+                      getIt.get<LoginResponse>().userData?.role ==
+                                  "AccountingEmployee" ||
+                              getIt.get<LoginResponse>().userData?.role ==
+                                  "SuperAdmin"
+                          ? GoRouter.of(context).push(AppRouter.kGetAllInvoices)
+                          : showSnackBar(context);
                     } else if (activeIndex == 3) {
-                      GoRouter.of(context).push(AppRouter.kGetAllInvoices);
-                    } else if (activeIndex == 4) {
                       GoRouter.of(context)
-                          .push(AppRouter.kSupplierViewAccounting);
+                          .go(AppRouter.kSupplierViewAccounting);
+                    } else if (activeIndex == 4) {
+                      getIt.get<LoginResponse>().userData?.role ==
+                                  "AccountingEmployee" ||
+                              getIt.get<LoginResponse>().userData?.role ==
+                                  "SuperAdmin"
+                          ? GoRouter.of(context).push(AppRouter.kGetAllTaxes)
+                          : showSnackBar(context);
                     } else if (activeIndex == 5) {
-                      GoRouter.of(context).push(AppRouter.kGetAllTaxes);
-                    } else if (activeIndex == 6) {
                       // GoRouter.of(context).push(AppRouter.kGetPermissionOfSpecificEmployeeView);
                     }
                   });

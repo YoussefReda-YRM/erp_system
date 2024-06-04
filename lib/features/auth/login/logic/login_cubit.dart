@@ -1,4 +1,7 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/core/helpers/contstatnts.dart';
+import 'package:erp_system/core/helpers/shared_pref_helper.dart';
+import 'package:erp_system/core/networking/dio_factory.dart';
 import 'package:erp_system/features/auth/login/data/models/login_request_body.dart';
 import 'package:erp_system/features/auth/login/data/repos/login_repo.dart';
 import 'package:erp_system/features/auth/login/logic/login_state.dart';
@@ -23,13 +26,19 @@ class LoginCubit extends Cubit<LoginState> {
       ),
     );
     response.when(
-      success: (loginResponse) {
+      success: (loginResponse) async {
         loginResponseInGetIt = loginResponse;
+        await saveUserToken(loginResponse.token!);
         emit(LoginSuccess(loginResponse));
       },
       failure: (error) {
         emit(LoginFailure(error: error.apiErrorModel.message ?? ''));
       },
     );
+  }
+
+  Future<void> saveUserToken(String token) async {
+    await SharedPrefHelper.setSecuredString(SharedPrefKeys.userToken, token);
+    DioFactory.setTokenIntoHeaderAfterLogin(token);
   }
 }
