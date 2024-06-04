@@ -1,3 +1,4 @@
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/assets.dart';
 import 'package:erp_system/features/splash/ui/widgets/sliding_text.dart';
@@ -63,7 +64,9 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   void navigateToGetStarted() {
     Future.delayed(const Duration(seconds: 2), () {
-      GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
+      isLoggedInUser
+          ? GoRouter.of(context).pushReplacement(AppRouter.kModulesView)
+          : GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
     });
   }
 }

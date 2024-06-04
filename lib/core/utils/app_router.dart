@@ -215,21 +215,15 @@ abstract class AppRouter {
   static const kGetAllInvoices = '/getAllInvoices';
   static const kGetAllPaymentsOfInvoice = '/getAllPaymentsOfInvoice';
 
-  static final modules = GoRouter(
-    initialLocation: kModulesView,
-    routes: [
-      GoRoute(
-        path: kModulesView,
-        builder: (context, state) => const ModulesView(),
-      ),
-    ],
-  );
-
   static final router = GoRouter(
     routes: [
       GoRoute(
         path: kSplashView,
         builder: (context, state) => const SplashView(),
+      ),
+      GoRoute(
+        path: kModulesView,
+        builder: (context, state) => const ModulesView(),
       ),
       GoRoute(
         path: kSupplierView,
