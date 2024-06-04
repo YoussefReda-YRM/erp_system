@@ -1,4 +1,3 @@
-import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,7 @@ class ErpApp extends StatelessWidget {
       minTextAdapt: true,
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        routerConfig: isLoggedInUser ? AppRouter.modules : AppRouter.router,
+        routerConfig: AppRouter.router,
         title: 'ERP System',
         theme: ThemeData(
           primaryColor: ColorsApp.moreLightGrey,
