@@ -1,4 +1,5 @@
 import 'package:erp_system/core/utils/app_router.dart';
+import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/features/inventory/replenishment/data/models/stock_out_products_response.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,7 @@ class ReplenishmentItem extends StatelessWidget {
                         Radius.circular(15),
                       ),
                     ),
-                    backgroundColor: const Color(0xff51CC5D),
+                    backgroundColor: ColorsApp.primaryColor,
                   ),
                   child: Text(
                     "Reorder",

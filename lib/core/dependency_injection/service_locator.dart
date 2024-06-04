@@ -100,12 +100,16 @@ import 'package:erp_system/features/inventory/replenishment/data/repos/re_order_
 import 'package:erp_system/features/inventory/replenishment/data/repos/stock_out_products_repo.dart';
 import 'package:erp_system/features/inventory/replenishment/logic/re_order_cubit.dart';
 import 'package:erp_system/features/inventory/replenishment/logic/stock_out_products_cubit.dart';
-import 'package:erp_system/features/inventory/orders/inventory_order/data/repos/get_all_inventory_orders_repo.dart';
-import 'package:erp_system/features/inventory/orders/inventory_order/logic/get_all_inventory_orders_cubit.dart';
-import 'package:erp_system/features/inventory/orders/order_details/data/repos/order_details_repo.dart';
-import 'package:erp_system/features/inventory/orders/order_details/logic/order_details_cubit.dart';
-import 'package:erp_system/features/inventory/orders/update_order/data/repos/update_order_repo.dart';
-import 'package:erp_system/features/inventory/orders/update_order/logic/update_order_cubit.dart';
+import 'package:erp_system/features/inventory/inventory_order/get_all_inventory_order/data/repos/get_all_inventory_orders_repo.dart';
+import 'package:erp_system/features/inventory/inventory_order/get_all_inventory_order/logic/get_all_inventory_orders_cubit.dart';
+import 'package:erp_system/features/inventory/inventory_order/inventory_order_details/data/repos/order_details_repo.dart';
+import 'package:erp_system/features/inventory/inventory_order/inventory_order_details/logic/order_details_cubit.dart';
+import 'package:erp_system/features/inventory/inventory_order/update_order/data/repos/update_order_repo.dart';
+import 'package:erp_system/features/inventory/inventory_order/update_order/logic/update_order_cubit.dart';
+import 'package:erp_system/features/scm/create_scm_order/data/repos/create_scm_order_repo.dart';
+import 'package:erp_system/features/scm/create_scm_order/logic/create_scm_order_cubit.dart';
+import 'package:erp_system/features/scm/get_all_status_of_scm_order/data/repos/get_all_scm_order_status_repo.dart';
+import 'package:erp_system/features/scm/get_all_status_of_scm_order/logic/get_all_scm_order_status_cubit.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/data/repos/add_supplier_repo.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/logic/add_supplier_cubit.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/data/repos/get_all_supplier_repo.dart';
@@ -258,6 +262,12 @@ Future<void> setupServiceLocator() async {
 
   getIt.registerLazySingleton<UpdateOrderRepo>(() => UpdateOrderRepo(getIt()));
   getIt.registerFactory<UpdateOrderCubit>(() => UpdateOrderCubit(getIt()));
+
+  getIt.registerLazySingleton<CreateScmOrderRepo>(
+      () => CreateScmOrderRepo(getIt()));
+  getIt.registerFactory<CreateScmOrderCubit>(() => CreateScmOrderCubit(
+        getIt(),
+      ));
 
   // hr
   //add employee
@@ -418,4 +428,9 @@ Future<void> setupServiceLocator() async {
       () => GetAllAccountingEmployeeRepo(getIt()));
   getIt.registerFactory<GetAllAccountingEmployeeCubit>(
       () => GetAllAccountingEmployeeCubit(getIt()));
+
+  getIt.registerLazySingleton<GetAllScmOrderStatusRepo>(
+      () => GetAllScmOrderStatusRepo(getIt()));
+  getIt.registerFactory<GetAllScmOrderStatusCubit>(
+      () => GetAllScmOrderStatusCubit(getIt()));
 }

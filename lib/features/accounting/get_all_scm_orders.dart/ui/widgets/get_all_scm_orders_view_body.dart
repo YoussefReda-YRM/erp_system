@@ -31,14 +31,6 @@ class GetAllScmOrdersViewBody extends StatelessWidget {
               scaffoldKey.currentState!.openDrawer();
             },
           ),
-          iconTrailing: IconButton(
-            icon: const Icon(
-              Icons.search_outlined,
-              size: 34,
-              color: ColorsApp.lightGrey,
-            ),
-            onPressed: () {},
-          ),
         ),
         Expanded(
             child: CustomAppBody(

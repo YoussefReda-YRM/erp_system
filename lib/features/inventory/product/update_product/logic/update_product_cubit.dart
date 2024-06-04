@@ -19,6 +19,7 @@ class UpdateProductCubit extends Cubit<UpdateProductState> {
   TextEditingController productCostPriceController = TextEditingController();
   TextEditingController activeOrderController = TextEditingController();
   TextEditingController subCategoryIdController = TextEditingController();
+  TextEditingController productMinquantityController = TextEditingController();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -37,6 +38,7 @@ class UpdateProductCubit extends Cubit<UpdateProductState> {
         activeOrder: 0, //int.parse(activeOrderController.text),
         addedBy: getIt.get<LoginResponse>().userData!.userID.toString(),
         subCategoryId: int.parse(subCategoryIdController.text),
+        productMinquantity: int.parse(productMinquantityController.text),
       ),
       productId,
     );

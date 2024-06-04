@@ -135,6 +135,24 @@ class _AddProductFormState extends State<AddProductForm> {
                 context.read<AddProductCubit>().productOutGoingController,
           ),
           SizedBox(height: 18.h),
+          AppTextFormField(
+            hintText: 'product min quantity',
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                color: ColorsApp.primaryColor,
+                width: 1.3,
+              ),
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter a product min quantity';
+              }
+            },
+            controller:
+                context.read<AddProductCubit>().productMinquantityController,
+          ),
+          SizedBox(height: 18.h),
           BlocBuilder<GetAllSupCategoryCubit, GetAllSupCategoryState>(
             builder: (context, state) {
               if (state is GetAllSupCategoryLoading) {

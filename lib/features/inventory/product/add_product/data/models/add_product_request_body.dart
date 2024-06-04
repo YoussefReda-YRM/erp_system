@@ -9,6 +9,7 @@ class AddProductRequestBody {
   final int activeOrder;
   final String addedBy;
   final int subCategoryId;
+  final int productMinquantity;
 
   AddProductRequestBody({
     required this.productName,
@@ -21,6 +22,7 @@ class AddProductRequestBody {
     required this.activeOrder,
     required this.addedBy,
     required this.subCategoryId,
+    required this.productMinquantity,
   });
 
   Map<String, dynamic> toJson() {
@@ -35,6 +37,7 @@ class AddProductRequestBody {
       'activeOrder': activeOrder,
       'addedBy': addedBy,
       'subCategoryId': subCategoryId,
+      'productMinquantity': productMinquantity,
     };
   }
 }

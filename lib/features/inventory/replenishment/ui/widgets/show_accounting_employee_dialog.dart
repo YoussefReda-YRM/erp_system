@@ -1,8 +1,9 @@
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/features/inventory/get_all_accounting_employee/data/models/get_all_accounting_employee.dart';
-import 'package:erp_system/features/inventory/orders/update_order/logic/update_order_cubit.dart';
+import 'package:erp_system/features/inventory/inventory_order/update_order/logic/update_order_cubit.dart';
 import 'package:erp_system/features/inventory/replenishment/logic/re_order_cubit.dart';
+import 'package:erp_system/features/scm/create_scm_order/logic/create_scm_order_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -33,6 +34,10 @@ showAccountingEmployeeDialog(
                     cubit.accEmployeeIdController.text =
                         allAccountingEmp[index].userID.toString();
                   } else if (cubit is ReOrderCubit) {
+                    cubit.accEmployeeIdController.text =
+                        allAccountingEmp[index].userID.toString();
+                  }
+                  else if (cubit is CreateScmOrderCubit) {
                     cubit.accEmployeeIdController.text =
                         allAccountingEmp[index].userID.toString();
                   }

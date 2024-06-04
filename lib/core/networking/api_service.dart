@@ -64,10 +64,12 @@ import 'package:erp_system/features/inventory/product/update_product/data/models
 import 'package:erp_system/features/inventory/product/update_product/data/models/update_product_response.dart';
 import 'package:erp_system/features/inventory/replenishment/data/models/re_order_request.dart';
 import 'package:erp_system/features/inventory/replenishment/data/models/stock_out_products_response.dart';
-import 'package:erp_system/features/inventory/orders/inventory_order/data/models/get_all_inventory_orders_model.dart';
-import 'package:erp_system/features/inventory/orders/order_details/data/models/order_details_model.dart';
-import 'package:erp_system/features/inventory/orders/update_order/data/models/update_order_request.dart';
-import 'package:erp_system/features/inventory/orders/update_order/data/models/update_order_response.dart';
+import 'package:erp_system/features/inventory/inventory_order/get_all_inventory_order/data/models/get_all_inventory_orders_model.dart';
+import 'package:erp_system/features/inventory/inventory_order/inventory_order_details/data/models/order_details_model.dart';
+import 'package:erp_system/features/inventory/inventory_order/update_order/data/models/update_order_request.dart';
+import 'package:erp_system/features/inventory/inventory_order/update_order/data/models/update_order_response.dart';
+import 'package:erp_system/features/scm/create_scm_order/data/models/create_scm_order_request.dart';
+import 'package:erp_system/features/scm/get_all_status_of_scm_order/data/models/get_all_scm_order_status_Response.dart';
 import 'package:erp_system/features/scm/scm_home/data/models/scm_home_model.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/data/models/AddSupplierRequest.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/data/models/AddSupplierResponse.dart';
@@ -219,6 +221,17 @@ abstract class ApiService {
 
   @GET(ApiConstants.getAllScmOrders)
   Future<List<GetAllScmOrdersResponse>> getAllScmOrders(
+    @Header("Authorization") String token,
+  );
+
+  @GET(ApiConstants.scmOrderStatus)
+  Future<List<GetAllScmOrderStatusResponse>> getAllScmOrderStatus(
+    @Header("Authorization") String token,
+  );
+
+  @POST(ApiConstants.createScmOrder)
+  Future<void> createScmOrder(
+    @Body() CreateScmOrderRequest createScmOrderRequest,
     @Header("Authorization") String token,
   );
 

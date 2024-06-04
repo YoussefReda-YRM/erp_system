@@ -25,14 +25,6 @@ class CategoryViewBody extends StatelessWidget {
               scaffoldKey.currentState!.openDrawer();
             },
           ),
-          iconTrailing: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.more_vert_outlined,
-              size: 34,
-              color: ColorsApp.lightGrey,
-            ),
-          ),
         ),
         const Expanded(child: CategoryListViewBody()),
       ],

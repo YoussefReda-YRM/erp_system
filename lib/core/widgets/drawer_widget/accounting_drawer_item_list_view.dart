@@ -71,7 +71,10 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
                     if (activeIndex == 0) {
                       // GoRouter.of(context).push(AppRouter.kAllEmployeesView);
                     } else if (activeIndex == 1) {
-                      GoRouter.of(context).push(AppRouter.kGetAllScmOrdersView);
+                      GoRouter.of(context).push(
+                        AppRouter.kGetAllScmOrdersView,
+                        extra: "accounting",
+                      );
                     } else if (activeIndex == 2) {
                     } else if (activeIndex == 3) {
                       GoRouter.of(context).push(AppRouter.kGetAllInvoices);

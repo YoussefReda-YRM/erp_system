@@ -10,7 +10,7 @@ class DetailsProductModel {
   int? id;
   String? productName;
   int? productOnHand;
-  String? category;
+  String? category; 
 
   DetailsProductModel({
     this.id,

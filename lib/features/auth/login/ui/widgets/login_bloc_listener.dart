@@ -25,21 +25,19 @@ class LoginBlocListener extends StatelessWidget {
           GoRouter.of(context).pop();
           // here i send login response
           if (role == "Inventory") {
-            GoRouter.of(context).pushReplacement(
+            GoRouter.of(context).go(
               AppRouter.kInventoryHomeView,
             );
           } else if (role == "SCM") {
-            GoRouter.of(context).pushReplacement(
+            GoRouter.of(context).go(
               AppRouter.kScmHomeView,
             );
           } else if (role == "HR") {
-            GoRouter.of(context).pushReplacement(
+            GoRouter.of(context).go(
               AppRouter.kAllEmployeesView,
             );
-          }
-          else if(role == "Accounting")
-          {
-            GoRouter.of(context).pushReplacement(
+          } else if (role == "Accounting") {
+            GoRouter.of(context).go(
               AppRouter.kAccountingDashboardView,
             );
           }

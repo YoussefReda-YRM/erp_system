@@ -14,6 +14,8 @@ class ApiConstants {
   static const String stockOutProduct = "/Product/StockOutProduct";
 
   static const String reOrder = "/order";
+    static const String scmOrderStatus = "/ScmOrder/ScmOrderStatus";
+
 
   //category
   static const String getAllCategories = "/Category";
@@ -41,6 +43,7 @@ class ApiConstants {
   static const String getSpecificInventoryOrder = "/Order/InventoryOrder";
   static const String updateOrder = "/order/{orderId}";
   static const String getAllScmOrders = '/ScmOrder';
+  static const String createScmOrder = '/ScmOrder';
 
   //HR
   static const String addEmployee = "/Auth/register";

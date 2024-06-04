@@ -31,155 +31,150 @@ class SupplierDetails extends StatelessWidget {
         backgroundColor: Colors.white,
         body: Column(
           children: [
-            CustomAppBarApp(
+            const CustomAppBarApp(
               title: 'Supplier Details',
-              iconLeading: const CustomBackButton(),
-              iconTrailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.more_vert_outlined,
-                  size: 34,
-                  color: ColorsApp.lightGrey,
-                ),
-              ),
+              iconLeading: CustomBackButton(),
             ),
             CustomAppBody(
                 child: Padding(
               padding: const EdgeInsets.only(top: 10),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 50,
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      side: const BorderSide(color: ColorsApp.primaryColor),
                     ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        side: const BorderSide(color: ColorsApp.primaryColor),
+                    color: Colors.white,
+                    child: SizedBox(
+                      child: SingleChildScrollView(
+                        child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 20),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      "Supplier Name: ",
+                                      style:
+                                          Styles.font13BlueSemiBold(context),
+                                    ),
+                                    const Spacer(),
+                                    FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      alignment: Alignment.topLeft,
+                                      child: Text(
+                                        suppliername ?? "none",
+                                        style:
+                                            Styles.font13BlueSemiBold(context)
+                                                .copyWith(color: Colors.pink),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "Supplier Email: ",
+                                      style:
+                                          Styles.font13BlueSemiBold(context),
+                                    ),
+                                    const Spacer(),
+                                    FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      alignment: Alignment.topLeft,
+                                      child: Text(
+                                        supplieremail ?? "none",
+                                        style:
+                                            Styles.font13BlueSemiBold(context)
+                                                .copyWith(color: Colors.pink),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "Supplier Phone: ",
+                                      style:
+                                          Styles.font13BlueSemiBold(context),
+                                    ),
+                                    const Spacer(),
+                                    FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      alignment: Alignment.topLeft,
+                                      child: Text(
+                                        supplierphone ?? "none",
+                                        style:
+                                            Styles.font13BlueSemiBold(context)
+                                                .copyWith(color: Colors.pink),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "Added By: ",
+                                      style:
+                                          Styles.font13BlueSemiBold(context),
+                                    ),
+                                    const Spacer(),
+                                    FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      alignment: Alignment.topLeft,
+                                      child: Text(
+                                        supplieraddedby ?? "none",
+                                        style:
+                                            Styles.font13BlueSemiBold(context)
+                                                .copyWith(color: Colors.pink),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                              ],
+                            )),
                       ),
-                      color: Colors.white,
-                      child: SizedBox(
-                        child: SingleChildScrollView(
-                          child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 40, vertical: 20),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Supplier Name: ",
-                                        style:
-                                            Styles.font13BlueSemiBold(context),
-                                      ),
-                                      const Spacer(),
-                                      Expanded(
-                                        child: Text(
-                                          suppliername ?? "none",
-                                          style:
-                                              Styles.font13BlueSemiBold(context)
-                                                  .copyWith(color: Colors.pink),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 16,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Supplier Email: ",
-                                        style:
-                                            Styles.font13BlueSemiBold(context),
-                                      ),
-                                      const Spacer(),
-                                      Expanded(
-                                        child: Text(
-                                          supplieremail ?? "none",
-                                          style:
-                                              Styles.font13BlueSemiBold(context)
-                                                  .copyWith(color: Colors.pink),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 16,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Supplier Phone: ",
-                                        style:
-                                            Styles.font13BlueSemiBold(context),
-                                      ),
-                                      const Spacer(),
-                                      Expanded(
-                                        child: Text(
-                                          supplierphone ?? "none",
-                                          style:
-                                              Styles.font13BlueSemiBold(context)
-                                                  .copyWith(color: Colors.pink),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 16,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Added By: ",
-                                        style:
-                                            Styles.font13BlueSemiBold(context),
-                                      ),
-                                      const Spacer(),
-                                      Expanded(
-                                        child: Text(
-                                          supplieraddedby ?? "none",
-                                          style:
-                                              Styles.font13BlueSemiBold(context)
-                                                  .copyWith(color: Colors.pink),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 16,
-                                  ),
-                                ],
-                              )),
-                        ),
-                      ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    AppTextButton(
-                      buttonText: "Edit",
-                      width: MediaQuery.of(context).size.width / 2.5,
-                      backgroundColor: Colors.green,
-                      textStyle: Styles.font13BlueSemiBold(context),
-                      onPressed: () {
-                        supplierNameControllerInGetIt = suppliername ?? "none";
-                        supplierEmailControllerInGetIt =
-                            supplieremail ?? "none";
-                        supplierPhoneControllerInGetIt =
-                            supplierphone ?? "none";
-
-                        GoRouter.of(context)
-                            .push(AppRouter.kUpdateSupplier, extra: {"id": id});
-                        //showEditProductDialog(context, size);
-                      },
-                    ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  AppTextButton(
+                    buttonText: 'Edit',
+                    textStyle: Styles.font16LightGreyMedium(context),
+                    backgroundColor: ColorsApp.primaryColor,
+                    onPressed: () {
+                      supplierNameControllerInGetIt = suppliername ?? "none";
+                      supplierEmailControllerInGetIt =
+                          supplieremail ?? "none";
+                      supplierPhoneControllerInGetIt =
+                          supplierphone ?? "none";
+              
+                      GoRouter.of(context)
+                          .push(AppRouter.kUpdateSupplier, extra: {"id": id});
+                      //showEditProductDialog(context, size);
+                    },
+                  ),
+                ],
               ),
-            )
-
-                )
+            ))
           ],
         ));
   }

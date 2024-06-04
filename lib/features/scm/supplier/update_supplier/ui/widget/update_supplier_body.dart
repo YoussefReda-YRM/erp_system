@@ -18,17 +18,9 @@ class UpdateSupplierBody extends StatelessWidget {
     return Expanded(
       child: Column(
         children: [
-          CustomAppBarApp(
-            title: 'Edit supplier name',
-            iconLeading: const CustomBackButton(),
-            iconTrailing: IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.more_vert_outlined,
-                size: 34,
-                color: ColorsApp.lightGrey,
-              ),
-            ),
+          const CustomAppBarApp(
+            title: 'Edit supplier',
+            iconLeading: CustomBackButton(),
           ),
           Expanded(
             child: Container(
@@ -55,14 +47,11 @@ class UpdateSupplierBody extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(20),
                       child: AppTextButton(
-                        buttonText: 'Edit',
+                        buttonText: 'Save',
                         textStyle: Styles.font16LightGreyMedium(context),
                         backgroundColor: ColorsApp.primaryColor,
                         onPressed: () {
                           validateThenDoUpdateSupplier(context, id);
-                          // context
-                          //     .read<UpdateParentCategoryCubit>()
-                          //     .updateparentcategory(parentId);
                         },
                       ),
                     ),

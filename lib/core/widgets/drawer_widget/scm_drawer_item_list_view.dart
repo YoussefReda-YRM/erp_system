@@ -22,20 +22,16 @@ class _DrawerItemListViewState extends State<ScmDrawerItemListView> {
       icon: Icons.home_outlined,
     ),
     DrawerItemModel(
-      title: 'Inventory Orders',
-      icon: Icons.shopping_cart_outlined,
-    ),
-    DrawerItemModel(
-      title: 'Finished Orders',
-      icon: Icons.check_circle_outlined,
+      title: 'Create Orders',
+      icon: Icons.add_outlined,
     ),
     DrawerItemModel(
       title: 'All Orders',
       icon: Icons.list_alt_outlined,
     ),
     DrawerItemModel(
-      title: 'Create Orders',
-      icon: Icons.add_outlined,
+      title: 'Order\'s Status.',
+      icon: Icons.check_circle_outlined,
     ),
     DrawerItemModel(
       title: 'Suppliers',
@@ -60,17 +56,22 @@ class _DrawerItemListViewState extends State<ScmDrawerItemListView> {
                   setState(() {
                     activeIndex = index;
                     if (activeIndex == 0) {
-                      GoRouter.of(context).push(AppRouter.kScmHomeView);
+                      GoRouter.of(context).go(AppRouter.kScmHomeView);
                     } else if (activeIndex == 1) {
-                      
-                    }else if(activeIndex==5){
-                      GoRouter.of(context).push(AppRouter.kSupplierView);
+                      GoRouter.of(context).go(AppRouter.kCreateScmOrderView);
+                    } else if (activeIndex == 2) {
+                      GoRouter.of(context)
+                          .go(AppRouter.kGetAllScmOrdersView, extra: 'scm');
+                    } else if (activeIndex == 3) {
+                      GoRouter.of(context).go(AppRouter.kGetAllScmOrderStatus);
+                    } else if (activeIndex == 4) {
+                      GoRouter.of(context).go(AppRouter.kSupplierView);
                     }
                   });
                 }
               },
             ),
-            index == 4 ? const CustomDivider() : const SizedBox(),
+            index == 3 ? const CustomDivider() : const SizedBox(),
           ],
         );
       },

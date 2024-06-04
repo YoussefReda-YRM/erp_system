@@ -1,4 +1,3 @@
-import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_back_button.dart';
@@ -25,7 +24,7 @@ class AddProductView extends StatelessWidget {
             title: 'New Product',
             iconLeading: CustomBackButton(
               onTap: () {
-                GoRouter.of(context).push(AppRouter.kProductView);
+                GoRouter.of(context).pop();
               },
             ),
           ),
@@ -54,7 +53,8 @@ class AddProductView extends StatelessWidget {
                       AppTextButton(
                         backgroundColor: ColorsApp.primaryColor,
                         buttonText: "Create",
-                        textStyle: Styles.font16LightGreyMedium(context).copyWith(fontSize: 13),
+                        textStyle: Styles.font16LightGreyMedium(context)
+                            .copyWith(fontSize: 13),
                         onPressed: () {
                           validateThenDoAddProduct(context);
                         },

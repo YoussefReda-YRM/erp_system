@@ -30,6 +30,7 @@ class _GetAllProductViewState extends State<GetAllProductView> {
       floatingActionButton: CustomFloatingActionButton(
         ctxt: context,
         onPressed: () {
+          
           GoRouter.of(context).push(
             AppRouter.kAddProductView,
           );

@@ -38,6 +38,8 @@ class _UpdateProductFormState extends State<UpdateProductForm> {
         widget.productData.productOutGoing.toString();
     context.read<UpdateProductCubit>().subCategoryIdController.text =
         widget.productData.category!;
+    // context.read<UpdateProductCubit>().productMinquantityController.text =
+    // widget.productData.productMin ;
   }
 
   @override
@@ -153,6 +155,24 @@ class _UpdateProductFormState extends State<UpdateProductForm> {
             },
             controller:
                 context.read<UpdateProductCubit>().productOutGoingController,
+          ),
+          SizedBox(height: 18.h),
+          AppTextFormField(
+            hintText: 'product min quantity',
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                color: ColorsApp.primaryColor,
+                width: 1.3,
+              ),
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter a product min quantity';
+              }
+            },
+            controller:
+                context.read<UpdateProductCubit>().productMinquantityController,
           ),
           SizedBox(height: 18.h),
           BlocBuilder<GetAllSupCategoryCubit, GetAllSupCategoryState>(

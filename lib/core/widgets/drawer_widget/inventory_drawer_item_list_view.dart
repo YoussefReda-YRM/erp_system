@@ -61,17 +61,21 @@ class _DrawerItemListViewState extends State<InventoryDrawerItemListView> {
                   setState(() {
                     activeIndex = index;
                     if (activeIndex == 0) {
-                      GoRouter.of(context).push(AppRouter.kInventoryHomeView);
+                      GoRouter.of(context).go(AppRouter.kInventoryHomeView);
                     } else if (activeIndex == 1) {
-                      GoRouter.of(context).push(AppRouter.kProductView);
+                      GoRouter.of(context).go(AppRouter.kProductView);
                     } else if (activeIndex == 2) {
-                      GoRouter.of(context).push(AppRouter.kCategoryView);
+                      GoRouter.of(context).go(AppRouter.kCategoryView);
                     } else if (activeIndex == 3) {
-                      GoRouter.of(context).push(AppRouter.kReplenishmentView);
+                      GoRouter.of(context).go(AppRouter.kReplenishmentView);
                     } else if (activeIndex == 4) {
-                      GoRouter.of(context).push(AppRouter.kInventoryOrders, extra: 'adjustment');
+                      GoRouter.of(context).pop();
+                      GoRouter.of(context)
+                          .go(AppRouter.kInventoryOrders, extra: 'adjustment');
                     } else if (activeIndex == 5) {
-                      GoRouter.of(context).push(AppRouter.kInventoryOrders, extra: 'transfar');
+                      GoRouter.of(context).pop();
+                      GoRouter.of(context)
+                          .go(AppRouter.kInventoryOrders, extra: 'transfar');
                     }
                   });
                 }

@@ -20,17 +20,9 @@ class UpdateParentCategoryBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomAppBarApp(
+        const CustomAppBarApp(
           title: 'Edit parent Category',
-          iconLeading: const CustomBackButton(),
-          iconTrailing: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.more_vert_outlined,
-              size: 34,
-              color: ColorsApp.lightGrey,
-            ),
-          ),
+          iconLeading: CustomBackButton(),
         ),
         Expanded(
           child: Container(
