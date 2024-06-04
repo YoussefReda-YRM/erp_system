@@ -12,16 +12,18 @@ class AddJobPositionCubit extends Cubit<AddJobPositionState> {
       : super(AddJobPositionInitial());
 
   TextEditingController jobNameController = TextEditingController();
- // TextEditingController departmentDescriptionController = TextEditingController();
+  // TextEditingController departmentDescriptionController = TextEditingController();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   void addJobPosition(int id) async {
     emit(AddJobPositionLoading());
-    final response = await _addJobPositionRepo.addJobPosition(AddJobPositionRequest(jobName:jobNameController.text,departmentId: id ), getIt.get<LoginResponse>().token!,);
+    final response = await _addJobPositionRepo.addJobPosition(
+      AddJobPositionRequest(jobName: jobNameController.text, departmentId: id),
+      getIt.get<LoginResponse>().token!,
+    );
     response.when(
       success: (response) {
-        print("kkkkkk");
         emit(AddJobPositionSuccess(response: response));
       },
       failure: (error) {

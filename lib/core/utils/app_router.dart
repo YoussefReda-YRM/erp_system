@@ -1,9 +1,26 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/features/accounting/get_all_invoices/data/models/get_all_invoices_response.dart';
+import 'package:erp_system/features/accounting/get_all_invoices/logic/get_all_invoices_cubit.dart';
+import 'package:erp_system/features/accounting/get_all_invoices/ui/get_all_invoices_view.dart';
+import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/logic/get_all_invoices_of_supplier_cubit.dart';
+import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/ui/get_all_invoices_of_supplier_view.dart';
+import 'package:erp_system/features/accounting/get_all_payments_of_invoice/ui/get_all_payments_of_invoice_view.dart';
+import 'package:erp_system/features/accounting/get_all_payments_of_supplier/ui/get_all_payments_of_supplier_view.dart';
+import 'package:erp_system/features/accounting/get_all_scm_orders.dart/logic/get_all_scm_orders_cubit.dart';
+import 'package:erp_system/features/accounting/get_all_scm_orders.dart/ui/get_all_scm_orders_view.dart';
+import 'package:erp_system/features/accounting/register_payment/logic/register_payment_cubit.dart';
+import 'package:erp_system/features/accounting/register_payment/ui/register_payment_view.dart';
+import 'package:erp_system/features/accounting/taxes/add_taxes/logic/add_taxes_cubit.dart';
+import 'package:erp_system/features/accounting/taxes/add_taxes/ui/add_taxes_view.dart';
+import 'package:erp_system/features/accounting/taxes/get_all_taxes/logic/get_all_taxes_cubit.dart';
+import 'package:erp_system/features/accounting/taxes/get_all_taxes/ui/get_all_taxes_view.dart';
 import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/auth/create_new_password/ui/create_new_password_view.dart';
 import 'package:erp_system/features/hr/attendance/logic/get_all_attendance_cubit.dart';
 import 'package:erp_system/features/hr/attendance/ui/attendance_view.dart';
+import 'package:erp_system/features/hr/department/add_department/logic/add_department_cubit.dart';
+import 'package:erp_system/features/hr/department/add_department/ui/add_department_view.dart';
 import 'package:erp_system/features/hr/department/get_all_department/data/models/get_all_department_response.dart';
 import 'package:erp_system/features/hr/department/get_all_department/logic/get_all_department_cubit.dart';
 import 'package:erp_system/features/hr/department/get_all_department/ui/get_all_department_view.dart';
@@ -53,42 +70,58 @@ import 'package:erp_system/features/inventory/category/add_category/ui/add_paren
 import 'package:erp_system/features/inventory/category/add_category/ui/add_sub_category_view.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/logic/get_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/ui/category_view.dart';
+import 'package:erp_system/features/inventory/category/get_all_sup_category/logic/get_all_sup_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/update_category/logic/update_parent_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/update_category/logic/update_sub_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/update_category/ui/update_parent_category.dart';
 import 'package:erp_system/features/inventory/category/update_category/ui/update_sub_category.dart';
+import 'package:erp_system/features/inventory/get_all_accounting_employee/logic/get_all_sup_category_cubit.dart';
 import 'package:erp_system/features/inventory/inventory_home/logic/inventory_home_cubit.dart';
 import 'package:erp_system/features/inventory/inventory_home/ui/inventory_home_view.dart';
+import 'package:erp_system/features/inventory/inventory_order/inventory_order_details/data/models/order_details_model.dart';
 import 'package:erp_system/features/inventory/product/add_product/logic/add_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/add_product/ui/add_product_view.dart';
+import 'package:erp_system/features/inventory/product/details_product/data/models/details_product_model.dart';
 import 'package:erp_system/features/inventory/product/details_product/logic/details_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/details_product/ui/details_product_view.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/logic/get_all_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/ui/get_all_product_view.dart';
+import 'package:erp_system/features/inventory/product/update_product/logic/update_product_cubit.dart';
+import 'package:erp_system/features/inventory/product/update_product/ui/update_product_view.dart';
+import 'package:erp_system/features/inventory/replenishment/logic/re_order_cubit.dart';
+import 'package:erp_system/features/inventory/replenishment/logic/stock_out_products_cubit.dart';
 import 'package:erp_system/features/inventory/replenishment/ui/reorder_view.dart';
 import 'package:erp_system/features/inventory/replenishment/ui/replenishment_view.dart';
 import 'package:erp_system/features/modules/ui/modules_view.dart';
 import 'package:erp_system/features/auth/login/ui/login_view.dart';
 import 'package:erp_system/features/auth/otp/ui/otp_view.dart';
 import 'package:erp_system/features/auth/password_changed/password_changed_view.dart';
-import 'package:erp_system/features/scm/orders/inventory_order/logic/get_all_inventory_orders_cubit.dart';
-import 'package:erp_system/features/scm/orders/inventory_order/ui/get_all_inventory_orders_view.dart';
-import 'package:erp_system/features/scm/orders/order_details/logic/order_details_cubit.dart';
-import 'package:erp_system/features/scm/orders/order_details/ui/order_details_view.dart';
-import 'package:erp_system/features/scm/orders/update_order/logic/update_order_cubit.dart';
-import 'package:erp_system/features/scm/orders/update_order/ui/update_order_view.dart';
+import 'package:erp_system/features/inventory/inventory_order/get_all_inventory_order/logic/get_all_inventory_orders_cubit.dart';
+import 'package:erp_system/features/inventory/inventory_order/get_all_inventory_order/ui/get_all_inventory_orders_view.dart';
+import 'package:erp_system/features/inventory/inventory_order/inventory_order_details/logic/order_details_cubit.dart';
+import 'package:erp_system/features/inventory/inventory_order/inventory_order_details/ui/order_details_view.dart';
+import 'package:erp_system/features/inventory/inventory_order/update_order/logic/update_order_cubit.dart';
+import 'package:erp_system/features/inventory/inventory_order/update_order/ui/update_order_view.dart';
+import 'package:erp_system/features/scm/create_scm_order/logic/create_scm_order_cubit.dart';
+import 'package:erp_system/features/scm/create_scm_order/ui/create_scm_order_view.dart';
+import 'package:erp_system/features/scm/get_all_status_of_scm_order/logic/get_all_scm_order_status_cubit.dart';
+import 'package:erp_system/features/scm/get_all_status_of_scm_order/ui/get_all_status_of_scm_view.dart';
 import 'package:erp_system/features/scm/scm_home/logic/scm_home_cubit.dart';
 import 'package:erp_system/features/scm/scm_home/ui/scm_home_view.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/logic/add_supplier_cubit.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/ui/add_supplier_view.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/logic/get_supplier_cubit.dart';
+import 'package:erp_system/features/accounting/get_all_supplier/get_all_supplier_accounting_view.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/get_all_supplier_view.dart';
 import 'package:erp_system/features/scm/supplier/get_all_suplier/ui/widget/supllier_details.dart';
+import 'package:erp_system/features/accounting/get_all_supplier/widgets/supllier_details_accounting.dart';
 import 'package:erp_system/features/scm/supplier/update_supplier/logic/update_supplier_cubit.dart';
 import 'package:erp_system/features/scm/supplier/update_supplier/ui/update_supplier.dart';
 import 'package:erp_system/features/splash/ui/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../features/inventory/replenishment/data/models/stock_out_products_response.dart';
 
 abstract class AppRouter {
   static const kSplashView = '/';
@@ -105,6 +138,7 @@ abstract class AppRouter {
   static const kProductView = '/productView';
   static const kAddProductView = '/addProductView';
   static const kDetailsProductView = '/detailsProductView';
+  static const kUpdateProduct = '/updateProduct';
 
   //category
   static const kCategoryView = '/categoryView';
@@ -129,6 +163,9 @@ abstract class AppRouter {
   static const kInventoryOrders = '/inventoryOrders';
   static const kOrdersDetailsView = '/ordersDetailsView';
   static const kUpdateOrderView = '/updateOrderView';
+  static const kCreateScmOrderView = '/createScmOrderView';
+
+  static const kGetAllScmOrderStatus = '/getAllScmOrderStatusView';
 
   //HR
   static const kAllEmployeesView = '/allEmployeesView';
@@ -166,6 +203,28 @@ abstract class AppRouter {
 
   static const kUpdateStatusOfPermissionView = '/updateStatusOfPermissionView';
 
+  //Accounting
+  static const kGetAllScmOrdersView = '/getAllScmOrdersView';
+  static const kSupplierViewAccounting = '/supplierViewAccounting';
+  static const kSupplierDetailsAccounting = '/supplierDetailsAccounting';
+  static const kGetAllTaxes = '/getAllTaxes';
+  static const kAddTaxes = '/addTaxes';
+  static const kGetAllInvoicesOfSupplier = '/getAllInvoicesOfSupplier';
+  static const kGetAllPaymentsOfSupplier = '/getAllPaymentsOfSupplier';
+  static const kRegisterPayment = '/registerPayment';
+  static const kGetAllInvoices = '/getAllInvoices';
+  static const kGetAllPaymentsOfInvoice = '/getAllPaymentsOfInvoice';
+
+  static final modules = GoRouter(
+    initialLocation: kModulesView,
+    routes: [
+      GoRoute(
+        path: kModulesView,
+        builder: (context, state) => const ModulesView(),
+      ),
+    ],
+  );
+
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -175,13 +234,20 @@ abstract class AppRouter {
       GoRoute(
         path: kSupplierView,
         builder: (context, state) => BlocProvider(
-          create: (context) => getIt.get<GetAllSupplierCubit>()
-            ..getAllSupplier(
-              "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJCYXNtYU1vaHNlbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImJhc21hbW9oc2VuNTNAZ21haWwuY29tIiwiZXhwIjoxNzA4NzI1MzI2LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDY5IiwiYXVkIjoiTXlTZWN1cmVkQVBJVXNlcnMifQ.YtfYcIexDCmQQUZl7RHAXr07vQMdMzZISeHt0zG6qFM",
-            ),
+          create: (context) =>
+              getIt.get<GetAllSupplierCubit>()..getAllSupplier(),
           child: const GetAllSupplierView(),
         ),
       ),
+      GoRoute(
+        path: kSupplierViewAccounting,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              getIt.get<GetAllSupplierCubit>()..getAllSupplier(),
+          child: const GetAllSupplierAccounting(),
+        ),
+      ),
+
       GoRoute(
         path: kSupplierDetails,
         builder: (context, state) {
@@ -198,6 +264,23 @@ abstract class AppRouter {
           );
         },
       ),
+      GoRoute(
+        path: kSupplierDetailsAccounting,
+        builder: (context, state) {
+          Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
+          return BlocProvider(
+            create: (context) => getIt.get<GetAllSupplierCubit>(),
+            child: SupplierDetailsAccounting(
+              id: myData['id'],
+              supplierAddedBy: myData['addedBy'],
+              supplierPhone: myData['supplierPhone'],
+              supplierEmail: myData['supplierEmail'],
+              supplierName: myData['supplierName'],
+            ),
+          );
+        },
+      ),
+
       GoRoute(
         path: kAddSupplier,
         builder: (context, state) => BlocProvider(
@@ -217,16 +300,11 @@ abstract class AppRouter {
           );
         },
       ),
-
-      GoRoute(
-        path: kModulesView,
-        builder: (context, state) => const ModulesView(),
-      ),
       GoRoute(
         path: kLoginView,
         builder: (context, state) => BlocProvider(
           create: (context) => getIt.get<LoginCubit>(),
-          child: LoginView(role: state.extra as String),
+          child: const LoginView(),
         ),
       ),
       GoRoute(
@@ -240,8 +318,7 @@ abstract class AppRouter {
       GoRoute(
         path: kProductView,
         builder: (context, state) => BlocProvider(
-          create: (context) => getIt.get<GetAllProductCubit>()
-            ..getAllProduct(getIt.get<LoginResponse>().token),
+          create: (context) => getIt.get<GetAllProductCubit>()..getAllProduct(),
           child: const GetAllProductView(),
         ),
       ),
@@ -287,6 +364,22 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
+        path: kUpdateProduct,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => getIt.get<GetAllSupCategoryCubit>(),
+            ),
+            BlocProvider(
+              create: (context) => getIt.get<UpdateProductCubit>(),
+            ),
+          ],
+          child: UpdateProductView(
+            productData: state.extra as DetailsProductModel,
+          ),
+        ),
+      ),
+      GoRoute(
         path: kAddSubCategory,
         builder: (context, state) => BlocProvider(
           create: (context) => getIt.get<AddSubCategoryCubit>(),
@@ -295,8 +388,15 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kAddProductView,
-        builder: (context, state) => BlocProvider(
-          create: (context) => getIt.get<AddProductCubit>(),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => getIt.get<GetAllSupCategoryCubit>(),
+            ),
+            BlocProvider(
+              create: (context) => getIt.get<AddProductCubit>(),
+            ),
+          ],
           child: const AddProductView(),
         ),
       ),
@@ -308,7 +408,9 @@ abstract class AppRouter {
               getIt.get<LoginResponse>().token,
               state.extra as int,
             ),
-          child: const DetailsProductView(),
+          child: DetailsProductView(
+            productId: state.extra as int,
+          ),
         ),
       ),
       GoRoute(
@@ -327,12 +429,27 @@ abstract class AppRouter {
       //replenishment
       GoRoute(
         path: kReplenishmentView,
-        builder: (context, state) => ReplenishmentView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              getIt.get<StockOutProductsCubit>()..stockOutProducts(),
+          child: ReplenishmentView(),
+        ),
       ),
 
       GoRoute(
         path: kReorderView,
-        builder: (context, state) => const ReorderView(),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => getIt.get<ReOrderCubit>(),
+            ),
+            BlocProvider(
+              create: (context) => getIt.get<GetAllAccountingEmployeeCubit>()
+                ..getAllAccountingEmployee(),
+            ),
+          ],
+          child: ReorderView(data: state.extra as StockOutProductsResponse),
+        ),
       ),
 
       GoRoute(
@@ -349,31 +466,51 @@ abstract class AppRouter {
         builder: (context, state) => BlocProvider(
           create: (context) =>
               getIt.get<GetAllInventoryOrdersCubit>()..getAllInventoryOrders(),
-          child: const GetAllInventoryOrdersView(),
+          child: GetAllInventoryOrdersView(title: state.extra as String),
         ),
       ),
 
       GoRoute(
-        path: kOrdersDetailsView,
+        path: kGetAllScmOrderStatus,
         builder: (context, state) => BlocProvider(
-          create: (context) => getIt.get<OrderDetailsCubit>()
-            ..getSpecificInventoryOrder(
-              state.extra as int,
-            ),
-          child: const OrderDetailsView(),
+          create: (context) =>
+              getIt.get<GetAllScmOrderStatusCubit>()..getAllScmOrderStatus(),
+          child: const GetAllScmOrderStatusView(),
         ),
       ),
+
+      GoRoute(
+          path: kOrdersDetailsView,
+          builder: (context, state) {
+            Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
+
+            return BlocProvider(
+              create: (context) => getIt.get<OrderDetailsCubit>()
+                ..getSpecificInventoryOrder(
+                  myData['id'],
+                ),
+              child: OrderDetailsView(
+                title: myData['title'],
+              ),
+            );
+          }),
 
       GoRoute(
         path: kUpdateOrderView,
-        builder: (context, state) {
-          return BlocProvider(
-            create: (context) => getIt.get<UpdateOrderCubit>(),
-            child: UpdateOrderView(
-              orderId: state.extra as int,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => getIt.get<UpdateOrderCubit>(),
             ),
-          );
-        },
+            BlocProvider(
+              create: (context) => getIt.get<GetAllAccountingEmployeeCubit>()
+                ..getAllAccountingEmployee(),
+            ),
+          ],
+          child: UpdateOrderView(
+            orderData: state.extra as OrderDetailsModel,
+          ),
+        ),
       ),
 
       //HR
@@ -395,12 +532,6 @@ abstract class AppRouter {
           ],
           child: const GetAllEmployeeView(),
         ),
-
-        // BlocProvider(
-        // create: (context) =>
-        //     getIt.get<GetAllEmployeeCubit>()..getAllEmployees(),
-        //   child: const GetAllEmployeeView(),
-        // ),
       ),
 
       GoRoute(
@@ -436,6 +567,13 @@ abstract class AppRouter {
               getIt.get<GetAllDepartmentCubit>()..getAllDepartment(),
           child: const GetAllDepartmentView(),
         ),
+      ),
+
+      GoRoute(
+        path: kAddDepartment,
+        builder: (context, state) => BlocProvider(
+            create: (context) => getIt.get<AddDepartmentCubit>(),
+            child: const AddDepartmentView()),
       ),
 
       GoRoute(
@@ -613,6 +751,99 @@ abstract class AppRouter {
             ),
           );
         },
+      ),
+
+      //Accouting
+      GoRoute(
+        path: kGetAllScmOrdersView,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              getIt.get<GetAllScmOrdersCubit>()..getAllScmOrders(),
+          child: GetAllScmOrdersView(title: state.extra as String),
+        ),
+      ),
+      GoRoute(
+        path: kGetAllTaxes,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<GetAllTaxesCubit>()..getAllTaxes(),
+          child: const GetAllTaxesView(),
+        ),
+      ),
+      GoRoute(
+        path: kAddTaxes,
+        builder: (context, state) => BlocProvider(
+            create: (context) => getIt.get<AddTaxesCubit>(),
+            child: const AddTaxesView()),
+      ),
+
+      GoRoute(
+        path: kGetAllInvoicesOfSupplier,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<GetAllInvoicesOfSupplierCubit>()
+            ..getAllInvoicesOfSupplier(state.extra as int),
+          child: GetAllInvoicesOfSupplierView(supplierId: state.extra as int),
+        ),
+      ),
+
+      GoRoute(
+          path: kGetAllPaymentsOfSupplier,
+          builder: (context, state) {
+            Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
+            return GetAllPaymentsOfSupplierView(
+              supplierId: myData['supplierId'],
+              invoice: myData['invoice'],
+            );
+          }),
+
+      GoRoute(
+          path: kRegisterPayment,
+          builder: (context, state) {
+            Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
+
+            return BlocProvider(
+              create: (context) => getIt.get<RegisterPaymentCubit>(),
+              child: RegisterPaymentView(
+                invoice: myData['invoice'],
+                supplierId: myData['supplierId'],
+              ),
+            );
+          }),
+
+      GoRoute(
+        path: kGetAllInvoices,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              getIt.get<GetAllInvoicesCubit>()..getAllInvoices(),
+          child: const GetAllInvoicesView(),
+        ),
+      ),
+
+      GoRoute(
+          path: kGetAllPaymentsOfInvoice,
+          builder: (context, state) {
+            return GetAllPaymentsOfInvoiceView(
+              invoice: state.extra as GetAllInvoicesResponse,
+            );
+          }),
+
+      GoRoute(
+        path: kCreateScmOrderView,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => getIt.get<CreateScmOrderCubit>(),
+            ),
+            BlocProvider(
+              create: (context) => getIt.get<GetAllAccountingEmployeeCubit>()
+                ..getAllAccountingEmployee(),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  getIt.get<GetAllProductCubit>()..getAllProduct(),
+            ),
+          ],
+          child: const CreateScmOrderView(),
+        ),
       ),
     ],
   );

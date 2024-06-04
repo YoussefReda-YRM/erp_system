@@ -31,7 +31,7 @@ class UpdateSupplierForm extends StatelessWidget {
               }
             },
           ),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           AppTextFormField(
             controller: context
                 .read<UpdateSupplierCubit>()
@@ -50,7 +50,7 @@ class UpdateSupplierForm extends StatelessWidget {
               }
             },
           ),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           AppTextFormField(
             controller: context
                 .read<UpdateSupplierCubit>()

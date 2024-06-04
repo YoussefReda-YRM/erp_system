@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class GetAllProductCubit extends Cubit<GetAllProductState> {
   final GetAllProductRepo _getAllProductRepo;
   GetAllProductCubit(this._getAllProductRepo) : super(GetAllProductInitial());
-  Future<void> getAllProduct(String? token) async {
+  Future<void> getAllProduct() async {
     emit(GetAllProductLoading());
-    var response = await _getAllProductRepo.getAllProduct(token!);
+    var response = await _getAllProductRepo.getAllProduct();
     response.when(
       success: (getAllProductResponse) {
         emit(GetAllProductSuccess(

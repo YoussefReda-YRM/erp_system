@@ -16,17 +16,9 @@ class AddDepartmentBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomAppBarApp(
+        const CustomAppBarApp(
           title: 'Add Department',
-          iconLeading: const CustomBackButton(),
-          iconTrailing: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.more_vert_outlined,
-              size: 34,
-              color: ColorsApp.lightGrey,
-            ),
-          ),
+          iconLeading: CustomBackButton(),
         ),
         Expanded(
           child: Container(
@@ -64,6 +56,7 @@ class AddDepartmentBody extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
+
                   const AddDepartmentBlocListener(),
                 ],
               ),

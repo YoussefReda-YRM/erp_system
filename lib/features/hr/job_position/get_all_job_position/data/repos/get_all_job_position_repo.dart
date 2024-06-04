@@ -9,14 +9,14 @@ class GetAllJobPositionRepo {
   final ApiService _apiService;
   GetAllJobPositionRepo(this._apiService);
 
-  Future<ApiResult<List<GetAllJobPositionResponse>>> getAllJobPosition(int depId) async {
+  Future<ApiResult<List<GetAllJobPositionResponse>>> getAllJobPosition(
+      int depId) async {
     try {
-      var response = await _apiService.getAllJobPosition('Bearer ${getIt.get<LoginResponse>().token!}', depId
-      );
+      var response = await _apiService.getAllJobPosition(
+          'Bearer ${getIt.get<LoginResponse>().token!}', depId);
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ErrorHandler.handle(error));
     }
   }
-
 }

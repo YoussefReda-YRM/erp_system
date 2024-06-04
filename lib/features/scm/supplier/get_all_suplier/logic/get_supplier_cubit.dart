@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class GetAllSupplierCubit extends Cubit<GetAllSupplierState> {
   final GetAllSupplierRepo _getAllSupplierRepo;
   GetAllSupplierCubit(this._getAllSupplierRepo) : super(GetAllSupplierInitial());
-  Future<void> getAllSupplier(String? token) async {
+  Future<void> getAllSupplier() async {
     emit(GetAllSupplierLoading());
     var response = await _getAllSupplierRepo.getAllSupplier(
       getIt.get<LoginResponse>().token!,

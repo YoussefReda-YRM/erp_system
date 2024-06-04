@@ -24,7 +24,7 @@ class UserInfoListTile extends StatelessWidget {
         style: Styles.font18LightGreyBold(context),
       ),
       subtitle: Text(
-        'inventory employee',
+        getIt.get<LoginResponse>().userData!.role!,
         style: Styles.font14LightGreyRegular(context),
       ),
       onTap: () {},

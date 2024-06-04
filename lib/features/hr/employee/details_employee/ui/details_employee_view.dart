@@ -1,4 +1,3 @@
-import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/core/widgets/custom_back_button.dart';
 import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
@@ -16,17 +15,9 @@ class DetailsEmployeeView extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          CustomAppBarApp(
+          const CustomAppBarApp(
             title: "Employee Details",
-            iconLeading: const CustomBackButton(),
-            iconTrailing: IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.more_vert_outlined,
-                size: 34,
-                color: ColorsApp.lightGrey,
-              ),
-            ),
+            iconLeading: CustomBackButton(),
           ),
           Expanded(
             child: CustomAppBody(

@@ -8,9 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginBlocListener extends StatelessWidget {
-  const LoginBlocListener({super.key, required this.role});
-  final String role;
-
+  const LoginBlocListener({super.key});
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
@@ -24,19 +22,9 @@ class LoginBlocListener extends StatelessWidget {
         } else if (state is LoginSuccess) {
           GoRouter.of(context).pop();
           // here i send login response
-          if (role == "Inventory") {
-            GoRouter.of(context).push(
-              AppRouter.kInventoryHomeView,
-            );
-          } else if (role == "SCM") {
-            GoRouter.of(context).push(
-              AppRouter.kScmHomeView,
-            );
-          } else if (role == "HR") {
-            GoRouter.of(context).push(
-              AppRouter.kAllEmployeesView,
-            );
-          }
+          GoRouter.of(context).go(
+            AppRouter.kModulesView,
+          );
         } else if (state is LoginFailure) {
           setupErrorState(context, state.error.toString());
         }

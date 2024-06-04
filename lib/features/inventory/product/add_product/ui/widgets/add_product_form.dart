@@ -1,5 +1,7 @@
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/widgets/custom_text_form_field.dart';
+import 'package:erp_system/features/inventory/category/get_all_sup_category/logic/get_all_sup_category_cubit.dart';
+import 'package:erp_system/features/inventory/category/get_all_sup_category/logic/get_all_sup_category_state.dart';
 import 'package:erp_system/features/inventory/product/add_product/logic/add_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/add_product/ui/widgets/show_product_category_dialog.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,12 @@ class AddProductForm extends StatefulWidget {
 }
 
 class _AddProductFormState extends State<AddProductForm> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<GetAllSupCategoryCubit>().getAllSupCategories();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -128,9 +136,7 @@ class _AddProductFormState extends State<AddProductForm> {
           ),
           SizedBox(height: 18.h),
           AppTextFormField(
-            controller: context.read<AddProductCubit>().subCategoryIdController,
-            hintText: 'Select category',
-            isEnabled: false,
+            hintText: 'product min quantity',
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(
                 color: ColorsApp.primaryColor,
@@ -138,20 +144,55 @@ class _AddProductFormState extends State<AddProductForm> {
               ),
               borderRadius: BorderRadius.circular(16.0),
             ),
-            suffixIcon: const Icon(
-              Icons.arrow_drop_down,
-              size: 20,
-              color: ColorsApp.primaryColor,
-            ),
-            function: () {
-              showProductCategoriesDialog(
-                context,
-                size,
-              );
-            },
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please select a product category';
+                return 'Please enter a product min quantity';
+              }
+            },
+            controller:
+                context.read<AddProductCubit>().productMinquantityController,
+          ),
+          SizedBox(height: 18.h),
+          BlocBuilder<GetAllSupCategoryCubit, GetAllSupCategoryState>(
+            builder: (context, state) {
+              if (state is GetAllSupCategoryLoading) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state is GetAllSupCategoryFailure) {
+                return Center(child: Text(state.error));
+              } else if (state is GetAllSupCategorySuccess) {
+                final categories = state.categories;
+                return AppTextFormField(
+                  controller:
+                      context.read<AddProductCubit>().subCategoryIdController,
+                  hintText: 'Select category',
+                  isEnabled: false,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: ColorsApp.primaryColor,
+                      width: 1.3,
+                    ),
+                    borderRadius: BorderRadius.circular(16.0),
+                  ),
+                  suffixIcon: const Icon(
+                    Icons.arrow_drop_down,
+                    size: 20,
+                    color: ColorsApp.primaryColor,
+                  ),
+                  function: () {
+                    showProductCategoriesDialog(
+                      context,
+                      size,
+                      categories,
+                    );
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please select a product category';
+                    }
+                  },
+                );
+              } else {
+                return const Text("Wait for the categories to load...");
               }
             },
           ),

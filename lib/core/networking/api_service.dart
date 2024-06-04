@@ -1,5 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:erp_system/core/networking/api_constants.dart';
+import 'package:erp_system/features/accounting/get_all_invoices/data/models/get_all_invoices_response.dart';
+import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/data/models/get_all_invoices_of_supplier_response.dart';
+import 'package:erp_system/features/accounting/get_all_scm_orders.dart/data/models/get_all_scm_orders_response.dart';
+import 'package:erp_system/features/accounting/register_payment/data/models/register_payment_request.dart';
+import 'package:erp_system/features/accounting/register_payment/data/models/register_payment_response.dart';
+import 'package:erp_system/features/accounting/taxes/add_taxes/data/models/AddTaxesRequest.dart';
+import 'package:erp_system/features/accounting/taxes/add_taxes/data/models/AddTaxesResponse.dart';
+import 'package:erp_system/features/accounting/taxes/get_all_taxes/data/models/GetAllTaxesModel.dart';
 import 'package:erp_system/features/auth/login/data/models/login_request_body.dart';
 import 'package:erp_system/features/hr/attendance/data/models/attendance_response.dart';
 import 'package:erp_system/features/hr/department/add_department/data/models/AddDepartmentRequest.dart';
@@ -41,19 +49,27 @@ import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/models/add_request_parent_category.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/models/add_request_sub_category.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/data/models/get_all_category_model.dart';
+import 'package:erp_system/features/inventory/category/get_all_sup_category/data/models/get_all_sup_category_model.dart';
 import 'package:erp_system/features/inventory/category/repos/ResponseParentCategory.dart';
 import 'package:erp_system/features/inventory/category/repos/ResponseSubCategory.dart';
 import 'package:erp_system/features/inventory/category/update_category/data/models/update_request_parent_category.dart';
 import 'package:erp_system/features/inventory/category/update_category/data/models/update_request_sub_category.dart';
+import 'package:erp_system/features/inventory/get_all_accounting_employee/data/models/get_all_accounting_employee.dart';
 import 'package:erp_system/features/inventory/inventory_home/data/models/inventory_home_model.dart';
 import 'package:erp_system/features/inventory/product/add_product/data/models/add_product_request_body.dart';
 import 'package:erp_system/features/inventory/product/add_product/data/models/add_product_response.dart';
 import 'package:erp_system/features/inventory/product/details_product/data/models/details_product_model.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/data/models/product_response.dart';
-import 'package:erp_system/features/scm/orders/inventory_order/data/models/get_all_inventory_orders_model.dart';
-import 'package:erp_system/features/scm/orders/order_details/data/models/order_details_model.dart';
-import 'package:erp_system/features/scm/orders/update_order/data/models/update_order_request.dart';
-import 'package:erp_system/features/scm/orders/update_order/data/models/update_order_response.dart';
+import 'package:erp_system/features/inventory/product/update_product/data/models/update_product_request_body.dart';
+import 'package:erp_system/features/inventory/product/update_product/data/models/update_product_response.dart';
+import 'package:erp_system/features/inventory/replenishment/data/models/re_order_request.dart';
+import 'package:erp_system/features/inventory/replenishment/data/models/stock_out_products_response.dart';
+import 'package:erp_system/features/inventory/inventory_order/get_all_inventory_order/data/models/get_all_inventory_orders_model.dart';
+import 'package:erp_system/features/inventory/inventory_order/inventory_order_details/data/models/order_details_model.dart';
+import 'package:erp_system/features/inventory/inventory_order/update_order/data/models/update_order_request.dart';
+import 'package:erp_system/features/inventory/inventory_order/update_order/data/models/update_order_response.dart';
+import 'package:erp_system/features/scm/create_scm_order/data/models/create_scm_order_request.dart';
+import 'package:erp_system/features/scm/get_all_status_of_scm_order/data/models/get_all_scm_order_status_Response.dart';
 import 'package:erp_system/features/scm/scm_home/data/models/scm_home_model.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/data/models/AddSupplierRequest.dart';
 import 'package:erp_system/features/scm/supplier/add_supplier/data/models/AddSupplierResponse.dart';
@@ -92,6 +108,24 @@ abstract class ApiService {
   Future<DetailsProductModel> getProductById(
     @Header("Authorization") String token,
     @Path("id") int id,
+  );
+
+  @GET(ApiConstants.stockOutProduct)
+  Future<List<StockOutProductsResponse>> stockOutProducts(
+    @Header("Authorization") String token,
+  );
+
+  @POST(ApiConstants.reOrder)
+  Future<void> reOrder(
+    @Body() ReorderRequest reorderRequest,
+    @Header("Authorization") String token,
+  );
+
+  @PUT(ApiConstants.updateProduct)
+  Future<UpdateProductResponse> updateProduct(
+    @Header("Authorization") String token,
+    @Path("productId") int productId,
+    @Body() UpdateProductRequestBody updateProductRequestBody,
   );
 
   @POST(ApiConstants.createParent)
@@ -137,6 +171,11 @@ abstract class ApiService {
     @Header("Authorization") String token,
   );
 
+  @GET(ApiConstants.getAllSupCategory)
+  Future<List<GetAllSupCategoryModel>> getAllSupCategories(
+    @Header("Authorization") String token,
+  );
+
   //Supplier
   @GET(ApiConstants.getAllSuppliers)
   Future<GetAllSupplierResponse> getAllSuppliers(
@@ -178,6 +217,27 @@ abstract class ApiService {
     @Header("Authorization") String token,
     @Path("orderId") int orderId,
     @Body() UpdateOrderRequest requestParentCategory,
+  );
+
+  @GET(ApiConstants.getAllScmOrders)
+  Future<List<GetAllScmOrdersResponse>> getAllScmOrders(
+    @Header("Authorization") String token,
+  );
+
+  @GET(ApiConstants.scmOrderStatus)
+  Future<List<GetAllScmOrderStatusResponse>> getAllScmOrderStatus(
+    @Header("Authorization") String token,
+  );
+
+  @POST(ApiConstants.createScmOrder)
+  Future<void> createScmOrder(
+    @Body() CreateScmOrderRequest createScmOrderRequest,
+    @Header("Authorization") String token,
+  );
+
+  @GET(ApiConstants.getAllAccountingEmployee)
+  Future<List<GetAllAccountingEmployeeModel>> getAllAccountingEmployee(
+    @Header("Authorization") String token,
   );
 
   //HR
@@ -341,5 +401,33 @@ abstract class ApiService {
     @Header("Authorization") String token,
     @Path("id") String id,
     @Body() UpdateStatusOfPermissionRequest updateStatusOfPermissionRequest,
+  );
+
+  //Accounting
+  @GET(ApiConstants.getAllTaxes)
+  Future<List<GetAllTaxesModel>> getAllTaxes(
+    @Header("Authorization") String token,
+  );
+  @POST(ApiConstants.addTaxes)
+  Future<AddTaxesResponse> addTaxes(
+    @Body() AddTaxesRequest AddTaxesRequest,
+    @Header("Authorization") String token,
+  );
+
+  @GET(ApiConstants.getAllInvoicesOfSupplier)
+  Future<List<GetAllInvoicesOfSupplierResponse>> getAllInvoicesOfSupplier(
+    @Header("Authorization") String token,
+    @Path("supplierId") int supplierId,
+  );
+
+  @POST(ApiConstants.registerPayment)
+  Future<RegisterPaymentResponse> registerPayment(
+    @Body() RegisterPaymentRequest registerPaymentRequest,
+    @Header("Authorization") String token,
+  );
+
+  @GET(ApiConstants.getAllInvoices)
+  Future<List<GetAllInvoicesResponse>> getAllInvoices(
+    @Header("Authorization") String token,
   );
 }

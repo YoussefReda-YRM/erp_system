@@ -9,6 +9,13 @@ class ApiConstants {
   static const String getAllProducts = "/Product/AllProducts";
   static const String addProduct = "/Product/CreateProduct";
   static const String getProductById = "/Product";
+  static const String updateProduct = "/Product/{productId}";
+
+  static const String stockOutProduct = "/Product/StockOutProduct";
+
+  static const String reOrder = "/order";
+    static const String scmOrderStatus = "/ScmOrder/ScmOrderStatus";
+
 
   //category
   static const String getAllCategories = "/Category";
@@ -23,6 +30,8 @@ class ApiConstants {
   static const String updateParentcategory =
       "/Category/ParentCategory/{parentCategoryId}";
 
+  static const String getAllSupCategory = '/Category/subCategories';
+
   //Supplier
   static const String getAllSuppliers = "/Supplier";
   static const String addSuppliers = "/Supplier";
@@ -33,6 +42,8 @@ class ApiConstants {
   static const String getAllInventoryOrder = '/Order/AllInventoryOrders';
   static const String getSpecificInventoryOrder = "/Order/InventoryOrder";
   static const String updateOrder = "/order/{orderId}";
+  static const String getAllScmOrders = '/ScmOrder';
+  static const String createScmOrder = '/ScmOrder';
 
   //HR
   static const String addEmployee = "/Auth/register";
@@ -74,6 +85,16 @@ class ApiConstants {
   static const String updatePermission = "/permission/{id}";
   static const String deletePermission = "/permission/{id}";
   static const String updateStatusOfPermission = "/permission/status/{id}";
+
+  //Accounting
+  //taxes
+  static const String getAllTaxes = "/accounting/AllTaxes";
+  static const String addTaxes = "/accounting/AddTax";
+  static const String getAllInvoicesOfSupplier =
+      "/accounting/AllInvoicesOfSupplier/{supplierId}";
+  static const String registerPayment = "/accounting/RegisterPayment";
+  static const String getAllInvoices = "/Accounting/AllInvoices";
+  static const String getAllAccountingEmployee = '/Employee/accounting';
 }
 
 class ApiErrors {

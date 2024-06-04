@@ -11,9 +11,11 @@ class GetAllEmployeeCubit extends Cubit<GetAllEmployeeState> {
     var response = await _getAllEmployeeRepo.getAllEmployees();
     response.when(
       success: (getAllEmployeeResponse) {
-        emit(GetAllEmployeeSuccess(
-          response: getAllEmployeeResponse,
-        ));
+        emit(
+          GetAllEmployeeSuccess(
+            response: getAllEmployeeResponse,
+          ),
+        );
       },
       failure: (error) {
         emit(GetAllEmployeeFailure(error: error.apiErrorModel.message ?? ''));

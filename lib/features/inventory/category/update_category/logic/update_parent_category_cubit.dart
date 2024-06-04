@@ -12,7 +12,8 @@ class UpdateParentCategoryCubit extends Cubit<UpdateParentCategoryState> {
   UpdateParentCategoryCubit(this._updateSubCategoryRepo)
       : super(UpdateParentCategoryInitial());
 
-  TextEditingController parentCategoryNameController = TextEditingController(text: parentCategoryNameControllerInGetIt.toString());
+  TextEditingController parentCategoryNameController = TextEditingController(
+      text: parentCategoryNameControllerInGetIt.toString());
 
   final formKey = GlobalKey<FormState>();
 

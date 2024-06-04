@@ -12,7 +12,8 @@ class InventoryDrawerItemListView extends StatefulWidget {
   });
 
   @override
-  State<InventoryDrawerItemListView> createState() => _DrawerItemListViewState();
+  State<InventoryDrawerItemListView> createState() =>
+      _DrawerItemListViewState();
 }
 
 class _DrawerItemListViewState extends State<InventoryDrawerItemListView> {
@@ -34,20 +35,12 @@ class _DrawerItemListViewState extends State<InventoryDrawerItemListView> {
       icon: Icons.autorenew_outlined,
     ),
     DrawerItemModel(
-      title: 'Inventory Adjustment',
-      icon: Icons.trending_up_outlined,
+      title: 'Adjustment',
+      icon: Icons.edit_outlined,
     ),
     DrawerItemModel(
       title: 'Transfers',
       icon: Icons.transfer_within_a_station_outlined,
-    ),
-    DrawerItemModel(
-      title: 'Reporting',
-      icon: Icons.report_outlined,
-    ),
-    DrawerItemModel(
-      title: 'Moves History',
-      icon: Icons.history_outlined,
     ),
   ];
 
@@ -68,19 +61,27 @@ class _DrawerItemListViewState extends State<InventoryDrawerItemListView> {
                   setState(() {
                     activeIndex = index;
                     if (activeIndex == 0) {
-                      GoRouter.of(context).push(AppRouter.kInventoryHomeView);
+                      GoRouter.of(context).go(AppRouter.kInventoryHomeView);
                     } else if (activeIndex == 1) {
-                      GoRouter.of(context).push(AppRouter.kProductView);
+                      GoRouter.of(context).go(AppRouter.kProductView);
                     } else if (activeIndex == 2) {
-                      GoRouter.of(context).push(AppRouter.kCategoryView);
+                      GoRouter.of(context).go(AppRouter.kCategoryView);
                     } else if (activeIndex == 3) {
-                      GoRouter.of(context).push(AppRouter.kReplenishmentView);
+                      GoRouter.of(context).go(AppRouter.kReplenishmentView);
+                    } else if (activeIndex == 4) {
+                      GoRouter.of(context).pop();
+                      GoRouter.of(context)
+                          .go(AppRouter.kInventoryOrders, extra: 'adjustment');
+                    } else if (activeIndex == 5) {
+                      GoRouter.of(context).pop();
+                      GoRouter.of(context)
+                          .go(AppRouter.kInventoryOrders, extra: 'transfar');
                     }
                   });
                 }
               },
             ),
-            index == 2 || index == 5 ? const CustomDivider() : const SizedBox(),
+            index == 2 ? const CustomDivider() : const SizedBox(),
           ],
         );
       },

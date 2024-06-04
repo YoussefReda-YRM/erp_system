@@ -1,7 +1,8 @@
 class GetAllJobPositionResponse {
   GetAllJobPositionResponse({
-      this.id, 
-      this.jobName,});
+    this.id,
+    this.jobName,
+  });
 
   GetAllJobPositionResponse.fromJson(dynamic json) {
     id = json['id'];
@@ -16,5 +17,4 @@ class GetAllJobPositionResponse {
     map['jobName'] = jobName;
     return map;
   }
-
 }

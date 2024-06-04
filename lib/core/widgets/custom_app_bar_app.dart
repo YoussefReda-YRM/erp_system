@@ -8,7 +8,7 @@ class CustomAppBarApp extends StatelessWidget {
 
   final String title;
   final Widget? iconLeading;
-  final IconButton? iconTrailing;
+  final Widget? iconTrailing;
 
   const CustomAppBarApp({
     super.key,
