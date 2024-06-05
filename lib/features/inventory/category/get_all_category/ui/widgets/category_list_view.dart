@@ -4,7 +4,6 @@ import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/functions/delete_show_dialog.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_divider.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/data/models/get_all_category_model.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/logic/get_category_cubit.dart';
 import 'package:erp_system/features/inventory/category/get_all_sup_category/data/models/get_all_sup_category_model.dart';
@@ -69,7 +68,7 @@ class _CategoryListViewState extends State<CategoryListView> {
                             'Are you sure you want to delete this Sub Category?',
                             () {
                               getIt.get<CategoryCubit>().deleteSubcategory(
-                                    getIt.get<LoginResponse>().token!,
+                                   
                                     subCategory.subCategoryId,
                                   );
                               GoRouter.of(context).pop();

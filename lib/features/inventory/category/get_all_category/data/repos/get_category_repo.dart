@@ -9,10 +9,9 @@ class CategoryRepo {
 
   CategoryRepo(this._apiService);
 
-  Future<ApiResult<List<CategoryAllCategoryModel>>> getAllCategory(
-      String bearerToken) async {
+  Future<ApiResult<List<CategoryAllCategoryModel>>> getAllCategory() async {
     try {
-      var response = await _apiService.getAllCategories('Bearer $bearerToken');
+      var response = await _apiService.getAllCategories();
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ErrorHandler.handle(error));
@@ -20,10 +19,9 @@ class CategoryRepo {
   }
 
   Future<ApiResult<ResponseDeleteCategory>> deleteParentCategory(
-      String bearerToken, int parentCategoryId) async {
+      int parentCategoryId) async {
     try {
       final respone = await _apiService.deleteParentcategory(
-        'Bearer $bearerToken',
         parentCategoryId,
       );
 
@@ -34,10 +32,9 @@ class CategoryRepo {
   }
 
   Future<ApiResult<ResponseDeleteCategory>> deleteSubcategory(
-      String bearerToken, int subCategoryId) async {
+      int subCategoryId) async {
     try {
       final response = await _apiService.deleteSubcategory(
-        'Bearer $bearerToken',
         subCategoryId,
       );
 

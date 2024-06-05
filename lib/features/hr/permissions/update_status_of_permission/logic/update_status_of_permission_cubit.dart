@@ -1,5 +1,3 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/hr/permissions/update_status_of_permission/data/models/UpdateStatusOfPermissionRequest.dart';
 import 'package:erp_system/features/hr/permissions/update_status_of_permission/data/repos/update_status_of_permission_repo.dart';
 import 'package:erp_system/features/hr/permissions/update_status_of_permission/logic/update_status_of_permission_state.dart';
@@ -19,7 +17,6 @@ class UpdateStatusOfPermissionCubit
     emit(UpdateStatusOfPermissionLoading());
     final response =
         await _updateStatusOfPermissionRepo.updateStatusOfPermission(
-      getIt.get<LoginResponse>().token!,
       permissionId,
       UpdateStatusOfPermissionRequest(
         status: status,

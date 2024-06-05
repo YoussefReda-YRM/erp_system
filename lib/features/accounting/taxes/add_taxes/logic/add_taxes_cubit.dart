@@ -1,8 +1,6 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/features/accounting/taxes/add_taxes/data/models/AddTaxesRequest.dart';
 import 'package:erp_system/features/accounting/taxes/add_taxes/data/repos/add_taxes_repo.dart';
 import 'package:erp_system/features/accounting/taxes/add_taxes/logic/add_taxes_state.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,12 +12,17 @@ class AddTaxesCubit extends Cubit<AddTaxesState> {
   TextEditingController taxValueController = TextEditingController();
   TextEditingController taxTypeController = TextEditingController();
 
-
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   void addTaxes() async {
     emit(AddTaxesLoading());
-    final response = await _addTaxesRepo.addTaxes(AddTaxesRequest(taxName:taxNameController.text ,taxValue: taxValueController.text ,taxType: taxTypeController.text), getIt.get<LoginResponse>().token!,);
+    final response = await _addTaxesRepo.addTaxes(
+      AddTaxesRequest(
+        taxName: taxNameController.text,
+        taxValue: taxValueController.text,
+        taxType: taxTypeController.text,
+      ),
+    );
     response.when(
       success: (response) {
         emit(AddTaxesSuccess(response: response));

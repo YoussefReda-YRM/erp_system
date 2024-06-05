@@ -1,7 +1,6 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/assets.dart';
 import 'package:erp_system/core/utils/styles.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:flutter/material.dart';
 
 class UserInfoListTile extends StatelessWidget {
@@ -19,12 +18,12 @@ class UserInfoListTile extends StatelessWidget {
         ),
       ),
       title: Text(
-        getIt.get<LoginResponse>().userData!.userName!,
+        "God Morning",
         maxLines: 1,
         style: Styles.font18LightGreyBold(context),
       ),
       subtitle: Text(
-        getIt.get<LoginResponse>().userData!.role!,
+        userRole,
         style: Styles.font14LightGreyRegular(context),
       ),
       onTap: () {},

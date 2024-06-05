@@ -7,13 +7,10 @@ class InventoryHomeRepo {
   final ApiService _apiService;
   InventoryHomeRepo(this._apiService);
 
-  Future<ApiResult<InventoryHomeModel>> getNumberOfProductsAndReplenishment(
-    String bearerToken,
-  ) async {
+  Future<ApiResult<InventoryHomeModel>>
+      getNumberOfProductsAndReplenishment() async {
     try {
-      final response = await _apiService.getNumberOfProductsAndReplenishment(
-        "Bearer $bearerToken",
-      );
+      final response = await _apiService.getNumberOfProductsAndReplenishment();
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ErrorHandler.handle(error));

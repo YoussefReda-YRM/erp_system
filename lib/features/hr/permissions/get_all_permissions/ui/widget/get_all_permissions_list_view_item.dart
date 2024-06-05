@@ -1,10 +1,9 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/assets.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/hr/permissions/get_all_permissions/data/models/GetAllPermissionResponse.dart';
 import 'package:erp_system/features/hr/permissions/update_status_of_permission/logic/update_status_of_permission_cubit.dart';
 import 'package:flutter/material.dart';
@@ -61,8 +60,8 @@ class GetAllPermissionsListViewItem extends StatelessWidget {
                     style: Styles.font16DarkBlueBold(context)),
               ) ,*/
             ),
-            getIt.get<LoginResponse>().userData?.role == "HREmployee" ||
-                    getIt.get<LoginResponse>().userData?.role == "HRAdmin"
+            userRole == "HREmployee" ||
+                    userRole == "HRAdmin"
                 ? Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(

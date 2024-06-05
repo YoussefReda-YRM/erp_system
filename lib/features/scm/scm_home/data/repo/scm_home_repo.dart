@@ -7,13 +7,11 @@ class ScmHomeRepo {
   final ApiService _apiService;
   ScmHomeRepo(this._apiService);
 
-  Future<ApiResult<ScmHomeModel>> getNumberOfInventoryAndScmOrdersCount(
-    String bearerToken,
-  ) async {
+  Future<ApiResult<ScmHomeModel>>
+      getNumberOfInventoryAndScmOrdersCount() async {
     try {
-      final response = await _apiService.getNumberOfInventoryAndScmOrdersCount(
-        "Bearer $bearerToken",
-      );
+      final response =
+          await _apiService.getNumberOfInventoryAndScmOrdersCount();
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ErrorHandler.handle(error));

@@ -10,12 +10,10 @@ class RegisterPaymentRepo {
 
   Future<ApiResult<RegisterPaymentResponse>> registerPayment(
     RegisterPaymentRequest registerPaymentRequest,
-    String bearerToken,
   ) async {
     try {
       var response = await _apiService.registerPayment(
         registerPaymentRequest,
-        'Bearer $bearerToken',
       );
       return ApiResult.success(response);
     } catch (error) {

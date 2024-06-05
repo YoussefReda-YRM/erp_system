@@ -1,5 +1,3 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/repos/add_sub_category_repo.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_sub_category_state.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/models/add_request_sub_category.dart';
@@ -22,7 +20,6 @@ class AddSubCategoryCubit extends Cubit<AddSubCategoryState> {
         subCategoryName: subCategoryNameController.text,
         parentCategoryId: parentId,
       ),
-      getIt.get<LoginResponse>().token!,
     );
 
     response.when(

@@ -1,4 +1,3 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/helpers/shared_pref_helper.dart';
 import 'package:erp_system/core/networking/dio_factory.dart';
@@ -27,10 +26,10 @@ class LoginCubit extends Cubit<LoginState> {
     );
     response.when(
       success: (loginResponse) async {
-        loginResponseInGetIt = loginResponse;
         await saveUserToken(loginResponse.token!);
         await saveUserRole(loginResponse.userData!.role!);
-        userRole = await SharedPrefHelper.getSecuredString(SharedPrefKeys.userRole);
+        userRole =
+            await SharedPrefHelper.getSecuredString(SharedPrefKeys.userRole);
         emit(LoginSuccess(loginResponse));
       },
       failure: (error) {

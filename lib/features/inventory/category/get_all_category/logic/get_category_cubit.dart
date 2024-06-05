@@ -9,10 +9,10 @@ class CategoryCubit extends Cubit<CategoryState> {
 
   CategoryCubit(this._categoryRepo) : super(CategoryInitial());
 
-  Future<void> getAllCategories(String token) async {
+  Future<void> getAllCategories() async {
     emit(CategoryLoading());
 
-    final response = await _categoryRepo.getAllCategory(token);
+    final response = await _categoryRepo.getAllCategory();
 
     response.when(
       success: (categories) {
@@ -27,11 +27,10 @@ class CategoryCubit extends Cubit<CategoryState> {
 
   // delete parent category
 
-  void deleteparentcategory(String token, int parentCategoryId) async {
+  void deleteparentcategory(int parentCategoryId) async {
     emit(DeleteCategoryLoading());
 
     final response = await _categoryRepo.deleteParentCategory(
-      token,
       parentCategoryId,
     );
 
@@ -45,13 +44,11 @@ class CategoryCubit extends Cubit<CategoryState> {
     );
   }
 
-
-  //delete sub category 
-    void deleteSubcategory(String token, int subCategoryId) async {
+  //delete sub category
+  void deleteSubcategory(int subCategoryId) async {
     emit(DeleteCategoryLoading());
 
-    final response =
-        await _categoryRepo.deleteSubcategory(token, subCategoryId);
+    final response = await _categoryRepo.deleteSubcategory(subCategoryId);
 
     response.when(
       success: (response) {

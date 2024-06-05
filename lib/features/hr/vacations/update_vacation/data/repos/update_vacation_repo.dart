@@ -10,12 +10,11 @@ class UpdateVacationRepo {
   UpdateVacationRepo(this._apiService);
 
   Future<ApiResult<UpdateVacationResponse>> updateVacation(
-      String token,
       int vacationId,
       UpdateVacationRequest updateVacationRequest,
       ) async {
     try {
-      final response = await _apiService.updateVacation("Bearer $token", vacationId, updateVacationRequest);
+      final response = await _apiService.updateVacation(vacationId, updateVacationRequest);
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ErrorHandler.handle(error));

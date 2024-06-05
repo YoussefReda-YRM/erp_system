@@ -90,40 +90,31 @@ abstract class ApiService {
   );
 
   @GET(ApiConstants.getNumberOfProductsAndReplenishment)
-  Future<InventoryHomeModel> getNumberOfProductsAndReplenishment(
-    @Header("Authorization") String token,
-  );
+  Future<InventoryHomeModel> getNumberOfProductsAndReplenishment();
 
   @GET(ApiConstants.getAllProducts)
-  Future<GetAllProductResponse> getAllProducts(
-    @Header("Authorization") String token,
-  );
+  Future<GetAllProductResponse> getAllProducts();
 
   @POST(ApiConstants.addProduct)
   Future<AddProductResponse> addProduct(
-      @Body() AddProductRequestBody addProductRequestBody,
-      @Header("Authorization") String token);
+    @Body() AddProductRequestBody addProductRequestBody,
+  );
 
   @GET("${ApiConstants.getProductById}/{id}")
   Future<DetailsProductModel> getProductById(
-    @Header("Authorization") String token,
     @Path("id") int id,
   );
 
   @GET(ApiConstants.stockOutProduct)
-  Future<List<StockOutProductsResponse>> stockOutProducts(
-    @Header("Authorization") String token,
-  );
+  Future<List<StockOutProductsResponse>> stockOutProducts();
 
   @POST(ApiConstants.reOrder)
   Future<void> reOrder(
     @Body() ReorderRequest reorderRequest,
-    @Header("Authorization") String token,
   );
 
   @PUT(ApiConstants.updateProduct)
   Future<UpdateProductResponse> updateProduct(
-    @Header("Authorization") String token,
     @Path("productId") int productId,
     @Body() UpdateProductRequestBody updateProductRequestBody,
   );
@@ -131,212 +122,162 @@ abstract class ApiService {
   @POST(ApiConstants.createParent)
   Future<ResponseParentCategory> createparent(
     @Body() AddRequestParentCategory addRequestParentCategory,
-    @Header("Authorization") String token,
   );
 
   @POST(ApiConstants.createsub)
   Future<ResponseSubCategory> createsub(
     @Body() AddRequestSubCategoey requestSubCategory,
-    @Header("Authorization") String token,
   );
 
   @PUT(ApiConstants.updateSubcategory)
   Future<ResponseSubCategory> updateSubcategory(
-    @Header("Authorization") String token,
     @Path("subCategoryId") int subCategoryId,
     @Body() UpdateRequestSubCategory requestSubCategory,
   );
 
   @PUT(ApiConstants.updateParentcategory)
   Future<ResponseParentCategory> updateParentcategory(
-    @Header("Authorization") String token,
     @Path("parentCategoryId") int parentCategoryId,
     @Body() UpdateRequestParentCategory requestParentCategory,
   );
 
   @DELETE(ApiConstants.deleteSubcategory)
   Future<ResponseDeleteCategory> deleteSubcategory(
-    @Header("Authorization") String token,
     @Path("subCategoryId") int subCategoryId,
   );
 
   @DELETE(ApiConstants.deleteParentcategory)
   Future<ResponseDeleteCategory> deleteParentcategory(
-    @Header("Authorization") String token,
     @Path("parentCategoryId") int parentCategoryId,
   );
 
   @GET(ApiConstants.getAllCategories)
-  Future<List<CategoryAllCategoryModel>> getAllCategories(
-    @Header("Authorization") String token,
-  );
+  Future<List<CategoryAllCategoryModel>> getAllCategories();
 
   @GET(ApiConstants.getAllSupCategory)
-  Future<List<GetAllSupCategoryModel>> getAllSupCategories(
-    @Header("Authorization") String token,
-  );
+  Future<List<GetAllSupCategoryModel>> getAllSupCategories();
 
   //Supplier
   @GET(ApiConstants.getAllSuppliers)
-  Future<GetAllSupplierResponse> getAllSuppliers(
-    @Header("Authorization") String token,
-  );
+  Future<GetAllSupplierResponse> getAllSuppliers();
 
   @POST(ApiConstants.addSuppliers)
   Future<AddSupplierResponse> addsupplier(
     @Body() AddSupplierRequest addSupplierRequest,
-    @Header("Authorization") String token,
   );
 
   @PUT(ApiConstants.updateSuppliers)
   Future<UpdateSupplierResponse> updateSupplier(
-    @Header("Authorization") String token,
     @Path("id") int supplierId,
     @Body() UpdateSupplierRequest updateSupplierRequest,
   );
 
 //Orders
   @GET(ApiConstants.getNumberofInventoryAndScmOrder)
-  Future<ScmHomeModel> getNumberOfInventoryAndScmOrdersCount(
-    @Header("Authorization") String token,
-  );
+  Future<ScmHomeModel> getNumberOfInventoryAndScmOrdersCount();
 
   @GET(ApiConstants.getAllInventoryOrder)
-  Future<GetAllInventoryOrderModel> getAllInventoryOrders(
-    @Header("Authorization") String token,
-  );
+  Future<GetAllInventoryOrderModel> getAllInventoryOrders();
 
   @GET("${ApiConstants.getSpecificInventoryOrder}/{id}")
   Future<OrderDetailsModel> getSpecificInventoryOrder(
-    @Header("Authorization") String token,
     @Path("id") int id,
   );
 
   @PUT(ApiConstants.updateOrder)
   Future<UpdateOrderResponse> updateOrder(
-    @Header("Authorization") String token,
     @Path("orderId") int orderId,
     @Body() UpdateOrderRequest requestParentCategory,
   );
 
   @GET(ApiConstants.getAllScmOrders)
-  Future<List<GetAllScmOrdersResponse>> getAllScmOrders(
-    @Header("Authorization") String token,
-  );
+  Future<List<GetAllScmOrdersResponse>> getAllScmOrders();
 
   @GET(ApiConstants.scmOrderStatus)
-  Future<List<GetAllScmOrderStatusResponse>> getAllScmOrderStatus(
-    @Header("Authorization") String token,
-  );
+  Future<List<GetAllScmOrderStatusResponse>> getAllScmOrderStatus();
 
   @POST(ApiConstants.createScmOrder)
   Future<void> createScmOrder(
     @Body() CreateScmOrderRequest createScmOrderRequest,
-    @Header("Authorization") String token,
   );
 
   @GET(ApiConstants.getAllAccountingEmployee)
-  Future<List<GetAllAccountingEmployeeModel>> getAllAccountingEmployee(
-    @Header("Authorization") String token,
-  );
+  Future<List<GetAllAccountingEmployeeModel>> getAllAccountingEmployee();
 
   //HR
   @POST(ApiConstants.addEmployee)
   Future<AddEmployeeResponse> addEmployee(
     @Body() AddEmployeeRequestBody addEmployeeRequestBody,
-    @Header("Authorization") String token,
   );
 
   @GET(ApiConstants.getAllEmployees)
-  Future<GetAllEmployeeResponse> getAllEmployees(
-    @Header("Authorization") String token,
-  );
+  Future<GetAllEmployeeResponse> getAllEmployees();
 
   @GET(ApiConstants.getAllRoles)
-  Future<List<GetAllRolesResponse>> getAllRoles(
-    @Header("Authorization") String token,
-  );
+  Future<List<GetAllRolesResponse>> getAllRoles();
 
   @GET("${ApiConstants.getSpecificEmployee}/{employeeId}")
   Future<DetailsEmployeeModel> getSpecificEmployee(
-    @Header("Authorization") String token,
     @Path("employeeId") String employeeId,
   );
 
   @DELETE("${ApiConstants.deleteEmployee}/{employeeId}")
   Future<void> deleteEmployee(
-    @Header("Authorization") String token,
     @Path("employeeId") String employeeId,
   );
 
   @PUT("${ApiConstants.updateEmployee}/{employeeId}")
   Future<void> updateEmployee(
-    @Header("Authorization") String token,
     @Path("employeeId") String employeeId,
     @Body() UpdateEmployeeRequest updateEmployeeRequest,
   );
 
   //Department
   @GET(ApiConstants.getAllDepartments)
-  Future<List<GetAllDepartmentResponse>> getAllDepartment(
-    @Header("Authorization") String token,
-  );
+  Future<List<GetAllDepartmentResponse>> getAllDepartment();
 
   @POST(ApiConstants.addDepartment)
   Future<AddDepartmentResponse> addDepartment(
     @Body() AddDepartmentRequest addDepartmentRequest,
-    @Header("Authorization") String token,
   );
 
   @PUT(ApiConstants.updateDepartment)
   Future<UpdateDepartmentResponse> updateDepartment(
-    @Header("Authorization") String token,
     @Path("id") int depId,
     @Body() UpdateDepartmentRequest updateDepartmentRequest,
   );
 
   @DELETE(ApiConstants.deleteDepartment)
   Future<ResponseDeleteCategory> deleteDepartment(
-    @Header("Authorization") String token,
     @Path("id") int depId,
   );
 
   //attendance
   @GET(ApiConstants.getAllAttendance)
-  Future<AttendanceResponse> getAllAttendance(
-    @Header("Authorization") String token,
-  );
+  Future<AttendanceResponse> getAllAttendance();
 
   //vacatoins
   @GET(ApiConstants.getAllVacations)
-  Future<List<GetAllVacationModel>> getAllVacations(
-    @Header("Authorization") String token,
-  );
+  Future<List<GetAllVacationModel>> getAllVacations();
   @POST(ApiConstants.applyVacation)
   Future<ApplyVacationResponse> applyVacation(
     @Body() ApplyVacationRequest applyVacationRequest,
-    @Header("Authorization") String token,
   );
   @GET(ApiConstants.getAllVacationOfSpecificEmployee)
-  Future<List<GetAllVacationModel>> getAllVacationOfSpecificEmployee(
-    @Header("Authorization") String token,
-  );
+  Future<List<GetAllVacationModel>> getAllVacationOfSpecificEmployee();
 
   @PUT(ApiConstants.updateVacation)
   Future<UpdateVacationResponse> updateVacation(
-    @Header("Authorization") String token,
     @Path("id") int id,
     @Body() UpdateVacationRequest updateVacationRequest,
   );
   @DELETE(ApiConstants.deleteVacation)
   Future<DeleteVacationResponse> deleteVacation(
-    @Header("Authorization") String token,
     @Path("id") String id,
   );
 
   @PUT(ApiConstants.updateStatusOfVacation)
   Future<UpdateStatusOfVacationResponse> updateStatusOfVacation(
-    @Header("Authorization") String token,
     @Path("id") String id,
     @Body() UpdateStatusOfVacationRequest updateStatusOfVacationRequest,
   );
@@ -344,90 +285,71 @@ abstract class ApiService {
   //job position
   @GET(ApiConstants.getAllJobPosition)
   Future<List<GetAllJobPositionResponse>> getAllJobPosition(
-    @Header("Authorization") String token,
     @Path("departmentId") int depId,
   );
 
   @POST(ApiConstants.createJobPosition)
   Future<AddJobPositionResponse> addJobPosition(
     @Body() AddJobPositionRequest addJobPositionRequest,
-    @Header("Authorization") String token,
   );
 
   @PUT(ApiConstants.updateJobPosition)
   Future<UpdateJobResponse> updateJobPosition(
-    @Header("Authorization") String token,
     @Path("id") int id,
     @Body() UpdateJobRequest updateJobRequest,
   );
   @DELETE(ApiConstants.deleteJobPosition)
   Future<DeleteJobPositionResponse> deleteJobPosition(
-    @Header("Authorization") String token,
     @Path("id") String id,
   );
 
   //permission
 
   @GET(ApiConstants.getAllPermission)
-  Future<List<GetAllPermissionResponse>> getAllPermission(
-    @Header("Authorization") String token,
-  );
+  Future<List<GetAllPermissionResponse>> getAllPermission();
 
   @GET(ApiConstants.getAllPermissionOfSpecificEmployee)
   Future<List<GetPermissionOfSpecificEmployeeResponse>>
-      getAllPermissionOfSpecificEmployee(
-    @Header("Authorization") String token,
-  );
+      getAllPermissionOfSpecificEmployee();
 
   @POST(ApiConstants.addPermission)
   Future<AddPermissionResponse> addPermission(
     @Body() AddPermissionRequest addPermissionRequest,
-    @Header("Authorization") String token,
   );
 
   @PUT(ApiConstants.updatePermission)
   Future<UpdatePermissionResponse> updatePermission(
-    @Header("Authorization") String token,
     @Path("id") int id,
     @Body() UpdatePermissionRequest updatePermissionRequest,
   );
   @DELETE(ApiConstants.deletePermission)
   Future<DeletePermissionResponse> deletePermission(
-    @Header("Authorization") String token,
     @Path("id") String id,
   );
   @PUT(ApiConstants.updateStatusOfPermission)
   Future<UpdateStatusOfPermissionResponse> updateStatusOfPermission(
-    @Header("Authorization") String token,
     @Path("id") String id,
     @Body() UpdateStatusOfPermissionRequest updateStatusOfPermissionRequest,
   );
 
   //Accounting
   @GET(ApiConstants.getAllTaxes)
-  Future<List<GetAllTaxesModel>> getAllTaxes(
-    @Header("Authorization") String token,
-  );
+  Future<List<GetAllTaxesModel>> getAllTaxes();
   @POST(ApiConstants.addTaxes)
   Future<AddTaxesResponse> addTaxes(
     @Body() AddTaxesRequest AddTaxesRequest,
-    @Header("Authorization") String token,
   );
 
   @GET(ApiConstants.getAllInvoicesOfSupplier)
   Future<List<GetAllInvoicesOfSupplierResponse>> getAllInvoicesOfSupplier(
-    @Header("Authorization") String token,
     @Path("supplierId") int supplierId,
   );
 
   @POST(ApiConstants.registerPayment)
   Future<RegisterPaymentResponse> registerPayment(
     @Body() RegisterPaymentRequest registerPaymentRequest,
-    @Header("Authorization") String token,
   );
 
   @GET(ApiConstants.getAllInvoices)
-  Future<List<GetAllInvoicesResponse>> getAllInvoices(
-    @Header("Authorization") String token,
-  );
+  Future<List<GetAllInvoicesResponse>> getAllInvoices();
 }

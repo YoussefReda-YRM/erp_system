@@ -1,5 +1,3 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/inventory/product/update_product/data/models/update_product_request_body.dart';
 import 'package:erp_system/features/inventory/product/update_product/data/repos/update_product_repo.dart';
 import 'package:erp_system/features/inventory/product/update_product/logic/update_product_state.dart';
@@ -36,7 +34,7 @@ class UpdateProductCubit extends Cubit<UpdateProductState> {
         productSellPrice: int.parse(productSellPriceController.text),
         productCostPrice: int.parse(productCostPriceController.text),
         activeOrder: 0, //int.parse(activeOrderController.text),
-        addedBy: getIt.get<LoginResponse>().userData!.userID.toString(),
+        addedBy: "",
         subCategoryId: int.parse(subCategoryIdController.text),
         productMinquantity: int.parse(productMinquantityController.text),
       ),

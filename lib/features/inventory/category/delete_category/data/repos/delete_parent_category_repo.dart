@@ -8,10 +8,9 @@ class DeleteParentCategoryRepo {
   DeleteParentCategoryRepo(this._apiService);
 
   Future<ApiResult<ResponseDeleteCategory>> deleteParentCategory(
-      String bearerToken, int parentCategoryId) async {
+      int parentCategoryId) async {
     try {
       final respone = await _apiService.deleteParentcategory(
-        'Bearer $bearerToken',
         parentCategoryId,
       );
 

@@ -6,9 +6,9 @@ class DetailsProductCubit extends Cubit<DetailsProductState> {
   final DetailsProductRepo _detailsProductRepo;
   DetailsProductCubit(this._detailsProductRepo)
       : super(DetailsProductInitial());
-  Future<void> getProductById(String? token, int? idProduct) async {
+  Future<void> getProductById(int? idProduct) async {
     emit(DetailsProductLoading());
-    var response = await _detailsProductRepo.getProductById(token!, idProduct!);
+    var response = await _detailsProductRepo.getProductById(idProduct!);
     response.when(
       success: (productDetails) {
         emit(DetailsProductSuccess(

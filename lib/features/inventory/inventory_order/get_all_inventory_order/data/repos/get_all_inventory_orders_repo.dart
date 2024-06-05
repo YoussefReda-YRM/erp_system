@@ -7,11 +7,9 @@ class GetAllInventoryOrdersRepo {
   final ApiService _apiService;
   GetAllInventoryOrdersRepo(this._apiService);
 
-  Future<ApiResult<GetAllInventoryOrderModel>> getAllInventoryOrders(
-    String bearerToken,
-  ) async {
+  Future<ApiResult<GetAllInventoryOrderModel>> getAllInventoryOrders() async {
     try {
-      var response = await _apiService.getAllInventoryOrders('Bearer $bearerToken');
+      var response = await _apiService.getAllInventoryOrders();
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ErrorHandler.handle(error));

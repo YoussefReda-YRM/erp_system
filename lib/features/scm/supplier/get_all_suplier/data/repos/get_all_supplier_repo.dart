@@ -7,11 +7,9 @@ class GetAllSupplierRepo {
   final ApiService _apiService;
   GetAllSupplierRepo(this._apiService);
 
-  Future<ApiResult<GetAllSupplierResponse>> getAllSupplier(
-      String bearerToken,
-      ) async {
+  Future<ApiResult<GetAllSupplierResponse>> getAllSupplier() async {
     try {
-      var response = await _apiService.getAllSuppliers('Bearer $bearerToken');
+      var response = await _apiService.getAllSuppliers();
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ErrorHandler.handle(error));

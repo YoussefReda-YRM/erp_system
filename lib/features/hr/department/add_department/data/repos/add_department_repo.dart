@@ -8,13 +8,14 @@ class AddDepartmentRepo {
   final ApiService _apiService;
   AddDepartmentRepo(this._apiService);
 
-  Future<ApiResult<AddDepartmentResponse>> addDepartment( AddDepartmentRequest addDepartmentRequest,
-      String bearerToken,
-      ) async {
+  Future<ApiResult<AddDepartmentResponse>> addDepartment(
+    AddDepartmentRequest addDepartmentRequest,
+  ) async {
     try {
       print("tryyy");
-      var response = await _apiService.addDepartment( addDepartmentRequest,
-          'Bearer $bearerToken');
+      var response = await _apiService.addDepartment(
+        addDepartmentRequest,
+      );
       return ApiResult.success(response);
     } catch (error) {
       print("catchh");

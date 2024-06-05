@@ -8,12 +8,10 @@ class OrderDetailsRepo {
   OrderDetailsRepo(this._apiService);
 
   Future<ApiResult<OrderDetailsModel>> getSpecificInventoryOrder(
-    String bearerToken,
     int orderId,
   ) async {
     try {
       var response = await _apiService.getSpecificInventoryOrder(
-        'Bearer $bearerToken',
         orderId,
       );
       return ApiResult.success(response);

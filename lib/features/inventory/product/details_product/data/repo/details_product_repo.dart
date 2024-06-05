@@ -8,12 +8,10 @@ class DetailsProductRepo {
   DetailsProductRepo(this._apiService);
 
   Future<ApiResult<DetailsProductModel>> getProductById(
-    String bearerToken,
     int idProduct,
   ) async {
     try {
       final response = await _apiService.getProductById(
-        "Bearer $bearerToken",
         idProduct,
       );
       return ApiResult.success(response);

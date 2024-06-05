@@ -1,11 +1,10 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/core/widgets/custom_back_button.dart';
 import 'package:erp_system/features/accounting/get_all_supplier/widgets/accounting_popup_menu_button.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:flutter/material.dart';
 
 class SupplierDetailsAccounting extends StatelessWidget {
@@ -34,9 +33,7 @@ class SupplierDetailsAccounting extends StatelessWidget {
               title: 'Supplier Details',
               iconLeading: const CustomBackButton(),
               iconTrailing:
-                  getIt.get<LoginResponse>().userData?.role == "SuperAdmin" ||
-                          getIt.get<LoginResponse>().userData?.role ==
-                              "AccountingEmployee"
+                  userRole == "SuperAdmin" || userRole == "AccountingEmployee"
                       ? AccountingPopupMenuButton(
                           supplierId: id!,
                         )

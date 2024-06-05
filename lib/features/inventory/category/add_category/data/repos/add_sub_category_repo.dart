@@ -10,12 +10,11 @@ class AddSubCategoryRepo {
   AddSubCategoryRepo(this._apiService);
 
   Future<ApiResult<ResponseSubCategory>> addsubcategory(
-      AddRequestSubCategoey requestsubCategory, String token) async {
+      AddRequestSubCategoey requestsubCategory) async {
     try {
       //  log("token to add product is : ${getIt.get<LoginResponse>().token.toString()}");
       final response = await _apiService.createsub(
         requestsubCategory,
-        "Bearer $token",
       );
       return ApiResult.success(response);
     } catch (error) {

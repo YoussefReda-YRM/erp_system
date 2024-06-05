@@ -49,12 +49,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<InventoryHomeModel> getNumberOfProductsAndReplenishment(
-      String token) async {
+  Future<InventoryHomeModel> getNumberOfProductsAndReplenishment() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<InventoryHomeModel>(Options(
@@ -78,11 +76,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<GetAllProductResponse> getAllProducts(String token) async {
+  Future<GetAllProductResponse> getAllProducts() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<GetAllProductResponse>(Options(
@@ -107,13 +104,10 @@ class _ApiService implements ApiService {
 
   @override
   Future<AddProductResponse> addProduct(
-    AddProductRequestBody addProductRequestBody,
-    String token,
-  ) async {
+      AddProductRequestBody addProductRequestBody) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(addProductRequestBody.toJson());
     final _result = await _dio
@@ -138,14 +132,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<DetailsProductModel> getProductById(
-    String token,
-    int id,
-  ) async {
+  Future<DetailsProductModel> getProductById(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<DetailsProductModel>(Options(
@@ -169,11 +159,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<StockOutProductsResponse>> stockOutProducts(String token) async {
+  Future<List<StockOutProductsResponse>> stockOutProducts() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<StockOutProductsResponse>>(Options(
@@ -200,14 +189,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<void> reOrder(
-    ReorderRequest reorderRequest,
-    String token,
-  ) async {
+  Future<void> reOrder(ReorderRequest reorderRequest) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(reorderRequest.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -230,14 +215,12 @@ class _ApiService implements ApiService {
 
   @override
   Future<UpdateProductResponse> updateProduct(
-    String token,
     int productId,
     UpdateProductRequestBody updateProductRequestBody,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(updateProductRequestBody.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -263,13 +246,10 @@ class _ApiService implements ApiService {
 
   @override
   Future<ResponseParentCategory> createparent(
-    AddRequestParentCategory addRequestParentCategory,
-    String token,
-  ) async {
+      AddRequestParentCategory addRequestParentCategory) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(addRequestParentCategory.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -295,13 +275,10 @@ class _ApiService implements ApiService {
 
   @override
   Future<ResponseSubCategory> createsub(
-    AddRequestSubCategoey requestSubCategory,
-    String token,
-  ) async {
+      AddRequestSubCategoey requestSubCategory) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(requestSubCategory.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -327,14 +304,12 @@ class _ApiService implements ApiService {
 
   @override
   Future<ResponseSubCategory> updateSubcategory(
-    String token,
     int subCategoryId,
     UpdateRequestSubCategory requestSubCategory,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(requestSubCategory.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -360,14 +335,12 @@ class _ApiService implements ApiService {
 
   @override
   Future<ResponseParentCategory> updateParentcategory(
-    String token,
     int parentCategoryId,
     UpdateRequestParentCategory requestParentCategory,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(requestParentCategory.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -392,14 +365,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<ResponseDeleteCategory> deleteSubcategory(
-    String token,
-    int subCategoryId,
-  ) async {
+  Future<ResponseDeleteCategory> deleteSubcategory(int subCategoryId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<ResponseDeleteCategory>(Options(
@@ -424,13 +393,10 @@ class _ApiService implements ApiService {
 
   @override
   Future<ResponseDeleteCategory> deleteParentcategory(
-    String token,
-    int parentCategoryId,
-  ) async {
+      int parentCategoryId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<ResponseDeleteCategory>(Options(
@@ -454,11 +420,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<CategoryAllCategoryModel>> getAllCategories(String token) async {
+  Future<List<CategoryAllCategoryModel>> getAllCategories() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<CategoryAllCategoryModel>>(Options(
@@ -485,11 +450,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<GetAllSupCategoryModel>> getAllSupCategories(String token) async {
+  Future<List<GetAllSupCategoryModel>> getAllSupCategories() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<GetAllSupCategoryModel>>(Options(
@@ -516,11 +480,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<GetAllSupplierResponse> getAllSuppliers(String token) async {
+  Future<GetAllSupplierResponse> getAllSuppliers() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<GetAllSupplierResponse>(Options(
@@ -545,13 +508,10 @@ class _ApiService implements ApiService {
 
   @override
   Future<AddSupplierResponse> addsupplier(
-    AddSupplierRequest addSupplierRequest,
-    String token,
-  ) async {
+      AddSupplierRequest addSupplierRequest) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(addSupplierRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -577,14 +537,12 @@ class _ApiService implements ApiService {
 
   @override
   Future<UpdateSupplierResponse> updateSupplier(
-    String token,
     int supplierId,
     UpdateSupplierRequest updateSupplierRequest,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(updateSupplierRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -609,12 +567,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<ScmHomeModel> getNumberOfInventoryAndScmOrdersCount(
-      String token) async {
+  Future<ScmHomeModel> getNumberOfInventoryAndScmOrdersCount() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<ScmHomeModel>(Options(
@@ -638,11 +594,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<GetAllInventoryOrderModel> getAllInventoryOrders(String token) async {
+  Future<GetAllInventoryOrderModel> getAllInventoryOrders() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<GetAllInventoryOrderModel>(Options(
@@ -666,14 +621,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<OrderDetailsModel> getSpecificInventoryOrder(
-    String token,
-    int id,
-  ) async {
+  Future<OrderDetailsModel> getSpecificInventoryOrder(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<OrderDetailsModel>(Options(
@@ -698,14 +649,12 @@ class _ApiService implements ApiService {
 
   @override
   Future<UpdateOrderResponse> updateOrder(
-    String token,
     int orderId,
     UpdateOrderRequest requestParentCategory,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(requestParentCategory.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -730,11 +679,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<GetAllScmOrdersResponse>> getAllScmOrders(String token) async {
+  Future<List<GetAllScmOrdersResponse>> getAllScmOrders() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<GetAllScmOrdersResponse>>(Options(
@@ -761,12 +709,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<GetAllScmOrderStatusResponse>> getAllScmOrderStatus(
-      String token) async {
+  Future<List<GetAllScmOrderStatusResponse>> getAllScmOrderStatus() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<GetAllScmOrderStatusResponse>>(Options(
@@ -794,13 +740,10 @@ class _ApiService implements ApiService {
 
   @override
   Future<void> createScmOrder(
-    CreateScmOrderRequest createScmOrderRequest,
-    String token,
-  ) async {
+      CreateScmOrderRequest createScmOrderRequest) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(createScmOrderRequest.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -822,12 +765,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<GetAllAccountingEmployeeModel>> getAllAccountingEmployee(
-      String token) async {
+  Future<List<GetAllAccountingEmployeeModel>> getAllAccountingEmployee() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<GetAllAccountingEmployeeModel>>(Options(
@@ -855,13 +796,10 @@ class _ApiService implements ApiService {
 
   @override
   Future<AddEmployeeResponse> addEmployee(
-    AddEmployeeRequestBody addEmployeeRequestBody,
-    String token,
-  ) async {
+      AddEmployeeRequestBody addEmployeeRequestBody) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(addEmployeeRequestBody.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -886,11 +824,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<GetAllEmployeeResponse> getAllEmployees(String token) async {
+  Future<GetAllEmployeeResponse> getAllEmployees() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<GetAllEmployeeResponse>(Options(
@@ -914,11 +851,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<GetAllRolesResponse>> getAllRoles(String token) async {
+  Future<List<GetAllRolesResponse>> getAllRoles() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<List<dynamic>>(_setStreamType<List<GetAllRolesResponse>>(Options(
@@ -945,14 +881,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<DetailsEmployeeModel> getSpecificEmployee(
-    String token,
-    String employeeId,
-  ) async {
+  Future<DetailsEmployeeModel> getSpecificEmployee(String employeeId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<DetailsEmployeeModel>(Options(
@@ -976,14 +908,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<void> deleteEmployee(
-    String token,
-    String employeeId,
-  ) async {
+  Future<void> deleteEmployee(String employeeId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'DELETE',
@@ -1005,14 +933,12 @@ class _ApiService implements ApiService {
 
   @override
   Future<void> updateEmployee(
-    String token,
     String employeeId,
     UpdateEmployeeRequest updateEmployeeRequest,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(updateEmployeeRequest.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -1034,11 +960,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<GetAllDepartmentResponse>> getAllDepartment(String token) async {
+  Future<List<GetAllDepartmentResponse>> getAllDepartment() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<GetAllDepartmentResponse>>(Options(
@@ -1066,13 +991,10 @@ class _ApiService implements ApiService {
 
   @override
   Future<AddDepartmentResponse> addDepartment(
-    AddDepartmentRequest addDepartmentRequest,
-    String token,
-  ) async {
+      AddDepartmentRequest addDepartmentRequest) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(addDepartmentRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -1098,14 +1020,12 @@ class _ApiService implements ApiService {
 
   @override
   Future<UpdateDepartmentResponse> updateDepartment(
-    String token,
     int depId,
     UpdateDepartmentRequest updateDepartmentRequest,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(updateDepartmentRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -1130,14 +1050,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<ResponseDeleteCategory> deleteDepartment(
-    String token,
-    int depId,
-  ) async {
+  Future<ResponseDeleteCategory> deleteDepartment(int depId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<ResponseDeleteCategory>(Options(
@@ -1161,11 +1077,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<AttendanceResponse> getAllAttendance(String token) async {
+  Future<AttendanceResponse> getAllAttendance() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<AttendanceResponse>(Options(
@@ -1189,11 +1104,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<GetAllVacationModel>> getAllVacations(String token) async {
+  Future<List<GetAllVacationModel>> getAllVacations() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<List<dynamic>>(_setStreamType<List<GetAllVacationModel>>(Options(
@@ -1221,13 +1135,10 @@ class _ApiService implements ApiService {
 
   @override
   Future<ApplyVacationResponse> applyVacation(
-    ApplyVacationRequest applyVacationRequest,
-    String token,
-  ) async {
+      ApplyVacationRequest applyVacationRequest) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(applyVacationRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -1252,12 +1163,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<GetAllVacationModel>> getAllVacationOfSpecificEmployee(
-      String token) async {
+  Future<List<GetAllVacationModel>> getAllVacationOfSpecificEmployee() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<List<dynamic>>(_setStreamType<List<GetAllVacationModel>>(Options(
@@ -1285,14 +1194,12 @@ class _ApiService implements ApiService {
 
   @override
   Future<UpdateVacationResponse> updateVacation(
-    String token,
     int id,
     UpdateVacationRequest updateVacationRequest,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(updateVacationRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -1317,14 +1224,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<DeleteVacationResponse> deleteVacation(
-    String token,
-    String id,
-  ) async {
+  Future<DeleteVacationResponse> deleteVacation(String id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<DeleteVacationResponse>(Options(
@@ -1349,14 +1252,12 @@ class _ApiService implements ApiService {
 
   @override
   Future<UpdateStatusOfVacationResponse> updateStatusOfVacation(
-    String token,
     String id,
     UpdateStatusOfVacationRequest updateStatusOfVacationRequest,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(updateStatusOfVacationRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -1381,14 +1282,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<GetAllJobPositionResponse>> getAllJobPosition(
-    String token,
-    int depId,
-  ) async {
+  Future<List<GetAllJobPositionResponse>> getAllJobPosition(int depId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<GetAllJobPositionResponse>>(Options(
@@ -1416,13 +1313,10 @@ class _ApiService implements ApiService {
 
   @override
   Future<AddJobPositionResponse> addJobPosition(
-    AddJobPositionRequest addJobPositionRequest,
-    String token,
-  ) async {
+      AddJobPositionRequest addJobPositionRequest) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(addJobPositionRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -1448,14 +1342,12 @@ class _ApiService implements ApiService {
 
   @override
   Future<UpdateJobResponse> updateJobPosition(
-    String token,
     int id,
     UpdateJobRequest updateJobRequest,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(updateJobRequest.toJson());
     final _result = await _dio
@@ -1480,14 +1372,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<DeleteJobPositionResponse> deleteJobPosition(
-    String token,
-    String id,
-  ) async {
+  Future<DeleteJobPositionResponse> deleteJobPosition(String id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<DeleteJobPositionResponse>(Options(
@@ -1511,11 +1399,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<GetAllPermissionResponse>> getAllPermission(String token) async {
+  Future<List<GetAllPermissionResponse>> getAllPermission() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<GetAllPermissionResponse>>(Options(
@@ -1543,11 +1430,10 @@ class _ApiService implements ApiService {
 
   @override
   Future<List<GetPermissionOfSpecificEmployeeResponse>>
-      getAllPermissionOfSpecificEmployee(String token) async {
+      getAllPermissionOfSpecificEmployee() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<GetPermissionOfSpecificEmployeeResponse>>(Options(
@@ -1575,13 +1461,10 @@ class _ApiService implements ApiService {
 
   @override
   Future<AddPermissionResponse> addPermission(
-    AddPermissionRequest addPermissionRequest,
-    String token,
-  ) async {
+      AddPermissionRequest addPermissionRequest) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(addPermissionRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -1607,14 +1490,12 @@ class _ApiService implements ApiService {
 
   @override
   Future<UpdatePermissionResponse> updatePermission(
-    String token,
     int id,
     UpdatePermissionRequest updatePermissionRequest,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(updatePermissionRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -1639,14 +1520,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<DeletePermissionResponse> deletePermission(
-    String token,
-    String id,
-  ) async {
+  Future<DeletePermissionResponse> deletePermission(String id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<DeletePermissionResponse>(Options(
@@ -1671,14 +1548,12 @@ class _ApiService implements ApiService {
 
   @override
   Future<UpdateStatusOfPermissionResponse> updateStatusOfPermission(
-    String token,
     String id,
     UpdateStatusOfPermissionRequest updateStatusOfPermissionRequest,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(updateStatusOfPermissionRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -1703,11 +1578,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<GetAllTaxesModel>> getAllTaxes(String token) async {
+  Future<List<GetAllTaxesModel>> getAllTaxes() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<List<dynamic>>(_setStreamType<List<GetAllTaxesModel>>(Options(
@@ -1734,14 +1608,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<AddTaxesResponse> addTaxes(
-    AddTaxesRequest AddTaxesRequest,
-    String token,
-  ) async {
+  Future<AddTaxesResponse> addTaxes(AddTaxesRequest AddTaxesRequest) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(AddTaxesRequest.toJson());
     final _result = await _dio
@@ -1767,13 +1637,10 @@ class _ApiService implements ApiService {
 
   @override
   Future<List<GetAllInvoicesOfSupplierResponse>> getAllInvoicesOfSupplier(
-    String token,
-    int supplierId,
-  ) async {
+      int supplierId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<GetAllInvoicesOfSupplierResponse>>(Options(
@@ -1801,13 +1668,10 @@ class _ApiService implements ApiService {
 
   @override
   Future<RegisterPaymentResponse> registerPayment(
-    RegisterPaymentRequest registerPaymentRequest,
-    String token,
-  ) async {
+      RegisterPaymentRequest registerPaymentRequest) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(registerPaymentRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -1832,11 +1696,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<GetAllInvoicesResponse>> getAllInvoices(String token) async {
+  Future<List<GetAllInvoicesResponse>> getAllInvoices() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<GetAllInvoicesResponse>>(Options(

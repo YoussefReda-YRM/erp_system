@@ -1,5 +1,3 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/hr/job_position/add_job_position/data/model/AddJobPositionRequest.dart';
 import 'package:erp_system/features/hr/job_position/add_job_position/data/repos/add_job_position_repo.dart';
 import 'package:erp_system/features/hr/job_position/add_job_position/logic/add_job_position_state.dart';
@@ -20,7 +18,6 @@ class AddJobPositionCubit extends Cubit<AddJobPositionState> {
     emit(AddJobPositionLoading());
     final response = await _addJobPositionRepo.addJobPosition(
       AddJobPositionRequest(jobName: jobNameController.text, departmentId: id),
-      getIt.get<LoginResponse>().token!,
     );
     response.when(
       success: (response) {

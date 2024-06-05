@@ -1,5 +1,4 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/inventory/category/update_category/data/models/update_request_parent_category.dart';
 import 'package:erp_system/features/inventory/category/update_category/data/repos/update_parent_category_repo.dart';
 import 'package:erp_system/features/inventory/category/update_category/logic/update_parent_category_state.dart';
@@ -20,7 +19,6 @@ class UpdateParentCategoryCubit extends Cubit<UpdateParentCategoryState> {
   void updateparentcategory(int parentid) async {
     emit(UpdateParentCategoryLoading());
     final response = await _updateSubCategoryRepo.updateParentcategory(
-      getIt.get<LoginResponse>().token!,
       parentid,
       UpdateRequestParentCategory(
         parentCategoryName: parentCategoryNameController.text,

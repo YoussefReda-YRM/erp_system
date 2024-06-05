@@ -1,24 +1,11 @@
 import 'package:erp_system/core/helpers/contstatnts.dart';
-import 'package:erp_system/core/helpers/shared_pref_helper.dart';
 import 'package:erp_system/core/utils/assets.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/features/modules/ui/widgets/item_module.dart';
 import 'package:flutter/material.dart';
 
-class ItemsModules extends StatefulWidget {
+class ItemsModules extends StatelessWidget {
   const ItemsModules({super.key});
-
-  @override
-  State<ItemsModules> createState() => _ItemsModulesState();
-}
-
-class _ItemsModulesState extends State<ItemsModules> {
-  @override
-  void initState() {
-    super.initState();
-    print("$userRole     from initState");
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(

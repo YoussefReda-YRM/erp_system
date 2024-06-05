@@ -7,11 +7,9 @@ class GetAllScmOrdersRepo {
   final ApiService _apiService;
   GetAllScmOrdersRepo(this._apiService);
 
-  Future<ApiResult<List<GetAllScmOrdersResponse>>> getAllScmOrders(
-    String bearerToken,
-  ) async {
+  Future<ApiResult<List<GetAllScmOrdersResponse>>> getAllScmOrders() async {
     try {
-      var response = await _apiService.getAllScmOrders('Bearer $bearerToken');
+      var response = await _apiService.getAllScmOrders();
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ErrorHandler.handle(error));

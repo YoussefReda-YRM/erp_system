@@ -10,12 +10,12 @@ class UpdateDepartmentRepo {
   UpdateDepartmentRepo(this._apiService);
 
   Future<ApiResult<UpdateDepartmentResponse>> updateDepartment(
-      String token,
-      int supplierId,
-      UpdateDepartmentRequest updateDepartmentRequest,
-      ) async {
+    int supplierId,
+    UpdateDepartmentRequest updateDepartmentRequest,
+  ) async {
     try {
-      final response = await _apiService.updateDepartment("Bearer $token", supplierId, updateDepartmentRequest);
+      final response = await _apiService.updateDepartment(
+          supplierId, updateDepartmentRequest);
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ErrorHandler.handle(error));

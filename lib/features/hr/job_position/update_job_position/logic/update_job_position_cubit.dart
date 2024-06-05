@@ -1,5 +1,3 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/hr/job_position/update_job_position/data/UpdateJobRequest.dart';
 import 'package:erp_system/features/hr/job_position/update_job_position/data/repos/update_job_position_repo.dart';
 import 'package:erp_system/features/hr/job_position/update_job_position/logic/update_job_position_state.dart';
@@ -19,7 +17,6 @@ class UpdateJObPositionCubit extends Cubit<UpdateJobPositionState> {
   void updateJobPosition(int jobPositionId, int depId) async {
     emit(UpdateJobPositionLoading());
     final response = await _jobPositionRepo.updateJobPosition(
-      getIt.get<LoginResponse>().token!,
       jobPositionId,
       UpdateJobRequest(
         departmentId: depId,

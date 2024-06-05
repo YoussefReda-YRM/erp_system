@@ -8,15 +8,13 @@ class AddPermissionRepo {
   final ApiService _apiService;
   AddPermissionRepo(this._apiService);
 
-  Future<ApiResult<AddPermissionResponse>> addPermission( AddPermissionRequest addPermissionRequest,
-      String bearerToken,
-      ) async {
+  Future<ApiResult<AddPermissionResponse>> addPermission(
+    AddPermissionRequest addPermissionRequest,
+  ) async {
     try {
-      print("tryyy");
-      var response = await _apiService.addPermission(addPermissionRequest,  'Bearer $bearerToken');
+      var response = await _apiService.addPermission(addPermissionRequest);
       return ApiResult.success(response);
     } catch (error) {
-      print("catchh");
       return ApiResult.failure(ErrorHandler.handle(error));
     }
   }

@@ -1,5 +1,3 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/models/add_request_parent_category.dart';
 import 'package:erp_system/features/inventory/category/add_category/data/repos/add_parent_category_repo.dart';
 import 'package:erp_system/features/inventory/category/add_category/logic/add_parent_category_state.dart';
@@ -21,7 +19,6 @@ class AddParentCategoryCubit extends Cubit<AddParentCategoryState> {
       AddRequestParentCategory(
         parentCategoryName: parentCategoryNameController.text,
       ),
-      getIt.get<LoginResponse>().token!,
     );
 
     response.when(

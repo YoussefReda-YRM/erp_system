@@ -8,16 +8,15 @@ class AddSupplierRepo {
   final ApiService _apiService;
   AddSupplierRepo(this._apiService);
 
-  Future<ApiResult<AddSupplierResponse>> addSupplier( AddSupplierRequest addSupplierRequest,
-      String bearerToken,
-      ) async {
+  Future<ApiResult<AddSupplierResponse>> addSupplier(
+    AddSupplierRequest addSupplierRequest,
+  ) async {
     try {
-      print("tryyy");
-      var response = await _apiService.addsupplier( addSupplierRequest,
-          'Bearer $bearerToken');
+      var response = await _apiService.addsupplier(
+        addSupplierRequest,
+      );
       return ApiResult.success(response);
     } catch (error) {
-      print("catchh");
       return ApiResult.failure(ErrorHandler.handle(error));
     }
   }

@@ -8,11 +8,10 @@ class AddTaxesRepo {
   final ApiService _apiService;
   AddTaxesRepo(this._apiService);
 
-  Future<ApiResult<AddTaxesResponse>>  addTaxes( AddTaxesRequest addTaxesRequest, String bearerToken,)
-
-  async {
+  Future<ApiResult<AddTaxesResponse>> addTaxes(
+      AddTaxesRequest addTaxesRequest) async {
     try {
-      var response = await _apiService.addTaxes(addTaxesRequest, 'Bearer $bearerToken');
+      var response = await _apiService.addTaxes(addTaxesRequest);
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ErrorHandler.handle(error));

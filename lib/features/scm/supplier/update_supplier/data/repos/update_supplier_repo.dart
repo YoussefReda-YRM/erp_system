@@ -10,12 +10,12 @@ class UpdateSupplierRepo {
   UpdateSupplierRepo(this._apiService);
 
   Future<ApiResult<UpdateSupplierResponse>> updateSupplier(
-      String token,
-      int supplierId,
-      UpdateSupplierRequest updateSupplierRequest,
-      ) async {
+    int supplierId,
+    UpdateSupplierRequest updateSupplierRequest,
+  ) async {
     try {
-      final response = await _apiService.updateSupplier("Bearer $token", supplierId, updateSupplierRequest);
+      final response =
+          await _apiService.updateSupplier(supplierId, updateSupplierRequest);
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ErrorHandler.handle(error));

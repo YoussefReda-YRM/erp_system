@@ -1,8 +1,6 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/features/accounting/register_payment/data/models/register_payment_request.dart';
 import 'package:erp_system/features/accounting/register_payment/data/repos/register_payment_repo.dart';
 import 'package:erp_system/features/accounting/register_payment/logic/register_payment_state.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,7 +21,6 @@ class RegisterPaymentCubit extends Cubit<RegisterPaymentState> {
         invoiceId: invoiceId,
         supplierId: supplierId,
       ),
-      getIt.get<LoginResponse>().token!,
     );
     response.when(
       success: (response) {

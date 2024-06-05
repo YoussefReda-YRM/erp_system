@@ -1,5 +1,3 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/inventory/inventory_order/update_order/data/models/update_order_request.dart';
 import 'package:erp_system/features/inventory/inventory_order/update_order/data/repos/update_order_repo.dart';
 import 'package:erp_system/features/inventory/inventory_order/update_order/logic/update_order_state.dart';
@@ -22,7 +20,6 @@ class UpdateOrderCubit extends Cubit<UpdateOrderState> {
   void updateOrder(int orderId) async {
     emit(UpdateOrderLoading());
     final response = await _updateOrderRepo.updateOrder(
-      getIt.get<LoginResponse>().token!,
       orderId,
       UpdateOrderRequest(
         accEmployeeId: accEmployeeIdController.text,

@@ -1,9 +1,9 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/functions/delete_show_dialog.dart';
 import 'package:erp_system/core/utils/styles.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/logic/get_all_employee_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -19,8 +19,7 @@ class CustomPopupMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (getIt.get<LoginResponse>().userData?.role == "HRAdmin" ||
-        getIt.get<LoginResponse>().userData?.role == "HREmployee") {
+    if (userRole == "HRAdmin" || userRole == "HREmployee") {
       return PopupMenuButton<String>(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),

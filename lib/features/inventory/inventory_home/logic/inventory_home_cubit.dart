@@ -1,5 +1,3 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/inventory/inventory_home/data/repo/inventory_home_repo.dart';
 import 'package:erp_system/features/inventory/inventory_home/logic/inventory_home_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +8,7 @@ class InventoryHomeCubit extends Cubit<InventoryHomeState> {
   Future<void> getNumberOfProductsAndReplenishment() async {
     emit(InventoryHomeLoading());
     var response = await _inventoryHomeRepo
-        .getNumberOfProductsAndReplenishment(getIt.get<LoginResponse>().token!);
+        .getNumberOfProductsAndReplenishment();
     response.when(
       success: (numbersOfProductsAndReplenishment) {
         emit(InventoryHomeSuccess(

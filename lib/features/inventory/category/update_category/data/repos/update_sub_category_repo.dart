@@ -10,13 +10,11 @@ class UpdateSubCategoryRepo {
   UpdateSubCategoryRepo(this._apiService);
 
   Future<ApiResult<ResponseSubCategory>> updatesubcategory(
-    String token,
     int subCategoryId,
     UpdateRequestSubCategory requestSubCategory,
   ) async {
     try {
       final response = await _apiService.updateSubcategory(
-        "Bearer $token",
         subCategoryId,
         requestSubCategory,
       );

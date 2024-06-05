@@ -3,7 +3,6 @@ import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/functions/delete_show_dialog.dart';
 import 'package:erp_system/core/utils/styles.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/logic/get_category_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -79,7 +78,6 @@ class CircularElevatedButton extends StatelessWidget {
                 'Are you sure you want to delete this Parent Category?',
                 () {
                   getIt.get<CategoryCubit>().deleteparentcategory(
-                        getIt.get<LoginResponse>().token!,
                         parentCategoryId!,
                       );
                   GoRouter.of(context).pop();

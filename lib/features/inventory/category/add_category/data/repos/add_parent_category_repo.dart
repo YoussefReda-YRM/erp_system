@@ -11,12 +11,10 @@ class AddParentCategoryRepo {
 
   Future<ApiResult<ResponseParentCategory>> addparentcategory(
     AddRequestParentCategory addRequestParentCategory,
-    String token,
   ) async {
     try {
       final response = await _apiService.createparent(
         addRequestParentCategory,
-        "Bearer $token",
       );
       return ApiResult.success(response);
     } catch (error) {

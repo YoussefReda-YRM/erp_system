@@ -1,5 +1,3 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/hr/vacations/update_vacation/data/models/UpdateVacationRequest.dart';
 import 'package:erp_system/features/hr/vacations/update_vacation/data/repos/update_vacation_repo.dart';
 import 'package:erp_system/features/hr/vacations/update_vacation/logic/update_vacation_state.dart';
@@ -20,7 +18,7 @@ class UpdateVacationCubit extends Cubit<UpdateVacationState> {
 
   void updateVacation(int vacationId) async {
     emit(UpdateVacationLoading());
-    final response = await _updateVacationRepo.updateVacation(getIt.get<LoginResponse>().token!, vacationId, UpdateVacationRequest(
+    final response = await _updateVacationRepo.updateVacation( vacationId, UpdateVacationRequest(
       start: startDateController.text,
       end: endDateController.text,
       description: descriptionController.text

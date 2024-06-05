@@ -10,13 +10,11 @@ class UpdateParentCategoryRepo {
   UpdateParentCategoryRepo(this._apiService);
 
   Future<ApiResult<ResponseParentCategory>> updateParentcategory(
-    String token,
     int parentCategoryId,
     UpdateRequestParentCategory requestParentCategory,
   ) async {
     try {
       final response = await _apiService.updateParentcategory(
-        "Bearer $token",
         parentCategoryId,
         requestParentCategory,
       );

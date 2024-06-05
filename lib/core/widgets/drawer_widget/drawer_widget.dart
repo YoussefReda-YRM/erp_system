@@ -1,4 +1,5 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/core/helpers/shared_pref_helper.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/widgets/custom_divider.dart';
@@ -56,10 +57,17 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       ),
                     ),
                   ),
-                  InActiveDrawerItem(
-                    drawerItemModel: DrawerItemModel(
-                      title: 'Sign Out',
-                      icon: Icons.logout_outlined,
+                  GestureDetector(
+                    onTap: () {
+                      activeIndex = 0;
+                      GoRouter.of(context).go(AppRouter.kLoginView);
+                      SharedPrefHelper.clearAllData();
+                    },
+                    child: InActiveDrawerItem(
+                      drawerItemModel: DrawerItemModel(
+                        title: 'Sign Out',
+                        icon: Icons.logout_outlined,
+                      ),
                     ),
                   ),
                   const SizedBox(

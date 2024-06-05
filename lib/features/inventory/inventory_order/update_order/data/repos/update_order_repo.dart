@@ -10,13 +10,11 @@ class UpdateOrderRepo {
   UpdateOrderRepo(this._apiService);
 
   Future<ApiResult<UpdateOrderResponse>> updateOrder(
-    String token,
     int orderId,
     UpdateOrderRequest updateOrderRequest,
   ) async {
     try {
       final response = await _apiService.updateOrder(
-        "Bearer $token",
         orderId,
         updateOrderRequest,
       );

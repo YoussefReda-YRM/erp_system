@@ -10,13 +10,11 @@ class UpdateStatusOfVacationRepo {
   UpdateStatusOfVacationRepo(this._apiService);
 
   Future<ApiResult<UpdateStatusOfVacationResponse>> updateStatusOfVacation(
-    String token,
     String vacationId,
     UpdateStatusOfVacationRequest updateStatusOfVacationRequest,
   ) async {
     try {
       final response = await _apiService.updateStatusOfVacation(
-        "Bearer $token",
         vacationId,
         updateStatusOfVacationRequest,
       );

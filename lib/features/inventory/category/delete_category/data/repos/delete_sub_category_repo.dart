@@ -12,7 +12,7 @@ class DeleteSubCategoryRepo {
       String bearerToken, int subCategoryId) async {
     try {
       final response = await _apiService.deleteSubcategory(
-          'Bearer $bearerToken', subCategoryId);
+          subCategoryId);
 
       return ApiResult.success(response);
     } catch (error) {

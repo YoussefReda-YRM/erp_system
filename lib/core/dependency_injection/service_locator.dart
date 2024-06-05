@@ -11,7 +11,6 @@ import 'package:erp_system/features/accounting/register_payment/data/repos/regis
 import 'package:erp_system/features/accounting/register_payment/logic/register_payment_cubit.dart';
 import 'package:erp_system/features/accounting/taxes/add_taxes/data/repos/add_taxes_repo.dart';
 import 'package:erp_system/features/accounting/taxes/add_taxes/logic/add_taxes_cubit.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/auth/login/data/repos/login_repo.dart';
 import 'package:erp_system/features/auth/login/logic/login_cubit.dart';
 import 'package:erp_system/features/hr/attendance/data/repos/attendance_repo.dart';
@@ -123,7 +122,6 @@ import 'package:erp_system/features/accounting/taxes/get_all_taxes/logic/get_all
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
-LoginResponse? loginResponseInGetIt;
 
 List<CategoryAllCategoryModel>? categoriesInGetIt;
 List<GetAllJobPositionResponse>? jobPositionInGetIt;
@@ -155,8 +153,6 @@ Future<void> setupServiceLocator() async {
   //login
   getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
-
-  getIt.registerFactory<LoginResponse>(() => loginResponseInGetIt!);
 
   //add product
   getIt.registerLazySingleton<AddProductRepo>(() => AddProductRepo(getIt()));

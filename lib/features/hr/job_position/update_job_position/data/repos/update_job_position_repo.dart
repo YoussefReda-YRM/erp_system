@@ -10,13 +10,12 @@ class UpdateJobPositionRepo {
   UpdateJobPositionRepo(this._apiService);
 
   Future<ApiResult<UpdateJobResponse>> updateJobPosition(
-      String token,
-      int jobPositionId,
-      UpdateJobRequest updateJobRequest,
-      ) async {
+    int jobPositionId,
+    UpdateJobRequest updateJobRequest,
+  ) async {
     try {
-      final response = await _apiService.updateJobPosition( "Bearer $token", jobPositionId, updateJobRequest
-      );
+      final response =
+          await _apiService.updateJobPosition(jobPositionId, updateJobRequest);
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ErrorHandler.handle(error));

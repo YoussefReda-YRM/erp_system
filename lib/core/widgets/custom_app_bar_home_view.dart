@@ -1,8 +1,7 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/assets.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -42,17 +41,17 @@ class CustomAppBarHomeView extends StatelessWidget {
                 },
               ),
               title: Text(
-                getIt.get<LoginResponse>().userData!.userName!,
+                "Youssef Reda",
                 maxLines: 1,
                 style: Styles.font18LightGreyBold(context),
               ),
-              subtitle: getIt.get<LoginResponse>().userData!.role == null
+              subtitle: userRole == ""
                   ? Text(
                       "There is no role",
                       style: Styles.font14LightGreyRegular(context),
                     )
                   : Text(
-                      getIt.get<LoginResponse>().userData!.role.toString(),
+                      userRole,
                       style: Styles.font14LightGreyRegular(context),
                     ),
               trailing: const CircleAvatar(
