@@ -1,12 +1,23 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/core/helpers/contstatnts.dart';
+import 'package:erp_system/core/helpers/shared_pref_helper.dart';
 import 'package:erp_system/core/utils/assets.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
-import 'package:erp_system/features/auth/login/data/models/login_response.dart';
 import 'package:erp_system/features/modules/ui/widgets/item_module.dart';
 import 'package:flutter/material.dart';
 
-class ItemsModules extends StatelessWidget {
+class ItemsModules extends StatefulWidget {
   const ItemsModules({super.key});
+
+  @override
+  State<ItemsModules> createState() => _ItemsModulesState();
+}
+
+class _ItemsModulesState extends State<ItemsModules> {
+  @override
+  void initState() async {
+    super.initState();
+    userRole = await SharedPrefHelper.getString(SharedPrefKeys.userRole);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,24 +40,18 @@ class ItemsModules extends StatelessWidget {
             crossAxisSpacing: 40,
             mainAxisSpacing: 30,
             children: [
-              getIt.get<LoginResponse>().userData?.role == "SuperAdmin" ||
-                      getIt.get<LoginResponse>().userData?.role == "SCMEmployee"
+              userRole == "SuperAdmin" || userRole == "SCMEmployee"
                   ? itemModule(context, 'SCM', AssetsData.scm)
                   : const SizedBox(),
-              getIt.get<LoginResponse>().userData?.role == "SuperAdmin" ||
-                      getIt.get<LoginResponse>().userData?.role ==
-                          "HREmployee" ||
-                      getIt.get<LoginResponse>().userData?.role == "HRAdmin"
+              userRole == "SuperAdmin" ||
+                      userRole == "HREmployee" ||
+                      userRole == "HRAdmin"
                   ? itemModule(context, 'HR', AssetsData.hr)
                   : const SizedBox(),
-              getIt.get<LoginResponse>().userData?.role == "SuperAdmin" ||
-                      getIt.get<LoginResponse>().userData?.role ==
-                          "AccountingEmployee"
+              userRole == "SuperAdmin" || userRole == "AccountingEmployee"
                   ? itemModule(context, 'Accounting', AssetsData.accounting)
                   : const SizedBox(),
-              getIt.get<LoginResponse>().userData?.role == "SuperAdmin" ||
-                      getIt.get<LoginResponse>().userData?.role ==
-                          "InventoryEmployee"
+              userRole == "SuperAdmin" || userRole == "InventoryEmployee"
                   ? itemModule(context, 'Inventory', AssetsData.inventory)
                   : const SizedBox(),
             ],
