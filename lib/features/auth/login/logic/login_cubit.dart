@@ -44,6 +44,6 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   Future<void> saveUserRole(String role) async {
-    await SharedPrefHelper.setData(SharedPrefKeys.userRole, role);
+    await SharedPrefHelper.setSecuredString(SharedPrefKeys.userRole, role);
   }
 }

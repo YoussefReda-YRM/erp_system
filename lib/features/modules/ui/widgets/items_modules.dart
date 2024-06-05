@@ -16,7 +16,7 @@ class _ItemsModulesState extends State<ItemsModules> {
   @override
   void initState() async {
     super.initState();
-    userRole = await SharedPrefHelper.getString(SharedPrefKeys.userRole);
+    userRole = await SharedPrefHelper.getSecuredString(SharedPrefKeys.userRole);
   }
 
   @override
