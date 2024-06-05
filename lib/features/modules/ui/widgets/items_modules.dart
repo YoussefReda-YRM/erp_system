@@ -14,9 +14,9 @@ class ItemsModules extends StatefulWidget {
 
 class _ItemsModulesState extends State<ItemsModules> {
   @override
-  void initState() async {
+  void initState() {
     super.initState();
-    userRole = await SharedPrefHelper.getSecuredString(SharedPrefKeys.userRole);
+    print("$userRole     from initState");
   }
 
   @override
