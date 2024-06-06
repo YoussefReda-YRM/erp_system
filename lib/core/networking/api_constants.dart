@@ -14,8 +14,10 @@ class ApiConstants {
   static const String stockOutProduct = "/Product/StockOutProduct";
 
   static const String reOrder = "/order";
-    static const String scmOrderStatus = "/ScmOrder/ScmOrderStatus";
+  static const String scmOrderStatus = "/ScmOrder/ScmOrderStatus";
 
+  static const String updateStatusOfScmOrder = "/ScmOrder/status/{id}";
+  static const String updateStatusOfInventoryOrder = "/order/status/{id}";
 
   //category
   static const String getAllCategories = "/Category";

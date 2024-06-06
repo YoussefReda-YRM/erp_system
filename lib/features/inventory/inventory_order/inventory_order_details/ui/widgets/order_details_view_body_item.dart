@@ -1,6 +1,12 @@
+import 'package:erp_system/core/helpers/contstatnts.dart';
+import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/styles.dart';
+import 'package:erp_system/core/widgets/custom_text_button.dart';
+import 'package:erp_system/features/accounting/accept_or_reject_inventory_order/logic/update_status_of_inventory_order_cubit.dart';
 import 'package:erp_system/features/inventory/inventory_order/inventory_order_details/data/models/order_details_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class OrderDetailsViewBodyItems extends StatelessWidget {
   const OrderDetailsViewBodyItems({super.key, required this.orderDetailsModel});
@@ -146,6 +152,66 @@ class OrderDetailsViewBodyItems extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
+        userRole == "AccountingEmployee"
+            ? Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: AppTextButton(
+                        borderRadius: 8,
+                        buttonText: "Reject",
+                        backgroundColor: const Color(0xffFF7F74),
+                        textStyle: Styles.font13BlueSemiBold(context),
+                        onPressed: () {
+                          context
+                              .read<UpdateStatusOfInventoryOrderCubit>()
+                              .updateStatusOfInventoryOrder(
+                                orderDetailsModel.data!.id.toString(),
+                                2,
+                              );
+                          Future.delayed(
+                            const Duration(milliseconds: 200),
+                            () {
+                              GoRouter.of(context).pushReplacement(
+                                AppRouter.kInventoryOrders,
+                                extra: "accounting",
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                    const Spacer(),
+                    Expanded(
+                      child: AppTextButton(
+                        borderRadius: 8,
+                        buttonText: "Accept",
+                        backgroundColor: const Color(0xff30BEB6),
+                        textStyle: Styles.font13BlueSemiBold(context),
+                        onPressed: () {
+                          context
+                              .read<UpdateStatusOfInventoryOrderCubit>()
+                              .updateStatusOfInventoryOrder(
+                                orderDetailsModel.data!.id.toString(),
+                                1,
+                              );
+                          Future.delayed(
+                            const Duration(milliseconds: 200),
+                            () {
+                              GoRouter.of(context).pushReplacement(
+                                AppRouter.kInventoryOrders,
+                                extra: "accounting",
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            : const SizedBox(),
       ],
     );
   }

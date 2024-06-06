@@ -27,7 +27,7 @@ class ItemsModules extends StatelessWidget {
             crossAxisSpacing: 40,
             mainAxisSpacing: 30,
             children: [
-              userRole == "SuperAdmin" || userRole == "SCMEmployee"
+              userRole == "SuperAdmin" || userRole == "ScmEmployee"
                   ? itemModule(context, 'SCM', AssetsData.scm)
                   : const SizedBox(),
               userRole == "SuperAdmin" ||

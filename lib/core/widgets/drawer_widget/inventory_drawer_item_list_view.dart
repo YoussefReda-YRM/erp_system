@@ -1,5 +1,7 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/app_router.dart';
+import 'package:erp_system/core/utils/functions/show_snack_bar.dart';
 import 'package:erp_system/core/widgets/custom_divider.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_item.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_item_model.dart';
@@ -67,7 +69,10 @@ class _DrawerItemListViewState extends State<InventoryDrawerItemListView> {
                     } else if (activeIndex == 2) {
                       GoRouter.of(context).go(AppRouter.kCategoryView);
                     } else if (activeIndex == 3) {
-                      GoRouter.of(context).go(AppRouter.kReplenishmentView);
+                      userRole == "InventoryEmployee"
+                          ? GoRouter.of(context)
+                              .go(AppRouter.kReplenishmentView)
+                          : showSnackBar(context);
                     } else if (activeIndex == 4) {
                       GoRouter.of(context).pop();
                       GoRouter.of(context)

@@ -30,19 +30,19 @@ class _DrawerItemListViewState extends State<HrDrawerItemListView> {
     ),
     DrawerItemModel(
       title: 'Vacations',
-      icon: Icons.description_outlined,
+      icon: Icons.hotel_outlined,
     ),
     DrawerItemModel(
       title: 'My Vacations',
-      icon: Icons.description_outlined,
+      icon: Icons.hotel_outlined,
     ),
     DrawerItemModel(
       title: 'Permissions',
-      icon: Icons.description_outlined,
+      icon: Icons.verified_user_outlined,
     ),
     DrawerItemModel(
       title: 'My Permissions',
-      icon: Icons.description_outlined,
+      icon: Icons.verified_user_outlined,
     ),
   ];
 

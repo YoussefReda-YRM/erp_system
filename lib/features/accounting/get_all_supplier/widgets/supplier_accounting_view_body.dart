@@ -4,9 +4,8 @@ import 'package:erp_system/features/accounting/get_all_supplier/widgets/supplier
 import 'package:flutter/material.dart';
 
 class SupplierAccountingViewBody extends StatelessWidget {
-  const SupplierAccountingViewBody({super.key,required this.scaffoldKey});
+  const SupplierAccountingViewBody({super.key, required this.scaffoldKey});
   final GlobalKey<ScaffoldState> scaffoldKey;
-
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +23,6 @@ class SupplierAccountingViewBody extends StatelessWidget {
             onPressed: () {
               scaffoldKey.currentState!.openDrawer();
             },
-          ),
-          iconTrailing: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.more_vert_outlined,
-              size: 34,
-              color: ColorsApp.lightGrey,
-            ),
           ),
         ),
         const Expanded(child: SupplierListViewAccounting()),

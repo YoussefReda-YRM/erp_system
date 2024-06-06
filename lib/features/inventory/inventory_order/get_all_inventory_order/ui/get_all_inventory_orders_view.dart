@@ -1,3 +1,4 @@
+import 'package:erp_system/core/widgets/drawer_widget/accounting_drawer_item_list_view.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_widget.dart';
 import 'package:erp_system/core/widgets/drawer_widget/inventory_drawer_item_list_view.dart';
 import 'package:erp_system/features/inventory/inventory_order/get_all_inventory_order/ui/widgets/get_all_inventory_orders_view_body.dart';
@@ -21,8 +22,10 @@ class _GetAllInventoryOrdersViewState extends State<GetAllInventoryOrdersView> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.white,
-      drawer: const DrawerWidget(
-        drawerItemListView: InventoryDrawerItemListView(),
+      drawer: DrawerWidget(
+        drawerItemListView: widget.title == "accounting"
+            ? const AccountingDrawerItemListView()
+            : const InventoryDrawerItemListView(),
       ),
       body: GetAllInventoryOrdersViewBody(
           scaffoldKey: scaffoldKey, title: widget.title),

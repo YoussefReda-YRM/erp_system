@@ -1282,6 +1282,62 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<void> updateStatusOfScmOrder(
+    String id,
+    UpdateStatusOfScmOrderRequest updateStatusOfScmOrderRequest,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(updateStatusOfScmOrderRequest.toJson());
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/ScmOrder/status/${id}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+  }
+
+  @override
+  Future<void> updateStatusOfInventoryOrder(
+    String id,
+    UpdateStatusOfInventoryOrderRequest updateStatusOfInventoryOrderRequest,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(updateStatusOfInventoryOrderRequest.toJson());
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/order/status/${id}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+  }
+
+  @override
   Future<List<GetAllJobPositionResponse>> getAllJobPosition(int depId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

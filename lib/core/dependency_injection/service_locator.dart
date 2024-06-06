@@ -1,6 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:erp_system/core/networking/api_service.dart';
 import 'package:erp_system/core/networking/dio_factory.dart';
+import 'package:erp_system/features/accounting/accept_or_reject_inventory_order/data/repos/update_status_of_inventory_order_repo.dart';
+import 'package:erp_system/features/accounting/accept_or_reject_inventory_order/logic/update_status_of_inventory_order_cubit.dart';
+import 'package:erp_system/features/accounting/accept_or_reject_scm_order/data/repos/update_status_of_scm_order_repo.dart';
+import 'package:erp_system/features/accounting/accept_or_reject_scm_order/logic/update_status_of_scm_order_cubit.dart';
 import 'package:erp_system/features/accounting/get_all_invoices/data/repos/get_all_invoices_repo.dart';
 import 'package:erp_system/features/accounting/get_all_invoices/logic/get_all_invoices_cubit.dart';
 import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/data/repos/get_all_invoices_of_supplier_repo.dart';
@@ -429,4 +433,14 @@ Future<void> setupServiceLocator() async {
       () => GetAllScmOrderStatusRepo(getIt()));
   getIt.registerFactory<GetAllScmOrderStatusCubit>(
       () => GetAllScmOrderStatusCubit(getIt()));
+
+  getIt.registerLazySingleton<UpdateStatusOfScmOrderRepo>(
+      () => UpdateStatusOfScmOrderRepo(getIt()));
+  getIt.registerFactory<UpdateStatusOfScmOrderCubit>(
+      () => UpdateStatusOfScmOrderCubit(getIt()));
+
+  getIt.registerLazySingleton<UpdateStatusOfInventoryOrderRepo>(
+      () => UpdateStatusOfInventoryOrderRepo(getIt()));
+  getIt.registerFactory<UpdateStatusOfInventoryOrderCubit>(
+      () => UpdateStatusOfInventoryOrderCubit(getIt()));
 }

@@ -22,7 +22,11 @@ class GetAllInventoryOrdersViewBody extends StatelessWidget {
       children: [
         CustomAppBarApp(
           scaffoldKey: scaffoldKey,
-          title: title == 'adjustment' ? "Inventory Adjustment" : 'Transfers',
+          title: title == 'adjustment'
+              ? "Inventory Adjustment"
+              : title == "accounting"
+                  ? 'Inventory Orders'
+                  : 'Transfers',
           iconLeading: IconButton(
             icon: const Icon(
               Icons.menu,
@@ -52,7 +56,7 @@ class GetAllInventoryOrdersViewBody extends StatelessWidget {
                         physics: const BouncingScrollPhysics(),
                         itemCount: state.response.data!.length,
                         itemBuilder: (context, index) {
-                          if (title == 'adjustment') {
+                          if (title == 'adjustment' || title == "accounting") {
                             return state.response.data![index].status == 0
                                 ? OrderScmItem(
                                     data: state.response.data![index],

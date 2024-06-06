@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:erp_system/core/networking/api_constants.dart';
+import 'package:erp_system/features/accounting/accept_or_reject_inventory_order/data/models/update_status_of_inventory_order_request.dart';
+import 'package:erp_system/features/accounting/accept_or_reject_scm_order/data/models/update_status_of_scm_order_request.dart';
 import 'package:erp_system/features/accounting/get_all_invoices/data/models/get_all_invoices_response.dart';
 import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/data/models/get_all_invoices_of_supplier_response.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/data/models/get_all_scm_orders_response.dart';
@@ -280,6 +282,19 @@ abstract class ApiService {
   Future<UpdateStatusOfVacationResponse> updateStatusOfVacation(
     @Path("id") String id,
     @Body() UpdateStatusOfVacationRequest updateStatusOfVacationRequest,
+  );
+
+  @PUT(ApiConstants.updateStatusOfScmOrder)
+  Future<void> updateStatusOfScmOrder(
+    @Path("id") String id,
+    @Body() UpdateStatusOfScmOrderRequest updateStatusOfScmOrderRequest,
+  );
+
+  @PUT(ApiConstants.updateStatusOfInventoryOrder)
+  Future<void> updateStatusOfInventoryOrder(
+    @Path("id") String id,
+    @Body()
+    UpdateStatusOfInventoryOrderRequest updateStatusOfInventoryOrderRequest,
   );
 
   //job position

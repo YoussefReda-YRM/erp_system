@@ -40,14 +40,14 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
       title: 'Taxes',
       icon: Icons.monetization_on_outlined,
     ),
-    DrawerItemModel(
-      title: 'Profit & Loss',
-      icon: Icons.trending_up_outlined,
-    ),
-    DrawerItemModel(
-      title: 'Tax Report',
-      icon: Icons.description_outlined,
-    ),
+    // DrawerItemModel(
+    //   title: 'Profit & Loss',
+    //   icon: Icons.trending_up_outlined,
+    // ),
+    // DrawerItemModel(
+    //   title: 'Tax Report',
+    //   icon: Icons.description_outlined,
+    // ),
   ];
 
   @override
@@ -75,6 +75,13 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
                             )
                           : showSnackBar(context);
                     } else if (activeIndex == 1) {
+                      userRole == "AccountingEmployee" ||
+                              userRole == "SuperAdmin"
+                          ? GoRouter.of(context).push(
+                              AppRouter.kInventoryOrders,
+                              extra: "accounting"
+                            )
+                          : showSnackBar(context);
                     } else if (activeIndex == 2) {
                       userRole == "AccountingEmployee" ||
                               userRole == "SuperAdmin"

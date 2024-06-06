@@ -1,3 +1,4 @@
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/assets.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
@@ -55,64 +56,65 @@ class GetAllVacationsListViewItem extends StatelessWidget {
                       style: Styles.font16DarkBlueBold(context)),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: AppTextButton(
-                        borderRadius: 8,
-                        buttonText: "Reject",
-                        backgroundColor: const Color(0xffFF7F74),
-                        textStyle: Styles.font13BlueSemiBold(context),
-                        onPressed: () {
-                          context
-                              .read<UpdateStatusOfVacationCubit>()
-                              .updateVacatoin(
-                                data.id.toString(),
-                                2,
-                              );
-                          Future.delayed(
-                            const Duration(milliseconds: 200),
-                            () {
-                              GoRouter.of(context).push(
-                                AppRouter.kGetAllVacationsView,
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                      child: AppTextButton(
-                        borderRadius: 8,
-                        buttonText: "Accept",
-                        backgroundColor: const Color(0xff30BEB6),
-                        textStyle: Styles.font13BlueSemiBold(context),
-                        onPressed: () {
-                          context
-                              .read<UpdateStatusOfVacationCubit>()
-                              .updateVacatoin(
-                                data.id.toString(),
-                                1,
-                              );
-                          Future.delayed(
-                            const Duration(milliseconds: 200),
-                            () {
-                              GoRouter.of(context).push(
-                                AppRouter.kGetAllVacationsView,
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              userRole == "HREmployee" || userRole == "HRAdmin"
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: AppTextButton(
+                              borderRadius: 8,
+                              buttonText: "Reject",
+                              backgroundColor: const Color(0xffFF7F74),
+                              textStyle: Styles.font13BlueSemiBold(context),
+                              onPressed: () {
+                                context
+                                    .read<UpdateStatusOfVacationCubit>()
+                                    .updateVacatoin(
+                                      data.id.toString(),
+                                      2,
+                                    );
+                                Future.delayed(
+                                  const Duration(milliseconds: 200),
+                                  () {
+                                    GoRouter.of(context).pushReplacement(
+                                      AppRouter.kGetAllVacationsView,
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Expanded(
+                            child: AppTextButton(
+                              borderRadius: 8,
+                              buttonText: "Accept",
+                              backgroundColor: const Color(0xff30BEB6),
+                              textStyle: Styles.font13BlueSemiBold(context),
+                              onPressed: () {
+                                context
+                                    .read<UpdateStatusOfVacationCubit>()
+                                    .updateVacatoin(
+                                      data.id.toString(),
+                                      1,
+                                    );
+                                Future.delayed(
+                                  const Duration(milliseconds: 200),
+                                  () {
+                                    GoRouter.of(context).push(
+                                      AppRouter.kGetAllVacationsView,
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ))
+                  : const SizedBox(),
             ],
           ),
         ),
