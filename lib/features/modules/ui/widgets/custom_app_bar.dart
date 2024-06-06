@@ -1,3 +1,4 @@
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/assets.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
@@ -26,11 +27,11 @@ class CustomAppBarModulesScreen extends StatelessWidget {
           ListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 30),
             title: Text(
-              'Hi!',
+              'Hi, $userName!',
               style: Styles.font24LightGreyBold(context),
             ),
             subtitle: Text(
-              'Good Morning',
+              DateTime.now().hour < 12 ? "Good Morning" : "Good Evening",
               style: Styles.font16LightGreyMedium(context),
             ),
             trailing: const CircleAvatar(

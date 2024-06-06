@@ -18,7 +18,7 @@ class UserInfoListTile extends StatelessWidget {
         ),
       ),
       title: Text(
-        DateTime.now().hour < 12 ? "Good Morning" : "Good Evening",
+        userName,
         maxLines: 1,
         style: Styles.font18LightGreyBold(context),
       ),

@@ -19,7 +19,7 @@ class ScmOrderItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return true //order.status == 0
+    return order.status == 0
         ? Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: Card(

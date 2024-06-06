@@ -41,7 +41,7 @@ class CustomAppBarHomeView extends StatelessWidget {
                 },
               ),
               title: Text(
-                "Youssef Reda",
+                userName,
                 maxLines: 1,
                 style: Styles.font18LightGreyBold(context),
               ),

@@ -27,7 +27,7 @@ class RegisterPaymentViewBody extends StatelessWidget {
         ),
         Expanded(
           child: CustomAppBody(
-            child: ListView(
+            child: Column(
               children: [
                 const SizedBox(
                   height: 50,

@@ -32,7 +32,7 @@ class AddTaxesBody extends StatelessWidget {
                   topLeft: Radius.circular(100),
                 ),
               ),
-              child: ListView(
+              child: Column(
                 children: [
                   const SizedBox(
                     height: 50,

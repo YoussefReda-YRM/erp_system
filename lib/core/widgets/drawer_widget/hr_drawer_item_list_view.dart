@@ -63,22 +63,22 @@ class _DrawerItemListViewState extends State<HrDrawerItemListView> {
                   setState(() {
                     activeIndex = index;
                     if (activeIndex == 0) {
-                      GoRouter.of(context).push(AppRouter.kAllEmployeesView);
+                      GoRouter.of(context).go(AppRouter.kAllEmployeesView);
                     } else if (activeIndex == 1) {
-                      GoRouter.of(context).push(AppRouter.kAllDepartmentsView);
+                      GoRouter.of(context).go(AppRouter.kAllDepartmentsView);
                     } else if (activeIndex == 2) {
-                      GoRouter.of(context).push(AppRouter.kAttendanceView);
+                      GoRouter.of(context).go(AppRouter.kAttendanceView);
                     } else if (activeIndex == 3) {
-                      GoRouter.of(context).push(AppRouter.kGetAllVacationsView);
+                      GoRouter.of(context).go(AppRouter.kGetAllVacationsView);
                     }
                     else if (activeIndex == 4) {
-                      GoRouter.of(context).push(AppRouter.kGetAllVacationOfSpecificEmployeeView);
+                      GoRouter.of(context).go(AppRouter.kGetAllVacationOfSpecificEmployeeView);
                     }
                      else if (activeIndex == 5) {
-                     GoRouter.of(context).push(AppRouter.kGetAllPermissionView);
+                     GoRouter.of(context).go(AppRouter.kGetAllPermissionView);
                      }
                     else if (activeIndex == 6) {
-                      GoRouter.of(context).push(AppRouter.kGetPermissionOfSpecificEmployeeView);
+                      GoRouter.of(context).go(AppRouter.kGetPermissionOfSpecificEmployeeView);
                     }
                   });
                 }

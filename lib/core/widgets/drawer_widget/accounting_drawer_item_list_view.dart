@@ -69,7 +69,7 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
                     if (activeIndex == 0) {
                       userRole == "AccountingEmployee" ||
                               userRole == "SuperAdmin"
-                          ? GoRouter.of(context).push(
+                          ? GoRouter.of(context).go(
                               AppRouter.kGetAllScmOrdersView,
                               extra: "accounting",
                             )
@@ -77,7 +77,7 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
                     } else if (activeIndex == 1) {
                       userRole == "AccountingEmployee" ||
                               userRole == "SuperAdmin"
-                          ? GoRouter.of(context).push(
+                          ? GoRouter.of(context).go(
                               AppRouter.kInventoryOrders,
                               extra: "accounting"
                             )
@@ -85,7 +85,7 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
                     } else if (activeIndex == 2) {
                       userRole == "AccountingEmployee" ||
                               userRole == "SuperAdmin"
-                          ? GoRouter.of(context).push(AppRouter.kGetAllInvoices)
+                          ? GoRouter.of(context).go(AppRouter.kGetAllInvoices)
                           : showSnackBar(context);
                     } else if (activeIndex == 3) {
                       GoRouter.of(context)
@@ -93,16 +93,14 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
                     } else if (activeIndex == 4) {
                       userRole == "AccountingEmployee" ||
                               userRole == "SuperAdmin"
-                          ? GoRouter.of(context).push(AppRouter.kGetAllTaxes)
+                          ? GoRouter.of(context).go(AppRouter.kGetAllTaxes)
                           : showSnackBar(context);
-                    } else if (activeIndex == 5) {
-                      // GoRouter.of(context).push(AppRouter.kGetPermissionOfSpecificEmployeeView);
-                    }
+                    } 
                   });
                 }
               },
             ),
-            index == 0 || index == 4 || index == 5 || index == 8
+            index == 5
                 ? const CustomDivider()
                 : const SizedBox(),
           ],
