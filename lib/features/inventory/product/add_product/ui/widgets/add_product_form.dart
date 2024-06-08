@@ -127,7 +127,7 @@ class _AddProductFormState extends State<AddProductForm> {
                 final categories = state.categories;
                 return AppTextFormField(
                   controller:
-                      context.read<AddProductCubit>().subCategoryIdController,
+                      context.read<AddProductCubit>().subCategoryNameController,
                   hintText: 'Select category',
                   isEnabled: false,
                   enabledBorder: OutlineInputBorder(
@@ -147,6 +147,7 @@ class _AddProductFormState extends State<AddProductForm> {
                       context,
                       size,
                       categories,
+                     
                     );
                   },
                   validator: (value) {

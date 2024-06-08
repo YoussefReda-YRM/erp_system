@@ -30,16 +30,22 @@ showAccountingEmployeeDialog(
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
+                  
                   if (cubit is UpdateOrderCubit) {
                     cubit.accEmployeeIdController.text =
                         allAccountingEmp[index].userID.toString();
                   } else if (cubit is ReOrderCubit) {
                     cubit.accEmployeeIdController.text =
                         allAccountingEmp[index].userID.toString();
+
+                        cubit.accEmployeeNameController.text =
+                        allAccountingEmp[index].name.toString();
                   }
                   else if (cubit is CreateScmOrderCubit) {
                     cubit.accEmployeeIdController.text =
                         allAccountingEmp[index].userID.toString();
+                        cubit.accountingNameController.text =
+                        allAccountingEmp[index].name.toString();
                   }
                   GoRouter.of(context).pop();
                 },

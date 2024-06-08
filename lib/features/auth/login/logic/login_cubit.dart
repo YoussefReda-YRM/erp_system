@@ -35,6 +35,12 @@ class LoginCubit extends Cubit<LoginState> {
 
         userRole =
             await SharedPrefHelper.getSecuredString(SharedPrefKeys.userRole);
+
+        userName =
+            await SharedPrefHelper.getSecuredString(SharedPrefKeys.userName);
+
+        userId = await SharedPrefHelper.getSecuredString(SharedPrefKeys.userId);
+
         emit(LoginSuccess(loginResponse));
       },
       failure: (error) {

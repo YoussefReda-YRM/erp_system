@@ -116,7 +116,7 @@ class ReOrderForm extends StatelessWidget {
                                 return AppTextFormField(
                                   controller: context
                                       .read<ReOrderCubit>()
-                                      .accEmployeeIdController,
+                                      .accEmployeeNameController,
                                   hintText: 'Select Accounting Employee',
                                   isEnabled: false,
                                   enabledBorder: OutlineInputBorder(

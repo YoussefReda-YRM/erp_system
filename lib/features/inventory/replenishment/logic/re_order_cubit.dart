@@ -13,6 +13,8 @@ class ReOrderCubit extends Cubit<ReOrderState> {
   TextEditingController referenceController = TextEditingController();
   TextEditingController supplierIdController = TextEditingController();
   TextEditingController supplierNameController = TextEditingController();
+    TextEditingController accEmployeeNameController = TextEditingController();
+
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 

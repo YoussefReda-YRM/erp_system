@@ -26,8 +26,8 @@ showProductCategoriesDialog(
               return InkWell(
                 onTap: () {
                   BlocProvider.of<UpdateProductCubit>(ctxt)
-                      .subCategoryIdController
-                      .text = allCategories[index].subCategoryId.toString();
+                      .subCategoryNameController
+                      .text = allCategories[index].subCategoryName.toString();
                   GoRouter.of(context).pop();
                 },
                 child: Padding(

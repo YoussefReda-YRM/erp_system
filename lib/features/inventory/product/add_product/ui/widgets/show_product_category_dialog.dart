@@ -8,7 +8,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 showProductCategoriesDialog(
-    BuildContext ctxt, Size size, List<GetAllSupCategoryModel> allCategories) {
+  BuildContext ctxt,
+  Size size,
+  List<GetAllSupCategoryModel> allCategories,
+) {
   showDialog(
     context: ctxt,
     builder: (ctx) {
@@ -25,9 +28,13 @@ showProductCategoriesDialog(
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
-                  BlocProvider.of<AddProductCubit>(ctxt)
+                  BlocProvider.of<AddProductCubit>(context)
                       .subCategoryIdController
                       .text = allCategories[index].subCategoryId.toString();
+
+                  BlocProvider.of<AddProductCubit>(context)
+                      .subCategoryNameController
+                      .text = allCategories[index].subCategoryName.toString();
                   GoRouter.of(context).pop();
                 },
                 child: Padding(

@@ -15,6 +15,10 @@ class UpdateOrderCubit extends Cubit<UpdateOrderState> {
 
   TextEditingController referenceController = TextEditingController();
 
+    TextEditingController supplierIdController = TextEditingController();
+  TextEditingController supplierNameController = TextEditingController();
+
+
   final formKey = GlobalKey<FormState>();
 
   void updateOrder(int orderId) async {
@@ -25,6 +29,9 @@ class UpdateOrderCubit extends Cubit<UpdateOrderState> {
         accEmployeeId: accEmployeeIdController.text,
         quantity: int.parse(quantityController.text),
         reference: referenceController.text,
+                supplierId: int.parse(supplierIdController.text),
+
+        
       ),
     );
 

@@ -18,6 +18,9 @@ class AddProductCubit extends Cubit<AddProductState> {
   TextEditingController subCategoryIdController = TextEditingController();
   TextEditingController productMinquantityController = TextEditingController();
 
+    TextEditingController subCategoryNameController = TextEditingController();
+
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   void addProduct() async {

@@ -18,6 +18,8 @@ class UpdateProductCubit extends Cubit<UpdateProductState> {
   TextEditingController subCategoryIdController = TextEditingController();
   TextEditingController productMinquantityController = TextEditingController();
 
+  TextEditingController subCategoryNameController = TextEditingController();
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   void updateProduct(int productId) async {

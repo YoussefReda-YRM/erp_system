@@ -147,7 +147,7 @@ class _UpdateProductFormState extends State<UpdateProductForm> {
                 return AppTextFormField(
                   controller: context
                       .read<UpdateProductCubit>()
-                      .subCategoryIdController,
+                      .subCategoryNameController,
                   hintText: 'Select category',
                   isEnabled: false,
                   enabledBorder: OutlineInputBorder(

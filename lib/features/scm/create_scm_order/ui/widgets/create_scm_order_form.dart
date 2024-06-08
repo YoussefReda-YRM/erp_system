@@ -131,7 +131,7 @@ class _CreateScmOrderViewBodyFormState
                                 return AppTextFormField(
                                   controller: context
                                       .read<CreateScmOrderCubit>()
-                                      .accEmployeeIdController,
+                                      .accountingNameController,
                                   hintText: 'Select Accounting Employee',
                                   isEnabled: false,
                                   enabledBorder: OutlineInputBorder(
@@ -302,7 +302,7 @@ class _CreateScmOrderViewBodyFormState
                                   title: Text(
                                     'Product Name: ${context
                                       .read<CreateScmOrderCubit>()
-                                      .productNameController} - Quantity: ${product.quantity}',
+                                      .productNameController.text} - Quantity: ${product.quantity}',
                                     style: Styles.font13BlueSemiBold(context),
                                   ),
                                   trailing: IconButton(
