@@ -4,7 +4,7 @@ import 'package:erp_system/core/widgets/custom_app_bar_app.dart';
 import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/core/widgets/custom_back_button.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
-import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/data/models/get_all_invoices_of_supplier_response.dart';
+import 'package:erp_system/features/accounting/get_all_invoices/data/models/get_all_invoices_response.dart';
 import 'package:erp_system/features/accounting/register_payment/logic/register_payment_cubit.dart';
 import 'package:erp_system/features/accounting/register_payment/ui/widget/register_payment_bloc.dart';
 import 'package:erp_system/features/accounting/register_payment/ui/widget/register_payment_form.dart';
@@ -15,7 +15,7 @@ class RegisterPaymentViewBody extends StatelessWidget {
   const RegisterPaymentViewBody(
       {super.key, required this.invoice, required this.supplierId});
 
-  final GetAllInvoicesOfSupplierResponse invoice;
+  final GetAllInvoicesResponse invoice;
   final int supplierId;
   @override
   Widget build(BuildContext context) {

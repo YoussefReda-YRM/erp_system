@@ -10,9 +10,11 @@ class GetAllInvoicesItem extends StatelessWidget {
   const GetAllInvoicesItem({
     super.key,
     required this.invoice,
+    required this.supplierId,
   });
 
   final GetAllInvoicesResponse invoice;
+  final int supplierId;
 
   @override
   Widget build(BuildContext context) {
@@ -188,8 +190,12 @@ class GetAllInvoicesItem extends StatelessWidget {
                     textStyle: Styles.font13LightGreyRegular(context),
                     onPressed: () {
                       GoRouter.of(context).push(
-                          AppRouter.kGetAllPaymentsOfInvoice,
-                          extra: invoice);
+                        AppRouter.kGetAllPaymentsOfInvoice,
+                        extra: {
+                          "invoice": invoice,
+                          "supplierId": invoice.supplierId,
+                        },
+                      );
                     },
                   ),
                 ],

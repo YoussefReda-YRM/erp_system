@@ -3,7 +3,6 @@ import 'package:erp_system/core/networking/api_constants.dart';
 import 'package:erp_system/features/accounting/accept_or_reject_inventory_order/data/models/update_status_of_inventory_order_request.dart';
 import 'package:erp_system/features/accounting/accept_or_reject_scm_order/data/models/update_status_of_scm_order_request.dart';
 import 'package:erp_system/features/accounting/get_all_invoices/data/models/get_all_invoices_response.dart';
-import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/data/models/get_all_invoices_of_supplier_response.dart';
 import 'package:erp_system/features/accounting/get_all_scm_orders.dart/data/models/get_all_scm_orders_response.dart';
 import 'package:erp_system/features/accounting/register_payment/data/models/register_payment_request.dart';
 import 'package:erp_system/features/accounting/register_payment/data/models/register_payment_response.dart';
@@ -356,7 +355,7 @@ abstract class ApiService {
   );
 
   @GET(ApiConstants.getAllInvoicesOfSupplier)
-  Future<List<GetAllInvoicesOfSupplierResponse>> getAllInvoicesOfSupplier(
+  Future<List<GetAllInvoicesResponse>> getAllInvoicesOfSupplier(
     @Path("supplierId") int supplierId,
   );
 

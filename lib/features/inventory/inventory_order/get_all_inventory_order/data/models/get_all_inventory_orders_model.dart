@@ -26,15 +26,18 @@ class GetAllInventoryOrderModel {
 class InventoryOrderData {
   final int? id;
   final int? status;
+  final double? totalCostPrice;
 
   InventoryOrderData({
     this.id,
     this.status,
+    this.totalCostPrice,
   });
 
   factory InventoryOrderData.fromJson(Map<String, dynamic> json) =>
       InventoryOrderData(
         id: json['id'],
         status: json['status'],
+        totalCostPrice: json['totalCostPrice'],
       );
 }

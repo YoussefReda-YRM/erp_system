@@ -8,6 +8,7 @@ class GetAllInvoicesResponse {
   final double? toPay;
   final List<Payments>? payment;
   final String? supplier;
+  final int? supplierId;
   final int? inventoryOrderId;
   final int? scmOrderId;
 
@@ -23,6 +24,7 @@ class GetAllInvoicesResponse {
     this.supplier,
     this.inventoryOrderId,
     this.scmOrderId,
+    this.supplierId,
   });
 
   factory GetAllInvoicesResponse.fromJson(Map<String, dynamic> json) =>
@@ -41,6 +43,7 @@ class GetAllInvoicesResponse {
         supplier: json['supplier'],
         inventoryOrderId: json['inventoryOrderId'],
         scmOrderId: json['scmOrderId'],
+        supplierId: json['supplierId'],
       );
 }
 

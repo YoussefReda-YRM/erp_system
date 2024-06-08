@@ -2,7 +2,7 @@ import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
-import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/data/models/get_all_invoices_of_supplier_response.dart';
+import 'package:erp_system/features/accounting/get_all_invoices/data/models/get_all_invoices_response.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,7 +13,7 @@ class GetAllInvoicesOfSupplierItem extends StatelessWidget {
     required this.supplierId,
   });
 
-  final GetAllInvoicesOfSupplierResponse invoice;
+  final GetAllInvoicesResponse invoice;
   final int supplierId;
 
   @override
@@ -46,30 +46,10 @@ class GetAllInvoicesOfSupplierItem extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Employee : ",
+                                "Supplier Name : ",
                                 style: Styles.font13BlueSemiBold(context),
                               ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              Text(
-                                "Supplier : ",
-                                style: Styles.font13BlueSemiBold(context),
-                              ),
-                            ],
-                          ),
-                          const Spacer(),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                invoice.employee!,
-                                style: Styles.font13BlueSemiBold(context)
-                                    .copyWith(color: Colors.pink),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
+                              const SizedBox(height: 10),
                               Text(
                                 invoice.supplier!,
                                 style: Styles.font13BlueSemiBold(context)
@@ -158,13 +138,6 @@ class GetAllInvoicesOfSupplierItem extends StatelessWidget {
                                 height: 8,
                               ),
                               Text(
-                                "TaxTotal : ",
-                                style: Styles.font13BlueSemiBold(context),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              Text(
                                 "Paid : ",
                                 style: Styles.font13BlueSemiBold(context),
                               ),
@@ -183,14 +156,6 @@ class GetAllInvoicesOfSupplierItem extends StatelessWidget {
                             children: [
                               Text(
                                 invoice.subTotal.toString(),
-                                style: Styles.font13BlueSemiBold(context)
-                                    .copyWith(color: Colors.pink),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              Text(
-                                invoice.taxTotal.toString(),
                                 style: Styles.font13BlueSemiBold(context)
                                     .copyWith(color: Colors.pink),
                               ),
@@ -224,7 +189,7 @@ class GetAllInvoicesOfSupplierItem extends StatelessWidget {
                     buttonText: "Show All Payments",
                     textStyle: Styles.font13LightGreyRegular(context),
                     onPressed: () {
-                      GoRouter.of(context).push(
+                      GoRouter.of(context).pushReplacement(
                         AppRouter.kGetAllPaymentsOfSupplier,
                         extra: {
                           "invoice": invoice,

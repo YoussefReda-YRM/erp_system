@@ -28,11 +28,11 @@ showProductCategoriesDialog(
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
-                  BlocProvider.of<AddProductCubit>(context)
+                  BlocProvider.of<AddProductCubit>(ctxt)
                       .subCategoryIdController
                       .text = allCategories[index].subCategoryId.toString();
 
-                  BlocProvider.of<AddProductCubit>(context)
+                  BlocProvider.of<AddProductCubit>(ctxt)
                       .subCategoryNameController
                       .text = allCategories[index].subCategoryName.toString();
                   GoRouter.of(context).pop();

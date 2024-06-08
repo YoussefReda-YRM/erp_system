@@ -152,7 +152,23 @@ class OrderDetailsViewBodyItems extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
-        userRole == "AccountingEmployee"
+        Row(
+          children: [
+            Text(
+              "Total Price: ",
+              style: Styles.font13BlueSemiBold(context),
+            ),
+            const Spacer(),
+            Text("${orderDetailsModel.data!.totalCostPrice.toString()} \$",
+                style: Styles.font13BlueSemiBold(context)
+                // .copyWith(color: Colors.pink),
+                ),
+          ],
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        userRole == "AccountingEmployee" && orderDetailsModel.status == 0
             ? Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(

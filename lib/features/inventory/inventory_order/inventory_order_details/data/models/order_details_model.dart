@@ -26,6 +26,7 @@ class DataDetails {
   final String? product;
   final int? id;
   final int? status;
+  final double? totalCostPrice;
 
   DataDetails({
     this.date,
@@ -36,6 +37,7 @@ class DataDetails {
     this.product,
     this.id,
     this.status,
+    this.totalCostPrice,
   });
 
   factory DataDetails.fromJson(Map<String, dynamic> json) => DataDetails(
@@ -47,5 +49,6 @@ class DataDetails {
         product: json['product'],
         id: json['id'],
         status: json['status'],
+        totalCostPrice: json['totalCostPrice'],
       );
 }

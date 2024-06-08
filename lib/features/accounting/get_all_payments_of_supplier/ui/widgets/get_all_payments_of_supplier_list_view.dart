@@ -1,4 +1,4 @@
-import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/data/models/get_all_invoices_of_supplier_response.dart';
+import 'package:erp_system/features/accounting/get_all_invoices/data/models/get_all_invoices_response.dart';
 import 'package:erp_system/features/accounting/get_all_payments_of_supplier/ui/widgets/get_all_payments_of_supplier_item.dart';
 import 'package:flutter/material.dart';
 

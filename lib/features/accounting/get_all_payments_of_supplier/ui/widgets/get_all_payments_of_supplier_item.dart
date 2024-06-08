@@ -1,6 +1,6 @@
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
-import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/data/models/get_all_invoices_of_supplier_response.dart';
+import 'package:erp_system/features/accounting/get_all_invoices/data/models/get_all_invoices_response.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

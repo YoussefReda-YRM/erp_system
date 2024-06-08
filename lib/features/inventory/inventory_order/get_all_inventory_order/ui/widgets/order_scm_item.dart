@@ -45,11 +45,13 @@ class OrderScmItem extends StatelessWidget {
                       color: data.status == 0 ? Colors.orange : Colors.green,
                       size: 34,
                     ),
-                    title: Center(
-                      child: Text(
-                        "#${data.id}",
-                        style: Styles.font14BlueSemiBold(context),
-                      ),
+                    title: Text(
+                      "#${data.id}",
+                      style: Styles.font14BlueSemiBold(context),
+                    ),
+                    subtitle: Text(
+                      "Total Price: ${data.totalCostPrice} \$",
+                      style: Styles.font14BlueSemiBold(context),
                     ),
                     trailing: SizedBox(
                       child: Text(
@@ -72,7 +74,7 @@ class OrderScmItem extends StatelessWidget {
                 ),
               ],
             ),
-            userRole == "AccountingEmployee"
+            userRole == "AccountingEmployee" && data.status == 0
                 ? Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(

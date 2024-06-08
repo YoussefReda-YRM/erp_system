@@ -24,6 +24,7 @@ class GetAllInvoicesListView extends StatelessWidget {
               itemBuilder: (context, index) {
                 return GetAllInvoicesItem(
                   invoice: state.response[index],
+                  supplierId: state.response[index].id!,
                 );
               },
             ),

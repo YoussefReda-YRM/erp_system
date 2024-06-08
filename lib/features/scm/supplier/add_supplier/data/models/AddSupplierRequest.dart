@@ -15,8 +15,6 @@ class AddSupplierRequest {
       'supplierName': supplierName,
       'supplierEmail': supplierEmail,
       'supplierPhone': supplierPhone,
-
-
     };
   }
 }

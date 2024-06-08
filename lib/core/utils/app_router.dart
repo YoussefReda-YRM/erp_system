@@ -1,7 +1,6 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/features/accounting/accept_or_reject_inventory_order/logic/update_status_of_inventory_order_cubit.dart';
 import 'package:erp_system/features/accounting/accept_or_reject_scm_order/logic/update_status_of_scm_order_cubit.dart';
-import 'package:erp_system/features/accounting/get_all_invoices/data/models/get_all_invoices_response.dart';
 import 'package:erp_system/features/accounting/get_all_invoices/logic/get_all_invoices_cubit.dart';
 import 'package:erp_system/features/accounting/get_all_invoices/ui/get_all_invoices_view.dart';
 import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/logic/get_all_invoices_of_supplier_cubit.dart';
@@ -838,8 +837,11 @@ abstract class AppRouter {
       GoRoute(
           path: kGetAllPaymentsOfInvoice,
           builder: (context, state) {
+            Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
+
             return GetAllPaymentsOfInvoiceView(
-              invoice: state.extra as GetAllInvoicesResponse,
+              invoice: myData['invoice'],
+              supplierId: myData['supplierId'],
             );
           }),
 

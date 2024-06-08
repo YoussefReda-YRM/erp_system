@@ -35,10 +35,10 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
       title: 'All Suppliers',
       icon: Icons.business_outlined,
     ),
-    DrawerItemModel(
-      title: 'Taxes',
-      icon: Icons.monetization_on_outlined,
-    ),
+    // DrawerItemModel(
+    //   title: 'Taxes',
+    //   icon: Icons.monetization_on_outlined,
+    // ),
     DrawerItemModel(
       title: 'My Vacations',
       icon: Icons.hotel_outlined,
@@ -95,16 +95,18 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
                     } else if (activeIndex == 3) {
                       GoRouter.of(context)
                           .go(AppRouter.kSupplierViewAccounting);
-                    } else if (activeIndex == 4) {
-                      userRole == "AccountingEmployee" ||
-                              userRole == "SuperAdmin"
-                          ? GoRouter.of(context).go(AppRouter.kGetAllTaxes)
-                          : showSnackBar(context);
-                    } else if (activeIndex == 5) {
+                    }
+                    // else if (activeIndex == 4) {
+                    //   userRole == "AccountingEmployee" ||
+                    //           userRole == "SuperAdmin"
+                    //       ? GoRouter.of(context).go(AppRouter.kGetAllTaxes)
+                    //       : showSnackBar(context);
+                    // }
+                    else if (activeIndex == 4) {
                       GoRouter.of(context).go(
                           AppRouter.kGetAllVacationOfSpecificEmployeeView,
                           extra: "accounting");
-                    } else if (activeIndex == 6) {
+                    } else if (activeIndex == 5) {
                       GoRouter.of(context).go(
                           AppRouter.kGetPermissionOfSpecificEmployeeView,
                           extra: "accounting");

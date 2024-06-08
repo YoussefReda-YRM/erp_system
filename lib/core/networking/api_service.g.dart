@@ -1692,14 +1692,14 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<GetAllInvoicesOfSupplierResponse>> getAllInvoicesOfSupplier(
+  Future<List<GetAllInvoicesResponse>> getAllInvoicesOfSupplier(
       int supplierId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<List<GetAllInvoicesOfSupplierResponse>>(Options(
+        _setStreamType<List<GetAllInvoicesResponse>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -1716,8 +1716,8 @@ class _ApiService implements ApiService {
               baseUrl,
             ))));
     var value = _result.data!
-        .map((dynamic i) => GetAllInvoicesOfSupplierResponse.fromJson(
-            i as Map<String, dynamic>))
+        .map((dynamic i) =>
+            GetAllInvoicesResponse.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }

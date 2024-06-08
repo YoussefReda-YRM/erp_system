@@ -24,9 +24,7 @@ class GetAllInventoryOrdersViewBody extends StatelessWidget {
           scaffoldKey: scaffoldKey,
           title: title == 'adjustment'
               ? "Inventory Adjustment"
-              : title == "accounting"
-                  ? 'Inventory Orders'
-                  : 'Transfers',
+              : 'Inventory Orders',
           iconLeading: IconButton(
             icon: const Icon(
               Icons.menu,
@@ -57,12 +55,10 @@ class GetAllInventoryOrdersViewBody extends StatelessWidget {
                         itemCount: state.response.data!.length,
                         itemBuilder: (context, index) {
                           if (title == 'adjustment' || title == "accounting") {
-                            return state.response.data![index].status == 0
-                                ? OrderScmItem(
-                                    data: state.response.data![index],
-                                    title: title,
-                                  )
-                                : const SizedBox();
+                            return OrderScmItem(
+                              data: state.response.data![index],
+                              title: title,
+                            );
                           } else if (title == "transfar") {
                             return OrderScmItem(
                               data: state.response.data![index],

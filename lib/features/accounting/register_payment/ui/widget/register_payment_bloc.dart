@@ -1,7 +1,7 @@
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/functions/custom_loading_indecator.dart';
 import 'package:erp_system/core/utils/functions/setup_error_state.dart';
-import 'package:erp_system/features/accounting/get_all_invoices_of_supplier/data/models/get_all_invoices_of_supplier_response.dart';
+import 'package:erp_system/features/accounting/get_all_invoices/data/models/get_all_invoices_response.dart';
 import 'package:erp_system/features/accounting/register_payment/logic/register_payment_cubit.dart';
 import 'package:erp_system/features/accounting/register_payment/logic/register_payment_state.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class RegisterPaymentBloc extends StatelessWidget {
   const RegisterPaymentBloc(
       {super.key, required this.invoice, required this.supplierId});
 
-  final GetAllInvoicesOfSupplierResponse invoice;
+  final GetAllInvoicesResponse invoice;
   final int supplierId;
 
   @override
