@@ -3,14 +3,17 @@ import 'package:erp_system/features/hr/vacations/update_vacation/ui/widget/updat
 import 'package:flutter/material.dart';
 
 class UpdateVacationView extends StatelessWidget {
-  const UpdateVacationView({super.key,required this.getAllVacationModel});
+  const UpdateVacationView(
+      {super.key, required this.getAllVacationModel, required this.title});
   final GetAllVacationModel getAllVacationModel;
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: UpdateVacationBody(
         getAllVacationModel: getAllVacationModel,
+        title: title,
       ),
     );
   }

@@ -8,7 +8,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class UpdateOrderBlocListener extends StatelessWidget {
-  const UpdateOrderBlocListener({super.key});
+  const UpdateOrderBlocListener({super.key, required this.orderId});
+
+  final int orderId;
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +23,9 @@ class UpdateOrderBlocListener extends StatelessWidget {
         if (state is UpdateOrderLoading) {
           customLoadingIndicator(context);
         } else if (state is UpdateOrderSuccess) {
-          GoRouter.of(context).pop();
-          GoRouter.of(context).pushReplacement(
-            AppRouter.kInventoryOrders,
-          );
+          // GoRouter.of(context).pop();
+          GoRouter.of(context).pushReplacement(AppRouter.kOrdersDetailsView,
+              extra: {"title":"adjustment", "id": orderId});
         } else if (state is UpdateOrderFailure) {
           setupErrorState(context, state.error.toString());
         }

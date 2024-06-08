@@ -100,42 +100,6 @@ class _AddProductFormState extends State<AddProductForm> {
           ),
           SizedBox(height: 18.h),
           AppTextFormField(
-            hintText: 'income',
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: ColorsApp.primaryColor,
-                width: 1.3,
-              ),
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter a valid income';
-              }
-            },
-            controller:
-                context.read<AddProductCubit>().productInComingController,
-          ),
-          SizedBox(height: 18.h),
-          AppTextFormField(
-            hintText: 'out going',
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: ColorsApp.primaryColor,
-                width: 1.3,
-              ),
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter a valid out going';
-              }
-            },
-            controller:
-                context.read<AddProductCubit>().productOutGoingController,
-          ),
-          SizedBox(height: 18.h),
-          AppTextFormField(
             hintText: 'product min quantity',
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(

@@ -7,31 +7,33 @@ import 'package:erp_system/features/inventory/product/widgets/custom_error_widge
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class GetAllVacationOfSpecificEmployeeListView extends StatelessWidget{
-  const GetAllVacationOfSpecificEmployeeListView({super.key});
+class GetAllVacationOfSpecificEmployeeListView extends StatelessWidget {
+  const GetAllVacationOfSpecificEmployeeListView(
+      {super.key, required this.title});
+  final String title;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GetAllVacationOfSpecificEmployeeCubit, GetAllVacationsState>(
-
-        builder: (context, state) {
-          if (state is GetAllVacationsLoading) {
-            return const CustomCircularProgressIndicator();
-          } else if (state is GetAllVacationsSuccess) {
-            return ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: state.response.length,
-              itemBuilder: (context, index) {
-                return GetAllVacationOfSpecificEmployeeListViewItem(
-                  data: state.response[index],
-                );
-              },
+    return BlocBuilder<GetAllVacationOfSpecificEmployeeCubit,
+        GetAllVacationsState>(builder: (context, state) {
+      if (state is GetAllVacationsLoading) {
+        return const CustomCircularProgressIndicator();
+      } else if (state is GetAllVacationsSuccess) {
+        return ListView.builder(
+          physics: const BouncingScrollPhysics(),
+          itemCount: state.response.length,
+          itemBuilder: (context, index) {
+            return GetAllVacationOfSpecificEmployeeListViewItem(
+              data: state.response[index],
+              title: title,
             );
-          } else if (state is GetAllVacationsFailure) {
-            return CustomErrorWidget(error: state.error);
-          } else {
-            return const CustomNoProductWidget();
-          }
-        });
+          },
+        );
+      } else if (state is GetAllVacationsFailure) {
+        return CustomErrorWidget(error: state.error);
+      } else {
+        return const CustomNoProductWidget();
+      }
+    });
   }
 }

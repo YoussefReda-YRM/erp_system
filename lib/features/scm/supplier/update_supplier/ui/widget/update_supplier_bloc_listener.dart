@@ -14,7 +14,7 @@ class UpdateSupplierBlocListener extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<UpdateSupplierCubit, UpdateSupplierState>(
       listenWhen: (previous, current) =>
-      current is UpdateSupplierLoading ||
+          current is UpdateSupplierLoading ||
           current is UpdateSupplierSuccess ||
           current is UpdateSupplierFailure,
       listener: (context, state) {
@@ -22,9 +22,8 @@ class UpdateSupplierBlocListener extends StatelessWidget {
           customLoadingIndicator(context);
         } else if (state is UpdateSupplierSuccess) {
           GoRouter.of(context).pop();
-          GoRouter.of(context).pushReplacement(
-            AppRouter.kSupplierView,
-          );
+          GoRouter.of(context)
+              .pushReplacement(AppRouter.kSupplierView, extra: "hr");
         } else if (state is UpdateSupplierFailure) {
           setupErrorState(context, state.error.toString());
         }

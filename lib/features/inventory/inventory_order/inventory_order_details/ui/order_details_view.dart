@@ -19,7 +19,9 @@ class OrderDetailsView extends StatelessWidget {
             ),
             Expanded(
               child: CustomAppBody(
-                child: OrderDetailsViewBody(title: title),
+                child: OrderDetailsViewBody(
+                  title: title,
+                ),
               ),
             ),
           ],

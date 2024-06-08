@@ -21,6 +21,10 @@ class _DrawerItemListViewState extends State<HrDrawerItemListView> {
       icon: Icons.person_outline,
     ),
     DrawerItemModel(
+      title: 'Suppliers',
+      icon: Icons.store_outlined,
+    ),
+    DrawerItemModel(
       title: 'Departments',
       icon: Icons.business_outlined,
     ),
@@ -65,20 +69,24 @@ class _DrawerItemListViewState extends State<HrDrawerItemListView> {
                     if (activeIndex == 0) {
                       GoRouter.of(context).go(AppRouter.kAllEmployeesView);
                     } else if (activeIndex == 1) {
-                      GoRouter.of(context).go(AppRouter.kAllDepartmentsView);
+                      GoRouter.of(context)
+                          .go(AppRouter.kSupplierView, extra: "hr");
                     } else if (activeIndex == 2) {
-                      GoRouter.of(context).go(AppRouter.kAttendanceView);
+                      GoRouter.of(context).go(AppRouter.kAllDepartmentsView);
                     } else if (activeIndex == 3) {
+                      GoRouter.of(context).go(AppRouter.kAttendanceView);
+                    } else if (activeIndex == 4) {
                       GoRouter.of(context).go(AppRouter.kGetAllVacationsView);
-                    }
-                    else if (activeIndex == 4) {
-                      GoRouter.of(context).go(AppRouter.kGetAllVacationOfSpecificEmployeeView);
-                    }
-                     else if (activeIndex == 5) {
-                     GoRouter.of(context).go(AppRouter.kGetAllPermissionView);
-                     }
-                    else if (activeIndex == 6) {
-                      GoRouter.of(context).go(AppRouter.kGetPermissionOfSpecificEmployeeView);
+                    } else if (activeIndex == 5) {
+                      GoRouter.of(context).go(
+                          AppRouter.kGetAllVacationOfSpecificEmployeeView,
+                          extra: "hr");
+                    } else if (activeIndex == 6) {
+                      GoRouter.of(context).go(AppRouter.kGetAllPermissionView);
+                    } else if (activeIndex == 7) {
+                      GoRouter.of(context).go(
+                          AppRouter.kGetPermissionOfSpecificEmployeeView,
+                          extra: "hr");
                     }
                   });
                 }

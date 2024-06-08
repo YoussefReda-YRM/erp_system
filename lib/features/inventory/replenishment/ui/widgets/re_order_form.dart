@@ -7,6 +7,9 @@ import 'package:erp_system/features/inventory/get_all_accounting_employee/logic/
 import 'package:erp_system/features/inventory/replenishment/logic/re_order_cubit.dart';
 import 'package:erp_system/features/inventory/replenishment/ui/widgets/re_order_bloc_listnere.dart';
 import 'package:erp_system/features/inventory/replenishment/ui/widgets/show_accounting_employee_dialog.dart';
+import 'package:erp_system/features/inventory/replenishment/ui/widgets/show_supplier_dialog.dart';
+import 'package:erp_system/features/scm/supplier/get_all_suplier/logic/get_supplier_cubit.dart';
+import 'package:erp_system/features/scm/supplier/get_all_suplier/logic/get_supplier_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:erp_system/features/inventory/replenishment/data/models/stock_out_products_response.dart';
@@ -150,11 +153,61 @@ class ReOrderForm extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
+                          BlocBuilder<GetAllSupplierCubit, GetAllSupplierState>(
+                            builder: (context, state) {
+                              if (state is GetAllSupplierLoading) {
+                                return const Center(
+                                    child: CircularProgressIndicator());
+                              } else if (state is GetAllSupplierFailure) {
+                                return Center(child: Text(state.error));
+                              } else if (state is GetAllSupplierSuccess) {
+                                final getAllSupplier = state.response;
+
+                                return AppTextFormField(
+                                  controller: context
+                                      .read<ReOrderCubit>()
+                                      .supplierNameController,
+                                  hintText: 'Select Supplier',
+                                  isEnabled: false,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                      color: ColorsApp.primaryColor,
+                                      width: 1.3,
+                                    ),
+                                    borderRadius: BorderRadius.circular(16.0),
+                                  ),
+                                  suffixIcon: const Icon(
+                                    Icons.arrow_drop_down,
+                                    size: 20,
+                                    color: ColorsApp.primaryColor,
+                                  ),
+                                  function: () {
+                                    showSupplierDialog(
+                                        context,
+                                        size,
+                                        getAllSupplier,
+                                        BlocProvider.of<ReOrderCubit>(context));
+                                  },
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please select Supplier';
+                                    }
+                                  },
+                                );
+                              } else {
+                                return const Text(
+                                    "Wait for the Supplier to load...");
+                              }
+                            },
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           AppTextButton(
                             buttonText: "Re-order",
-                            backgroundColor: const Color(0xff51CC5D),
-                            textStyle: Styles.font16LightGreyMedium(context)
-                                .copyWith(
+                            backgroundColor: ColorsApp.primaryColor,
+                            textStyle:
+                                Styles.font16LightGreyMedium(context).copyWith(
                               color: Colors.white,
                             ),
                             onPressed: () {

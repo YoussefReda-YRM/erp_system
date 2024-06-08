@@ -1,4 +1,5 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/functions/delete_show_dialog.dart';
@@ -114,67 +115,6 @@ class DepartmentDetails extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  const SizedBox(
-                                    height: 16,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      FittedBox(
-                                        fit: BoxFit.scaleDown,
-                                        alignment:
-                                            AlignmentDirectional.centerStart,
-                                        child: Text(
-                                          "Department Job Position: ",
-                                          style: Styles.font13BlueSemiBold(
-                                              context),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 8,
-                                      ),
-                                      FittedBox(
-                                        fit: BoxFit.scaleDown,
-                                        alignment:
-                                            AlignmentDirectional.centerStart,
-                                        child: Text(
-                                          departmentData.jobPositions
-                                              .toString(),
-                                          style:
-                                              Styles.font13BlueSemiBold(context)
-                                                  .copyWith(color: Colors.pink),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-
-                                  /*  Row(
-                                        children: [
-                                          Text(
-                                            "Supplier Phone: ",
-                                            style:
-                                            Styles.font13BlueSemiBold(context),
-                                          ),
-                                          const Spacer(),
-                                          Expanded(
-                                            child: Text(
-                                              employee.toString(),
-                                              style:
-                                              Styles.font13BlueSemiBold(context)
-                                                  .copyWith(color: Colors.pink),
-                                            ),
-                                          ),
-                                        ],
-                                      ),*/
-                                  /* ListView.builder(
-                                  itemCount:departmentData.jobPositions!.length ?? 0,
-                                       itemBuilder: (context, index) {
-                                         return ListTile(
-                                           title: Text(departmentData.jobPositions![index]['jobName'] ?? "none",
-                                           ),
-                                         );
-                                         })*/
                                 ],
                               )),
                         ),
@@ -183,69 +123,76 @@ class DepartmentDetails extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: AppTextButton(
-                            buttonText: "Edit",
-                            width: MediaQuery.of(context).size.width / 2.5,
-                            backgroundColor: Colors.green,
-                            textStyle: Styles.font13BlueSemiBold(context),
-                            onPressed: () {
-                              GoRouter.of(context).push(
-                                AppRouter.kUpdateDepartment,
-                                extra: departmentData,
-                              );
-                            },
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: AppTextButton(
-                            buttonText: "Delete",
-                            width: MediaQuery.of(context).size.width / 2.5,
-                            backgroundColor: Colors.red,
-                            textStyle: Styles.font13BlueSemiBold(context),
-                            onPressed: () {
-                              deleteShowDialog(
-                                context,
-                                'Are you sure you want to delete this Department?',
-                                () {
-                                  getIt
-                                      .get<DeleteDepartmentCubit>()
-                                      .deleteDepartment(departmentData.id);
-                                  GoRouter.of(context).pop();
-                                  Future.delayed(
-                                      const Duration(milliseconds: 200), () {
-                                    GoRouter.of(context).pushReplacement(
-                                        AppRouter.kAllDepartmentsView);
-                                  });
-                                },
-                              );
-                            },
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: AppTextButton(
-                            buttonText: "Job Position",
-                            width: MediaQuery.of(context).size.width / 2.5,
-                            backgroundColor: ColorsApp.primaryColor,
-                            textStyle: Styles.font13GreyMedium(context),
-                            onPressed: () {
-                              GoRouter.of(context).push(
-                                AppRouter.kGetAllJobPositionsView,
-                                extra: departmentData.id,
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    )
+                    userRole == "HRAdmin" || userRole == "HREmployee"
+                        ? Row(
+                            children: [
+                              Expanded(
+                                child: AppTextButton(
+                                  buttonText: "Edit",
+                                  width:
+                                      MediaQuery.of(context).size.width / 2.5,
+                                  backgroundColor: Colors.green,
+                                  textStyle: Styles.font13BlueSemiBold(context),
+                                  onPressed: () {
+                                    GoRouter.of(context).push(
+                                      AppRouter.kUpdateDepartment,
+                                      extra: departmentData,
+                                    );
+                                  },
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: AppTextButton(
+                                  buttonText: "Delete",
+                                  width:
+                                      MediaQuery.of(context).size.width / 2.5,
+                                  backgroundColor: Colors.red,
+                                  textStyle: Styles.font13BlueSemiBold(context),
+                                  onPressed: () {
+                                    deleteShowDialog(
+                                      context,
+                                      'Are you sure you want to delete this Department?',
+                                      () {
+                                        getIt
+                                            .get<DeleteDepartmentCubit>()
+                                            .deleteDepartment(
+                                                departmentData.id);
+                                        GoRouter.of(context).pop();
+                                        Future.delayed(
+                                            const Duration(milliseconds: 200),
+                                            () {
+                                          GoRouter.of(context).pushReplacement(
+                                              AppRouter.kAllDepartmentsView);
+                                        });
+                                      },
+                                    );
+                                  },
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: AppTextButton(
+                                  buttonText: "Job Position",
+                                  width:
+                                      MediaQuery.of(context).size.width / 2.5,
+                                  backgroundColor: ColorsApp.primaryColor,
+                                  textStyle: Styles.font13GreyMedium(context),
+                                  onPressed: () {
+                                    GoRouter.of(context).push(
+                                      AppRouter.kGetAllJobPositionsView,
+                                      extra: departmentData.id,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
+                          )
+                        : const SizedBox()
                   ],
                 ),
               ),

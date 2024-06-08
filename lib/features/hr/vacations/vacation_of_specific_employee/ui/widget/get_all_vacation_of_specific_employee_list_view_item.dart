@@ -8,8 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class GetAllVacationOfSpecificEmployeeListViewItem extends StatelessWidget {
-  const GetAllVacationOfSpecificEmployeeListViewItem({super.key,required this.data});
+  const GetAllVacationOfSpecificEmployeeListViewItem(
+      {super.key, required this.data, required this.title});
   final GetAllVacationModel data;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -39,69 +41,33 @@ class GetAllVacationOfSpecificEmployeeListViewItem extends StatelessWidget {
                   data.employee!,
                   style: Styles.font14BlueSemiBold(context),
                 ),
-                subtitle:Row(
+                subtitle: Row(
                   children: [
-                    /* Flexible(
-                    child: Text(
-                      "${data.start} - ${data.end}",
-                      style: Styles.font16DarkBlueBold(context),
-                      overflow: TextOverflow.clip,
-                    ),
-                  ),*/
-                    /*   const SizedBox(width: 3),
-                  Flexible(
-                    child: Text(
-                      "${data.date}",
-                      style: Styles.font16DarkBlueBold(context),
-                      overflow: TextOverflow.clip,
-                    ),
-                  ),*/
                     const SizedBox(width: 3),
                     Flexible(
                       child: Text(
                         data.status == 0
                             ? "Pending"
                             : data.status == 1
-                            ? "Accepted"
-                            : data.status == 2
-                            ? "Rejected"
-                            : "Unknown Status",
-                        style: Styles.font16DarkBlueBold(context),
-                        overflow: TextOverflow.clip,
+                                ? "Accepted"
+                                : data.status == 2
+                                    ? "Rejected"
+                                    : "Unknown Status",
+                        style: Styles.font16DarkBlueBold(context).copyWith(
+                          color: data.status == 0
+                              ? Colors.orange
+                              : data.status == 1
+                                  ? Colors.green
+                                  : Colors.red,
+                        ),
                       ),
                     ),
                   ],
                 ),
-
-                trailing: data.status == 0 ? VacationPopupMenu(data: data) : null,              ),
-             /* Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: AppTextButton(
-                        borderRadius: 8,
-                        buttonText: "Reject",
-                        backgroundColor: const Color(0xffFF7F74),
-                        textStyle: Styles.font13BlueSemiBold(context),
-                        onPressed: () {},
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                      child: AppTextButton(
-                        borderRadius: 8,
-                        buttonText: "Accept",
-                        backgroundColor: const Color(0xff30BEB6),
-                        textStyle: Styles.font13BlueSemiBold(context),
-                        onPressed: () {},
-                      ),
-                    ),
-                  ],
-                ),
-              ),*/
+                trailing: data.status == 0
+                    ? VacationPopupMenu(data: data, title: title)
+                    : null,
+              ),
             ],
           ),
         ),

@@ -12,8 +12,6 @@ class AddProductCubit extends Cubit<AddProductState> {
   TextEditingController productNameController = TextEditingController();
   TextEditingController productOnHandController = TextEditingController();
   TextEditingController productBarcodeController = TextEditingController();
-  TextEditingController productInComingController = TextEditingController();
-  TextEditingController productOutGoingController = TextEditingController();
   TextEditingController productSellPriceController = TextEditingController();
   TextEditingController productCostPriceController = TextEditingController();
   TextEditingController activeOrderController = TextEditingController();
@@ -30,10 +28,8 @@ class AddProductCubit extends Cubit<AddProductState> {
         productOnHand: int.parse(productOnHandController.text),
         productBarcode:
             'new product', //int.parse(productBarcodeController.text),
-        productInComing: int.parse(productInComingController.text),
-        productOutGoing: int.parse(productOutGoingController.text),
-        productSellPrice: int.parse(productSellPriceController.text),
-        productCostPrice: int.parse(productCostPriceController.text),
+        productSellPrice: double.parse(productSellPriceController.text),
+        productCostPrice: double.parse(productCostPriceController.text),
         activeOrder: 0, //int.parse(activeOrderController.text),
         addedBy: userId,
         subCategoryId: int.parse(subCategoryIdController.text),

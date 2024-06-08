@@ -5,8 +5,10 @@ import 'package:erp_system/features/hr/vacations/vacation_of_specific_employee/u
 import 'package:flutter/material.dart';
 
 class GetAllVacationOfSpecificEmployeeViewBody extends StatelessWidget {
-  const GetAllVacationOfSpecificEmployeeViewBody({super.key,required this.scaffoldKey});
+  const GetAllVacationOfSpecificEmployeeViewBody(
+      {super.key, required this.scaffoldKey, required this.title});
   final GlobalKey<ScaffoldState> scaffoldKey;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +28,13 @@ class GetAllVacationOfSpecificEmployeeViewBody extends StatelessWidget {
             },
           ),
         ),
-        const Expanded(
+        Expanded(
           child: CustomAppBody(
             child: Padding(
-                padding: EdgeInsets.only(top: 30),
-                child: GetAllVacationOfSpecificEmployeeListView()),
+                padding: const EdgeInsets.only(top: 30),
+                child: GetAllVacationOfSpecificEmployeeListView(
+                  title: title,
+                )),
           ),
         ),
       ],

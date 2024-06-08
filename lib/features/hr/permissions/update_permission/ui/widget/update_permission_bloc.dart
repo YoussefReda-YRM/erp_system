@@ -8,13 +8,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class UpdatePermissionBloc extends StatelessWidget {
-  const UpdatePermissionBloc({super.key});
+  const UpdatePermissionBloc({super.key, required this.title});
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<UpdatePermissionCubit, UpdatePermissionState>(
       listenWhen: (previous, current) =>
-      current is UpdatePermissionLoading ||
+          current is UpdatePermissionLoading ||
           current is UpdatePermissionSuccess ||
           current is UpdatePermissionFailure,
       listener: (context, state) {
@@ -23,8 +24,8 @@ class UpdatePermissionBloc extends StatelessWidget {
         } else if (state is UpdatePermissionSuccess) {
           GoRouter.of(context).pop();
           GoRouter.of(context).pushReplacement(
-            AppRouter.kGetPermissionOfSpecificEmployeeView,
-          );
+              AppRouter.kGetPermissionOfSpecificEmployeeView,
+              extra: title);
         } else if (state is UpdatePermissionFailure) {
           setupErrorState(context, state.error.toString());
         }

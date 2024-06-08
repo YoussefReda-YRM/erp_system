@@ -1,4 +1,5 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/data/models/get_all_category_model.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/ui/widgets/build_tap.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/ui/widgets/category_list_view.dart';
@@ -28,12 +29,15 @@ class _BuildTapsState extends State<BuildTaps> {
       initialIndex: indexOfListViewInGetAllCategory,
       child: Column(
         children: [
-          CircularElevatedButton(
-            parentCategoryId: selectedParentCategoryId ?? widget.firstParentId,
-            parentCategoryName: widget
-                .categories[indexOfListViewInGetAllCategory]
-                .parentCategoryName!,
-          ),
+          userRole == "InventoryEmployee"
+              ? CircularElevatedButton(
+                  parentCategoryId:
+                      selectedParentCategoryId ?? widget.firstParentId,
+                  parentCategoryName: widget
+                      .categories[indexOfListViewInGetAllCategory]
+                      .parentCategoryName!,
+                )
+              : const SizedBox(),
           const SizedBox(
             height: 20,
           ),

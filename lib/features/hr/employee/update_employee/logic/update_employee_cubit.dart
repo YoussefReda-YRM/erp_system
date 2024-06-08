@@ -12,9 +12,7 @@ class UpdateEmployeeCubit extends Cubit<UpdateEmployeeState> {
 
   TextEditingController userNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController passwordConfirmationController =
-      TextEditingController();
+
   int? employeeDepartmentId;
   String? roleController;
   String? employeeJobController;
@@ -40,17 +38,15 @@ class UpdateEmployeeCubit extends Cubit<UpdateEmployeeState> {
         address: addressController.text,
         bankAccount: bankAccountController.text,
         birthDate: birthDateController.text,
-        confirmPassword: passwordConfirmationController.text,
         email: emailController.text,
-        employeeDepartmentId: employeeDepartmentId!,
+        employeeDepartmentId: employeeDepartmentId,
         employeeJob: employeeJobController,
         gender: genderNotifier.value.toString(),
         identificationNo: identificationNoController.text,
         name: nameController.text,
         nationality: nationalityController.text,
-        password: passwordController.text,
-        phoneNumber: "+20${phoneNumberController.text}",
-        role: "HRAdmin", //roleController.text,
+        phoneNumber: phoneNumberController.text,
+        role: roleController,
         salary: double.parse(salaryController.text),
         userName: userNameController.text,
       ),

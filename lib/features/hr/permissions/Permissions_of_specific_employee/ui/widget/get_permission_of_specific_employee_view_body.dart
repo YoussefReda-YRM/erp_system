@@ -4,9 +4,11 @@ import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/ui/widget/get_permission_of_specific_employee_list_view.dart';
 import 'package:flutter/material.dart';
 
-class GetPermissionOfSpecificEmployeeViewBody extends StatelessWidget{
-  const GetPermissionOfSpecificEmployeeViewBody({super.key,required this.scaffoldKey});
+class GetPermissionOfSpecificEmployeeViewBody extends StatelessWidget {
+  const GetPermissionOfSpecificEmployeeViewBody(
+      {super.key, required this.scaffoldKey, required this.title});
   final GlobalKey<ScaffoldState> scaffoldKey;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -25,20 +27,14 @@ class GetPermissionOfSpecificEmployeeViewBody extends StatelessWidget{
               scaffoldKey.currentState!.openDrawer();
             },
           ),
-          iconTrailing: IconButton(
-            icon: const Icon(
-              Icons.search_outlined,
-              size: 34,
-              color: ColorsApp.lightGrey,
-            ),
-            onPressed: () {},
-          ),
         ),
-        const Expanded(
+        Expanded(
           child: CustomAppBody(
             child: Padding(
-                padding: EdgeInsets.only(top: 30),
-                child: GetPermissionOfSpecificEmployeeListView()),
+                padding: const EdgeInsets.only(top: 30),
+                child: GetPermissionOfSpecificEmployeeListView(
+                  title: title,
+                )),
           ),
         ),
       ],

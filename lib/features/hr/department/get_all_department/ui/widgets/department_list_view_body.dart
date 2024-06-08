@@ -1,4 +1,5 @@
- import 'package:erp_system/core/utils/app_router.dart';
+import 'package:erp_system/core/helpers/contstatnts.dart';
+import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/features/hr/department/get_all_department/data/models/get_all_department_response.dart';
@@ -48,9 +49,9 @@ class DepartmentListViewBody extends StatelessWidget {
                     style: Styles.font18DarkBlueBold(context),
                   ),
                 ),
-                trailing: DepartmentPopupMenuButton(
-                  departmentData: response[index]
-                ),
+                trailing: userRole == "HRAdmin" || userRole == "HREmployee"
+                    ? DepartmentPopupMenuButton(departmentData: response[index])
+                    : const SizedBox(),
               ),
             ),
           ),

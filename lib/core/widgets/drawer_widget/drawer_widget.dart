@@ -1,5 +1,4 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
-import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/helpers/shared_pref_helper.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
@@ -62,8 +61,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     onTap: () async {
                       activeIndex = 0;
                       GoRouter.of(context).go(AppRouter.kLoginView);
-                      await SharedPrefHelper.clearAllData();
-                      isLoggedInUser = false;
+                      await SharedPrefHelper.clearAllSecuredData();
+                      // isLoggedInUser = false;
                     },
                     child: InActiveDrawerItem(
                       drawerItemModel: DrawerItemModel(

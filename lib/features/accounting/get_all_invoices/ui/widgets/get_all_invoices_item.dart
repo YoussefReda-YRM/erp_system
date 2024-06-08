@@ -44,30 +44,10 @@ class GetAllInvoicesItem extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Employee : ",
+                                "Supplier Name : ",
                                 style: Styles.font13BlueSemiBold(context),
                               ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              Text(
-                                "Supplier : ",
-                                style: Styles.font13BlueSemiBold(context),
-                              ),
-                            ],
-                          ),
-                          const Spacer(),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                invoice.employee!,
-                                style: Styles.font13BlueSemiBold(context)
-                                    .copyWith(color: Colors.pink),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
+                              const SizedBox(height: 10),
                               Text(
                                 invoice.supplier!,
                                 style: Styles.font13BlueSemiBold(context)
@@ -149,20 +129,6 @@ class GetAllInvoicesItem extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "SubTotal : ",
-                                style: Styles.font13BlueSemiBold(context),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              Text(
-                                "TaxTotal : ",
-                                style: Styles.font13BlueSemiBold(context),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              Text(
                                 "Paid : ",
                                 style: Styles.font13BlueSemiBold(context),
                               ),
@@ -173,6 +139,13 @@ class GetAllInvoicesItem extends StatelessWidget {
                                 "Topay : ",
                                 style: Styles.font13BlueSemiBold(context),
                               ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                "SubTotal : ",
+                                style: Styles.font13BlueSemiBold(context),
+                              ),
                             ],
                           ),
                           const Spacer(),
@@ -180,7 +153,7 @@ class GetAllInvoicesItem extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                invoice.subTotal.toString(),
+                                "${invoice.paid.toString()} \$",
                                 style: Styles.font13BlueSemiBold(context)
                                     .copyWith(color: Colors.pink),
                               ),
@@ -188,7 +161,7 @@ class GetAllInvoicesItem extends StatelessWidget {
                                 height: 8,
                               ),
                               Text(
-                                invoice.taxTotal.toString(),
+                                "${invoice.toPay.toString()} \$",
                                 style: Styles.font13BlueSemiBold(context)
                                     .copyWith(color: Colors.pink),
                               ),
@@ -196,15 +169,7 @@ class GetAllInvoicesItem extends StatelessWidget {
                                 height: 8,
                               ),
                               Text(
-                                invoice.paid.toString(),
-                                style: Styles.font13BlueSemiBold(context)
-                                    .copyWith(color: Colors.pink),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              Text(
-                                invoice.toPay.toString(),
+                                "${invoice.subTotal.toString()} \$",
                                 style: Styles.font13BlueSemiBold(context)
                                     .copyWith(color: Colors.pink),
                               ),
@@ -223,9 +188,8 @@ class GetAllInvoicesItem extends StatelessWidget {
                     textStyle: Styles.font13LightGreyRegular(context),
                     onPressed: () {
                       GoRouter.of(context).push(
-                        AppRouter.kGetAllPaymentsOfInvoice,
-                        extra: invoice
-                      );
+                          AppRouter.kGetAllPaymentsOfInvoice,
+                          extra: invoice);
                     },
                   ),
                 ],

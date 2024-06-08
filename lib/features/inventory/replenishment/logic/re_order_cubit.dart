@@ -11,6 +11,8 @@ class ReOrderCubit extends Cubit<ReOrderState> {
   TextEditingController accEmployeeIdController = TextEditingController();
   TextEditingController quantityController = TextEditingController();
   TextEditingController referenceController = TextEditingController();
+  TextEditingController supplierIdController = TextEditingController();
+  TextEditingController supplierNameController = TextEditingController();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -23,6 +25,7 @@ class ReOrderCubit extends Cubit<ReOrderState> {
         productId: productId,
         quantity: int.parse(quantityController.text),
         reference: referenceController.text,
+        supplierId: int.parse(supplierIdController.text),
       ),
     );
     response.when(

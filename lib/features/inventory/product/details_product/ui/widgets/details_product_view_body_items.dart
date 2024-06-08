@@ -68,29 +68,12 @@ class DetailsProductViewBodyItems extends StatelessWidget {
         Row(
           children: [
             Text(
-              "In Coming: ",
+              "Min Quantity: ",
               style: Styles.font13BlueSemiBold(context),
             ),
             const Spacer(),
             Text(
-              detailsProductModel.productInComing.toString(),
-              style: Styles.font13BlueSemiBold(context)
-                  .copyWith(color: Colors.pink),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        Row(
-          children: [
-            Text(
-              "Out Going: ",
-              style: Styles.font13BlueSemiBold(context),
-            ),
-            const Spacer(),
-            Text(
-              detailsProductModel.productOutGoing.toString(),
+              detailsProductModel.productMinquantity.toString(),
               style: Styles.font13BlueSemiBold(context)
                   .copyWith(color: Colors.pink),
             ),

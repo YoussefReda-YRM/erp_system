@@ -12,7 +12,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class ApplyVacationView extends StatelessWidget {
-  const ApplyVacationView({super.key});
+  const ApplyVacationView({super.key, required this.title});
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,9 @@ class ApplyVacationView extends StatelessWidget {
                           validateThenDoAddVacation(context);
                         },
                       ),
-                      const ApplyVacationBlocListener(),
+                      ApplyVacationBlocListener(
+                        title: title,
+                      ),
                     ],
                   ),
                 ),

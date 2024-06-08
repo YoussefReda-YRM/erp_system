@@ -1,6 +1,5 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/core/utils/app_router.dart';
-import 'package:erp_system/core/widgets/custom_divider.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_item.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_item_model.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +36,14 @@ class _DrawerItemListViewState extends State<ScmDrawerItemListView> {
       title: 'Suppliers',
       icon: Icons.store_outlined,
     ),
+    DrawerItemModel(
+      title: 'My Vacations',
+      icon: Icons.hotel_outlined,
+    ),
+    DrawerItemModel(
+      title: 'My Permissions',
+      icon: Icons.verified_user_outlined,
+    ),
   ];
 
   @override
@@ -65,13 +72,21 @@ class _DrawerItemListViewState extends State<ScmDrawerItemListView> {
                     } else if (activeIndex == 3) {
                       GoRouter.of(context).go(AppRouter.kGetAllScmOrderStatus);
                     } else if (activeIndex == 4) {
-                      GoRouter.of(context).go(AppRouter.kSupplierView);
+                      GoRouter.of(context)
+                          .go(AppRouter.kSupplierView, extra: "scm");
+                    } else if (activeIndex == 5) {
+                      GoRouter.of(context).go(
+                          AppRouter.kGetAllVacationOfSpecificEmployeeView,
+                          extra: "scm");
+                    } else if (activeIndex == 6) {
+                      GoRouter.of(context).go(
+                          AppRouter.kGetPermissionOfSpecificEmployeeView,
+                          extra: "scm");
                     }
                   });
                 }
               },
             ),
-            index == 3 ? const CustomDivider() : const SizedBox(),
           ],
         );
       },

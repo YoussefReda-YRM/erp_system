@@ -12,7 +12,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AddPermissionView extends StatelessWidget {
-  const AddPermissionView({super.key});
+  const AddPermissionView({super.key, required this.title});
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,9 @@ class AddPermissionView extends StatelessWidget {
                           validateThenDoAddPermission(context);
                         },
                       ),
-                      const AddPermissionBloc(),
+                      AddPermissionBloc(
+                        title: title,
+                      ),
                     ],
                   ),
                 ),
@@ -64,6 +68,7 @@ class AddPermissionView extends StatelessWidget {
     );
   }
 }
+
 void validateThenDoAddPermission(BuildContext context) {
   if (BlocProvider.of<AddPermissionCubit>(context)
       .formKey

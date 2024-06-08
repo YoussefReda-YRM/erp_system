@@ -2,6 +2,7 @@ import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
+import 'package:erp_system/core/widgets/custom_app_body.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/logic/get_category_state.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/ui/widgets/build_taps.dart';
 import 'package:erp_system/features/inventory/category/get_all_category/logic/get_category_cubit.dart';
@@ -18,15 +19,7 @@ class CategoryListViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: ColorsApp.primaryColor,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        decoration: BoxDecoration(
-          border: Border.all(width: 0, color: Colors.transparent),
-          color: Colors.white,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(100),
-          ),
-        ),
+      child: CustomAppBody(
         child: Column(
           children: [
             // const CategorySearchWidget(),
@@ -34,7 +27,6 @@ class CategoryListViewBody extends StatelessWidget {
               height: 20,
             ),
             BlocBuilder<CategoryCubit, CategoryState>(
-              
               builder: (context, state) {
                 if (state is CategoryLoading) {
                   return const Expanded(
@@ -49,7 +41,8 @@ class CategoryListViewBody extends StatelessWidget {
                     firstParentId: state.categories[0].parentCategoryId!,
                   ));
                 } else if (state is CategoryFailure) {
-                  return Expanded(child: CustomErrorWidget(error: state.error.toString()));
+                  return Expanded(
+                      child: CustomErrorWidget(error: state.error.toString()));
                 } else {
                   listOfCategoryIsEmpty = true;
                   return Expanded(

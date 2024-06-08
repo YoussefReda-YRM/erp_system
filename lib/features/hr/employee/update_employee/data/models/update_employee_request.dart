@@ -1,8 +1,6 @@
 class UpdateEmployeeRequest {
   String? userName;
   String? email;
-  String? password;
-  String? confirmPassword;
   String? employeeJob;
   int? employeeDepartmentId;
   String? role;
@@ -20,7 +18,6 @@ class UpdateEmployeeRequest {
     this.address,
     this.bankAccount,
     this.birthDate,
-    this.confirmPassword,
     this.email,
     this.employeeDepartmentId,
     this.employeeJob,
@@ -28,7 +25,6 @@ class UpdateEmployeeRequest {
     this.identificationNo,
     this.name,
     this.nationality,
-    this.password,
     this.phoneNumber,
     this.role,
     this.salary,
@@ -39,8 +35,6 @@ class UpdateEmployeeRequest {
     return {
       'userName': userName,
       'email': email,
-      'password': password,
-      'confirmPassword': confirmPassword,
       'employeeJob': employeeJob,
       'employeeDepartmentId': employeeDepartmentId,
       'role': role,

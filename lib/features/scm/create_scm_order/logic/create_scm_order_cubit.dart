@@ -12,6 +12,13 @@ class CreateScmOrderCubit extends Cubit<CreateScmOrderState> {
 
   TextEditingController quantityController = TextEditingController();
   TextEditingController productIdController = TextEditingController();
+  TextEditingController supplierIdController = TextEditingController();
+
+  TextEditingController supplierNameController = TextEditingController();
+  TextEditingController productNameController = TextEditingController();
+  TextEditingController accountingNameController = TextEditingController();
+
+
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -24,6 +31,7 @@ class CreateScmOrderCubit extends Cubit<CreateScmOrderState> {
         accEmployeeId: accEmployeeIdController.text,
         reference: referenceController.text,
         products: products,
+        supplierId: int.parse(supplierIdController.text),
       ),
     );
     response.when(

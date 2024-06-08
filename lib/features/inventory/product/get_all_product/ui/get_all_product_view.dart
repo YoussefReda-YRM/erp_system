@@ -1,3 +1,4 @@
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_widget.dart';
 import 'package:erp_system/core/widgets/drawer_widget/inventory_drawer_item_list_view.dart';
@@ -27,15 +28,16 @@ class _GetAllProductViewState extends State<GetAllProductView> {
       body: GetAllProductViewBody(
         scaffoldKey: scaffoldKey,
       ),
-      floatingActionButton: CustomFloatingActionButton(
-        ctxt: context,
-        onPressed: () {
-          
-          GoRouter.of(context).push(
-            AppRouter.kAddProductView,
-          );
-        },
-      ),
+      floatingActionButton: userRole == "InventoryEmployee"
+          ? CustomFloatingActionButton(
+              ctxt: context,
+              onPressed: () {
+                GoRouter.of(context).push(
+                  AppRouter.kAddProductView,
+                );
+              },
+            )
+          : const SizedBox(),
     );
   }
 }

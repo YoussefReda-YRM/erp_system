@@ -1,3 +1,4 @@
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/widgets/custom_floating_action_button.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_widget.dart';
@@ -27,12 +28,14 @@ class _GetAllDepartmentViewState extends State<GetAllDepartmentView> {
       body: GetAllDepartmentViewBody(
         scaffoldKey: scaffoldKey,
       ),
-      floatingActionButton: CustomFloatingActionButton(
-        ctxt: context,
-        onPressed: () {
-          GoRouter.of(context).push(AppRouter.kAddDepartment);
-        },
-      ),
+      floatingActionButton: userRole == "HRAdmin" || userRole == "HREmployee"
+          ? CustomFloatingActionButton(
+              ctxt: context,
+              onPressed: () {
+                GoRouter.of(context).push(AppRouter.kAddDepartment);
+              },
+            )
+          : const SizedBox(),
     );
   }
 }

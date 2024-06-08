@@ -40,7 +40,6 @@ import 'package:erp_system/features/hr/employee/update_employee/logic/update_emp
 import 'package:erp_system/features/hr/employee/update_employee/ui/update_employee.dart';
 import 'package:erp_system/features/hr/job_position/update_job_position/logic/update_job_position_cubit.dart';
 import 'package:erp_system/features/hr/job_position/update_job_position/ui/update_job_position_view.dart';
-import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/data/models/GetPermissionOfSpecificEmployeeResponse.dart';
 import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/logic/get_permission_of_specific_employee_cubit.dart';
 import 'package:erp_system/features/hr/permissions/Permissions_of_specific_employee/ui/get_permission_of_specific_employee_view.dart';
 import 'package:erp_system/features/hr/permissions/add_permissions/logic/add_permission_cubit.dart';
@@ -231,7 +230,7 @@ abstract class AppRouter {
         builder: (context, state) => BlocProvider(
           create: (context) =>
               getIt.get<GetAllSupplierCubit>()..getAllSupplier(),
-          child: const GetAllSupplierView(),
+          child: GetAllSupplierView(title: state.extra as String),
         ),
       ),
       GoRoute(
@@ -438,6 +437,10 @@ abstract class AppRouter {
               create: (context) => getIt.get<GetAllAccountingEmployeeCubit>()
                 ..getAllAccountingEmployee(),
             ),
+            BlocProvider(
+              create: (context) =>
+                  getIt.get<GetAllSupplierCubit>()..getAllSupplier(),
+            ),
           ],
           child: ReorderView(data: state.extra as StockOutProductsResponse),
         ),
@@ -634,7 +637,9 @@ abstract class AppRouter {
             create: (context) =>
                 getIt.get<GetAllVacationOfSpecificEmployeeCubit>()
                   ..getAllVacationOfSpecificEmployee(),
-            child: const GetAllVacationOfSpecificEmployeeView(),
+            child: GetAllVacationOfSpecificEmployeeView(
+              title: state.extra as String,
+            ),
           );
         },
       ),
@@ -644,7 +649,7 @@ abstract class AppRouter {
         builder: (context, state) {
           return BlocProvider(
             create: (context) => getIt.get<ApplyVacationCubit>(),
-            child: const ApplyVacationView(),
+            child: ApplyVacationView(title: state.extra as String),
           );
         },
       ),
@@ -660,10 +665,12 @@ abstract class AppRouter {
       GoRoute(
         path: kUpdateVacationView,
         builder: (context, state) {
+          Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
           return BlocProvider(
             create: (context) => getIt.get<UpdateVacationCubit>(),
             child: UpdateVacationView(
-              getAllVacationModel: state.extra as GetAllVacationModel,
+              getAllVacationModel: myData['data'],
+              title: myData["title"],
             ),
           );
         },
@@ -726,7 +733,9 @@ abstract class AppRouter {
             create: (context) =>
                 getIt.get<GetPermissionOfSpecificEmployeeCubit>()
                   ..getPermissionsOfSpecificEmployee(),
-            child: const GetPermissionOfSpecificEmployeeView(),
+            child: GetPermissionOfSpecificEmployeeView(
+              title: state.extra as String,
+            ),
           );
         },
       ),
@@ -734,17 +743,21 @@ abstract class AppRouter {
         path: kAddPermissionView,
         builder: (context, state) => BlocProvider(
           create: (context) => getIt.get<AddPermissionCubit>(),
-          child: const AddPermissionView(),
+          child: AddPermissionView(
+            title: state.extra as String,
+          ),
         ),
       ),
       GoRoute(
         path: kUpdatePermissionView,
         builder: (context, state) {
+          Map<String, dynamic> myData = state.extra as Map<String, dynamic>;
+
           return BlocProvider(
             create: (context) => getIt.get<UpdatePermissionCubit>(),
             child: UpdatePermissionView(
-              getPermissionOfSpecificEmployeeResponse:
-                  state.extra as GetPermissionOfSpecificEmployeeResponse,
+              getPermissionOfSpecificEmployeeResponse: myData["data"],
+              title: myData["title"],
             ),
           );
         },
@@ -844,6 +857,10 @@ abstract class AppRouter {
             BlocProvider(
               create: (context) =>
                   getIt.get<GetAllProductCubit>()..getAllProduct(),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  getIt.get<GetAllSupplierCubit>()..getAllSupplier(),
             ),
           ],
           child: const CreateScmOrderView(),

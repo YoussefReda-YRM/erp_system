@@ -47,6 +47,13 @@ class ScmOrderItem extends StatelessWidget {
                                   'Name: ${product.productName} - Quantity: ${product.quantity}',
                                   style: Styles.font14BlueSemiBold(context),
                                 ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                'Total Price: ${order.totalCostPrice} \$',
+                                style: Styles.font14BlueSemiBold(context),
+                              ),
                             ],
                           ),
                         ),

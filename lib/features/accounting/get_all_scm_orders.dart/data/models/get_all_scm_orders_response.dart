@@ -3,9 +3,15 @@ class GetAllScmOrdersResponse {
   final String? reference;
   final int? id;
   final int? status;
+  final double? totalCostPrice;
 
-  GetAllScmOrdersResponse(
-      {this.scmOrderProducts, this.reference, this.id, this.status});
+  GetAllScmOrdersResponse({
+    this.scmOrderProducts,
+    this.reference,
+    this.id,
+    this.status,
+    this.totalCostPrice,
+  });
 
   factory GetAllScmOrdersResponse.fromJson(Map<String, dynamic> json) =>
       GetAllScmOrdersResponse(
@@ -16,6 +22,7 @@ class GetAllScmOrdersResponse {
         reference: json['reference'],
         id: json['id'],
         status: json['status'],
+        totalCostPrice: json['totalCostPrice'],
       );
 }
 

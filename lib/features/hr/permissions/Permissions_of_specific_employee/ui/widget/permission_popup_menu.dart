@@ -8,9 +8,11 @@ import 'package:erp_system/features/hr/permissions/delete_permission/logic/delet
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class PermissionPopupMenu extends StatelessWidget{
-  const PermissionPopupMenu({super.key,required this.permissionData});
+class PermissionPopupMenu extends StatelessWidget {
+  const PermissionPopupMenu(
+      {super.key, required this.permissionData, required this.title});
   final GetPermissionOfSpecificEmployeeResponse permissionData;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -26,20 +28,21 @@ class PermissionPopupMenu extends StatelessWidget{
         if (value == 'edit') {
           GoRouter.of(context).push(
             AppRouter.kUpdatePermissionView,
-            extra: permissionData,
+            extra: {"data": permissionData, "title": title},
           );
         } else if (value == 'delete') {
           deleteShowDialog(
             context,
             'Are you sure you want to delete this Permission?',
-                () {
+            () {
               getIt.get<DeletePermissionCubit>().deletePermission(
-                permissionData.id.toString(),
-              );
+                    permissionData.id.toString(),
+                  );
               GoRouter.of(context).pop();
-              Future.delayed(const Duration(milliseconds: 200), () {
-                GoRouter.of(context)
-                    .pushReplacement(AppRouter.kGetPermissionOfSpecificEmployeeView);
+              Future.delayed(const Duration(milliseconds: 500), () {
+                GoRouter.of(context).pushReplacement(
+                    AppRouter.kGetPermissionOfSpecificEmployeeView,
+                    extra: title);
               });
             },
           );

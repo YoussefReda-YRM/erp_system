@@ -6,8 +6,10 @@ import 'package:erp_system/features/hr/permissions/Permissions_of_specific_emplo
 import 'package:flutter/material.dart';
 
 class GetAllPermissionOfSpecificEmployeeListViewItem extends StatelessWidget {
-  const GetAllPermissionOfSpecificEmployeeListViewItem({super.key,required this.data});
+  const GetAllPermissionOfSpecificEmployeeListViewItem(
+      {super.key, required this.data, required this.title});
   final GetPermissionOfSpecificEmployeeResponse data;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -31,44 +33,42 @@ class GetAllPermissionOfSpecificEmployeeListViewItem extends StatelessWidget {
                 ),
               ),
               title: Text(
-                data.employee!,
+                "from : ${data.start!} To: ${data.end}",
                 style: Styles.font14BlueSemiBold(context),
               ),
-              subtitle:Row(
+              subtitle: Row(
                 children: [
-                 /* Flexible(
-                    child: Text(
-                      "${data.start} - ${data.end}",
-                      style: Styles.font16DarkBlueBold(context),
-                      overflow: TextOverflow.clip,
-                    ),
-                  ),*/
-               /*   const SizedBox(width: 3),
-                  Flexible(
-                    child: Text(
-                      "${data.date}",
-                      style: Styles.font16DarkBlueBold(context),
-                      overflow: TextOverflow.clip,
-                    ),
-                  ),*/
-                  const SizedBox(width: 3),
+                  Text(
+                    data.date!,
+                    style: Styles.font14BlueSemiBold(context),
+                  ),
+                  const SizedBox(width: 8),
                   Flexible(
                     child: Text(
                       data.status == 0
                           ? "Pending"
                           : data.status == 1
-                          ? "Accepted"
-                          : data.status == 2
-                          ? "Rejected"
-                          : "Unknown Status",
-                      style: Styles.font16DarkBlueBold(context),
-                      overflow: TextOverflow.clip,
+                              ? "Accepted"
+                              : data.status == 2
+                                  ? "Rejected"
+                                  : "Unknown Status",
+                      style: Styles.font16DarkBlueBold(context).copyWith(
+                        color: data.status == 0
+                            ? Colors.orange
+                            : data.status == 1
+                                ? Colors.green
+                                : Colors.red,
+                      ),
                     ),
                   ),
                 ],
               ),
-
-              trailing: data.status == 0 ? PermissionPopupMenu(permissionData: data) : null,
+              trailing: data.status == 0
+                  ? PermissionPopupMenu(
+                      permissionData: data,
+                      title: title,
+                    )
+                  : null,
             ),
           ],
         ),

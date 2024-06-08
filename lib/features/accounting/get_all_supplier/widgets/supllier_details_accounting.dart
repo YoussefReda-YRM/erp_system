@@ -58,17 +58,17 @@ class SupplierDetailsAccounting extends StatelessWidget {
                         child: SingleChildScrollView(
                           child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 40, vertical: 20),
+                                  horizontal: 20, vertical: 20),
                               child: Column(
                                 children: [
                                   Row(
                                     children: [
                                       Text(
-                                        "Supplier Name: ",
+                                        "Supplier Name:     ",
                                         style:
                                             Styles.font13BlueSemiBold(context),
                                       ),
-                                      const Spacer(),
+                                      // const Spacer(),
                                       Expanded(
                                         child: Text(
                                           supplierName ?? "none",
@@ -85,11 +85,11 @@ class SupplierDetailsAccounting extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        "Supplier Email: ",
+                                        "Supplier Email:     ",
                                         style:
                                             Styles.font13BlueSemiBold(context),
                                       ),
-                                      const Spacer(),
+                                      // const Spacer(),
                                       Expanded(
                                         child: Text(
                                           supplierEmail ?? "none",
@@ -106,11 +106,11 @@ class SupplierDetailsAccounting extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        "Supplier Phone: ",
+                                        "Supplier Phone:     ",
                                         style:
                                             Styles.font13BlueSemiBold(context),
                                       ),
-                                      const Spacer(),
+                                      // const Spacer(),
                                       Expanded(
                                         child: Text(
                                           supplierPhone ?? "none",
@@ -127,11 +127,11 @@ class SupplierDetailsAccounting extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        "Added By: ",
+                                        "Added By:     ",
                                         style:
                                             Styles.font13BlueSemiBold(context),
                                       ),
-                                      const Spacer(),
+                                      // const Spacer(),
                                       Expanded(
                                         child: Text(
                                           supplierAddedBy ?? "none",

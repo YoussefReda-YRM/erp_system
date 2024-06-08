@@ -8,29 +8,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GetPermissionOfSpecificEmployeeListView extends StatelessWidget {
-  const GetPermissionOfSpecificEmployeeListView({super.key});
+  const GetPermissionOfSpecificEmployeeListView(
+      {super.key, required this.title});
+  final String title;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GetPermissionOfSpecificEmployeeCubit, GetPermissionsOfSpecificEmployeeState>(
-        builder: (context, state) {
-          if (state is GetPermissionsOfSpecificEmployeeLoading) {
-            return const CustomCircularProgressIndicator();
-          } else if (state is GetPermissionsOfSpecificEmployeeSuccess) {
-            return ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: state.response.length,
-              itemBuilder: (context, index) {
-                return GetAllPermissionOfSpecificEmployeeListViewItem(
-                  data: state.response[index],
-                );
-              },
+    return BlocBuilder<GetPermissionOfSpecificEmployeeCubit,
+        GetPermissionsOfSpecificEmployeeState>(builder: (context, state) {
+      if (state is GetPermissionsOfSpecificEmployeeLoading) {
+        return const CustomCircularProgressIndicator();
+      } else if (state is GetPermissionsOfSpecificEmployeeSuccess) {
+        return ListView.builder(
+          physics: const BouncingScrollPhysics(),
+          itemCount: state.response.length,
+          itemBuilder: (context, index) {
+            return GetAllPermissionOfSpecificEmployeeListViewItem(
+              data: state.response[index],
+              title: title,
             );
-          } else if (state is GetPermissionsOfSpecificEmployeeFailure) {
-            return CustomErrorWidget(error: state.error);
-          } else {
-            return const CustomNoProductWidget();
-          }
-        });
+          },
+        );
+      } else if (state is GetPermissionsOfSpecificEmployeeFailure) {
+        return CustomErrorWidget(error: state.error);
+      } else {
+        return const CustomNoProductWidget();
+      }
+    });
   }
 }

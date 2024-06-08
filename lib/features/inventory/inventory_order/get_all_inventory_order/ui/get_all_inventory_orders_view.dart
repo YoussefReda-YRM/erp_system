@@ -28,7 +28,9 @@ class _GetAllInventoryOrdersViewState extends State<GetAllInventoryOrdersView> {
             : const InventoryDrawerItemListView(),
       ),
       body: GetAllInventoryOrdersViewBody(
-          scaffoldKey: scaffoldKey, title: widget.title),
+        scaffoldKey: scaffoldKey,
+        title: widget.title,
+      ),
     );
   }
 }

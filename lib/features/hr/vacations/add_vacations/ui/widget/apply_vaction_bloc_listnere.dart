@@ -9,7 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class ApplyVacationBlocListener extends StatelessWidget {
-  const ApplyVacationBlocListener({super.key});
+  const ApplyVacationBlocListener({super.key, required this.title});
+  final String title;
   @override
   Widget build(BuildContext context) {
     return BlocListener<ApplyVacationCubit, ApplyVacatinState>(
@@ -30,7 +31,9 @@ class ApplyVacationBlocListener extends StatelessWidget {
         } else if (state is ApplyVacationSuccess) {
           showSuccessDialog(
               context, 'Successfully', 'Vacation Applied Successfully', () {
-            GoRouter.of(context).pushReplacement(AppRouter.kGetAllVacationsView);
+            GoRouter.of(context).pushReplacement(
+                AppRouter.kGetAllVacationOfSpecificEmployeeView,
+                extra: title);
           });
         } else if (state is ApplyVacationFailure) {
           setupErrorState(context, state.error.toString());

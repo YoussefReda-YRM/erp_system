@@ -45,7 +45,7 @@ class DetailsEmployeeModel {
         salary: json['salary'] as double,
         userName: json['username'] as String,
         email: json['email'] as String,
-        employeeDepartment: json['employeeDepartment'] as String,
+        employeeDepartment: json['employeeDepartment'],
         role: json['role'] as String,
       );
 }

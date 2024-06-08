@@ -1,3 +1,4 @@
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_button.dart';
@@ -60,31 +61,33 @@ class VacationDetailsViewBody extends StatelessWidget {
             //   },
             // ),
 
-            Row(
-              children: [
-                Expanded(
-                  child: AppTextButton(
-                    borderRadius: 8,
-                    buttonText: "Reject",
-                    backgroundColor: const Color(0xffFF7F74),
-                    textStyle: Styles.font13BlueSemiBold(context),
-                    onPressed: () {},
-                  ),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Expanded(
-                  child: AppTextButton(
-                    borderRadius: 8,
-                    buttonText: "Accept",
-                    backgroundColor: const Color(0xff30BEB6),
-                    textStyle: Styles.font13BlueSemiBold(context),
-                    onPressed: () {},
-                  ),
-                ),
-              ],
-            ),
+            userRole == "HRAdmin" || userRole == "HREmployee"
+                ? Row(
+                    children: [
+                      Expanded(
+                        child: AppTextButton(
+                          borderRadius: 8,
+                          buttonText: "Reject",
+                          backgroundColor: const Color(0xffFF7F74),
+                          textStyle: Styles.font13BlueSemiBold(context),
+                          onPressed: () {},
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: AppTextButton(
+                          borderRadius: 8,
+                          buttonText: "Accept",
+                          backgroundColor: const Color(0xff30BEB6),
+                          textStyle: Styles.font13BlueSemiBold(context),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ],
+                  )
+                : const SizedBox(),
           ],
         ),
       ),

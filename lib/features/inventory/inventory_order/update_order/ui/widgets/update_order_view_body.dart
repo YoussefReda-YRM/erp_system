@@ -58,7 +58,9 @@ class UpdateOrderBody extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                const UpdateOrderBlocListener(),
+                UpdateOrderBlocListener(
+                  orderId: orderData.data!.id!,
+                ),
               ],
             ),
           ),

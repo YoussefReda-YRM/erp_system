@@ -9,13 +9,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AddPermissionBloc extends StatelessWidget {
-  const AddPermissionBloc({super.key});
+  const AddPermissionBloc({super.key, required this.title});
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<AddPermissionCubit, AddPermissionState>(
       listenWhen: (previous, current) =>
-      current is AddPermissionLoading ||
+          current is AddPermissionLoading ||
           current is AddPermissionSuccess ||
           current is AddPermissionFailure,
       listener: (context, state) {
@@ -30,14 +32,12 @@ class AddPermissionBloc extends StatelessWidget {
           );
         } else if (state is AddPermissionSuccess) {
           showSuccessDialog(
-              context,
-              'Successfully',
-              'Permission added successfully!',
-                  ()
-              {
-                GoRouter.of(context).pushReplacement(AppRouter.kGetPermissionOfSpecificEmployeeView);
-              }
-          );
+              context, 'Successfully', 'Permission added successfully!', () {
+            GoRouter.of(context).pushReplacement(
+              AppRouter.kGetPermissionOfSpecificEmployeeView,
+              extra: title,
+            );
+          });
         } else if (state is AddPermissionFailure) {
           setupErrorState(context, state.error.toString());
         }

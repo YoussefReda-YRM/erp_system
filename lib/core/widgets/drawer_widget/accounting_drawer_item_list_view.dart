@@ -2,7 +2,6 @@ import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/functions/show_snack_bar.dart';
-import 'package:erp_system/core/widgets/custom_divider.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_item.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_item_model.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +38,14 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
     DrawerItemModel(
       title: 'Taxes',
       icon: Icons.monetization_on_outlined,
+    ),
+    DrawerItemModel(
+      title: 'My Vacations',
+      icon: Icons.hotel_outlined,
+    ),
+    DrawerItemModel(
+      title: 'My Permissions',
+      icon: Icons.verified_user_outlined,
     ),
     // DrawerItemModel(
     //   title: 'Profit & Loss',
@@ -77,10 +84,8 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
                     } else if (activeIndex == 1) {
                       userRole == "AccountingEmployee" ||
                               userRole == "SuperAdmin"
-                          ? GoRouter.of(context).go(
-                              AppRouter.kInventoryOrders,
-                              extra: "accounting"
-                            )
+                          ? GoRouter.of(context).go(AppRouter.kInventoryOrders,
+                              extra: "accounting")
                           : showSnackBar(context);
                     } else if (activeIndex == 2) {
                       userRole == "AccountingEmployee" ||
@@ -95,14 +100,19 @@ class _DrawerItemListViewState extends State<AccountingDrawerItemListView> {
                               userRole == "SuperAdmin"
                           ? GoRouter.of(context).go(AppRouter.kGetAllTaxes)
                           : showSnackBar(context);
-                    } 
+                    } else if (activeIndex == 5) {
+                      GoRouter.of(context).go(
+                          AppRouter.kGetAllVacationOfSpecificEmployeeView,
+                          extra: "accounting");
+                    } else if (activeIndex == 6) {
+                      GoRouter.of(context).go(
+                          AppRouter.kGetPermissionOfSpecificEmployeeView,
+                          extra: "accounting");
+                    }
                   });
                 }
               },
             ),
-            index == 5
-                ? const CustomDivider()
-                : const SizedBox(),
           ],
         );
       },

@@ -8,10 +8,10 @@ import 'package:erp_system/features/hr/vacations/get_all_vacations/data/models/g
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class VacationPopupMenu extends StatelessWidget{
-  const VacationPopupMenu({super.key,required this.data});
+class VacationPopupMenu extends StatelessWidget {
+  const VacationPopupMenu({super.key, required this.data, required this.title});
   final GetAllVacationModel data;
-
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -27,19 +27,21 @@ class VacationPopupMenu extends StatelessWidget{
         if (value == 'edit') {
           GoRouter.of(context).push(
             AppRouter.kUpdateVacationView,
-            extra: data,
+            extra: {"data": data, "title": title},
           );
         } else if (value == 'delete') {
           deleteShowDialog(
             context,
             'Are you sure you want to delete this Vacation?',
-                () {
-              getIt.get<DeleteVacationCubit>().deleteVacation(data.id.toString()
-              );
+            () {
+              getIt
+                  .get<DeleteVacationCubit>()
+                  .deleteVacation(data.id.toString());
               GoRouter.of(context).pop();
-              Future.delayed(const Duration(milliseconds: 200), () {
-                GoRouter.of(context)
-                    .pushReplacement(AppRouter.kGetAllVacationOfSpecificEmployeeView);
+              Future.delayed(const Duration(milliseconds: 500), () {
+                GoRouter.of(context).pushReplacement(
+                    AppRouter.kGetAllVacationOfSpecificEmployeeView,
+                    extra: title);
               });
             },
           );

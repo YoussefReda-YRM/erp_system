@@ -32,14 +32,11 @@ class _UpdateProductFormState extends State<UpdateProductForm> {
         widget.productData.productCostPrice.toString();
     context.read<UpdateProductCubit>().productSellPriceController.text =
         widget.productData.productSellPrice.toString();
-    context.read<UpdateProductCubit>().productInComingController.text =
-        widget.productData.productInComing.toString();
-    context.read<UpdateProductCubit>().productOutGoingController.text =
-        widget.productData.productOutGoing.toString();
+
     context.read<UpdateProductCubit>().subCategoryIdController.text =
         widget.productData.category!;
-    // context.read<UpdateProductCubit>().productMinquantityController.text =
-    // widget.productData.productMin ;
+    context.read<UpdateProductCubit>().productMinquantityController.text =
+        widget.productData.productMinquantity.toString();
   }
 
   @override
@@ -119,42 +116,6 @@ class _UpdateProductFormState extends State<UpdateProductForm> {
                 return 'Please enter a valid sell price';
               }
             },
-          ),
-          SizedBox(height: 18.h),
-          AppTextFormField(
-            hintText: 'income',
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: ColorsApp.primaryColor,
-                width: 1.3,
-              ),
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter a valid income';
-              }
-            },
-            controller:
-                context.read<UpdateProductCubit>().productInComingController,
-          ),
-          SizedBox(height: 18.h),
-          AppTextFormField(
-            hintText: 'out going',
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: ColorsApp.primaryColor,
-                width: 1.3,
-              ),
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter a valid out going';
-              }
-            },
-            controller:
-                context.read<UpdateProductCubit>().productOutGoingController,
           ),
           SizedBox(height: 18.h),
           AppTextFormField(

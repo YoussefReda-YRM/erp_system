@@ -1,4 +1,5 @@
 import 'package:erp_system/core/dependency_injection/service_locator.dart';
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
@@ -156,7 +157,7 @@ class SupplierDetails extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  AppTextButton(
+                  userRole == "HREmployee" || userRole == "HRAdmin" ? AppTextButton(
                     buttonText: 'Edit',
                     textStyle: Styles.font16LightGreyMedium(context),
                     backgroundColor: ColorsApp.primaryColor,
@@ -171,7 +172,7 @@ class SupplierDetails extends StatelessWidget {
                           .push(AppRouter.kUpdateSupplier, extra: {"id": id});
                       //showEditProductDialog(context, size);
                     },
-                  ),
+                  ): const SizedBox(),
                 ],
               ),
             ))

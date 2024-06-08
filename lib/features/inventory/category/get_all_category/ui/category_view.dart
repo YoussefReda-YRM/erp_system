@@ -1,3 +1,4 @@
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/widgets/drawer_widget/drawer_widget.dart';
 import 'package:erp_system/core/widgets/drawer_widget/inventory_drawer_item_list_view.dart';
 import 'package:erp_system/features/inventory/category/add_category/ui/widgets/add_sub_category_floating_action_button.dart';
@@ -24,7 +25,9 @@ class _CategoryViewState extends State<CategoryView> {
         ),
         backgroundColor: Colors.white,
         body: CategoryViewBody(scaffoldKey: scaffoldKey),
-        floatingActionButton: const AddSubCategoryFloatingActionButton(),
+        floatingActionButton: userRole == "InventoryEmployee"
+            ? const AddSubCategoryFloatingActionButton()
+            : const SizedBox(),
       ),
     );
   }

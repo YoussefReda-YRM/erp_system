@@ -58,7 +58,7 @@ class OrderDetailsViewBody extends StatelessWidget {
                               .copyWith(fontSize: 13),
                           backgroundColor: ColorsApp.primaryColor,
                           onPressed: () {
-                            GoRouter.of(context).push(
+                            GoRouter.of(context).pushReplacement(
                               AppRouter.kUpdateOrderView,
                               extra: state.response,
                             );

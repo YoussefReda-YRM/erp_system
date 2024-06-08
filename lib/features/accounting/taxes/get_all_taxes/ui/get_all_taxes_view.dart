@@ -1,3 +1,4 @@
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/widgets/custom_floating_action_button.dart';
 import 'package:erp_system/core/widgets/drawer_widget/accounting_drawer_item_list_view.dart';
@@ -27,13 +28,14 @@ class _GetAllTaxesViewState extends State<GetAllTaxesView> {
       body: GetAllTaxesViewBody(
         scaffoldKey: scaffoldKey,
       ),
-      floatingActionButton: CustomFloatingActionButton(
-        ctxt: context,
-        onPressed: () {
-          GoRouter.of(context).push(AppRouter.kAddTaxes);
-        },
-      ),
-
+      floatingActionButton: userRole == "AccountingEmployee"
+          ? CustomFloatingActionButton(
+              ctxt: context,
+              onPressed: () {
+                GoRouter.of(context).push(AppRouter.kAddTaxes);
+              },
+            )
+          : const SizedBox(),
     );
   }
 }

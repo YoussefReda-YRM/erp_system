@@ -7,10 +7,13 @@ import 'package:erp_system/features/inventory/get_all_accounting_employee/logic/
 import 'package:erp_system/features/inventory/product/get_all_product/logic/get_all_product_cubit.dart';
 import 'package:erp_system/features/inventory/product/get_all_product/logic/get_all_product_state.dart';
 import 'package:erp_system/features/inventory/replenishment/ui/widgets/show_accounting_employee_dialog.dart';
+import 'package:erp_system/features/inventory/replenishment/ui/widgets/show_supplier_dialog.dart';
 import 'package:erp_system/features/scm/create_scm_order/data/models/create_scm_order_request.dart';
 import 'package:erp_system/features/scm/create_scm_order/logic/create_scm_order_cubit.dart';
 import 'package:erp_system/features/scm/create_scm_order/ui/widgets/create_scm_order_bloc_listnere.dart';
 import 'package:erp_system/features/scm/create_scm_order/ui/widgets/show_products_dialog.dart';
+import 'package:erp_system/features/scm/supplier/get_all_suplier/logic/get_supplier_cubit.dart';
+import 'package:erp_system/features/scm/supplier/get_all_suplier/logic/get_supplier_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -167,6 +170,57 @@ class _CreateScmOrderViewBodyFormState
                           const SizedBox(
                             height: 20,
                           ),
+                          BlocBuilder<GetAllSupplierCubit, GetAllSupplierState>(
+                            builder: (context, state) {
+                              if (state is GetAllSupplierLoading) {
+                                return const Center(
+                                    child: CircularProgressIndicator());
+                              } else if (state is GetAllSupplierFailure) {
+                                return Center(child: Text(state.error));
+                              } else if (state is GetAllSupplierSuccess) {
+                                final getAllSupplier = state.response;
+
+                                return AppTextFormField(
+                                  controller: context
+                                      .read<CreateScmOrderCubit>()
+                                      .supplierNameController,
+                                  hintText: 'Select Supplier',
+                                  isEnabled: false,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                      color: ColorsApp.primaryColor,
+                                      width: 1.3,
+                                    ),
+                                    borderRadius: BorderRadius.circular(16.0),
+                                  ),
+                                  suffixIcon: const Icon(
+                                    Icons.arrow_drop_down,
+                                    size: 20,
+                                    color: ColorsApp.primaryColor,
+                                  ),
+                                  function: () {
+                                    showSupplierDialog(
+                                        context,
+                                        size,
+                                        getAllSupplier,
+                                        BlocProvider.of<CreateScmOrderCubit>(
+                                            context));
+                                  },
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please select Supplier';
+                                    }
+                                  },
+                                );
+                              } else {
+                                return const Text(
+                                    "Wait for the Supplier to load...");
+                              }
+                            },
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           BlocBuilder<GetAllProductCubit, GetAllProductState>(
                             builder: (context, state) {
                               if (state is GetAllProductLoading) {
@@ -180,7 +234,7 @@ class _CreateScmOrderViewBodyFormState
                                 return AppTextFormField(
                                   controller: context
                                       .read<CreateScmOrderCubit>()
-                                      .productIdController,
+                                      .productNameController,
                                   hintText: 'Select Product',
                                   isEnabled: false,
                                   enabledBorder: OutlineInputBorder(
@@ -246,7 +300,9 @@ class _CreateScmOrderViewBodyFormState
                               return Card(
                                 child: ListTile(
                                   title: Text(
-                                    'Product ID: ${product.productId} - Quantity: ${product.quantity}',
+                                    'Product Name: ${context
+                                      .read<CreateScmOrderCubit>()
+                                      .productNameController} - Quantity: ${product.quantity}',
                                     style: Styles.font13BlueSemiBold(context),
                                   ),
                                   trailing: IconButton(

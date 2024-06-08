@@ -26,14 +26,6 @@ class AttendanceViewBody extends StatelessWidget {
               scaffoldKey.currentState!.openDrawer();
             },
           ),
-          iconTrailing: IconButton(
-            icon: const Icon(
-              Icons.search_outlined,
-              size: 34,
-              color: ColorsApp.lightGrey,
-            ),
-            onPressed: () {},
-          ),
         ),
         Expanded(
           child: CustomAppBody(
@@ -86,7 +78,7 @@ class AttendanceViewBody extends StatelessWidget {
 }
 
 String getFormattedDate() {
-    DateTime now = DateTime.now();
-    String formattedDate = DateFormat('dd-MM-yyyy').format(now);
-    return formattedDate;
-  }
+  DateTime now = DateTime.now();
+  String formattedDate = DateFormat('dd-MM-yyyy').format(now);
+  return formattedDate;
+}

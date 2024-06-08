@@ -1,3 +1,4 @@
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
@@ -55,18 +56,20 @@ class DetailsProductViewBody extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  AppTextButton(
-                    buttonText: "Edit",
-                    width: double.infinity,
-                    backgroundColor: ColorsApp.primaryColor,
-                    textStyle: Styles.font16LightGreyMedium(context),
-                    onPressed: () {
-                      GoRouter.of(context).push(
-                        AppRouter.kUpdateProduct,
-                        extra: state.response,
-                      );
-                    },
-                  ),
+                  userRole == "InventoryEmployee"
+                      ? AppTextButton(
+                          buttonText: "Edit",
+                          width: double.infinity,
+                          backgroundColor: ColorsApp.primaryColor,
+                          textStyle: Styles.font16LightGreyMedium(context),
+                          onPressed: () {
+                            GoRouter.of(context).push(
+                              AppRouter.kUpdateProduct,
+                              extra: state.response,
+                            );
+                          },
+                        )
+                      : const SizedBox(),
                 ],
               ),
             ),

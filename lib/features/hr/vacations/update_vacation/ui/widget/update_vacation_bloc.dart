@@ -8,13 +8,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class UpdateVacationBloc extends StatelessWidget {
-  const UpdateVacationBloc({super.key});
+  const UpdateVacationBloc({super.key, required this.title});
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<UpdateVacationCubit, UpdateVacationState>(
       listenWhen: (previous, current) =>
-      current is UpdateVacationLoading ||
+          current is UpdateVacationLoading ||
           current is UpdateVacationSuccess ||
           current is UpdateVacationFailure,
       listener: (context, state) {
@@ -23,8 +24,8 @@ class UpdateVacationBloc extends StatelessWidget {
         } else if (state is UpdateVacationSuccess) {
           GoRouter.of(context).pop();
           GoRouter.of(context).pushReplacement(
-            AppRouter.kGetAllVacationOfSpecificEmployeeView,
-          );
+              AppRouter.kGetAllVacationOfSpecificEmployeeView,
+              extra: title);
         } else if (state is UpdateVacationFailure) {
           setupErrorState(context, state.error.toString());
         }

@@ -4,9 +4,8 @@ import 'package:erp_system/features/accounting/taxes/get_all_taxes/data/models/G
 import 'package:flutter/material.dart';
 
 class GetAllTaxesListViewItem extends StatelessWidget {
-  const GetAllTaxesListViewItem({super.key,required this.data});
+  const GetAllTaxesListViewItem({super.key, required this.data});
   final GetAllTaxesModel data;
-
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class GetAllTaxesListViewItem extends StatelessWidget {
       child: SizedBox(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Column(
               children: [
                 Row(
@@ -32,15 +31,15 @@ class GetAllTaxesListViewItem extends StatelessWidget {
                         style: Styles.font13BlueSemiBold(context),
                       ),
                     ),
-                    const SizedBox(width: 100,),
+                    const Spacer(),
                     Expanded(
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
                         alignment: AlignmentDirectional.centerStart,
                         child: Text(
                           data.taxName.toString(),
-                          style: Styles.font13BlueSemiBold(context).copyWith(
-                              color: Colors.pink),
+                          style: Styles.font13BlueSemiBold(context)
+                              .copyWith(color: Colors.pink),
                         ),
                       ),
                     ),
@@ -57,15 +56,15 @@ class GetAllTaxesListViewItem extends StatelessWidget {
                         style: Styles.font13BlueSemiBold(context),
                       ),
                     ),
-                    const SizedBox(width: 100,),
+                    const Spacer(),
                     Expanded(
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
                         alignment: AlignmentDirectional.centerStart,
                         child: Text(
                           data.taxValue.toString(),
-                          style: Styles.font13BlueSemiBold(context).copyWith(
-                              color: Colors.pink),
+                          style: Styles.font13BlueSemiBold(context)
+                              .copyWith(color: Colors.pink),
                         ),
                       ),
                     ),
@@ -82,15 +81,15 @@ class GetAllTaxesListViewItem extends StatelessWidget {
                         style: Styles.font13BlueSemiBold(context),
                       ),
                     ),
-                    const SizedBox(width: 100,),
+                    const Spacer(),
                     Expanded(
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
                         alignment: AlignmentDirectional.centerStart,
                         child: Text(
                           data.taxType.toString(),
-                          style: Styles.font13BlueSemiBold(context).copyWith(
-                              color: Colors.pink),
+                          style: Styles.font13BlueSemiBold(context)
+                              .copyWith(color: Colors.pink),
                         ),
                       ),
                     ),
@@ -103,5 +102,4 @@ class GetAllTaxesListViewItem extends StatelessWidget {
       ),
     );
   }
-
-  }
+}

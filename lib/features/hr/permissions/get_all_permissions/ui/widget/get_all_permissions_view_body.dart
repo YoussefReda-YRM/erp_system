@@ -5,9 +5,8 @@ import 'package:erp_system/features/hr/permissions/get_all_permissions/ui/widget
 import 'package:flutter/material.dart';
 
 class GetAllPermissionViewBody extends StatelessWidget {
-  const GetAllPermissionViewBody({super.key,required this.scaffoldKey});
+  const GetAllPermissionViewBody({super.key, required this.scaffoldKey});
   final GlobalKey<ScaffoldState> scaffoldKey;
-
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +24,6 @@ class GetAllPermissionViewBody extends StatelessWidget {
             onPressed: () {
               scaffoldKey.currentState!.openDrawer();
             },
-          ),
-          iconTrailing: IconButton(
-            icon: const Icon(
-              Icons.search_outlined,
-              size: 34,
-              color: ColorsApp.lightGrey,
-            ),
-            onPressed: () {},
           ),
         ),
         const Expanded(

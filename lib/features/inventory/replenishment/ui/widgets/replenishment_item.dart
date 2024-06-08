@@ -1,3 +1,4 @@
+import 'package:erp_system/core/helpers/contstatnts.dart';
 import 'package:erp_system/core/utils/app_router.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
@@ -32,9 +33,8 @@ class ReplenishmentItem extends StatelessWidget {
                 style: Styles.font14BlueSemiBold(context)
                     .copyWith(color: Colors.orange),
               )
-            : SizedBox(
-                width: 127,
-                child: ElevatedButton(
+            : userRole == "InventoryEmployee"
+                ? ElevatedButton(
                   onPressed: () {
                     GoRouter.of(context).push(
                       AppRouter.kReorderView,
@@ -55,8 +55,8 @@ class ReplenishmentItem extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                ),
-              ),
+                )
+                : const SizedBox(),
       ),
     );
   }

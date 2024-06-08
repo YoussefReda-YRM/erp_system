@@ -24,28 +24,6 @@ class UpdateEmployeeForm extends StatefulWidget {
 }
 
 class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
-  bool isPasswordObscureText = true;
-  bool isPasswordConfirmationObscureText = true;
-
-  bool hasLowercase = false;
-  bool hasUppercase = false;
-  bool hasSpecialCharacters = false;
-  bool hasNumber = false;
-  bool hasMinLength = false;
-
-  void setupPasswordControllerListener() {
-    passwordController.addListener(() {
-      setState(() {
-        hasLowercase = AppRegex.hasLowerCase(passwordController.text);
-        hasUppercase = AppRegex.hasUpperCase(passwordController.text);
-        hasSpecialCharacters =
-            AppRegex.hasSpecialCharacter(passwordController.text);
-        hasNumber = AppRegex.hasNumber(passwordController.text);
-        hasMinLength = AppRegex.hasMinLength(passwordController.text);
-      });
-    });
-  }
-
   String gender = 'male';
   late TextEditingController passwordController;
 
@@ -57,18 +35,12 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
   @override
   void initState() {
     super.initState();
-    passwordController = context.read<UpdateEmployeeCubit>().passwordController;
-    setupPasswordControllerListener();
     _selectedDepartment = departments[0];
     _selectedRole = roles[0];
-
     context.read<UpdateEmployeeCubit>().userNameController.text =
-        widget.employeeData!.name.toString();
+        widget.employeeData!.userName.toString();
     context.read<UpdateEmployeeCubit>().emailController.text =
         widget.employeeData!.email.toString();
-    context.read<UpdateEmployeeCubit>().passwordController.text = "**********";
-    context.read<UpdateEmployeeCubit>().passwordConfirmationController.text =
-        "**********";
     context.read<UpdateEmployeeCubit>().roleController =
         widget.employeeData!.role.toString();
     context.read<UpdateEmployeeCubit>().addressController.text =
@@ -76,7 +48,7 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
     context.read<UpdateEmployeeCubit>().nationalityController.text =
         widget.employeeData!.nationality.toString();
     context.read<UpdateEmployeeCubit>().nameController.text =
-        widget.employeeData!.email.toString();
+        widget.employeeData!.name.toString();
     context.read<UpdateEmployeeCubit>().identificationNoController.text =
         widget.employeeData!.identificationNo.toString();
     context.read<UpdateEmployeeCubit>().phoneNumberController.text =
@@ -161,75 +133,6 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
               }
             },
             controller: context.read<UpdateEmployeeCubit>().emailController,
-          ),
-          const SizedBox(height: 18),
-          AppTextFormField(
-            controller: context.read<UpdateEmployeeCubit>().passwordController,
-            hintText: 'Password',
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: ColorsApp.primaryColor,
-                width: 1.3,
-              ),
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            isObscureText: isPasswordObscureText,
-            suffixIcon: GestureDetector(
-              onTap: () {
-                setState(() {
-                  isPasswordObscureText = !isPasswordObscureText;
-                });
-              },
-              child: Icon(
-                size: 15,
-                isPasswordObscureText ? Icons.visibility_off : Icons.visibility,
-              ),
-            ),
-            validator: (value) {
-              if (value == null ||
-                  value.isEmpty ||
-                  !AppRegex.isPasswordValid(value)) {
-                return 'Please enter a valid password';
-              }
-            },
-          ),
-          const SizedBox(height: 18),
-          AppTextFormField(
-            controller: context
-                .read<UpdateEmployeeCubit>()
-                .passwordConfirmationController,
-            hintText: 'Password Confirmation',
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: ColorsApp.primaryColor,
-                width: 1.3,
-              ),
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            isObscureText: isPasswordConfirmationObscureText,
-            suffixIcon: GestureDetector(
-              onTap: () {
-                setState(() {
-                  isPasswordConfirmationObscureText =
-                      !isPasswordConfirmationObscureText;
-                });
-              },
-              child: Icon(
-                size: 15,
-                isPasswordConfirmationObscureText
-                    ? Icons.visibility_off
-                    : Icons.visibility,
-              ),
-            ),
-            validator: (value) {
-              if (value == null ||
-                  value.isEmpty ||
-                  !AppRegex.isPasswordValid(value)) {
-                return 'Please enter a valid password';
-              } else if (value != passwordController.text) {
-                return 'The password is not the same';
-              }
-            },
           ),
           const SizedBox(height: 18),
           CustomIntlPhoneField(
