@@ -16,67 +16,56 @@ class UpdateDepartmentBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        children: [
-          CustomAppBarApp(
-            title: 'Edit Department',
-            iconLeading: const CustomBackButton(),
-            iconTrailing: IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.more_vert_outlined,
-                size: 34,
-                color: ColorsApp.lightGrey,
-              ),
-            ),
-          ),
-          Expanded(
+    return Column(
+      children: [
+        const CustomAppBarApp(
+          title: 'Edit Department',
+          iconLeading: CustomBackButton(),
+        ),
+        Expanded(
+          child: Container(
+            color: ColorsApp.primaryColor,
             child: Container(
-              color: ColorsApp.primaryColor,
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                decoration: BoxDecoration(
-                  border: Border.all(width: 0, color: Colors.transparent),
-                  color: Colors.white,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(100),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              decoration: BoxDecoration(
+                border: Border.all(width: 0, color: Colors.transparent),
+                color: Colors.white,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(100),
+                ),
+              ),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 10,
                   ),
-                ),
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 10,
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: UpdateDepartmentForm(
+                      departmentData: departmentData,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: UpdateDepartmentForm(
-                        departmentData: departmentData,
-                      ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: AppTextButton(
+                      buttonText: 'Edit',
+                      textStyle: Styles.font16LightGreyMedium(context),
+                      backgroundColor: ColorsApp.primaryColor,
+                      onPressed: () {
+                        validateThenDoUpdateDepartment(
+                          context,
+                          departmentData.id,
+                        );
+                      },
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: AppTextButton(
-                        buttonText: 'Edit',
-                        textStyle: Styles.font16LightGreyMedium(context),
-                        backgroundColor: ColorsApp.primaryColor,
-                        onPressed: () {
-                          validateThenDoUpdateDepartment(
-                            context,
-                            departmentData.id,
-                          );
-                        },
-                      ),
-                    ),
-                    const UpdateDepartmentBlocListener(),
-                  ],
-                ),
+                  ),
+                  const UpdateDepartmentBlocListener(),
+                ],
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
