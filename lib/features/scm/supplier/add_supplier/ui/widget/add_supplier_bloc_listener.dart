@@ -14,17 +14,17 @@ class AddSupplierBlocListener extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AddSupplierCubit, AddSupplierState>(
       listenWhen: (previous, current) =>
-      current is AddSupplierLoading ||
+          current is AddSupplierLoading ||
           current is AddSupplierSuccess ||
           current is AddSupplierFailure,
       listener: (context, state) {
         if (state is AddSupplierLoading) {
           customLoadingIndicator(context);
         } else if (state is AddSupplierSuccess) {
-        //  GoRouter.of(context).pop();
-          GoRouter.of(context).pushReplacement(
-            AppRouter.kSupplierView,
-          );
+          
+          //  GoRouter.of(context).pop();
+          GoRouter.of(context)
+              .pushReplacement(AppRouter.kSupplierView, extra: "hr");
         } else if (state is AddSupplierFailure) {
           setupErrorState(context, state.error.toString());
         }

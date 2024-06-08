@@ -29,7 +29,7 @@ class UpdateProductBlocListener extends StatelessWidget {
           );
         } else if (state is UpdateProductSuccess) {
           showSuccessDialog(context, 'Updated Successfully',
-              'Your product has been successfully created.', () {
+              'Your product has been successfully Updated.', () {
             GoRouter.of(context).pushReplacement(AppRouter.kProductView);
           });
         } else if (state is UpdateProductFailure) {

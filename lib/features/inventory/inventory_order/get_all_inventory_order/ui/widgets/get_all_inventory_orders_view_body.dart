@@ -24,7 +24,9 @@ class GetAllInventoryOrdersViewBody extends StatelessWidget {
           scaffoldKey: scaffoldKey,
           title: title == 'adjustment'
               ? "Inventory Adjustment"
-              : 'Inventory Orders',
+              : title == "accounting"
+                  ? 'Inventory Orders'
+                  : 'Transfers',
           iconLeading: IconButton(
             icon: const Icon(
               Icons.menu,

@@ -1,9 +1,6 @@
 class UpdateEmployeeRequest {
   String? userName;
   String? email;
-  String? employeeJob;
-  int? employeeDepartmentId;
-  String? role;
   String? address;
   String? nationality;
   String? name;
@@ -19,14 +16,11 @@ class UpdateEmployeeRequest {
     this.bankAccount,
     this.birthDate,
     this.email,
-    this.employeeDepartmentId,
-    this.employeeJob,
     this.gender,
     this.identificationNo,
     this.name,
     this.nationality,
     this.phoneNumber,
-    this.role,
     this.salary,
     this.userName,
   });
@@ -35,9 +29,6 @@ class UpdateEmployeeRequest {
     return {
       'userName': userName,
       'email': email,
-      'employeeJob': employeeJob,
-      'employeeDepartmentId': employeeDepartmentId,
-      'role': role,
       'address': address,
       'nationality': nationality,
       'name': name,

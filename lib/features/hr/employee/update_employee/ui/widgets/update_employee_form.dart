@@ -1,11 +1,8 @@
-import 'package:erp_system/core/dependency_injection/service_locator.dart';
 import 'package:erp_system/core/helpers/app_regex.dart';
 import 'package:erp_system/core/utils/colors_app.dart';
 import 'package:erp_system/core/utils/styles.dart';
 import 'package:erp_system/core/widgets/custom_text_form_field.dart';
 import 'package:erp_system/core/widgets/custom_intl_phone_field.dart';
-import 'package:erp_system/features/hr/department/get_all_department/data/models/get_all_department_response.dart';
-import 'package:erp_system/features/hr/employee/add_employee/data/models/get_all_roles_model.dart';
 import 'package:erp_system/features/hr/employee/details_employee/data/models/details_employee_model.dart';
 import 'package:erp_system/features/hr/employee/get_all_employees/data/models/employee_response.dart';
 import 'package:erp_system/features/hr/employee/update_employee/logic/update_employee_cubit.dart';
@@ -27,22 +24,20 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
   String gender = 'male';
   late TextEditingController passwordController;
 
-  late GetAllDepartmentResponse _selectedDepartment;
-  List<GetAllDepartmentResponse> departments = getAllDepartmentGetIt;
+  // late GetAllDepartmentResponse _selectedDepartment;
+  // List<GetAllDepartmentResponse> departments = getAllDepartmentGetIt;
 
-  late GetAllRolesResponse _selectedRole;
-  List<GetAllRolesResponse> roles = getAllRolesGetIt;
+  // late GetAllRolesResponse _selectedRole;
+  // List<GetAllRolesResponse> roles = getAllRolesGetIt;
   @override
   void initState() {
     super.initState();
-    _selectedDepartment = departments[0];
-    _selectedRole = roles[0];
+    // _selectedDepartment = departments[0];
+    // _selectedRole = roles[0];
     context.read<UpdateEmployeeCubit>().userNameController.text =
         widget.employeeData!.userName.toString();
     context.read<UpdateEmployeeCubit>().emailController.text =
         widget.employeeData!.email.toString();
-    context.read<UpdateEmployeeCubit>().roleController =
-        widget.employeeData!.role.toString();
     context.read<UpdateEmployeeCubit>().addressController.text =
         widget.employeeData!.address.toString();
     context.read<UpdateEmployeeCubit>().nationalityController.text =
@@ -60,20 +55,20 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
     context.read<UpdateEmployeeCubit>().salaryController.text =
         widget.employeeData!.salary.toString();
 
-    departments == []
-        ? _selectedDepartment = GetAllDepartmentResponse(
-            id: -1,
-            departmentName: "There is no department",
-            description: "Ther is no department")
-        : _selectedDepartment = departments[0];
+    // departments == []
+    //     ? _selectedDepartment = GetAllDepartmentResponse(
+    //         id: -1,
+    //         departmentName: "There is no department",
+    //         description: "Ther is no department")
+    //     : _selectedDepartment = departments[0];
   }
 
   @override
   Widget build(BuildContext context) {
-    List<JobPosition>? jobPositions = _selectedDepartment.jobPositions;
-    JobPosition selectedJobPosition = jobPositions!.isEmpty
-        ? JobPosition(id: 0, jobName: "No Job")
-        : jobPositions[0];
+    // List<JobPosition>? jobPositions = _selectedDepartment.jobPositions;
+    // JobPosition selectedJobPosition = jobPositions!.isEmpty
+    //     ? JobPosition(id: 0, jobName: "No Job")
+    //     : jobPositions[0];
     return Form(
       key: context.read<UpdateEmployeeCubit>().formKey,
       child: Column(
@@ -239,78 +234,78 @@ class _UpdateEmployeeFormState extends State<UpdateEmployeeForm> {
               ),
             ],
           ),
-          const SizedBox(height: 18),
-          DropdownButtonFormField<GetAllRolesResponse>(
-            value: _selectedRole,
-            items: roles.map((role) {
-              return DropdownMenuItem<GetAllRolesResponse>(
-                value: role,
-                child: Text(role.roleName!),
-              );
-            }).toList(),
-            onChanged: (value) {
-              setState(() {
-                _selectedRole = value!;
-                context.read<UpdateEmployeeCubit>().roleController =
-                    _selectedRole.roleName.toString();
-              });
-            },
-            decoration: const InputDecoration(labelText: 'Employee Role'),
-            validator: (value) {
-              if (value == null) {
-                return 'Please select a job position';
-              }
-              return null;
-            },
-          ),
-          const SizedBox(height: 18),
-          DropdownButtonFormField<GetAllDepartmentResponse>(
-            value: _selectedDepartment,
-            items: departments.map((department) {
-              return DropdownMenuItem<GetAllDepartmentResponse>(
-                value: department,
-                child: Text(department.departmentName),
-              );
-            }).toList(),
-            onChanged: (value) {
-              setState(() {
-                _selectedDepartment = value!;
-                context.read<UpdateEmployeeCubit>().employeeDepartmentId =
-                    _selectedDepartment.id;
-              });
-            },
-            decoration: const InputDecoration(labelText: 'Department'),
-            validator: (value) {
-              if (value == null) {
-                return 'Please select a department';
-              }
-              return null;
-            },
-          ),
-          const SizedBox(height: 18),
-          DropdownButtonFormField<JobPosition>(
-            value: selectedJobPosition,
-            items: jobPositions.map((job) {
-              return DropdownMenuItem<JobPosition>(
-                value: job,
-                child: Text(job.jobName),
-              );
-            }).toList(),
-            onChanged: (value) {
-              setState(() {
-                selectedJobPosition = value!;
-                context.read<UpdateEmployeeCubit>().employeeJobController =
-                    selectedJobPosition.jobName.toString();
-              });
-            },
-            decoration: const InputDecoration(labelText: 'Job Position'),
-            validator: (value) {
-              if (value == null) {
-                return 'Please select a Job Position';
-              }
-              return null;
-            },
-          ),
+          // const SizedBox(height: 18),
+          // DropdownButtonFormField<GetAllRolesResponse>(
+          //   value: _selectedRole,
+          //   items: roles.map((role) {
+          //     return DropdownMenuItem<GetAllRolesResponse>(
+          //       value: role,
+          //       child: Text(role.roleName!),
+          //     );
+          //   }).toList(),
+          //   onChanged: (value) {
+          //     setState(() {
+          //       _selectedRole = value!;
+          //       context.read<UpdateEmployeeCubit>().roleController =
+          //           _selectedRole.roleName.toString();
+          //     });
+          //   },
+          //   decoration: const InputDecoration(labelText: 'Employee Role'),
+          //   validator: (value) {
+          //     if (value == null) {
+          //       return 'Please select a job position';
+          //     }
+          //     return null;
+          //   },
+          // ),
+          // const SizedBox(height: 18),
+          // DropdownButtonFormField<GetAllDepartmentResponse>(
+          //   value: _selectedDepartment,
+          //   items: departments.map((department) {
+          //     return DropdownMenuItem<GetAllDepartmentResponse>(
+          //       value: department,
+          //       child: Text(department.departmentName),
+          //     );
+          //   }).toList(),
+          //   onChanged: (value) {
+          //     setState(() {
+          //       _selectedDepartment = value!;
+          //       context.read<UpdateEmployeeCubit>().employeeDepartmentId =
+          //           _selectedDepartment.id;
+          //     });
+          //   },
+          //   decoration: const InputDecoration(labelText: 'Department'),
+          //   validator: (value) {
+          //     if (value == null) {
+          //       return 'Please select a department';
+          //     }
+          //     return null;
+          //   },
+          // ),
+          // const SizedBox(height: 18),
+          // DropdownButtonFormField<JobPosition>(
+          //   value: selectedJobPosition,
+          //   items: jobPositions.map((job) {
+          //     return DropdownMenuItem<JobPosition>(
+          //       value: job,
+          //       child: Text(job.jobName),
+          //     );
+          //   }).toList(),
+          //   onChanged: (value) {
+          //     setState(() {
+          //       selectedJobPosition = value!;
+          //       context.read<UpdateEmployeeCubit>().employeeJobController =
+          //           selectedJobPosition.jobName.toString();
+          //     });
+          //   },
+          //   decoration: const InputDecoration(labelText: 'Job Position'),
+          //   validator: (value) {
+          //     if (value == null) {
+          //       return 'Please select a Job Position';
+          //     }
+          //     return null;
+          //   },
+          // ),
           const SizedBox(height: 18),
           AppTextFormField(
             hintText: 'Address',

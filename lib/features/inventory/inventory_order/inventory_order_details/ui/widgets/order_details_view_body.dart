@@ -13,10 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class OrderDetailsViewBody extends StatelessWidget {
-  const OrderDetailsViewBody({
-    super.key,
-    required this.title,
-  });
+  const OrderDetailsViewBody({super.key, required this.title});
   final String title;
 
   @override
@@ -51,7 +48,7 @@ class OrderDetailsViewBody extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  title == "adjustment"
+                  title == "adjustment" && state.response.status == 0
                       ? AppTextButton(
                           buttonText: 'Edit',
                           textStyle: Styles.font16LightGreyMedium(context)

@@ -9,6 +9,7 @@ class DetailsProductModel {
   int? productOnHand;
   String? category;
   int? productMinquantity;
+  int? subCategoryId;
 
   DetailsProductModel({
     this.id,
@@ -21,6 +22,7 @@ class DetailsProductModel {
     this.activeOrder,
     this.category,
     this.productMinquantity,
+    this.subCategoryId,
   });
   factory DetailsProductModel.fromJson(Map<String, dynamic> json) =>
       DetailsProductModel(
@@ -33,5 +35,6 @@ class DetailsProductModel {
           activeOrder: json['activeOrder'],
           employeeName: json['employee'],
           category: json['category'],
+          subCategoryId: json['subCategoryId'],
           productMinquantity: json['productMinquantity']);
 }

@@ -33,8 +33,11 @@ class _UpdateProductFormState extends State<UpdateProductForm> {
     context.read<UpdateProductCubit>().productSellPriceController.text =
         widget.productData.productSellPrice.toString();
 
-    context.read<UpdateProductCubit>().subCategoryIdController.text =
+    context.read<UpdateProductCubit>().subCategoryNameController.text =
         widget.productData.category!;
+    context.read<UpdateProductCubit>().subCategoryIdController.text =
+        widget.productData.subCategoryId.toString();
+
     context.read<UpdateProductCubit>().productMinquantityController.text =
         widget.productData.productMinquantity.toString();
   }
